@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "443030078575",
+    "firebase_url": "https://pm3-elektrik-dbd8b.firebaseio.com",
+    "project_id": "pm3-elektrik-dbd8b",
+    "storage_bucket": "pm3-elektrik-dbd8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443030078575:android:11a1b781f6bd6f49",
+        "android_client_info": {
+          "package_name": "com.example.pm3elektrik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443030078575-0bt0bd9979q95jf94dqfo5r8ihjqto84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pm3elektrik",
+            "certificate_hash": "1a603340d42ea916cc0fda06ff82eb545c032c06"
+          }
+        },
+        {
+          "client_id": "443030078575-g7j5am1v490t9v2ni7ntaru4rdocj3oc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0jl7XyKr_Mi-amuSiteiREpJC2QkQOR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443030078575-g7j5am1v490t9v2ni7ntaru4rdocj3oc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
