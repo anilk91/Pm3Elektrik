@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".MotorListeSayfasi.EkleFragmentleri.SalterEkle">
+    <ImageView
+            android:src="@drawable/close"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/imgClose" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etMotorTag"
+            app:layout_constraintTop_toBottomOf="@+id/imgClose" android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:hint="Motor TAG" android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+    <EditText
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etMarka"
+            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" app:layout_constraintStart_toStartOf="@+id/etMotorTag"
+            android:layout_marginTop="16dp" android:hint="Marka"/>
+    <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etKapasite"
+            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:layout_marginTop="16dp"
+            android:hint="Kapasite" app:layout_constraintEnd_toEndOf="@+id/etMotorTag"/>
+    <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etCAT"
+            app:layout_constraintTop_toBottomOf="@+id/etMarka"
+            app:layout_constraintStart_toStartOf="@+id/etMarka" android:layout_marginTop="16dp"
+            android:hint="CAT"/>
+    <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etSTYLE"
+            app:layout_constraintEnd_toEndOf="@+id/etKapasite" app:layout_constraintTop_toBottomOf="@+id/etKapasite"
+            android:layout_marginTop="16dp" android:hint="STYLE"/>
+    <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etDemeraj"
+            app:layout_constraintStart_toStartOf="@+id/etCAT" app:layout_constraintTop_toBottomOf="@+id/etCAT"
+            android:layout_marginTop="16dp" android:hint="Demeraj"/>
+    <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/etDegTarihi"
+            app:layout_constraintEnd_toEndOf="@+id/etSTYLE"
+            android:hint="Değişim Tarihi" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/etSTYLE"/>
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etMCCYeri"
+            app:layout_constraintStart_toStartOf="@+id/etDemeraj"
+            app:layout_constraintEnd_toEndOf="@+id/etDegTarihi" app:layout_constraintTop_toBottomOf="@+id/etDemeraj"
+            android:layout_marginTop="16dp" android:hint="MCC Yeri"/>
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerSurucuSecim" app:layout_constraintStart_toStartOf="@+id/etMCCYeri"
+            app:layout_constraintEnd_toEndOf="@+id/etMCCYeri"
+            app:layout_constraintTop_toBottomOf="@+id/etMCCYeri" android:layout_marginTop="16dp"
+    />
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="375dp"
+            android:layout_height="246dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSurucuSecim"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:id="@+id/surucuLayout"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
-
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+            android:text="EKLE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonSalterEkle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/surucuLayout"
+            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

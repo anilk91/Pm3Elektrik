@@ -1,6 +1,6 @@
 package com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel
 
-class MotorListesiModeli {
+class MotorModel {
 
 
     var motorTag: String = ""
@@ -36,6 +36,12 @@ class MotorListesiModeli {
         this.motorTag = motorTag
         this.motorGucKW = motorGucKW
         this.motorDevir = motorDevir
+        this.motorMCCYeri = motorMCCYeri
+    }
+
+
+    constructor(motorTag: String, motorMCCYeri: String){
+        this.motorTag = motorTag
         this.motorMCCYeri = motorMCCYeri
     }
 

@@ -4,7 +4,9 @@
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="wrap_content"
-                                                   tools:context=".MotorListeSayfasi.EkleFragmentleri.FrekansKonvertorEkle">
+                                                   tools:context=".MotorListeSayfasi.EkleFragmentleri.ITSoftStarterEkle">
+
+
     <ImageView
             android:src="@drawable/close"
             android:layout_width="35dp"
@@ -15,37 +17,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
+            android:text="IT SoftStarter"
             android:ems="10"
-            android:id="@+id/etFrekansModel"
-            android:hint="Model Seri No"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerFrekansSecim" android:layout_marginTop="16dp"
+            android:id="@+id/etITSoftStarter"
+            app:layout_constraintTop_toBottomOf="@+id/imgClose" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginTop="16dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/etITModel"
+            app:layout_constraintEnd_toEndOf="@+id/etITSoftStarter"
+            app:layout_constraintStart_toStartOf="@+id/etITSoftStarter" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/etITSoftStarter" android:hint="Model Seri No"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
-            android:id="@+id/etFrekansDegisimTarihi"
-            app:layout_constraintTop_toBottomOf="@+id/etFrekansModel"
-            app:layout_constraintStart_toStartOf="@+id/etFrekansModel"
-            app:layout_constraintEnd_toEndOf="@+id/etFrekansModel"
-            android:layout_marginTop="16dp" android:hint="Değişim Tarihi"/>
+            android:id="@+id/etITDegisimTarihi"
+            app:layout_constraintEnd_toEndOf="@+id/etITModel" app:layout_constraintStart_toStartOf="@+id/etITModel"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/etITModel"
+            android:hint="Değişim Tarihi"/>
     <Button
             android:text="EKLE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonEkle"
-            app:layout_constraintTop_toBottomOf="@+id/etFrekansDegisimTarihi"
-            app:layout_constraintEnd_toEndOf="@+id/etFrekansDegisimTarihi"
-            app:layout_constraintStart_toStartOf="@+id/etFrekansDegisimTarihi" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/etITDegisimTarihi"
+            app:layout_constraintEnd_toEndOf="@+id/etITDegisimTarihi"
+            app:layout_constraintStart_toStartOf="@+id/etITDegisimTarihi" android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerFrekansSecim" app:layout_constraintEnd_toEndOf="@+id/etFrekansModel"
-            app:layout_constraintStart_toStartOf="@+id/etFrekansModel"
-            app:layout_constraintTop_toBottomOf="@+id/imgClose"
-            android:layout_marginTop="16dp"/>
+            android:textColor="@android:color/black" android:fontFamily="@font/roboto_medium"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

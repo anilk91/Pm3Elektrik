@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Pm3 Elektrik</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bilinmiyor">Bilinmiyor</string>
 </resources>

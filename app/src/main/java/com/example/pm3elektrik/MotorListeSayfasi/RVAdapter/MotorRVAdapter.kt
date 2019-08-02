@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorListesiModeli
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.*
 
-class MotorRVAdapter(var motorListe : ArrayList<MotorListesiModeli>,var mContext :Context):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
+class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Context):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
@@ -38,7 +38,7 @@ class MotorRVAdapter(var motorListe : ArrayList<MotorListesiModeli>,var mContext
 
 
 
-        fun setData(motorListe: MotorListesiModeli, position: Int) {
+        fun setData(motorListe: MotorModel, position: Int) {
 
             motorTag.setText(motorListe.motorTag)
             mCCYeri.setText(motorListe.motorMCCYeri)

@@ -12,9 +12,11 @@ import com.example.pm3elektrik.R
 class SalterEkle : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_salter_ekle, container, false)
 
 
-        return inflater.inflate(R.layout.fragment_salter_ekle, container, false)
+
+        return view
     }
 
 

@@ -9,13 +9,13 @@ import android.view.ViewGroup
 
 import com.example.pm3elektrik.R
 
-
-class ItSoftstarterEkle : Fragment() {
+class ITSoftStarterEkle : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
-        return inflater.inflate(R.layout.fragment_it_softstarter_ekle, container, false)
+
+        return inflater.inflate(R.layout.fragment_itsoft_starter_ekle, container, false)
     }
 
 
