@@ -1,118 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".MotorListeSayfasi.EkleFragmentleri.MotorEkle">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".MotorListeSayfasi.EkleFragmentleri.MotorEkle"
+                                                   android:id="@+id/motorEkleConst" android:background="#E3F2FD">
+    <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp" app:layout_constraintTop_toBottomOf="@+id/imgMotorCLose"
+            android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/motorEkleScrollView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etMotorTag"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:hint="Motor Tag"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"
+                    android:layout_marginStart="32dp" android:layout_marginEnd="32dp"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"/>
+            <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/etGucKw"
+                    app:layout_constraintStart_toStartOf="@+id/etMotorTag" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:hint="Güç (KW)"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/etGucHP"
+                    app:layout_constraintEnd_toEndOf="@+id/etMotorTag" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:fontFamily="@font/roboto_medium"
+                    android:textColor="@android:color/black" android:hint="Güç (HP)"/>
+            <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/etDevir"
+                    app:layout_constraintStart_toStartOf="@+id/etGucKw"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etGucKw" android:hint="Devir"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/etNomTripAkimi"
+                    android:hint="Nom. Trip Akımı"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/etGucHP" android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/etGucHP"/>
+            <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etInsaTipi"
+                    app:layout_constraintStart_toStartOf="@+id/etDevir" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etDevir" android:hint="İnşa Tipi (Marka)"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <EditText
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etFlans"
+                    app:layout_constraintEnd_toEndOf="@+id/etNomTripAkimi" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etNomTripAkimi" android:hint="Flanş"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etMotorAdres"
+                    app:layout_constraintStart_toStartOf="@+id/etInsaTipi"
+                    app:layout_constraintEnd_toEndOf="@+id/etFlans" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etInsaTipi" android:hint="Adres"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/etMotorMCCYeri"
+                    app:layout_constraintStart_toStartOf="@+id/etMotorAdres"
+                    app:layout_constraintEnd_toEndOf="@+id/etMotorAdres" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etMotorAdres" android:hint="MCC Yeri"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:id="@+id/etMotorDegTarihi"
+                    app:layout_constraintStart_toStartOf="@+id/etMotorMCCYeri"
+                    app:layout_constraintEnd_toEndOf="@+id/etMotorMCCYeri" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etMotorMCCYeri" android:hint="Değişim Tarihi"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+            <Button
+                    android:text="EKLE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonMotorEkle" app:layout_constraintStart_toStartOf="@+id/etMotorDegTarihi"
+                    app:layout_constraintEnd_toEndOf="@+id/etMotorDegTarihi" android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/etMotorDegTarihi" android:fontFamily="@font/roboto_medium"
+                    android:textColor="@android:color/black"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
     <ImageView
             android:src="@drawable/close"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:id="@+id/imgMotorCLose" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etMotorTag"
-            app:layout_constraintTop_toBottomOf="@+id/imgMotorCLose" android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:hint="Motor Tag"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"
-            android:layout_marginStart="32dp" android:layout_marginEnd="32dp"/>
-    <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/etGucKw"
-            app:layout_constraintStart_toStartOf="@+id/etMotorTag" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:hint="Güç (KW)"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/etGucHP"
-            app:layout_constraintEnd_toEndOf="@+id/etMotorTag" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:fontFamily="@font/roboto_medium"
-            android:textColor="@android:color/black" android:hint="Güç (HP)"/>
-    <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/etDevir"
-            app:layout_constraintStart_toStartOf="@+id/etGucKw"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etGucKw" android:hint="Devir"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/etNomTripAkimi"
-            android:hint="Nom. Tr,ip Akımı"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/etGucHP" android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/etGucHP"/>
-    <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etInsaTipi"
-            app:layout_constraintStart_toStartOf="@+id/etDevir" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etDevir" android:hint="İnşa Tipi (Marka)"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etFlans"
-            app:layout_constraintEnd_toEndOf="@+id/etNomTripAkimi" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etNomTripAkimi" android:hint="Flanş"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etMotorAdres"
-            app:layout_constraintStart_toStartOf="@+id/etInsaTipi"
-            app:layout_constraintEnd_toEndOf="@+id/etFlans" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etInsaTipi" android:hint="Adres"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/etMotorMCCYeri"
-            app:layout_constraintStart_toStartOf="@+id/etMotorAdres"
-            app:layout_constraintEnd_toEndOf="@+id/etMotorAdres" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etMotorAdres" android:hint="MCC Yeri"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/etMotorDegTarihi"
-            app:layout_constraintStart_toStartOf="@+id/etMotorMCCYeri"
-            app:layout_constraintEnd_toEndOf="@+id/etMotorMCCYeri" android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/etMotorMCCYeri" android:hint="Değişim Tarihi"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
-    <Button
-            android:text="EKLE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonMotorEkle" app:layout_constraintStart_toStartOf="@+id/etMotorDegTarihi"
-            app:layout_constraintEnd_toEndOf="@+id/etMotorDegTarihi" android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/etMotorDegTarihi" android:fontFamily="@font/roboto_medium"
-            android:textColor="@android:color/black"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
