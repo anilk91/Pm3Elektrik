@@ -10,41 +10,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvMotorTag"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/nunito_extrabold"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"/>
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:textSize="12sp"/>
     <TextView
             android:text="2.1 Arka Hamur MCC"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:id="@+id/tvMotorMCCYeri" app:layout_constraintStart_toEndOf="@+id/tvMotorTag"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"
+            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp" android:textSize="12sp"/>
     <TextView
             android:text="30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvMotorGuc"
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/nunito_extrabold"
             android:textColor="@android:color/black" app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
             app:layout_constraintStart_toEndOf="@+id/textView3" android:layout_marginStart="1dp"
-    />
+            android:textSize="12sp"/>
     <TextView
             android:text="1000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvMotorDevir"
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/nunito_extrabold"
             android:textColor="@android:color/black" app:layout_constraintStart_toEndOf="@+id/textView"
             android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
-    />
+            android:textSize="12sp"/>
     <TextView
             android:text="KW"
             android:layout_width="wrap_content"
@@ -52,8 +52,8 @@
             android:id="@+id/textView" app:layout_constraintStart_toEndOf="@+id/tvMotorGuc"
             android:layout_marginStart="4dp"
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:fontFamily="@font/roboto_medium"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:fontFamily="@font/nunito_extrabold"
+            android:textColor="@android:color/black" android:textSize="12sp"/>
     <TextView
             android:text="d/d"
             android:layout_width="wrap_content"
@@ -62,17 +62,17 @@
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
             app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
             app:layout_constraintStart_toEndOf="@+id/tvMotorDevir" android:layout_marginStart="4dp"
-            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"
-    />
+            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
+            android:textSize="12sp"/>
     <TextView
             android:text="("
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView3" app:layout_constraintStart_toEndOf="@+id/tvMotorMCCYeri"
-            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"/>
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:textSize="12sp"/>
     <TextView
             android:text=")"
             android:layout_width="wrap_content"
@@ -80,8 +80,8 @@
             android:id="@+id/textView4" app:layout_constraintStart_toEndOf="@+id/textView2"
             android:layout_marginStart="1dp"
             app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:fontFamily="@font/roboto_medium"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:fontFamily="@font/nunito_extrabold"
+            android:textColor="@android:color/black" android:textSize="12sp"/>
     <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"

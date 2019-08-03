@@ -28,7 +28,7 @@
             app:layout_constraintTop_toBottomOf="@+id/spinnerKontaktorBoyut"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"
             android:hint="CAT" app:layout_constraintEnd_toEndOf="parent"
-    />
+            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,8 @@
             android:ems="10"
             android:id="@+id/etDIPSivic" android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/etKontaktorCat"
-            app:layout_constraintStart_toStartOf="@+id/etKontaktorCat" android:hint="Dip Siviç (87654321)"/>
+            app:layout_constraintStart_toStartOf="@+id/etKontaktorCat" android:hint="Dip Siviç (87654321)"
+            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
             android:id="@+id/etKonDegisimTarihi"
             app:layout_constraintStart_toStartOf="@+id/etDIPSivic"
             app:layout_constraintTop_toBottomOf="@+id/etDIPSivic" android:layout_marginTop="16dp"
-            android:hint="Değişim Tarihi"/>
+            android:hint="Değişim Tarihi" android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"/>
     <Button
             android:text="EKLE"
             android:layout_width="wrap_content"
@@ -54,6 +55,6 @@
             app:layout_constraintTop_toBottomOf="@+id/etKonDegisimTarihi" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp" android:fontFamily="@font/roboto_medium"
+            android:layout_marginBottom="16dp" android:fontFamily="@font/nunito_extrabold"
             android:textColor="@android:color/black"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

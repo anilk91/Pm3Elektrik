@@ -40,7 +40,7 @@
                             android:id="@+id/CekmeceBilgisi"
                             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
                             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                            android:fontFamily="@font/roboto_medium" android:textSize="24sp"
+                            android:fontFamily="@font/nunito_extrabold" android:textSize="24sp"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Şalter:"
@@ -49,7 +49,7 @@
                             android:id="@+id/Salter" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/CekmeceBilgisi"
                             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Cat:"
                             android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
                             android:id="@+id/CAT" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/Salter"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Style:"
@@ -65,7 +65,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/STYLE" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/CAT" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Sürücü Tipi:"
@@ -74,7 +74,7 @@
                             android:id="@+id/SurucuTipi"
                             app:layout_constraintTop_toBottomOf="@+id/STYLE" android:layout_marginTop="8dp"
                             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Model:"
                             android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                             android:id="@+id/Model" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/SurucuTipi"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Yön:"
@@ -91,7 +91,7 @@
                             android:id="@+id/Yon" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/Model"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Boyut:"
@@ -99,7 +99,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/Boyut" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/Yon" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Dip S. (87654321):"
@@ -108,7 +108,7 @@
                             android:id="@+id/DIPSivic" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/Boyut"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Adres:"
@@ -117,7 +117,7 @@
                             android:id="@+id/CekmeceAdres" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/DIPSivic"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="MccYeri:"
@@ -126,7 +126,7 @@
                             android:id="@+id/CekmeceMccYeri" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/CekmeceAdres"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Değişim Tarihi:"
@@ -135,7 +135,7 @@
                             android:id="@+id/CekmeceDegTarihi" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/CekmeceMccYeri"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"
                     />
                     <TextView
@@ -146,7 +146,7 @@
                             app:layout_constraintTop_toTopOf="@+id/Salter"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic"
                             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -156,7 +156,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvSalter"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" android:layout_marginStart="8dp"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
@@ -165,7 +165,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvSalterCat"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" android:layout_marginStart="8dp"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
@@ -174,7 +174,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvSalterStyle"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" android:layout_marginStart="8dp"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
@@ -183,7 +183,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvSurucuTipi"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" android:layout_marginStart="8dp"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
@@ -192,7 +192,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvSurucuModel"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" android:layout_marginStart="8dp"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
@@ -201,7 +201,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/tvSurucuYon"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" android:layout_marginStart="8dp"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
@@ -209,7 +209,7 @@
                             android:id="@+id/tvKonDipSivic" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvKontakBoyut" android:layout_marginStart="8dp"
                             app:layout_constraintStart_toEndOf="@+id/DIPSivic" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -219,7 +219,7 @@
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvKonDipSivic"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -229,7 +229,7 @@
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvSurucuAdres"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -239,7 +239,7 @@
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvSurucuMccYeri"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <ImageView
                             android:layout_width="25dp"
@@ -279,7 +279,7 @@
                             android:id="@+id/MotorTag"
                             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView5"
                             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Güç:"
                             android:layout_width="wrap_content"
@@ -287,7 +287,7 @@
                             android:id="@+id/Guc" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/MotorTag"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Devir:"
@@ -296,7 +296,7 @@
                             android:id="@+id/Devir"
                             app:layout_constraintTop_toBottomOf="@+id/Guc" app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginStart="16dp" android:layout_marginTop="8dp"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Nom. Trip Akımı:"
@@ -305,7 +305,7 @@
                             android:id="@+id/NomTripAkimi" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/Devir"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="İnşa Tipi:"
@@ -315,7 +315,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/NomTripAkimi"
                             app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginStart="16dp" android:layout_marginTop="8dp"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Flanş:"
@@ -324,7 +324,7 @@
                             android:id="@+id/Flans" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/InsaTipi"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Adres:"
@@ -332,7 +332,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/MotorAdres" app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginStart="16dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/Flans" android:fontFamily="@font/roboto_medium"
+                            app:layout_constraintTop_toBottomOf="@+id/Flans" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="MCC Yeri:"
@@ -341,7 +341,7 @@
                             android:id="@+id/MotorMCCYeri" app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginStart="16dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/MotorAdres"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="Değişim Tarihi:"
@@ -350,7 +350,7 @@
                             android:id="@+id/MotorDegTarihi" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/MotorMCCYeri"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black" app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_marginBottom="8dp"/>
                     <TextView
@@ -360,7 +360,7 @@
                             android:id="@+id/tvMotorTag" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp"
                             app:layout_constraintTop_toTopOf="@+id/MotorTag" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -369,7 +369,7 @@
                             android:id="@+id/tvGucKw" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
-                            android:fontFamily="@font/roboto_medium" android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="KW"
                             android:layout_width="wrap_content"
@@ -377,7 +377,7 @@
                             android:id="@+id/KW" app:layout_constraintStart_toEndOf="@+id/tvGucKw"
                             android:layout_marginStart="4dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -386,7 +386,7 @@
                             android:id="@+id/tvGucHp" app:layout_constraintStart_toEndOf="@+id/KW"
                             android:layout_marginStart="24dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="HP"
@@ -395,7 +395,7 @@
                             android:id="@+id/GucHp" app:layout_constraintStart_toEndOf="@+id/tvGucHp"
                             android:layout_marginStart="4dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -404,7 +404,7 @@
                             android:id="@+id/tvDevir" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvGucKw" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -413,7 +413,7 @@
                             android:id="@+id/tvNomTripAkimi" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvDevir" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -423,7 +423,7 @@
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvNomTripAkimi"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -432,7 +432,7 @@
                             android:id="@+id/tvFlans" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvInsaTipi"
-                            android:fontFamily="@font/roboto_medium"
+                            android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black" app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp"/>
                     <TextView
@@ -442,7 +442,7 @@
                             android:id="@+id/tvMotorAdres" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvFlans" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -452,7 +452,7 @@
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvMotorAdres"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
@@ -462,7 +462,7 @@
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvMotorMCCYeri"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:fontFamily="@font/roboto_medium"
+                            android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <ImageView
                             android:layout_width="25dp"

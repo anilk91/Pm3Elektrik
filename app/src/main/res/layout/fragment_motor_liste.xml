@@ -29,7 +29,8 @@
                 android:ems="10"
                 android:id="@+id/etMotorArama" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" android:hint="Motor Numarasını Giriniz..."/>
+                app:layout_constraintTop_toTopOf="parent" android:hint="Motor Numarasını Giriniz..."
+                android:fontFamily="@font/nunito_extrabold"/>
 
         <com.github.clans.fab.FloatingActionMenu
                 android:id="@+id/menu"
