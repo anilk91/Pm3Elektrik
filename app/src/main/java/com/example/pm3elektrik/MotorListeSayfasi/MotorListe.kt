@@ -1,5 +1,6 @@
 package com.example.pm3elektrik.MotorListeSayfasi
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,6 +22,11 @@ import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import com.github.clans.fab.FloatingActionButton
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 
 
 class MotorListe : Fragment() {
@@ -34,17 +40,15 @@ class MotorListe : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
-        motorListesi.add(MotorModel("1HD18","2.1 Arka Hamur","30","1500"))
-        motorListesi.add(MotorModel("2HD18","2.1 Ön Hamur","30","1500"))
-        motorListesi.add(MotorModel("1DD65","7.3.1 Arka Hamur","30","1500"))
-        motorListesi.add(MotorModel("1HD18","Ensturman az ilerisinde sağda pano arkasında","110","1500"))
+        val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
+        sync.keepSynced(true)
 
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
-        val rvList = view.findViewById<RecyclerView>(R.id.rvMotorListe)
-        motorListeLayout = view.findViewById<ConstraintLayout>(R.id.motorListeLayout)
-        val mContext = view.context as Context
+        motorListeLayout = view.findViewById(R.id.motorListeLayout)
 
-        recyclerAdapter(mContext,rvList)
+        fireBaseDBOkunanVeriler()
+
+//        recyclerAdapter(mContext,rvList)
 
 
         //floating action bar buttonları eklendi
@@ -63,12 +67,39 @@ class MotorListe : Fragment() {
         return view
     }
 
-    private fun recyclerAdapter(mContext: Context, rvList : RecyclerView) {
-        val myAdapter = MotorRVAdapter(motorListesi,mContext)
-        rvList.adapter = myAdapter
+    private fun fireBaseDBOkunanVeriler() {
+
+        val ref = FirebaseDatabase.getInstance().reference
+        ref.child("MotorListe")
+            .orderByKey()
+            .addListenerForSingleValueEvent( object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    for(dataGetir in p0.children){
+
+                        val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
+
+                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri,okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
+                    }
+                    recyclerAdapter(motorListesi, activity!!.applicationContext)
+
+                }
+
+            })
+    }
+
+    private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel>,mContext : Context) {
+
+        val mContext = view?.context as Context
+        val myAdapter = MotorRVAdapter(motorGelenListe,mContext)
+        view?.rvMotorListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
-        rvList.layoutManager = mLayoutManager
+        view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()
 

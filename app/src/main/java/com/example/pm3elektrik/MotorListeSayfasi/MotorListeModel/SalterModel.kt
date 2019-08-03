@@ -2,12 +2,12 @@ package com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel
 
 class SalterModel {
 
-    var salterMarka = ""
-    var salterKapasite =""
-    var salterCAT =""
-    var salterSTYLE =""
-    var salterDemeraj=""
-    var salterDegTarihi=""
+    var salterMarka = "Bilinmiyor"
+    var salterKapasite ="Bilinmiyor"
+    var salterCAT ="Bilinmiyor"
+    var salterSTYLE ="Bilinmiyor"
+    var salterDemeraj="Bilinmiyor"
+    var salterDegTarihi="Bilinmiyor"
 
     constructor(salterMarka :String, salterKapasite:String,salterCAT: String, salterSTYLE : String,salterDemeraj :String,
                 salterDegTarihi : String){
