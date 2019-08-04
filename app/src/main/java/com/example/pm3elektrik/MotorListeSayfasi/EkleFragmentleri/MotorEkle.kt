@@ -2,7 +2,6 @@ package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +11,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
-import com.example.pm3elektrik.MotorListeSayfasi.FirebaseDatabase.FireDatabase
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 
 class MotorEkle : Fragment() {
 
@@ -33,7 +30,7 @@ class MotorEkle : Fragment() {
 
         button_ekle.setOnClickListener {
 
-            val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString()
+            val motor_tag = view.findViewById<EditText>(R.id.etSalterMotorTag).text.toString()
             val guc_kw = view.findViewById<EditText>(R.id.etGucKw).text.toString()
             val guc_hp = view.findViewById<EditText>(R.id.etGucHP).text.toString()
             val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
