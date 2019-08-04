@@ -13,7 +13,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_salter.*
+import kotlinx.android.synthetic.main.fragment_salter_ekle.*
 
 
 class SalterEkle : Fragment() {
@@ -23,7 +23,7 @@ class SalterEkle : Fragment() {
     val salter_liste = SalterModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_salter, container, false)
+        val view = inflater.inflate(R.layout.fragment_salter_ekle, container, false)
         val surucuSpinner = view.findViewById<Spinner>(R.id.spinnerSurucuSecim)
         val buttonEkle = view.findViewById<Button>(R.id.buttonSalterEkle)
 
