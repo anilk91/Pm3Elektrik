@@ -104,6 +104,7 @@ class MotorEkle : Fragment() {
         }
         ref.child("MotorListe")
             .child(motorTag)
+            .child("Motor")
             .setValue(motor_liste).addOnCompleteListener {
 
                 if(it.isSuccessful){

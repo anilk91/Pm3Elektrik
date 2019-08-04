@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
@@ -21,13 +22,14 @@ class SalterEkle : Fragment() {
     val secimListesi = arrayOf("Sürücü Seçiniz", "Kontaktör", "Frekans Konvertörü","IT SoftStarter","EasySoftStarter")
     val ref = FirebaseDatabase.getInstance().reference
     val salter_liste = SalterModel()
+    val surucu_liste = SurucuModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_salter_ekle, container, false)
-        val surucuSpinner = view.findViewById<Spinner>(R.id.spinnerSurucuSecim)
+        val surucuSpinner = view.findViewById(R.id.spinnerSurucuSecim) as Spinner
         val buttonEkle = view.findViewById<Button>(R.id.buttonSalterEkle)
 
-        surucuSpinner!!.adapter = ArrayAdapter(container!!.context, android.R.layout.simple_spinner_dropdown_item, secimListesi)
+        surucuSpinner.adapter = ArrayAdapter(container!!.context, android.R.layout.simple_spinner_dropdown_item, secimListesi)
         surucuSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -40,18 +42,21 @@ class SalterEkle : Fragment() {
 
                     etSalterKontaktorCat.visibility = View.VISIBLE
                     etSalterKontaktorDIPSivic.visibility = View.VISIBLE
+                    etSalterKontaktorBoyut.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
 
                     val kontaktorCat = etSalterKontaktorCat.text.toString()
                     val dipSivic = etSalterKontaktorDIPSivic.text.toString()
                     val kontaktorDegisimTarihi = etSalterSurucuDegTarihi.text.toString()
 
-
+                    etSalterModel.editableText.clear()
+                    surucu_liste.surucuIsim = "Kontaktör"
 
                 }else if (position == 2){
 
                     etSalterKontaktorCat.visibility = View.GONE
                     etSalterKontaktorDIPSivic.visibility = View.GONE
+                    etSalterKontaktorBoyut.visibility = View.GONE
 
                     etSalterModel.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
@@ -59,13 +64,14 @@ class SalterEkle : Fragment() {
                     val surucuModel = etSalterModel.text.toString()
                     val surucuDegisimTarihi = etSalterSurucuDegTarihi
 
-
-
+                    surucu_liste.surucuIsim = "Frekans Konvertörü"
 
                 }else if(position == 3){
 
                     etSalterKontaktorCat.visibility = View.GONE
                     etSalterKontaktorDIPSivic.visibility = View.GONE
+                    etSalterKontaktorBoyut.visibility = View.GONE
+
 
                     etSalterModel.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
@@ -73,18 +79,27 @@ class SalterEkle : Fragment() {
                     val surucuModel = etSalterModel.text.toString()
                     val surucuDegisimTarihi = etSalterSurucuDegTarihi
 
+                    surucu_liste.surucuIsim = "IT SoftStarter"
 
 
                 }else if(position == 4){
 
                     etSalterKontaktorCat.visibility = View.GONE
                     etSalterKontaktorDIPSivic.visibility = View.GONE
+                    etSalterKontaktorBoyut.visibility = View.GONE
 
                     etSalterModel.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
 
                     val surucuModel = etSalterModel.text.toString()
                     val surucuDegisimTarihi = etSalterSurucuDegTarihi
+
+                    etSalterKontaktorBoyut.editableText.clear()
+                    etSalterKontaktorCat.editableText.clear()
+                    etSalterKontaktorDIPSivic.editableText.clear()
+
+                    surucu_liste.surucuIsim = "Easy SoftStarter"
+
 
 
 
@@ -92,13 +107,11 @@ class SalterEkle : Fragment() {
 
                     etSalterKontaktorCat.visibility = View.GONE
                     etSalterKontaktorDIPSivic.visibility = View.GONE
+                    etSalterKontaktorBoyut.visibility = View.GONE
                     etSalterModel.visibility = View.GONE
                     etSalterSurucuDegTarihi.visibility = View.GONE
-
                 }
             }
-
-
         }
 
         buttonEkle.setOnClickListener{
@@ -112,6 +125,11 @@ class SalterEkle : Fragment() {
             val degisimTarihi = etSalterDegTarihi.text.toString()
             val mccYeri= etSalterMCCYeri.text.toString()
 
+            val kontaktorCat = etSalterKontaktorCat.text.toString()
+            val dipSivic = etSalterKontaktorDIPSivic.text.toString()
+            val kontaktorBoyut = etSalterKontaktorBoyut.text.toString()
+            val surucuModel = etSalterModel.text.toString()
+            val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString()
 
             if(motorTag.isNotEmpty() && marka.isNotEmpty() && kapasite.isNotEmpty() && mccYeri.isNotEmpty()){
 
@@ -124,20 +142,46 @@ class SalterEkle : Fragment() {
                 salter_liste.salterDegTarihi = degisimTarihi
                 salter_liste.salterMccYeri = mccYeri
 
+                surucu_liste.surucuBoyut =kontaktorBoyut
+                surucu_liste.surucuDIPSivic=dipSivic
+                surucu_liste.surucuDegTarihi = surucuDegisimTarihi
+                surucu_liste.surucuKontaktorCat = kontaktorCat
 
+                surucu_liste.surucuModel = surucuModel
 
+                ref.child("MotorListe")
+                    .child(motorTag)
+                    .child("SalterVeSurucu")
+                    .child("Salter")
+                    .setValue(salter_liste)
+                    .addOnCompleteListener {
+
+                        if(it.isSuccessful){
+                            Toast.makeText(activity,"Kayıt Yapıldı",Toast.LENGTH_LONG).show()
+                        }else {
+                            Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}",Toast.LENGTH_LONG).show()
+                        }
+                    }
+                ref.child("MotorListe")
+                    .child(motorTag)
+                    .child("SalterVeSurucu")
+                    .child("Surucu")
+                    .setValue(surucu_liste)
+                    .addOnCompleteListener {
+
+                        if(it.isSuccessful){
+                            Toast.makeText(activity,"Kayıt Yapıldı",Toast.LENGTH_LONG).show()
+                        }else {
+                            Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}",Toast.LENGTH_LONG).show()
+                        }
+
+                    }
 
 
             }else{
                 Toast.makeText(activity,"Motor Tag, Marka, Kapasite, ve Mcc Yerini Doldurunuz... ",Toast.LENGTH_LONG).show()
             }
-
-
-
         }
-
-
-
 
         val button_close = view.findViewById<ImageView>(R.id.imgSalterClose)
         button_close.setOnClickListener {

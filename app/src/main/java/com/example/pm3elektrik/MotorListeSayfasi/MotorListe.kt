@@ -48,9 +48,6 @@ class MotorListe : Fragment() {
 
         fireBaseDBOkunanVeriler()
 
-//        recyclerAdapter(mContext,rvList)
-
-
         //floating action bar buttonları eklendi
         mFAB_cekmece = view.findViewById(R.id.menu_cekmece)
         mFAB_motor = view.findViewById(R.id.menu_motor)
@@ -72,11 +69,8 @@ class MotorListe : Fragment() {
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("MotorListe")
             .orderByKey()
-            .addListenerForSingleValueEvent( object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {
-
-                }
-
+            .addValueEventListener( object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
                     for(dataGetir in p0.children){
