@@ -5,7 +5,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    tools:context=".MotorListeSayfasi.MotorListe"
-                                                   android:background="#E3F2FD">
+                                                   android:background="#FFEBEE">
 
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="match_parent"

@@ -23,8 +23,11 @@ import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import com.github.clans.fab.FloatingActionButton
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
+import kotlinx.android.synthetic.main.fragment_salter_ekle.*
 
 
 class MotorListe : Fragment() {
@@ -33,6 +36,7 @@ class MotorListe : Fragment() {
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
     lateinit var motorListeLayout : ConstraintLayout
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -66,10 +70,8 @@ class MotorListe : Fragment() {
 
         val ref = FirebaseDatabase.getInstance().reference //MotorListe -2HD18 - Motor -motorTag
         ref.child("MotorListe")
-            .child("3DD30")
-            .orderByChild("motorTag")
-
-            .addListenerForSingleValueEvent( object :ValueEventListener{
+            .child("Motor")
+            .addValueEventListener( object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -80,14 +82,15 @@ class MotorListe : Fragment() {
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri,okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
                         Log.e("motor",okunanBilgiler.motorTag + okunanBilgiler.motorMCCYeri + okunanBilgiler.motorGucKW + okunanBilgiler.motorDevir)
                     }
-                    recyclerAdapter(motorListesi, activity!!.applicationContext)
+                    recyclerAdapter(motorListesi)
 
                 }
 
             })
     }
 
-    private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel>,mContext : Context) {
+
+    private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel>) {
 
         val mContext = view?.context as Context
         val myAdapter = MotorRVAdapter(motorGelenListe,mContext)

@@ -17,10 +17,12 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
 
+
 class MotorEkle : Fragment() {
 
     val motor_liste = MotorModel()
     val ref = FirebaseDatabase.getInstance().reference
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
@@ -103,8 +105,8 @@ class MotorEkle : Fragment() {
             motor_liste.motorGucHP = motorGucHP
         }
         ref.child("MotorListe")
-            .child(motorTag)
             .child("Motor")
+            .child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {
 
                 if(it.isSuccessful){
@@ -114,6 +116,5 @@ class MotorEkle : Fragment() {
                 }
             }
     }
-
 
 }
