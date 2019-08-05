@@ -2,10 +2,12 @@ package com.example.pm3elektrik.AnaSayfa
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.R
+import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
 class AnaSayfa : AppCompatActivity() {
 
@@ -13,7 +15,73 @@ class AnaSayfa : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ana_sayfa)
 
+        imgMotorPassive.visibility = View.INVISIBLE
         changeFragment(MotorListe())
+
+        imgMotorPassive.setOnClickListener {
+
+            imgMotorPassive.visibility = View.INVISIBLE
+            imgPhonePassive.visibility = View.VISIBLE
+            imgFaultPassive.visibility = View.VISIBLE
+            imgOtherPassive.visibility = View.VISIBLE
+            imgUserPassive.visibility = View.VISIBLE
+            imgSettingPassive.visibility = View.VISIBLE
+
+        }
+
+        imgPhonePassive.setOnClickListener{
+
+            imgPhonePassive.visibility = View.INVISIBLE
+            imgMotorPassive.visibility = View.VISIBLE
+            imgFaultPassive.visibility = View.VISIBLE
+            imgOtherPassive.visibility = View.VISIBLE
+            imgUserPassive.visibility = View.VISIBLE
+            imgSettingPassive.visibility = View.VISIBLE
+        }
+
+        imgFault.setOnClickListener {
+
+            imgFaultPassive.visibility = View.INVISIBLE
+            imgMotorPassive.visibility = View.VISIBLE
+            imgOtherPassive.visibility = View.VISIBLE
+            imgUserPassive.visibility = View.VISIBLE
+            imgSettingPassive.visibility = View.VISIBLE
+            imgPhonePassive.visibility = View.VISIBLE
+        }
+
+        imgOther.setOnClickListener {
+
+            imgOtherPassive.visibility = View.INVISIBLE
+            imgFaultPassive.visibility = View.VISIBLE
+            imgMotorPassive.visibility = View.VISIBLE
+            imgUserPassive.visibility = View.VISIBLE
+            imgSettingPassive.visibility = View.VISIBLE
+            imgPhonePassive.visibility = View.VISIBLE
+
+
+        }
+
+        imgUser.setOnClickListener {
+
+            imgUserPassive.visibility = View.INVISIBLE
+            imgOtherPassive.visibility = View.VISIBLE
+            imgFaultPassive.visibility = View.VISIBLE
+            imgMotorPassive.visibility = View.VISIBLE
+            imgSettingPassive.visibility = View.VISIBLE
+            imgPhonePassive.visibility = View.VISIBLE
+
+        }
+
+        imgSetting.setOnClickListener {
+
+            imgSettingPassive.visibility=View.INVISIBLE
+            imgUserPassive.visibility = View.VISIBLE
+            imgOtherPassive.visibility = View.VISIBLE
+            imgFaultPassive.visibility = View.VISIBLE
+            imgMotorPassive.visibility = View.VISIBLE
+            imgPhonePassive.visibility = View.VISIBLE
+
+        }
 
     }
 

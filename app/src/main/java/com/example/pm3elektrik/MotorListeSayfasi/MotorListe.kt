@@ -3,6 +3,7 @@ package com.example.pm3elektrik.MotorListeSayfasi
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,10 +23,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import com.github.clans.fab.FloatingActionButton
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 
 
@@ -66,10 +64,12 @@ class MotorListe : Fragment() {
 
     private fun fireBaseDBOkunanVeriler() {
 
-        val ref = FirebaseDatabase.getInstance().reference
+        val ref = FirebaseDatabase.getInstance().reference //MotorListe -2HD18 - Motor -motorTag
         ref.child("MotorListe")
-            .orderByKey()
-            .addValueEventListener( object :ValueEventListener{
+            .child("3DD30")
+            .orderByChild("motorTag")
+
+            .addListenerForSingleValueEvent( object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -78,6 +78,7 @@ class MotorListe : Fragment() {
                         val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri,okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
+                        Log.e("motor",okunanBilgiler.motorTag + okunanBilgiler.motorMCCYeri + okunanBilgiler.motorGucKW + okunanBilgiler.motorDevir)
                     }
                     recyclerAdapter(motorListesi, activity!!.applicationContext)
 

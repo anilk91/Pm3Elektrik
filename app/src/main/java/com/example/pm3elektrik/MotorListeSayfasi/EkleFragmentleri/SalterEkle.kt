@@ -131,7 +131,7 @@ class SalterEkle : Fragment() {
             val surucuModel = etSalterModel.text.toString()
             val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString()
 
-            if(motorTag.isNotEmpty() && marka.isNotEmpty() && kapasite.isNotEmpty() && mccYeri.isNotEmpty()){
+            if(motorTag.isNotEmpty() && mccYeri.isNotEmpty()){
 
                 salter_liste.salterMotorTag = motorTag
                 salter_liste.salterMarka = marka
@@ -159,7 +159,7 @@ class SalterEkle : Fragment() {
                         if(it.isSuccessful){
                             Toast.makeText(activity,"Kayıt Yapıldı",Toast.LENGTH_LONG).show()
                         }else {
-                            Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}",Toast.LENGTH_LONG).show()
+                            Toast.makeText(activity,"Kayıt Yapılamadı Hata:${it.exception?.message}",Toast.LENGTH_LONG).show()
                         }
                     }
                 ref.child("MotorListe")
@@ -179,7 +179,7 @@ class SalterEkle : Fragment() {
 
 
             }else{
-                Toast.makeText(activity,"Motor Tag, Marka, Kapasite, ve Mcc Yerini Doldurunuz... ",Toast.LENGTH_LONG).show()
+                Toast.makeText(activity,"Motor Tag ve Mcc Yerini Doldurunuz... ",Toast.LENGTH_LONG).show()
             }
         }
 
