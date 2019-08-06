@@ -1,7 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    tools:context=".DigerBilgilerSayfasi.DigerBilgiler"
-                                                   android:background="#DFDFDF"/>
+                                                   android:background="#DFDFDF">
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp" android:id="@+id/cardViewKontaktorTrip" app:cardCornerRadius="10dp"
+    >
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:text="KONTAKTÖR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView8"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" android:textSize="16sp"
+                    android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
+            <TextView
+                    android:text="Size 1'den 5'e Kontaktör Trip Tablosu"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    android:layout_marginTop="16dp"
+                    android:textAlignment="center" android:fontFamily="@font/nunito_semibold"
+                    android:textColor="@android:color/black" android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp"
+            android:id="@+id/cardViewTrafo"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toEndOf="@+id/cardViewKontaktorTrip" android:layout_marginStart="31dp"
+    >
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:text="TRAFO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView11"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:fontFamily="@font/nunito_extrabold"
+                    android:textSize="16sp" android:textColor="@android:color/black"/>
+            <TextView
+                    android:text="Trafoların Etiket Bilgileri"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView12" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:textAlignment="center"
+                    android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewKontaktorTrip"
+            app:layout_constraintStart_toStartOf="@+id/cardViewKontaktorTrip" android:id="@+id/cardViewAmbarKayit"
+            app:cardCornerRadius="10dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:text="AMBAR KAYIT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView13"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:fontFamily="@font/nunito_extrabold"
+                    android:textSize="16sp" android:textColor="@android:color/black"/>
+            <TextView
+                    android:text="Malzeme Ambarı Stok No, Raf  Yeri ve Tanım"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/textView14" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/nunito_semibold"
+                    android:textColor="@android:color/black" android:textAlignment="center"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewTrafo"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewTrafo"
+            android:id="@+id/cardViewKuyuVeMcc" app:cardCornerRadius="10dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewAmbarKayit"
+            app:layout_constraintStart_toStartOf="@+id/cardViewAmbarKayit"
+            android:id="@+id/cardViewKumandaProjeleri"
+            app:cardCornerRadius="10dp"
+    >
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewKuyuVeMcc"
+            app:layout_constraintEnd_toEndOf="@+id/cardViewKuyuVeMcc"
+            android:id="@+id/cardViewAkimKonHesapla" app:cardCornerRadius="10dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
