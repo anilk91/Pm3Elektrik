@@ -61,8 +61,8 @@ class MotorListe : Fragment() {
 
     private fun fireBaseDBOkunanVeriler() {
 
-        val ref = FirebaseDatabase.getInstance().reference //MotorListe -2HD18 - Motor -motorTag
-        ref.child("MotorListe")
+        val ref = FirebaseDatabase.getInstance().reference
+        ref.child("pm3Elektrik")
             .child("Motor")
             .addValueEventListener( object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}

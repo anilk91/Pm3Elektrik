@@ -148,7 +148,7 @@ class SalterEkle : Fragment() {
 
                 surucu_liste.surucuModel = surucuModel
 
-                ref.child("MotorListe")
+                ref.child("pm3Elektrik")
                     .child("Salter")
                     .child(motorTag)
                     .setValue(salter_liste)
@@ -164,7 +164,7 @@ class SalterEkle : Fragment() {
                             ).show()
                         }
                     }
-                ref.child("MotorListe")
+                ref.child("pm3Elektrik")
                     .child("Surucu")
                     .child(motorTag)
                     .setValue(surucu_liste)

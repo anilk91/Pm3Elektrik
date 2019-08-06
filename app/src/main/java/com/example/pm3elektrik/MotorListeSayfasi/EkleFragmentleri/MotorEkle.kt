@@ -104,7 +104,7 @@ class MotorEkle : Fragment() {
             motor_liste.motorGucKW = motorGucKW
             motor_liste.motorGucHP = motorGucHP
         }
-        ref.child("MotorListe")
+        ref.child("pm3Elektrik")
             .child("Motor")
             .child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {

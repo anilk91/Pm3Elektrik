@@ -2,8 +2,6 @@ package com.example.pm3elektrik.TelefonListeSayfasi.TelefonEkleFragment
 
 
 import android.os.Bundle
-import android.provider.ContactsContract
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +29,8 @@ class TelefonEkle : DialogFragment() {
 
         buttonEkle.setOnClickListener {
 
-            val telefonIsim = etTelefonIsimEkle.text.toString()
-            val telefonNo=etTelefonNoEkle.text.toString()
+            val telefonIsim = etTelefonNo.text.toString()
+            val telefonNo=etTelefonIsim.text.toString()
 
             if(telefonIsim.isNotEmpty() && telefonNo.isNotEmpty() ){
 
