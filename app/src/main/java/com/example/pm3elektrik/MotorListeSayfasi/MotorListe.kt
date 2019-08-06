@@ -1,6 +1,5 @@
 package com.example.pm3elektrik.MotorListeSayfasi
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -9,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +19,8 @@ import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import com.github.clans.fab.FloatingActionButton
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
-import kotlinx.android.synthetic.main.fragment_salter_ekle.*
 
 
 class MotorListe : Fragment() {

@@ -5,7 +5,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    tools:context=".MotorListeSayfasi.MotorListe"
-                                                   android:background="#FFEBEE">
+                                                   android:background="#DFDFDF">
 
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="match_parent"
@@ -30,10 +30,10 @@
                 android:id="@+id/etMotorArama" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" android:hint="Motor Numarasını Giriniz..."
-                android:fontFamily="@font/nunito_extrabold"/>
+                android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
 
         <com.github.clans.fab.FloatingActionMenu
-                android:id="@+id/menu"
+                android:id="@+id/menuTelefonListe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
