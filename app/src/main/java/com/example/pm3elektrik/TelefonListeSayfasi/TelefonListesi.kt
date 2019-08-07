@@ -27,7 +27,7 @@ class TelefonListesi : Fragment() {
 
     lateinit var mFAB_telefon: FloatingActionButton
     val telefonModel = ArrayList<TelefonListeModel>()
-    val ref = FirebaseDatabase.getInstance().reference.child("MotorListe")
+    val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_telefon_listesi, container, false)

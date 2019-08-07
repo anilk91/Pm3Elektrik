@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_telefon_ekle.*
 
 class TelefonEkle : DialogFragment() {
 
-    val ref = FirebaseDatabase.getInstance().reference.child("MotorListe")
+    val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     val telefonModel = TelefonListeModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

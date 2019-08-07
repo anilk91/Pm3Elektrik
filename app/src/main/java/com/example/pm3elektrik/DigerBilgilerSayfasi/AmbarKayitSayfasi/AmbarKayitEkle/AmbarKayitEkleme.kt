@@ -43,7 +43,7 @@ class AmbarKayitEkleme : DialogFragment() {
                 ambarListeEkle.ambarTanim = tanim
 
                 ref.child("Ambar")
-                    .child(stokNo)
+                    .push()
                     .setValue(ambarListeEkle)
                     .addOnCompleteListener {
 
