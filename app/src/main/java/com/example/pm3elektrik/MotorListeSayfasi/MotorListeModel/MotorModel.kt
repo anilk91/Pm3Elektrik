@@ -3,6 +3,7 @@ package com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel
 class MotorModel {
 
 
+    var motorIsim: String = ""
     var motorTag: String = ""
     var motorGucKW: String = ""
     var motorGucHP: String = ""
@@ -14,11 +15,11 @@ class MotorModel {
     var motorMCCYeri: String = ""
     var motorDegTarihi: String = ""
 
-    constructor(
-        motorTag: String, motorGucKW: String, motorGucHP: String, motorDevir: String, motorNomTripAkimi: String,
+    constructor(motorIsim : String ,motorTag: String, motorGucKW: String, motorGucHP: String, motorDevir: String, motorNomTripAkimi: String,
         motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String
     ) {
 
+        this.motorIsim = motorIsim
         this.motorTag = motorTag
         this.motorGucKW = motorGucKW
         this.motorGucHP = motorGucHP
@@ -38,12 +39,6 @@ class MotorModel {
         this.motorGucKW = motorGucKW
         this.motorDevir = motorDevir
 
-    }
-
-
-    constructor(motorTag: String, motorMCCYeri: String){
-        this.motorTag = motorTag
-        this.motorMCCYeri = motorMCCYeri
     }
 
     constructor()

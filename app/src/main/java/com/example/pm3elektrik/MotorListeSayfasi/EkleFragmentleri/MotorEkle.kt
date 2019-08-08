@@ -32,6 +32,7 @@ class MotorEkle : Fragment() {
 
         button_ekle.setOnClickListener {
 
+            val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString()
             val motor_tag = view.findViewById<EditText>(R.id.etSalterMotorTag).text.toString()
             val guc_kw = view.findViewById<EditText>(R.id.etGucKw).text.toString()
             val guc_hp = view.findViewById<EditText>(R.id.etGucHP).text.toString()
@@ -46,7 +47,7 @@ class MotorEkle : Fragment() {
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
-                    FirebaseDBMotorEkle(motor_tag, guc_kw, guc_hp,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
+                    FirebaseDBMotorEkle(motor_isim ,motor_tag, guc_kw, guc_hp,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             }else{
                 Toast.makeText(activity,"Lütfen Motor Tag ve Mcc Yerini Giriniz",Toast.LENGTH_LONG).show()
@@ -62,15 +63,16 @@ class MotorEkle : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"fragment")
+        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"motor_ekle_fr")
         fragmentTransaction.commit()
 
     }
 
-    fun FirebaseDBMotorEkle(motorTag: String, motorGucKW: String, motorGucHP: String, motorDevir: String, motorNomTripAkimi: String,
+    fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorGucKW: String, motorGucHP: String, motorDevir: String, motorNomTripAkimi: String,
                   motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String){
 
 
+        motor_liste.motorIsim = motorIsim
         motor_liste.motorTag = motorTag
         motor_liste.motorDevir = motorDevir
         motor_liste.motorNomTripAkimi = motorNomTripAkimi
