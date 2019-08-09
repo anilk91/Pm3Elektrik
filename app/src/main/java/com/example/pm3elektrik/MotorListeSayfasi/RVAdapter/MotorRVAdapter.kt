@@ -31,7 +31,7 @@ class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Conte
     inner class MyData(itemView : View):RecyclerView.ViewHolder(itemView) {
 
         var tumLayout = itemView as ConstraintLayout
-        var motorTag = tumLayout.tvMotorTag
+        var motorTag = tumLayout.tvMotorEtiketTag
         var mCCYeri = tumLayout.tvMotorMCCYeri
         var motorGuc = tumLayout.tvMotorGuc
         var motorDevir = tumLayout.tvMotorDevir

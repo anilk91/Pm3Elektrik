@@ -28,7 +28,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/cardviewCekmece"
-                    app:layout_constraintTop_toBottomOf="@+id/cardViewMotor">
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewMotorBilgi">
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -254,7 +254,7 @@
             <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cardViewMotor"
+                    android:id="@+id/cardViewMotorBilgi"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             >
@@ -357,7 +357,7 @@
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvMotorTag" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
+                            android:id="@+id/tvMotorEtiketTag" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp"
                             app:layout_constraintTop_toTopOf="@+id/MotorTag" app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
@@ -366,44 +366,44 @@
                             android:text="@string/bilinmiyor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvGucKw" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
+                            android:id="@+id/tvMotorEtiketGucKw" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag"
                             android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
                     <TextView
                             android:text="KW"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/KW" app:layout_constraintStart_toEndOf="@+id/tvGucKw"
+                            android:id="@+id/KW" app:layout_constraintStart_toEndOf="@+id/tvMotorEtiketGucKw"
                             android:layout_marginStart="4dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag"
                             android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvGucHp" app:layout_constraintStart_toEndOf="@+id/KW"
+                            android:id="@+id/tvMotorEtiketGucHp" app:layout_constraintStart_toEndOf="@+id/KW"
                             android:layout_marginStart="24dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag"
                             android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="HP"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/GucHp" app:layout_constraintStart_toEndOf="@+id/tvGucHp"
+                            android:id="@+id/GucHp" app:layout_constraintStart_toEndOf="@+id/tvMotorEtiketGucHp"
                             android:layout_marginStart="4dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag"
                             android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvDevir" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
+                            android:id="@+id/tvMotorEtiketDevir" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvGucKw" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketGucKw" app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
@@ -412,14 +412,14 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tvNomTripAkimi" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvDevir" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketDevir" app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvInsaTipi" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
+                            android:id="@+id/tvMotorEtiketInsaTipi" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/tvNomTripAkimi"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -429,9 +429,9 @@
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvFlans" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
+                            android:id="@+id/tvMotorEtiketFlans" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvInsaTipi"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketInsaTipi"
                             android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black" app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp"/>
@@ -439,9 +439,9 @@
                             android:text="@string/bilinmiyor"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/tvMotorAdres" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
+                            android:id="@+id/tvMotorEtiketAdres" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvFlans" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketFlans" app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
                     <TextView
@@ -450,7 +450,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/tvMotorMCCYeri" app:layout_constraintStart_toEndOf="@+id/NomTripAkimi"
                             android:layout_marginStart="8dp" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvMotorAdres"
+                            app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketAdres"
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="8dp" android:fontFamily="@font/nunito_semibold"
                             android:textColor="@android:color/black"/>
