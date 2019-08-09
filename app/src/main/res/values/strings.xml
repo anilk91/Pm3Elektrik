@@ -4,6 +4,10 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bilinmiyor">Bilinmiyor</string>
+    <string name="on_numara">Hızlı Trip (Soğutucu kompresör motor vs.)</string>
+    <string name="yirmi_numara">Standart Trip (Normal çalışma koşulları)</string>
+    <string name="otuz_numara">Yavaş Trip (Uzun süreli motor kalkış zamanı vs.)</string>
+    <string name="numara_yok">YOK (Aşırı yük, faz kaybı ve topraklama hatası alınması istenmeyen durumlarda)</string>
 
     <string-array name="secim">
         <item>Sürücü Seçiniz</item>

@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKonvertorHesap
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTrip
 
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.fragment_diger_bilgiler.view.*
@@ -23,6 +24,7 @@ class DigerBilgiler : Fragment() {
 
         val ambarSayfasi= view.findViewById<CardView>(R.id.cardViewAmbarKayit)
         val akimKonvertorSayfasi = view.findViewById<CardView>(R.id.cardViewAkimKonHesapla)
+        val kontaktorTripSayfasi = view.findViewById<CardView>(R.id.cardViewKontaktorTrip)
 
         ambarSayfasi.setOnClickListener {
 
@@ -35,6 +37,13 @@ class DigerBilgiler : Fragment() {
             val akimKonSayfa = AkimKonvertorHesap()
             akimKonSayfa.show(fragmentManager,"akim_konvertor_fragment")
         }
+
+        kontaktorTripSayfasi.setOnClickListener {
+
+            changeFragment(KontaktorTrip())
+        }
+
+
 
 
         return view
