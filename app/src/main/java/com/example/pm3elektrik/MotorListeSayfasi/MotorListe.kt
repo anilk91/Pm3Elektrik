@@ -2,7 +2,6 @@ package com.example.pm3elektrik.MotorListeSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +57,6 @@ class MotorListe : Fragment() {
 
         return view
     }
-
     private fun fireBaseDBOkunanVeriler() {
 
         val ref = FirebaseDatabase.getInstance().reference
@@ -73,7 +71,6 @@ class MotorListe : Fragment() {
                         val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri,okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
-                        Log.e("motor",okunanBilgiler.motorTag + okunanBilgiler.motorMCCYeri + okunanBilgiler.motorGucKW + okunanBilgiler.motorDevir)
                     }
                     recyclerAdapter(motorListesi)
 
@@ -81,7 +78,6 @@ class MotorListe : Fragment() {
 
             })
     }
-
 
     private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel>) {
 
