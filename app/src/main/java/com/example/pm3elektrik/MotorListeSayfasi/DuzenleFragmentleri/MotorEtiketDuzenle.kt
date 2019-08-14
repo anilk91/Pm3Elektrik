@@ -3,6 +3,7 @@ package com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,16 @@ class MotorEtiketDuzenle : Fragment() {
 
         fireBaseOkunanVeriler(gelenMotorTag!!)
 
+        guckWveHpTextDinle()
+
         button_ekle.setOnClickListener {
+
+
+//            motor_liste.motorGucKW = etGucKw.text.toString()
+//            motor_liste.motorGucHP = etGucHP.text.toString()
+
+
+
 
 //            ref.child(gelenMotorTag)
 //                .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -128,39 +138,10 @@ class MotorEtiketDuzenle : Fragment() {
         motor_liste.motorAdres = motorAdres
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
-        motor_liste.motorGucKW = motorGucKW
-        motor_liste.motorGucHP = motorGucHP
 
 
-        etGucKw.addTextChangedListener( object : TextWatcher{
-            override fun afterTextChanged(p0: Editable?) {}
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                val kw : Double = motorGucKW.toDouble()
-                //val hp_karsiligi :String = DecimalFormat("##.##").format(kw/0.75)
-                val hp_karsiligi  = "${kw/0.75}"
-                motor_liste.motorGucHP = hp_karsiligi
-                motor_liste.motorGucKW = motorGucKW
-
-            }
 
 
-        })
-
-        etGucHP.addTextChangedListener( object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {}
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val hp = motorGucHP.toDouble()
-                val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
-                motor_liste.motorGucKW = "$kw_karsiligi"
-                motor_liste.motorGucHP = motorGucHP
-
-            }
-
-
-        })
 
 //        if (motorGucKW.isEmpty() && motorGucHP.isEmpty()) {
 //
@@ -194,5 +175,42 @@ class MotorEtiketDuzenle : Fragment() {
                     Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    fun guckWveHpTextDinle(){
+
+        etGucKw.addTextChangedListener( object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                val kw : Double = etGucKw.text.toString().toDouble()
+                //val hp_karsiligi :String = DecimalFormat("##.##").format(kw/0.75)
+                val hp_karsiligi  = "${kw/0.75}"
+                motor_liste.motorGucHP = hp_karsiligi
+                motor_liste.motorGucKW = etGucKw.text.toString()
+
+                Log.e("gucKW","$hp_karsiligi")
+
+            }
+
+
+        })
+
+        etGucHP.addTextChangedListener( object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val hp = etGucHP.text.toString().toDouble()
+                val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
+                motor_liste.motorGucKW = "$kw_karsiligi"
+                motor_liste.motorGucHP = etGucHP.text.toString()
+
+                Log.e("gucKW","$kw_karsiligi")
+
+            }
+
+
+        })
     }
 }
