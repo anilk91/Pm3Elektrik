@@ -33,7 +33,7 @@ class MotorEkle : Fragment() {
         button_ekle.setOnClickListener {
 
             val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString()
-            val motor_tag = view.findViewById<EditText>(R.id.etSalterMotorTag).text.toString()
+            val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString()
             val guc_kw = view.findViewById<EditText>(R.id.etGucKw).text.toString()
             val guc_hp = view.findViewById<EditText>(R.id.etGucHP).text.toString()
             val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()

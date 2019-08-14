@@ -56,7 +56,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/etSalterMotorTag"
+                            android:id="@+id/etMotorTag"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" android:hint="Motor Tag"
                             android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
@@ -69,8 +69,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/etGucKw"
-                            app:layout_constraintStart_toStartOf="@+id/etSalterMotorTag" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterMotorTag" android:hint="Güç (KW)"
+                            app:layout_constraintStart_toStartOf="@+id/etMotorTag" android:layout_marginTop="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:hint="Güç (KW)"
                             android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
                             android:textSize="12sp"/>
                     <EditText
@@ -79,8 +79,8 @@
                             android:inputType="numberDecimal"
                             android:ems="10"
                             android:id="@+id/etGucHP"
-                            app:layout_constraintEnd_toEndOf="@+id/etSalterMotorTag" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterMotorTag"
+                            app:layout_constraintEnd_toEndOf="@+id/etMotorTag" android:layout_marginTop="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag"
                             android:fontFamily="@font/nunito_extrabold"
                             android:textColor="@android:color/black" android:hint="Güç (HP)" android:textSize="12sp"/>
                     <EditText

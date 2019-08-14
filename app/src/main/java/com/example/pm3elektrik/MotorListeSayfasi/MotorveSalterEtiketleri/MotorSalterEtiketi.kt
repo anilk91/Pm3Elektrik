@@ -2,10 +2,12 @@ package com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
+import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
@@ -23,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtike
 import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtiketGucKw
 import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtiketInsaTipi
 import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtiketTag
+import java.text.DecimalFormat
 
 class MotorSalterEtiketi : AppCompatActivity() {
 
@@ -30,9 +33,9 @@ class MotorSalterEtiketi : AppCompatActivity() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
 
 
-    override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_motor_salter_etiketi)
-
 
 
         val motorSalterEtiketClose = findViewById<ImageView>(R.id.imgMotorSalterClose)
@@ -41,10 +44,22 @@ class MotorSalterEtiketi : AppCompatActivity() {
 
         motorSalterEtiketClose.setOnClickListener {
 
-            onDestroy()
+            onBackPressed()
         }
         motorEdit.setOnClickListener {
-            changeFragment(MotorEkle())
+
+            val gelenIntent = intent
+            val gelenMotorTag = gelenIntent.getStringExtra("motor_tag")
+
+            Log.e("activity_gelen",gelenMotorTag)
+            val bundle = Bundle()
+            bundle.putString("motor_tag",gelenMotorTag)
+
+            val frMotorDuzenle = MotorEtiketDuzenle()
+            frMotorDuzenle.arguments = bundle
+            val fragmentTransaction: FragmentTransaction = this@MotorSalterEtiketi.supportFragmentManager!!.beginTransaction()
+            fragmentTransaction.replace(R.id.containerMotorSalterEtiket, frMotorDuzenle, "motor_salter_etiket_fr")
+            fragmentTransaction.commit()
 
         }
         salterSurucuEdit.setOnClickListener {
@@ -60,31 +75,32 @@ class MotorSalterEtiketi : AppCompatActivity() {
         val gelenIntent = intent
         val gelenMotorTag = gelenIntent.getStringExtra("motor_tag")
 
-        //-----------Motor Etiket Bilgilerini Getir--------------
+        //-----------Şalter Etiket Bilgilerini Getir--------------
+        ref.child("Salter")
+            .child(gelenMotorTag)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    salterEtiketBilgileriGelen(p0)
+                }
+            })
+
+        //-----------Motor Bilgilerini Getir--------------
         ref.child("Motor")
             .child(gelenMotorTag)
-            .addListenerForSingleValueEvent( object  : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
                     motorEtiketBilgileriGelen(p0)
                 }
             })
 
-        //-----------Şalter Bilgilerini Getir--------------
-        ref.child("Salter")
-            .child(gelenMotorTag)
-            .addListenerForSingleValueEvent( object  : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {}
-            override fun onDataChange(p0: DataSnapshot) {
-                salterEtiketBilgileriGelen(p0)
-            }
-        })
-
 
         //-----------Sürücü Bilgilerini Getir--------------
         ref.child("Surucu")
             .child(gelenMotorTag)
-            .addListenerForSingleValueEvent( object  : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -97,27 +113,53 @@ class MotorSalterEtiketi : AppCompatActivity() {
 
     private fun surucuEtiketBilgileriGelen(p0: DataSnapshot) {
 
-        val surucuBilgileriGetir =p0.getValue(SurucuModel::class.java)
+        val surucuBilgileriGetir = p0.getValue(SurucuModel::class.java)
 
-        tvSurucuEtiketTipi.setText("${surucuBilgileriGetir?.surucuIsim}")
-        tvSurucuEtiketModel.setText("${surucuBilgileriGetir?.surucuModel}")
-        tvSurucuEtiketKonBoyut.setText("${surucuBilgileriGetir?.surucuBoyut}")
-        tvSurucuEtiketKonDip.setText("${surucuBilgileriGetir?.surucuDIPSivic}")
-        tvSurucuEtiketDegTarihi.setText("${surucuBilgileriGetir?.surucuDegTarihi}")
 
+        if (surucuBilgileriGetir != null) {
+            if (surucuBilgileriGetir.surucuBoyut.isNotEmpty() && surucuBilgileriGetir.surucuDIPSivic.isNotEmpty()) {
+
+                tvSurucuEtiketKonBoyut.text = (surucuBilgileriGetir.surucuBoyut)
+                tvSurucuEtiketKonDip.text = (surucuBilgileriGetir.surucuDIPSivic)
+                tvSurucuEtiketTipi.text = (surucuBilgileriGetir.surucuIsim)
+                tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
+                tvSurucuEtiketDegTarihi.text = (surucuBilgileriGetir.surucuDegTarihi)
+            } else if (surucuBilgileriGetir.surucuBoyut.isEmpty() && surucuBilgileriGetir.surucuDIPSivic.isEmpty()) {
+
+                tvSurucuEtiketKonBoyut.visibility = View.GONE
+                tvSurucuEtiketKonDip.visibility = View.GONE
+                tvBoyutYazisi.visibility = View.GONE
+                tvDipSivicYazisi.visibility = View.GONE
+
+                tvSurucuEtiketTipi.text = surucuBilgileriGetir.surucuIsim
+                tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
+                tvSurucuEtiketDegTarihi.text = surucuBilgileriGetir.surucuDegTarihi
+
+            } else {
+                tvSurucuEtiketKonBoyut.setText(surucuBilgileriGetir.surucuBoyut)
+                tvSurucuEtiketKonDip.setText(surucuBilgileriGetir.surucuDIPSivic)
+                tvSurucuEtiketTipi.setText(surucuBilgileriGetir.surucuIsim)
+                tvSurucuEtiketModel.setText(surucuBilgileriGetir.surucuModel)
+                tvSurucuEtiketDegTarihi.setText(surucuBilgileriGetir.surucuDegTarihi)
+            }
+        } else {
+        }
     }
 
     private fun salterEtiketBilgileriGelen(p0: DataSnapshot) {
 
         val cekmeceBilgiGetir = p0.getValue(SalterModel::class.java)
 
-        tvSalterMarka.setText("${cekmeceBilgiGetir?.salterMarka}")
-        tvSalterKapasite.setText("${cekmeceBilgiGetir?.salterKapasite}")
-        tvSalterEtiketCat.setText("${cekmeceBilgiGetir?.salterCAT}")
-        tvSalterEtiketStyle.setText("${cekmeceBilgiGetir?.salterSTYLE}")
-        tvSalterEtiketDemeraj.setText("${cekmeceBilgiGetir?.salterDemeraj}")
-        tvSalterEtiketDegTarihi.setText("${cekmeceBilgiGetir?.salterDegTarihi}")
 
+        if (cekmeceBilgiGetir != null) {
+            tvSalterMarka.text = (cekmeceBilgiGetir.salterMarka)
+            tvSalterKapasite.text = (cekmeceBilgiGetir.salterKapasite)
+            tvSalterEtiketCat.text = (cekmeceBilgiGetir.salterCAT)
+            tvSalterEtiketStyle.text = (cekmeceBilgiGetir.salterSTYLE)
+            tvSalterEtiketDemeraj.text = (cekmeceBilgiGetir.salterDemeraj)
+            tvSalterEtiketDegTarihi.text = (cekmeceBilgiGetir.salterDegTarihi)
+        } else {
+        }
 
 
     }
@@ -126,24 +168,30 @@ class MotorSalterEtiketi : AppCompatActivity() {
 
 
         val motorBilgiGetir = p0.getValue(MotorModel::class.java)
-        tvMotorEtiketPompaIsim.setText("${motorBilgiGetir?.motorIsim}")
-        tvMotorEtiketTag.setText("${motorBilgiGetir?.motorTag}")
-        tvMotorEtiketGucKw.setText("${motorBilgiGetir?.motorGucKW} KW")
-        tvMotorEtiketGucHp.setText("${motorBilgiGetir?.motorGucHP} HP")
-        tvMotorEtiketDevir.setText("${motorBilgiGetir?.motorDevir} d/d")
-        tvMotorEtiketNomTripAkim.setText("${motorBilgiGetir?.motorNomTripAkimi} A")
-        tvMotorEtiketInsaTipi.setText("${motorBilgiGetir?.motorInsaTipi}")
-        tvMotorEtiketFlans.setText("${motorBilgiGetir?.motorFlans}")
-        tvMotorEtiketAdres.setText("${motorBilgiGetir?.motorAdres}")
-        tvMotorEtiketMccYeri.setText("${motorBilgiGetir?.motorMCCYeri}")
-        tvMotorEtiketDegTarih.setText("${motorBilgiGetir?.motorDegTarihi}")
+
+        if (motorBilgiGetir != null) {
+            val gucKw = DecimalFormat("##.##").format(motorBilgiGetir.motorGucKW.toDouble())
+            val gucHp = DecimalFormat("##.##").format(motorBilgiGetir.motorGucHP.toDouble())
+
+            tvMotorEtiketPompaIsim.text = (motorBilgiGetir.motorIsim)
+            tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
+            tvMotorEtiketGucKw.text = ("$gucKw KW")
+            tvMotorEtiketGucHp.text = ("$gucHp HP")
+            tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " d/d")
+            tvMotorEtiketNomTripAkim.text = (motorBilgiGetir.motorNomTripAkimi + " A")
+            tvMotorEtiketInsaTipi.text = (motorBilgiGetir.motorInsaTipi)
+            tvMotorEtiketFlans.text = (motorBilgiGetir.motorFlans)
+            tvMotorEtiketAdres.text = (motorBilgiGetir.motorAdres)
+            tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
+            tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
+        } else {
+        }
+
     }
 
-    private fun changeFragment(fragment : Fragment){
+    private fun changeFragment(fragment: Fragment) {
 
-        val fragmentTransaction : FragmentTransaction = this@MotorSalterEtiketi.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerMotorSalterEtiket,fragment,"motor_salter_etiket_fr")
-        fragmentTransaction.commit()
+
 
     }
 }

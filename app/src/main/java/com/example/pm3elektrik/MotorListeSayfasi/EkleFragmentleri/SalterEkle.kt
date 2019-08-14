@@ -39,64 +39,46 @@ class SalterEkle : Fragment() {
 
                 if (position == 1) {
 
-                    etSalterModel.visibility = View.GONE
-
-                    etSalterKontaktorCat.visibility = View.VISIBLE
+                    etSalterSurucuModel.visibility = View.VISIBLE
                     etSalterKontaktorDIPSivic.visibility = View.VISIBLE
                     etSalterKontaktorBoyut.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
 
-                    val kontaktorCat = etSalterKontaktorCat.text.toString()
-                    val dipSivic = etSalterKontaktorDIPSivic.text.toString()
-                    val kontaktorDegisimTarihi = etSalterSurucuDegTarihi.text.toString()
-
-                    etSalterModel.editableText.clear()
                     surucu_liste.surucuIsim = "Kontaktör"
 
                 } else if (position == 2) {
 
-                    etSalterKontaktorCat.visibility = View.GONE
+
                     etSalterKontaktorDIPSivic.visibility = View.GONE
                     etSalterKontaktorBoyut.visibility = View.GONE
 
-                    etSalterModel.visibility = View.VISIBLE
+                    etSalterSurucuModel.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
-
-                    val surucuModel = etSalterModel.text.toString()
-                    val surucuDegisimTarihi = etSalterSurucuDegTarihi
 
                     surucu_liste.surucuIsim = "Frekans Konvertörü"
 
                 } else if (position == 3) {
 
-                    etSalterKontaktorCat.visibility = View.GONE
+
                     etSalterKontaktorDIPSivic.visibility = View.GONE
                     etSalterKontaktorBoyut.visibility = View.GONE
 
-
-                    etSalterModel.visibility = View.VISIBLE
+                    etSalterSurucuModel.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
-
-                    val surucuModel = etSalterModel.text.toString()
-                    val surucuDegisimTarihi = etSalterSurucuDegTarihi
 
                     surucu_liste.surucuIsim = "IT SoftStarter"
 
 
                 } else if (position == 4) {
 
-                    etSalterKontaktorCat.visibility = View.GONE
+
                     etSalterKontaktorDIPSivic.visibility = View.GONE
                     etSalterKontaktorBoyut.visibility = View.GONE
 
-                    etSalterModel.visibility = View.VISIBLE
+                    etSalterSurucuModel.visibility = View.VISIBLE
                     etSalterSurucuDegTarihi.visibility = View.VISIBLE
 
-                    val surucuModel = etSalterModel.text.toString()
-                    val surucuDegisimTarihi = etSalterSurucuDegTarihi
-
                     etSalterKontaktorBoyut.editableText.clear()
-                    etSalterKontaktorCat.editableText.clear()
                     etSalterKontaktorDIPSivic.editableText.clear()
 
                     surucu_liste.surucuIsim = "Easy SoftStarter"
@@ -104,10 +86,9 @@ class SalterEkle : Fragment() {
 
                 } else if (position == 0) {
 
-                    etSalterKontaktorCat.visibility = View.GONE
                     etSalterKontaktorDIPSivic.visibility = View.GONE
                     etSalterKontaktorBoyut.visibility = View.GONE
-                    etSalterModel.visibility = View.GONE
+                    etSalterSurucuModel.visibility = View.GONE
                     etSalterSurucuDegTarihi.visibility = View.GONE
                 }
             }
@@ -115,7 +96,7 @@ class SalterEkle : Fragment() {
 
         buttonEkle.setOnClickListener {
 
-            val motorTag = etSalterMotorTag.text.toString()
+            val motorTag = etMotorTag.text.toString()
             val marka = etSalterMarka.text.toString()
             val kapasite = etSalterKapasite.text.toString()
             val cat = etSalterCAT.text.toString()
@@ -124,13 +105,13 @@ class SalterEkle : Fragment() {
             val degisimTarihi = etSalterDegTarihi.text.toString()
             val mccYeri = etSalterMCCYeri.text.toString()
 
-            val kontaktorCat = etSalterKontaktorCat.text.toString()
+
             val dipSivic = etSalterKontaktorDIPSivic.text.toString()
             val kontaktorBoyut = etSalterKontaktorBoyut.text.toString()
-            val surucuModel = etSalterModel.text.toString()
+            val surucuModel = etSalterSurucuModel.text.toString()
             val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString()
 
-            if (motorTag.isNotEmpty() && mccYeri.isNotEmpty()) {
+            if (motorTag.isNotEmpty()) {
 
                 salter_liste.salterMotorTag = motorTag
                 salter_liste.salterMarka = marka
@@ -143,9 +124,8 @@ class SalterEkle : Fragment() {
 
                 surucu_liste.surucuBoyut = kontaktorBoyut
                 surucu_liste.surucuDIPSivic = dipSivic
-                surucu_liste.surucuDegTarihi = surucuDegisimTarihi
-                surucu_liste.surucuKontaktorCat = kontaktorCat
 
+                surucu_liste.surucuDegTarihi = surucuDegisimTarihi
                 surucu_liste.surucuModel = surucuModel
 
                 ref.child("pm3Elektrik")
@@ -181,7 +161,7 @@ class SalterEkle : Fragment() {
 
 
             } else {
-                Toast.makeText(activity, "Motor Tag ve Mcc Yerini Doldurunuz... ", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, "Motor Tag Alanını Doldurunuz... ", Toast.LENGTH_LONG).show()
             }
         }
 
