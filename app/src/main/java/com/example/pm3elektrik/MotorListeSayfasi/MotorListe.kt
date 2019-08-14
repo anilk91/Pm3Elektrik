@@ -40,7 +40,7 @@ class MotorListe : Fragment() {
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
         motorListeLayout = view.findViewById(R.id.motorListeLayout)
 
-        fireBaseDBOkunanVeriler()
+        fireBaseDBOkunanVeriler(view.context)
 
         //floating action bar buttonları eklendi
         mFAB_cekmece = view.findViewById(R.id.menu_cekmece)
@@ -57,7 +57,7 @@ class MotorListe : Fragment() {
 
         return view
     }
-    private fun fireBaseDBOkunanVeriler() {
+    private fun fireBaseDBOkunanVeriler(mContext : Context) {
 
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("pm3Elektrik")
@@ -72,20 +72,20 @@ class MotorListe : Fragment() {
 
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri,okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
                     }
-                    recyclerAdapter(motorListesi)
+                    recyclerAdapter(motorListesi,mContext)
 
                 }
 
             })
     }
 
-    private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel>) {
+    private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel> , mRvContext: Context) {
 
-        val mContext = view?.context as Context
-        val myAdapter = MotorRVAdapter(motorGelenListe,mContext)
+
+        val myAdapter = MotorRVAdapter(motorGelenListe,mRvContext)
         view?.rvMotorListe?.adapter = myAdapter
 
-        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
+        val mLayoutManager = LinearLayoutManager(mRvContext,RecyclerView.VERTICAL,false)
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()

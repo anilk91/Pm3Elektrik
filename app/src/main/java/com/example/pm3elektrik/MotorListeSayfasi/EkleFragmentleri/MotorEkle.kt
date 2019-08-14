@@ -16,6 +16,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import java.text.DecimalFormat
 
 
 class MotorEkle : Fragment() {
@@ -91,14 +92,14 @@ class MotorEkle : Fragment() {
         }else if (motorGucKW.isEmpty()){
 
             val hp = motorGucHP.toDouble()
-            val kw_karsiligi = (0.75*hp)
+            val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
             motor_liste.motorGucKW ="$kw_karsiligi"
             motor_liste.motorGucHP = motorGucHP
 
         }else if(motorGucHP.isEmpty()){
 
             val kw = motorGucKW.toDouble()
-            val hp_karsiligi = (kw/0.75)
+            val hp_karsiligi = DecimalFormat("##.##").format(kw/0.75)
             motor_liste.motorGucHP ="$hp_karsiligi"
             motor_liste.motorGucKW = motorGucKW
 
