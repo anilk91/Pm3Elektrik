@@ -26,6 +26,7 @@ class MotorEtiketDuzenle : Fragment() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
     val motor_liste = MotorModel()
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
 
@@ -37,6 +38,45 @@ class MotorEtiketDuzenle : Fragment() {
         val gelenMotorTag = bundle!!.getString("motor_tag")
 
         fireBaseOkunanVeriler(gelenMotorTag!!)
+
+        val gucKw = view.findViewById<EditText>(R.id.etGucKw)
+        val gucHp = view.findViewById<EditText>(R.id.etGucHP)
+
+        gucKw.addTextChangedListener( object: TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+
+                if(!p0.isNullOrBlank()){
+                    val kw = gucKw.text.toString().toDouble()
+                    val hp_karsiligi = (kw/0.75).toString()
+                    hp_karsiligi.removeRange(4..hp_karsiligi.length-1)
+                    motor_liste.motorGucHP = "$hp_karsiligi"
+                    motor_liste.motorGucKW = gucKw.text.toString()
+
+                    Log.e("gucKW","${motor_liste.motorGucKW}")
+                    Log.e("gucHP","${motor_liste.motorGucHP}")
+                    Log.e("kw","$kw")
+                    Log.e("hp","$hp_karsiligi")
+                }
+
+            }
+        })
+
+        gucHp.addTextChangedListener( object: TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+
+               if(!p0.isNullOrEmpty()){
+                   val hp = gucHp.text.toString().toDouble()
+                   val kw_karsiligi = (0.75*hp).toString()
+                   kw_karsiligi.substring(0,3)
+                   motor_liste.motorGucKW = "$kw_karsiligi"
+                   motor_liste.motorGucHP = gucHp.text.toString()
+               }
+            }
+        })
 
         button_ekle.setOnClickListener {
 
@@ -94,45 +134,36 @@ class MotorEtiketDuzenle : Fragment() {
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
 
-        if (motorGucKW.isEmpty() && motorGucHP.isEmpty()) {
-
-            motor_liste.motorGucKW = motorGucKW
-            motor_liste.motorGucHP = motorGucHP
-
-        } else if (motorGucHP.isEmpty()) {
-
-            val kw = motorGucKW.toDouble()
-            val hp_karsiligi = DecimalFormat("##.##").format(kw/0.75)
-            motor_liste.motorGucHP = "$hp_karsiligi"
-            motor_liste.motorGucKW = motorGucKW
-
-        } else if (motorGucKW.isEmpty() ) {
-
-            val hp = motorGucHP.toDouble()
-            val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
-            motor_liste.motorGucKW = "$kw_karsiligi"
-            motor_liste.motorGucHP = motorGucHP
-
-        }else {
-
-            if(motorGucKW.isNotEmpty()){
-                val hp = motorGucHP.toDouble()
-                val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
-                motor_liste.motorGucKW = "$kw_karsiligi"
-                motor_liste.motorGucHP = motorGucHP
-
-                if (motorGucHP.isNotEmpty()){
-                    val kw = motorGucKW.toDouble()
-                    val hp_karsiligi = DecimalFormat("##.##").format(kw/0.75)
-                    motor_liste.motorGucHP = "$hp_karsiligi"
-                    motor_liste.motorGucKW = motorGucKW
-                }
-            }
 
 
+
+
+
+
+//        if (motorGucKW.isEmpty() && motorGucHP.isEmpty()) {
+//
 //            motor_liste.motorGucKW = motorGucKW
 //            motor_liste.motorGucHP = motorGucHP
-        }
+//
+//        } else if (motorGucHP.isEmpty()) {
+//
+//            val kw = motorGucKW.toDouble()
+//            val hp_karsiligi = DecimalFormat("##.##").format(kw/0.75)
+//            motor_liste.motorGucHP = "$hp_karsiligi"
+//            motor_liste.motorGucKW = motorGucKW
+//
+//        } else if (motorGucKW.isEmpty() ) {
+//
+//            val hp = motorGucHP.toDouble()
+//            val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
+//            motor_liste.motorGucKW = "$kw_karsiligi"
+//            motor_liste.motorGucHP = motorGucHP
+//
+//        }else {
+//
+//            motor_liste.motorGucKW = motorGucKW
+//            motor_liste.motorGucHP = motorGucHP
+//        }
 
         ref.child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {
