@@ -170,13 +170,9 @@ class MotorSalterEtiketi : AppCompatActivity() {
         val motorBilgiGetir = p0.getValue(MotorModel::class.java)
 
         if (motorBilgiGetir != null) {
-            val gucKw = DecimalFormat("##.##").format(motorBilgiGetir.motorGucKW.toDouble())
-            val gucHp = DecimalFormat("##.##").format(motorBilgiGetir.motorGucHP.toDouble())
 
             tvMotorEtiketPompaIsim.text = (motorBilgiGetir.motorIsim)
             tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
-            tvMotorEtiketGucKw.text = ("$gucKw KW")
-            tvMotorEtiketGucHp.text = ("$gucHp HP")
             tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " d/d")
             tvMotorEtiketNomTripAkim.text = (motorBilgiGetir.motorNomTripAkimi + " A")
             tvMotorEtiketInsaTipi.text = (motorBilgiGetir.motorInsaTipi)
@@ -184,6 +180,8 @@ class MotorSalterEtiketi : AppCompatActivity() {
             tvMotorEtiketAdres.text = (motorBilgiGetir.motorAdres)
             tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
             tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
+            tvMotorEtiketGucKw.text = (motorBilgiGetir.motorGucKW + " KW")
+            tvMotorEtiketGucHp.text = (motorBilgiGetir.motorGucHP + " HP")
         } else {
         }
 
