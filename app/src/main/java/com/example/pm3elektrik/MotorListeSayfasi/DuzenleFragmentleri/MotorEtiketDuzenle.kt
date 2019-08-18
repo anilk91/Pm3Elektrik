@@ -49,15 +49,9 @@ class MotorEtiketDuzenle : Fragment() {
 
                 if(!p0.isNullOrBlank()){
                     val kw = gucKw.text.toString().toDouble()
-                    val hp_karsiligi = (kw/0.75).toString()
-                    hp_karsiligi.removeRange(4..hp_karsiligi.length-1)
-                    motor_liste.motorGucHP = "$hp_karsiligi"
+                    val hp_karsiligi = String.format("%.1f" , kw/0.75)
+                    motor_liste.motorGucHP = hp_karsiligi
                     motor_liste.motorGucKW = gucKw.text.toString()
-
-                    Log.e("gucKW","${motor_liste.motorGucKW}")
-                    Log.e("gucHP","${motor_liste.motorGucHP}")
-                    Log.e("kw","$kw")
-                    Log.e("hp","$hp_karsiligi")
                 }
 
             }
@@ -70,9 +64,8 @@ class MotorEtiketDuzenle : Fragment() {
 
                if(!p0.isNullOrEmpty()){
                    val hp = gucHp.text.toString().toDouble()
-                   val kw_karsiligi = (0.75*hp).toString()
-                   kw_karsiligi.substring(0,3)
-                   motor_liste.motorGucKW = "$kw_karsiligi"
+                   val kw_karsiligi =  String.format("%.1f" , 0.75*hp)
+                   motor_liste.motorGucKW = kw_karsiligi
                    motor_liste.motorGucHP = gucHp.text.toString()
                }
             }
@@ -84,8 +77,8 @@ class MotorEtiketDuzenle : Fragment() {
 
 
                 FirebaseDBMotorEkle(
-                    etMotorIsim.text.toString(), etMotorTag.text.toString(), etGucKw.text.toString(), etGucHP.text.toString(), etDevir.text.toString(), etNomTripAkimi.text.toString(),
-                    etInsaTipi.text.toString(), etFlans.text.toString(), etMotorAdres.text.toString(), etMotorMCCYeri.text.toString(), etMotorDegTarihi.text.toString()
+                    etMotorIsim.text.toString().toUpperCase(), etMotorTag.text.toString().toUpperCase(), etGucKw.text.toString().toUpperCase(), etGucHP.text.toString().toUpperCase(), etDevir.text.toString().toUpperCase(), etNomTripAkimi.text.toString().toUpperCase(),
+                    etInsaTipi.text.toString().toUpperCase(), etFlans.text.toString().toUpperCase(), etMotorAdres.text.toString().toUpperCase(), etMotorMCCYeri.text.toString().toUpperCase(), etMotorDegTarihi.text.toString().toUpperCase()
                 )
 
             } else {
@@ -134,37 +127,6 @@ class MotorEtiketDuzenle : Fragment() {
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
 
-
-
-
-
-
-
-//        if (motorGucKW.isEmpty() && motorGucHP.isEmpty()) {
-//
-//            motor_liste.motorGucKW = motorGucKW
-//            motor_liste.motorGucHP = motorGucHP
-//
-//        } else if (motorGucHP.isEmpty()) {
-//
-//            val kw = motorGucKW.toDouble()
-//            val hp_karsiligi = DecimalFormat("##.##").format(kw/0.75)
-//            motor_liste.motorGucHP = "$hp_karsiligi"
-//            motor_liste.motorGucKW = motorGucKW
-//
-//        } else if (motorGucKW.isEmpty() ) {
-//
-//            val hp = motorGucHP.toDouble()
-//            val kw_karsiligi = DecimalFormat("##.##").format(0.75*hp)
-//            motor_liste.motorGucKW = "$kw_karsiligi"
-//            motor_liste.motorGucHP = motorGucHP
-//
-//        }else {
-//
-//            motor_liste.motorGucKW = motorGucKW
-//            motor_liste.motorGucHP = motorGucHP
-//        }
-
         ref.child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {
 
@@ -176,48 +138,6 @@ class MotorEtiketDuzenle : Fragment() {
             }
     }
 }
-
-
-//        val motorIsimDuzenle = view.findViewById<EditText>(R.id.etMotorIsim).text.toString()
-//        val motorTagDuzenle = view.findViewById<EditText>(R.id.etMotorTag).text.toString()
-//        val gucKwDuzenle = view.findViewById<EditText>(R.id.etGucKw).text.toString()
-//        val gucHpDuzenle = view.findViewById<EditText>(R.id.etGucHP).text.toString()
-//        val devirDuzenle = view.findViewById<EditText>(R.id.etDevir).text.toString()
-//        val nomTripAkimDuzenle = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
-//        val insaTipiDuzenle = view.findViewById<EditText>(R.id.etInsaTipi).text.toString()
-//        val flansDuzenle = view.findViewById<EditText>(R.id.etFlans).text.toString()
-//        val motorAdresDuzenle = view.findViewById<EditText>(R.id.etMotorAdres).text.toString()
-//        val motorMCCYeriDuzenle = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString()
-//        val motorDegTarihDuzenle = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
-
-
-
-
-
-//            ref.child(gelenMotorTag)
-//                .addListenerForSingleValueEvent(object : ValueEventListener {
-//                    override fun onCancelled(p0: DatabaseError) {}
-//
-//                    override fun onDataChange(p0: DataSnapshot) {
-//
-//                        val okunan = p0.getValue(MotorModel::class.java)
-//                        etMotorIsim.setText(okunan!!.motorIsim)
-//                        etMotorTag.setText(okunan.motorTag)
-//                        etGucKw.setText(okunan.motorGucKW)
-//                        etGucHP.setText(okunan.motorGucHP)
-//                        etDevir.setText(okunan.motorDevir)
-//                        etNomTripAkimi.setText(okunan.motorNomTripAkimi)
-//                        etInsaTipi.setText(okunan.motorInsaTipi)
-//                        etFlans.setText(okunan.motorFlans)
-//                        etMotorAdres.setText(okunan.motorAdres)
-//                        etMotorMCCYeri.setText(okunan.motorMCCYeri)
-//                        etMotorDegTarihi.setText(okunan.motorDegTarihi)
-//
-//                    }
-//
-//                })
-
-
 
 
 

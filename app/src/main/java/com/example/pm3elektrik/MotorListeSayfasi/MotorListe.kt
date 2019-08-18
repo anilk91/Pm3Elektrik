@@ -2,6 +2,9 @@ package com.example.pm3elektrik.MotorListeSayfasi
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +31,7 @@ class MotorListe : Fragment() {
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
     lateinit var motorListeLayout : ConstraintLayout
+    lateinit var myAdapter : MotorRVAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,6 +42,30 @@ class MotorListe : Fragment() {
         sync.keepSynced(true)
 
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
+
+        motor_ara.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null) {
+
+                    val gelenVeri = p0.toString().toUpperCase()
+                    val arananlar = ArrayList<MotorModel>()
+
+                    for(gelen in motorListesi){
+
+                        val bulunan = gelen.motorTag.toUpperCase()
+                        if(bulunan.contains(gelenVeri.toString())){
+                            arananlar.add(gelen)
+                        }
+                    }
+                    myAdapter.gelenMotorTagiFiltrele(arananlar)
+
+                }
+            }
+        })
         motorListeLayout = view.findViewById(R.id.motorListeLayout)
 
         fireBaseDBOkunanVeriler(view.context)
@@ -70,7 +98,7 @@ class MotorListe : Fragment() {
 
                         val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
-                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri,okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
+                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
                     }
                     recyclerAdapter(motorListesi,mContext)
 
@@ -82,7 +110,7 @@ class MotorListe : Fragment() {
     private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel> , mRvContext: Context) {
 
 
-        val myAdapter = MotorRVAdapter(motorGelenListe,mRvContext)
+        myAdapter = MotorRVAdapter(motorGelenListe,mRvContext)
         view?.rvMotorListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mRvContext,RecyclerView.VERTICAL,false)

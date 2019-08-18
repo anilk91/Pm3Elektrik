@@ -17,6 +17,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 import java.lang.StringBuilder
 import java.text.DecimalFormat
 import java.time.format.DecimalStyle
@@ -36,17 +37,17 @@ class MotorEkle : Fragment() {
 
         button_ekle.setOnClickListener {
 
-            val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString()
-            val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString()
-            val guc_kw = view.findViewById<EditText>(R.id.etGucKw).text.toString()
-            val guc_hp = view.findViewById<EditText>(R.id.etGucHP).text.toString()
-            val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
-            val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
-            val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString()
-            val flans = view.findViewById<EditText>(R.id.etFlans).text.toString()
-            val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString()
-            val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString()
-            val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
+            val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
+            val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
+            val guc_kw = view.findViewById<EditText>(R.id.etGucKw).text.toString().toUpperCase()
+            val guc_hp = view.findViewById<EditText>(R.id.etGucHP).text.toString().toUpperCase()
+            val devir = view.findViewById<EditText>(R.id.etDevir).text.toString().toUpperCase()
+            val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString().toUpperCase()
+            val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
+            val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
+            val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
+            val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
+            val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
@@ -86,7 +87,6 @@ class MotorEkle : Fragment() {
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
 
-
         if(motorGucKW.isEmpty() && motorGucHP.isEmpty()){
 
             motor_liste.motorGucKW = motorGucKW
@@ -95,17 +95,15 @@ class MotorEkle : Fragment() {
         }else if (motorGucKW.isEmpty()){
 
             val hp = motorGucHP.toDouble()
-            val kw_karsiligi = (0.75*hp).toString()
-            kw_karsiligi.substring(0,3)
-            motor_liste.motorGucKW ="$kw_karsiligi"
+            val kw_karsiligi =  String.format("%.1f" , 0.75*hp)
+            motor_liste.motorGucKW =kw_karsiligi
             motor_liste.motorGucHP = motorGucHP
 
         }else if(motorGucHP.isEmpty()){
 
             val kw = motorGucKW.toDouble()
-            val hp_karsiligi = (kw/0.75).toString()
-            hp_karsiligi.substring(0,3)
-            motor_liste.motorGucHP ="$hp_karsiligi"
+            val hp_karsiligi = String.format("%.1f" , kw/0.75)
+            motor_liste.motorGucHP =hp_karsiligi
             motor_liste.motorGucKW = motorGucKW
 
         }else {

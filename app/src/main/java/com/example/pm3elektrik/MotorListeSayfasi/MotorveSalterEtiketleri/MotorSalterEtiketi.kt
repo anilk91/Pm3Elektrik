@@ -180,8 +180,8 @@ class MotorSalterEtiketi : AppCompatActivity() {
             tvMotorEtiketAdres.text = (motorBilgiGetir.motorAdres)
             tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
             tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
-            tvMotorEtiketGucKw.text = (motorBilgiGetir.motorGucKW + " KW")
-            tvMotorEtiketGucHp.text = (motorBilgiGetir.motorGucHP + " HP")
+            tvMotorEtiketGucKw.text = ("${motorBilgiGetir.motorGucKW} KW")
+            tvMotorEtiketGucHp.text = ("${motorBilgiGetir.motorGucHP} HP")
         } else {
         }
 

@@ -52,11 +52,19 @@ class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Conte
                 val intent = Intent(it.context , MotorSalterEtiketi::class.java)
                 intent.putExtra("motor_tag",motorListe[position].motorTag)
                 it.context.startActivity(intent)
-                //MotorListe().rvAdapterdenGelenPosition(motorListe, position , itemView.rootView)
 
             }
 
 
         }
+    }
+
+    fun gelenMotorTagiFiltrele(gelenTag : ArrayList<MotorModel>){
+
+        motorListe = ArrayList<MotorModel>()
+        motorListe.addAll(gelenTag)
+        notifyDataSetChanged()
+
+
     }
 }
