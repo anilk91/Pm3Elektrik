@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.CekmeceEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
@@ -51,7 +52,6 @@ class MotorSalterEtiketi : AppCompatActivity() {
             val gelenIntent = intent
             val gelenMotorTag = gelenIntent.getStringExtra("motor_tag")
 
-            Log.e("activity_gelen",gelenMotorTag)
             val bundle = Bundle()
             bundle.putString("motor_tag",gelenMotorTag)
 
@@ -63,7 +63,17 @@ class MotorSalterEtiketi : AppCompatActivity() {
 
         }
         salterSurucuEdit.setOnClickListener {
-            changeFragment(SalterEkle())
+            val gelenIntent = intent
+            val gelenMotorTag = gelenIntent.getStringExtra("motor_tag")
+
+            val bundle = Bundle()
+            bundle.putString("motor_tag",gelenMotorTag)
+
+            val frMotorDuzenle = CekmeceEtiketDuzenle()
+            frMotorDuzenle.arguments = bundle
+            val fragmentTransaction: FragmentTransaction = this@MotorSalterEtiketi.supportFragmentManager!!.beginTransaction()
+            fragmentTransaction.replace(R.id.containerMotorSalterEtiket, frMotorDuzenle, "motor_salter_etiket_fr")
+            fragmentTransaction.commit()
         }
 
         firebaseDBOku()

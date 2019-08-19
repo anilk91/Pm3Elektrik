@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +28,10 @@ import java.time.format.DecimalStyle
 class MotorEkle : Fragment() {
 
     val motor_liste = MotorModel()
-    val ref = FirebaseDatabase.getInstance().reference
+    val salterListe = SalterModel()
+    val surucuListe = SurucuModel()
+    val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -87,6 +92,22 @@ class MotorEkle : Fragment() {
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
 
+        salterListe.salterMotorTag = motorTag
+        salterListe.salterMccYeri = motorMCCYeri
+        salterListe.salterMarka = ""
+        salterListe.salterDegTarihi = ""
+        salterListe.salterDemeraj = ""
+        salterListe.salterSTYLE = ""
+        salterListe.salterCAT = ""
+        salterListe.salterKapasite = ""
+
+        surucuListe.surucuIsim = ""
+        surucuListe.surucuDegTarihi = ""
+        surucuListe.surucuModel = ""
+        surucuListe.surucuDIPSivic = ""
+        surucuListe.surucuBoyut = ""
+
+
         if(motorGucKW.isEmpty() && motorGucHP.isEmpty()){
 
             motor_liste.motorGucKW = motorGucKW
@@ -110,13 +131,32 @@ class MotorEkle : Fragment() {
             motor_liste.motorGucKW = motorGucKW
             motor_liste.motorGucHP = motorGucHP
         }
-        ref.child("pm3Elektrik")
-            .child("Motor")
+        ref.child("Motor")
             .child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {
 
                 if(it.isSuccessful){
                     Toast.makeText(activity,"Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        ref.child("Salter")
+            .child(motorTag)
+            .setValue(salterListe).addOnCompleteListener {
+                if(it.isSuccessful){
+
+                }else{
+                    Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        ref.child("Surucu")
+            .child(motorTag)
+            .setValue(surucuListe).addOnCompleteListener {
+                if(it.isSuccessful){
+
                 }else{
                     Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
