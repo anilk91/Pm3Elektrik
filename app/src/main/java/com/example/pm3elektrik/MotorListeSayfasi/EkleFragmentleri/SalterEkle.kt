@@ -96,20 +96,20 @@ class SalterEkle : Fragment() {
 
         buttonEkle.setOnClickListener {
 
-            val motorTag = etMotorTag.text.toString()
-            val marka = etSalterMarka.text.toString()
-            val kapasite = etSalterKapasite.text.toString()
-            val cat = etSalterCAT.text.toString()
-            val style = etSalterSTYLE.text.toString()
-            val demeraj = etSalterDemeraj.text.toString()
-            val degisimTarihi = etSalterDegTarihi.text.toString()
-            val mccYeri = etSalterMCCYeri.text.toString()
+            val motorTag = etMotorTag.text.toString().toUpperCase()
+            val marka = etSalterMarka.text.toString().toUpperCase()
+            val kapasite = etSalterKapasite.text.toString().toUpperCase()
+            val cat = etSalterCAT.text.toString().toUpperCase()
+            val style = etSalterSTYLE.text.toString().toUpperCase()
+            val demeraj = etSalterDemeraj.text.toString().toUpperCase()
+            val degisimTarihi = etSalterDegTarihi.text.toString().toUpperCase()
+            val mccYeri = etSalterMCCYeri.text.toString().toUpperCase()
 
 
-            val dipSivic = etSalterKontaktorDIPSivic.text.toString()
-            val kontaktorBoyut = etSalterKontaktorBoyut.text.toString()
-            val surucuModel = etSalterSurucuModel.text.toString()
-            val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString()
+            val dipSivic = etSalterKontaktorDIPSivic.text.toString().toUpperCase()
+            val kontaktorBoyut = etSalterKontaktorBoyut.text.toString().toUpperCase()
+            val surucuModel = etSalterSurucuModel.text.toString().toUpperCase()
+            val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString().toUpperCase()
 
             if (motorTag.isNotEmpty()) {
 
