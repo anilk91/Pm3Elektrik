@@ -2,6 +2,8 @@ package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,10 +21,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_motor_ekle.*
-import java.lang.StringBuilder
 import java.text.DecimalFormat
-import java.time.format.DecimalStyle
 
 
 class MotorEkle : Fragment() {
@@ -32,7 +31,15 @@ class MotorEkle : Fragment() {
     val surucuListe = SurucuModel()
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
 
+    companion object{
 
+        var gucKW_static = 0.0
+
+    }
+
+    interface motorEkledenGiden {
+        fun motorEkledenGidenVeri (motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
@@ -40,12 +47,49 @@ class MotorEkle : Fragment() {
         val button_close = view.findViewById<ImageView>(R.id.imgMotorCLose)
         val button_ekle = view.findViewById<Button>(R.id.buttonMotorEkle)
 
+        val gucKw = view.findViewById<EditText>(R.id.etGucKw)
+        val gucHp = view.findViewById<EditText>(R.id.etGucHP)
+
+        gucKw.addTextChangedListener( object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+
+                if(!p0.isNullOrBlank()){
+                    val kw = gucKw.text.toString().toDouble()
+                    val hp_karsiligi = DecimalFormat("##.#").format(kw/0.75)
+                    motor_liste.motorGucHP = hp_karsiligi.toDouble()
+                    motor_liste.motorGucKW = gucKw.text.toString().toDouble()
+                    gucKW_static = kw
+
+                }
+
+            }
+        })
+
+        gucHp.addTextChangedListener( object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+
+                if(!p0.isNullOrEmpty()){
+                    val hp = gucHp.text.toString().toDouble()
+                    val kw_karsiligi =  DecimalFormat("##.#").format(0.75*hp)
+                    motor_liste.motorGucKW = kw_karsiligi.toDouble()
+                    motor_liste.motorGucHP = gucHp.text.toString().toDouble()
+
+                    gucKW_static = kw_karsiligi.toDouble()
+
+                }
+            }
+        })
+
+
+
         button_ekle.setOnClickListener {
 
             val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
             val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
-            val guc_kw = view.findViewById<EditText>(R.id.etGucKw).text.toString().toUpperCase()
-            val guc_hp = view.findViewById<EditText>(R.id.etGucHP).text.toString().toUpperCase()
             val devir = view.findViewById<EditText>(R.id.etDevir).text.toString().toUpperCase()
             val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString().toUpperCase()
             val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
@@ -55,9 +99,16 @@ class MotorEkle : Fragment() {
             val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
 
+
+
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
-                    FirebaseDBMotorEkle(motor_isim ,motor_tag, guc_kw, guc_hp,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
+
+//                (view.context as motorEkledenGiden).motorEkledenGidenVeri(motor_tag,mcc_yeri, gucKW_static,devir)
+//                Log.e("ekleInterface","$gucKW_static")
+
+
+                    FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             }else{
                 Toast.makeText(activity,"Lütfen Motor Tag ve Mcc Yerini Giriniz",Toast.LENGTH_LONG).show()
@@ -78,9 +129,8 @@ class MotorEkle : Fragment() {
 
     }
 
-    fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorGucKW: String, motorGucHP: String, motorDevir: String, motorNomTripAkimi: String,
+    fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
                   motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String){
-
 
         motor_liste.motorIsim = motorIsim
         motor_liste.motorTag = motorTag
@@ -107,30 +157,6 @@ class MotorEkle : Fragment() {
         surucuListe.surucuDIPSivic = ""
         surucuListe.surucuBoyut = ""
 
-
-        if(motorGucKW.isEmpty() && motorGucHP.isEmpty()){
-
-            motor_liste.motorGucKW = motorGucKW
-            motor_liste.motorGucHP = motorGucHP
-
-        }else if (motorGucKW.isEmpty()){
-
-            val hp = motorGucHP.toDouble()
-            val kw_karsiligi =  String.format("%.1f" , 0.75*hp)
-            motor_liste.motorGucKW =kw_karsiligi
-            motor_liste.motorGucHP = motorGucHP
-
-        }else if(motorGucHP.isEmpty()){
-
-            val kw = motorGucKW.toDouble()
-            val hp_karsiligi = String.format("%.1f" , kw/0.75)
-            motor_liste.motorGucHP =hp_karsiligi
-            motor_liste.motorGucKW = motorGucKW
-
-        }else {
-            motor_liste.motorGucKW = motorGucKW
-            motor_liste.motorGucHP = motorGucHP
-        }
         ref.child("Motor")
             .child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {

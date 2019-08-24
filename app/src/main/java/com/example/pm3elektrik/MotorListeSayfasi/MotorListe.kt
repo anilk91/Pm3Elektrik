@@ -25,13 +25,15 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 
 
-class MotorListe : Fragment() {
+class MotorListe : Fragment() , MotorEkle.motorEkledenGiden{
+
 
     var motorListesi= ArrayList<MotorModel>()
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
     lateinit var motorListeLayout : ConstraintLayout
     lateinit var myAdapter : MotorRVAdapter
+    val motorListe = ArrayList<MotorModel>()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -96,7 +98,7 @@ class MotorListe : Fragment() {
 
                     for(dataGetir in p0.children){
 
-                        val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
+                        var okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
                     }
@@ -114,6 +116,22 @@ class MotorListe : Fragment() {
         view?.rvMotorListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mRvContext,RecyclerView.VERTICAL,false)
+        view?.rvMotorListe?.layoutManager = mLayoutManager
+
+        myAdapter.notifyDataSetChanged()
+
+    }
+
+    override fun motorEkledenGidenVeri(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
+
+
+        val mContext = view?.context as Context
+        motorListe.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
+
+        myAdapter = MotorRVAdapter(motorListe,mContext)
+        view?.rvMotorListe?.adapter = myAdapter
+
+        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()

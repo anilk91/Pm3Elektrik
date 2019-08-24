@@ -49,9 +49,9 @@ class MotorEtiketDuzenle : Fragment() {
 
                 if(!p0.isNullOrBlank()){
                     val kw = gucKw.text.toString().toDouble()
-                    val hp_karsiligi = String.format("%.1f" , kw/0.75)
-                    motor_liste.motorGucHP = hp_karsiligi
-                    motor_liste.motorGucKW = gucKw.text.toString()
+                    val hp_karsiligi = DecimalFormat("##.#").format(kw/0.75)
+                    motor_liste.motorGucHP = hp_karsiligi.toDouble()
+                    motor_liste.motorGucKW = gucKw.text.toString().toDouble()
                 }
 
             }
@@ -64,9 +64,9 @@ class MotorEtiketDuzenle : Fragment() {
 
                if(!p0.isNullOrEmpty()){
                    val hp = gucHp.text.toString().toDouble()
-                   val kw_karsiligi =  String.format("%.1f" , 0.75*hp)
-                   motor_liste.motorGucKW = kw_karsiligi
-                   motor_liste.motorGucHP = gucHp.text.toString()
+                   val kw_karsiligi =  DecimalFormat("##.#").format(0.75*hp)
+                   motor_liste.motorGucKW = kw_karsiligi.toDouble()
+                   motor_liste.motorGucHP = gucHp.text.toString().toDouble()
                }
             }
         })
@@ -77,7 +77,7 @@ class MotorEtiketDuzenle : Fragment() {
 
 
                 FirebaseDBMotorEkle(
-                    etMotorIsim.text.toString().toUpperCase(), etMotorTag.text.toString().toUpperCase(), etGucKw.text.toString().toUpperCase(), etGucHP.text.toString().toUpperCase(), etDevir.text.toString().toUpperCase(), etNomTripAkimi.text.toString().toUpperCase(),
+                    etMotorIsim.text.toString().toUpperCase(), etMotorTag.text.toString().toUpperCase(), etGucKw.text.toString().toDouble(), etGucHP.text.toString().toDouble(), etDevir.text.toString().toUpperCase(), etNomTripAkimi.text.toString().toUpperCase(),
                     etInsaTipi.text.toString().toUpperCase(), etFlans.text.toString().toUpperCase(), etMotorAdres.text.toString().toUpperCase(), etMotorMCCYeri.text.toString().toUpperCase(), etMotorDegTarihi.text.toString().toUpperCase()
                 )
 
@@ -99,8 +99,8 @@ class MotorEtiketDuzenle : Fragment() {
                     val okunan = p0.getValue(MotorModel::class.java)
                     etMotorIsim.setText(okunan!!.motorIsim)
                     etMotorTag.setText(okunan.motorTag)
-                    etGucKw.setText(okunan.motorGucKW)
-                    etGucHP.setText(okunan.motorGucHP)
+                    etGucKw.setText("${okunan.motorGucKW}")
+                    etGucHP.setText("${okunan.motorGucHP}")
                     etDevir.setText(okunan.motorDevir)
                     etNomTripAkimi.setText(okunan.motorNomTripAkimi)
                     etInsaTipi.setText(okunan.motorInsaTipi)
@@ -114,7 +114,7 @@ class MotorEtiketDuzenle : Fragment() {
             })
     }
 
-    fun FirebaseDBMotorEkle(motorIsim: String, motorTag: String, motorGucKW: String, motorGucHP: String, motorDevir: String, motorNomTripAkimi: String,
+    fun FirebaseDBMotorEkle(motorIsim: String, motorTag: String, motorGucKW: Double, motorGucHP: Double, motorDevir: String, motorNomTripAkimi: String,
         motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String) {
 
         motor_liste.motorIsim = motorIsim
