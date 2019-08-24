@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 
 
-class MotorListe : Fragment() , MotorEkle.motorEkledenGiden{
+class MotorListe : Fragment(){
 
 
     var motorListesi= ArrayList<MotorModel>()
@@ -98,7 +99,7 @@ class MotorListe : Fragment() , MotorEkle.motorEkledenGiden{
 
                     for(dataGetir in p0.children){
 
-                        var okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
+                        val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
                     }
@@ -122,9 +123,9 @@ class MotorListe : Fragment() , MotorEkle.motorEkledenGiden{
 
     }
 
-    override fun motorEkledenGidenVeri(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
+    fun gelenVeriler(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String){
 
-
+        Log.e("motor_liste","$motorTag $motorMCCYeri $motorGucKW $motorDevir")
         val mContext = view?.context as Context
         motorListe.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
 
@@ -135,13 +136,12 @@ class MotorListe : Fragment() , MotorEkle.motorEkledenGiden{
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()
-
     }
 
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"fragment")
+        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"fragment_motor_liste")
         fragmentTransaction.commit()
 
     }

@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -26,6 +27,11 @@ class MotorEtiketDuzenle : Fragment() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
     val motor_liste = MotorModel()
 
+    companion object{
+
+        var gucKW_static = 0.0
+
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
@@ -52,6 +58,7 @@ class MotorEtiketDuzenle : Fragment() {
                     val hp_karsiligi = DecimalFormat("##.#").format(kw/0.75)
                     motor_liste.motorGucHP = hp_karsiligi.toDouble()
                     motor_liste.motorGucKW = gucKw.text.toString().toDouble()
+                    gucKW_static = kw
                 }
 
             }
@@ -67,6 +74,8 @@ class MotorEtiketDuzenle : Fragment() {
                    val kw_karsiligi =  DecimalFormat("##.#").format(0.75*hp)
                    motor_liste.motorGucKW = kw_karsiligi.toDouble()
                    motor_liste.motorGucHP = gucHp.text.toString().toDouble()
+
+                   gucKW_static = kw_karsiligi.toDouble()
                }
             }
         })
@@ -75,11 +84,20 @@ class MotorEtiketDuzenle : Fragment() {
 
             if (etMotorTag.text.toString().isNotEmpty() && etMotorMCCYeri.text.toString().isNotEmpty()) {
 
+                val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
+                val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
+                val devir = view.findViewById<EditText>(R.id.etDevir).text.toString().toUpperCase()
+                val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString().toUpperCase()
+                val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
+                val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
+                val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
+                val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
+                val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
-                FirebaseDBMotorEkle(
-                    etMotorIsim.text.toString().toUpperCase(), etMotorTag.text.toString().toUpperCase(), etGucKw.text.toString().toDouble(), etGucHP.text.toString().toDouble(), etDevir.text.toString().toUpperCase(), etNomTripAkimi.text.toString().toUpperCase(),
-                    etInsaTipi.text.toString().toUpperCase(), etFlans.text.toString().toUpperCase(), etMotorAdres.text.toString().toUpperCase(), etMotorMCCYeri.text.toString().toUpperCase(), etMotorDegTarihi.text.toString().toUpperCase()
-                )
+                val listener = (activity as MotorEkleInterface)
+                listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir)
+
+                FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             } else {
                 Toast.makeText(activity, "Lütfen Motor Tag ve Mcc Yerini Giriniz", Toast.LENGTH_LONG).show()
@@ -114,7 +132,7 @@ class MotorEtiketDuzenle : Fragment() {
             })
     }
 
-    fun FirebaseDBMotorEkle(motorIsim: String, motorTag: String, motorGucKW: Double, motorGucHP: Double, motorDevir: String, motorNomTripAkimi: String,
+    fun FirebaseDBMotorEkle(motorIsim: String, motorTag: String, motorDevir: String, motorNomTripAkimi: String,
         motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String) {
 
         motor_liste.motorIsim = motorIsim

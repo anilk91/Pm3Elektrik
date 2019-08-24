@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
@@ -113,6 +114,7 @@ class SalterEkle : Fragment() {
 
             if (motorTag.isNotEmpty()) {
 
+                val listener = (activity as MotorEkleInterface)
                 salter_liste.salterMotorTag = motorTag
                 salter_liste.salterMarka = marka
                 salter_liste.salterKapasite = kapasite

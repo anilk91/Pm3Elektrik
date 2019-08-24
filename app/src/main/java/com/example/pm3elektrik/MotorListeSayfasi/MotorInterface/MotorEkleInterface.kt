@@ -1,4 +1,4 @@
-package com.example.pm3elektrik.MotorListeSayfasi
+package com.example.pm3elektrik.MotorListeSayfasi.MotorInterface
 
 interface MotorEkleInterface {
 

@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
@@ -22,6 +23,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
 import java.text.DecimalFormat
+import javax.xml.parsers.ParserConfigurationException
 
 
 class MotorEkle : Fragment() {
@@ -35,11 +37,9 @@ class MotorEkle : Fragment() {
 
         var gucKW_static = 0.0
 
+
     }
 
-    interface motorEkledenGiden {
-        fun motorEkledenGidenVeri (motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
@@ -57,9 +57,14 @@ class MotorEkle : Fragment() {
 
                 if(!p0.isNullOrBlank()){
                     val kw = gucKw.text.toString().toDouble()
-                    val hp_karsiligi = DecimalFormat("##.#").format(kw/0.75)
+                    Log.e("kw","$kw")
+                    val hp = (22.6/0.75)
+                    Log.e("hp","$hp")
+                    //val hp_karsiligi = String.format("%,1f", hp)
+                    val hp_karsiligi = String.format("%1f", hp)
+                    Log.e("hp_karsiligi","$hp_karsiligi")
                     motor_liste.motorGucHP = hp_karsiligi.toDouble()
-                    motor_liste.motorGucKW = gucKw.text.toString().toDouble()
+                    motor_liste.motorGucKW = kw
                     gucKW_static = kw
 
                 }
@@ -99,15 +104,10 @@ class MotorEkle : Fragment() {
             val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
 
-
-
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
-
-//                (view.context as motorEkledenGiden).motorEkledenGidenVeri(motor_tag,mcc_yeri, gucKW_static,devir)
-//                Log.e("ekleInterface","$gucKW_static")
-
-
+                    val listener = (activity as MotorEkleInterface)
+                    listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir)
                     FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             }else{
