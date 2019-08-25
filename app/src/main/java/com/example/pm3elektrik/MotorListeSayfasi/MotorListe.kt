@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -25,13 +26,15 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 
 
-class MotorListe : Fragment() {
+class MotorListe : Fragment(){
+
 
     var motorListesi= ArrayList<MotorModel>()
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
     lateinit var motorListeLayout : ConstraintLayout
     lateinit var myAdapter : MotorRVAdapter
+    val motorListe = ArrayList<MotorModel>()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -120,10 +123,25 @@ class MotorListe : Fragment() {
 
     }
 
+    fun gelenVeriler(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String){
+
+        Log.e("motor_liste","$motorTag $motorMCCYeri $motorGucKW $motorDevir")
+        val mContext = view?.context as Context
+        motorListe.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
+
+        myAdapter = MotorRVAdapter(motorListe,mContext)
+        view?.rvMotorListe?.adapter = myAdapter
+
+        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
+        view?.rvMotorListe?.layoutManager = mLayoutManager
+
+        myAdapter.notifyDataSetChanged()
+    }
+
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"fragment")
+        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"fragment_motor_liste")
         fragmentTransaction.commit()
 
     }

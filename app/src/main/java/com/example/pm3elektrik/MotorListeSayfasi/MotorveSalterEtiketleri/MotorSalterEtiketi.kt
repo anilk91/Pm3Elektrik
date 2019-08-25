@@ -192,14 +192,8 @@ class MotorSalterEtiketi : AppCompatActivity() {
             tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
             tvMotorEtiketGucKw.text = ("${motorBilgiGetir.motorGucKW} KW")
             tvMotorEtiketGucHp.text = ("${motorBilgiGetir.motorGucHP} HP")
-        } else {
         }
-
-    }
-
-    private fun changeFragment(fragment: Fragment) {
-
-
+        else { }
 
     }
 }

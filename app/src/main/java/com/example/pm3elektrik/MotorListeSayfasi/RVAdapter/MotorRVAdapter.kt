@@ -44,7 +44,7 @@ class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Conte
 
             motorTag.setText(motorListesi.motorTag)
             mCCYeri.setText(motorListesi.motorMCCYeri)
-            motorGuc.setText(motorListesi.motorGucKW)
+            motorGuc.setText("${motorListesi.motorGucKW}")
             motorDevir.setText(motorListesi.motorDevir)
 
             tumLayout.setOnClickListener {
