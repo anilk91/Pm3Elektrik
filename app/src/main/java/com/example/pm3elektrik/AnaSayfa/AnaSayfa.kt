@@ -16,8 +16,7 @@ import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
-class AnaSayfa : AppCompatActivity() ,
-    MotorEkleInterface {
+class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,20 +99,19 @@ class AnaSayfa : AppCompatActivity() ,
 
     }
 
-    override fun motorEkledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
-
-        Log.e("ana_sayfa","$motorTag $motorMCCYeri $motorGucKW $motorDevir")
-        val manager = supportFragmentManager
-        val fragmentMotorListe = manager.findFragmentById(R.id.containerFragment) as MotorListe
-        fragmentMotorListe.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir)
-
-    }
-
-
     fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.containerFragment,fragment,"fragment_container")
         fragmentTransaction.commit()
+    }
+
+    override fun motorEkledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
+
+        Log.e("motor_salter_etiketi","$motorTag $motorMCCYeri $motorGucKW $motorDevir")
+        val manager = supportFragmentManager
+        val fragmentMotorListe = manager.findFragmentById(R.id.containerMotorSalterEtiket) as MotorListe
+        fragmentMotorListe.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir)
+
     }
 }

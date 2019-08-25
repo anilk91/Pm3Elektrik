@@ -3,7 +3,6 @@ package com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -20,7 +18,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_motor_ekle.*
-import java.text.DecimalFormat
+import java.math.BigDecimal
+import java.math.RoundingMode
+import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface as MotorEkleInterface
 
 class MotorEtiketDuzenle : Fragment() {
 
@@ -30,6 +30,7 @@ class MotorEtiketDuzenle : Fragment() {
     companion object{
 
         var gucKW_static = 0.0
+        lateinit var listener : MotorEkleInterface
 
     }
 
@@ -55,9 +56,10 @@ class MotorEtiketDuzenle : Fragment() {
 
                 if(!p0.isNullOrBlank()){
                     val kw = gucKw.text.toString().toDouble()
-                    val hp_karsiligi = DecimalFormat("##.#").format(kw/0.75)
+                    val hp = (kw/0.75)
+                    val hp_karsiligi = BigDecimal(hp).setScale(1,RoundingMode.HALF_EVEN)
                     motor_liste.motorGucHP = hp_karsiligi.toDouble()
-                    motor_liste.motorGucKW = gucKw.text.toString().toDouble()
+                    motor_liste.motorGucKW = kw
                     gucKW_static = kw
                 }
 
@@ -71,9 +73,10 @@ class MotorEtiketDuzenle : Fragment() {
 
                if(!p0.isNullOrEmpty()){
                    val hp = gucHp.text.toString().toDouble()
-                   val kw_karsiligi =  DecimalFormat("##.#").format(0.75*hp)
+                   val kw = hp*0.75
+                   val kw_karsiligi =  BigDecimal(kw).setScale(1, RoundingMode.HALF_EVEN)
                    motor_liste.motorGucKW = kw_karsiligi.toDouble()
-                   motor_liste.motorGucHP = gucHp.text.toString().toDouble()
+                   motor_liste.motorGucHP = hp
 
                    gucKW_static = kw_karsiligi.toDouble()
                }
@@ -94,7 +97,7 @@ class MotorEtiketDuzenle : Fragment() {
                 val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
                 val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
-                val listener = (activity as MotorEkleInterface)
+                listener = parentFragment as MotorEkleInterface
                 listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir)
 
                 FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)

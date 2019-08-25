@@ -22,6 +22,8 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.DecimalFormat
 import javax.xml.parsers.ParserConfigurationException
 
@@ -57,12 +59,8 @@ class MotorEkle : Fragment() {
 
                 if(!p0.isNullOrBlank()){
                     val kw = gucKw.text.toString().toDouble()
-                    Log.e("kw","$kw")
-                    val hp = (22.6/0.75)
-                    Log.e("hp","$hp")
-                    //val hp_karsiligi = String.format("%,1f", hp)
-                    val hp_karsiligi = String.format("%1f", hp)
-                    Log.e("hp_karsiligi","$hp_karsiligi")
+                    val hp = (kw/0.75)
+                    val hp_karsiligi = BigDecimal(hp).setScale(1,RoundingMode.HALF_EVEN)
                     motor_liste.motorGucHP = hp_karsiligi.toDouble()
                     motor_liste.motorGucKW = kw
                     gucKW_static = kw
@@ -79,9 +77,10 @@ class MotorEkle : Fragment() {
 
                 if(!p0.isNullOrEmpty()){
                     val hp = gucHp.text.toString().toDouble()
-                    val kw_karsiligi =  DecimalFormat("##.#").format(0.75*hp)
+                    val kw = hp*0.75
+                    val kw_karsiligi =  BigDecimal(kw).setScale(1,RoundingMode.HALF_EVEN)
                     motor_liste.motorGucKW = kw_karsiligi.toDouble()
-                    motor_liste.motorGucHP = gucHp.text.toString().toDouble()
+                    motor_liste.motorGucHP = hp
 
                     gucKW_static = kw_karsiligi.toDouble()
 
