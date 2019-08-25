@@ -47,11 +47,7 @@ class MotorListe : Fragment(){
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
 
         motor_ara.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(p0: Editable?) {}
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            override fun afterTextChanged(p0: Editable?) {
                 if (p0 != null) {
 
                     val gelenVeri = p0.toString().toUpperCase()
@@ -67,6 +63,12 @@ class MotorListe : Fragment(){
                     myAdapter.gelenMotorTagiFiltrele(arananlar)
 
                 }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
             }
         })
         motorListeLayout = view.findViewById(R.id.motorListeLayout)

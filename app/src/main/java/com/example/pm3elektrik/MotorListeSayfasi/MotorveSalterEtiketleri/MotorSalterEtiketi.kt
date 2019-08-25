@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.CekmeceEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
+import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
@@ -29,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtike
 import java.text.DecimalFormat
 
 class MotorSalterEtiketi : AppCompatActivity() {
+
 
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
@@ -196,4 +199,6 @@ class MotorSalterEtiketi : AppCompatActivity() {
         else { }
 
     }
+
+
 }
