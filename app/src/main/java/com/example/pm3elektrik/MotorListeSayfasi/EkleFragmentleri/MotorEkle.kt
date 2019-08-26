@@ -104,7 +104,7 @@ class MotorEkle : Fragment() {
 
 
                     val listener : MotorEkleInterface = activity as (MotorEkleInterface)
-                    listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir)
+                    listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir,view.context)
 
                     FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 

@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
-import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorSalterEtiketi
+import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.*
 
@@ -48,11 +49,7 @@ class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Conte
             motorDevir.setText(motorListesi.motorDevir)
 
             tumLayout.setOnClickListener {
-
-                val intent = Intent(it.context , MotorSalterEtiketi::class.java)
-                intent.putExtra("motor_tag",motorListe[position].motorTag)
-                it.context.startActivity(intent)
-
+                MotorListe().motorListedenEtiketBaslat(motorListe[position].motorTag)
             }
 
 

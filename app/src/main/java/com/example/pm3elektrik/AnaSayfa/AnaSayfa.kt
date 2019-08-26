@@ -1,8 +1,8 @@
 package com.example.pm3elektrik.AnaSayfa
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -12,13 +12,12 @@ import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
 import com.example.pm3elektrik.KullanicilarSayfasi.Kullanicilar
 import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
-import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
-import java.io.Serializable
 
 class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +26,7 @@ class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
 
         imgMotorPassive.visibility = View.INVISIBLE
         changeFragment(MotorListe())
+
 
         imgMotorPassive.setOnClickListener {
 
@@ -108,10 +108,19 @@ class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
         fragmentTransaction.commit()
     }
 
-    override fun motorEkledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
+    override fun motorEkledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, mContext : Context) {
 
         val manager = supportFragmentManager
         val fragmentMotorListe: MotorListe = manager.findFragmentById(R.id.containerFragment) as MotorListe
-        fragmentMotorListe.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir)
+        fragmentMotorListe.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir,mContext)
+    }
+
+    fun motorSalterEtiketGelenVeriler(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String,mContext : Context) {
+
+        val motorListeFragment = MotorListe()
+        motorListeFragment.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir,mContext)
+        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.containerFragment,motorListeFragment,"ana_sayfa_fr")
+        //transaction.commit()
     }
 }

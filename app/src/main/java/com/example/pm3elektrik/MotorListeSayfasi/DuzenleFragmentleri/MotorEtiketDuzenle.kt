@@ -97,6 +97,8 @@ class MotorEtiketDuzenle : Fragment() {
                 val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
                 val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
+                (activity as MotorEkleInterface).motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir,view.context)
+
                 FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             } else {
