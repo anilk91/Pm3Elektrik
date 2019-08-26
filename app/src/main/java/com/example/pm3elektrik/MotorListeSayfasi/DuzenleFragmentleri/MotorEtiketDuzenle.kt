@@ -1,5 +1,6 @@
 package com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_motor_ekle.*
+import java.lang.Exception
 import java.math.BigDecimal
 import java.math.RoundingMode
 import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface as MotorEkleInterface
@@ -28,10 +31,7 @@ class MotorEtiketDuzenle : Fragment() {
     val motor_liste = MotorModel()
 
     companion object{
-
         var gucKW_static = 0.0
-        lateinit var listener : MotorEkleInterface
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -97,9 +97,6 @@ class MotorEtiketDuzenle : Fragment() {
                 val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
                 val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
 
-                listener = parentFragment as MotorEkleInterface
-                listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir)
-
                 FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             } else {
@@ -152,9 +149,15 @@ class MotorEtiketDuzenle : Fragment() {
             .setValue(motor_liste).addOnCompleteListener {
 
                 if (it.isSuccessful) {
-                    Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                    try {
+                        Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                    }catch (exception : Exception){ }
+
                 } else {
-                    Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    try {
+                        Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }catch (hata : Exception){ }
+
                 }
             }
     }

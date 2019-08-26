@@ -5,16 +5,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
@@ -23,10 +22,11 @@ import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import com.github.clans.fab.FloatingActionButton
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_motor_liste.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 
 
-class MotorListe : Fragment(){
+class MotorListe : Fragment() {
 
 
     var motorListesi= ArrayList<MotorModel>()
@@ -34,13 +34,12 @@ class MotorListe : Fragment(){
     lateinit var mFAB_motor: FloatingActionButton
     lateinit var motorListeLayout : ConstraintLayout
     lateinit var myAdapter : MotorRVAdapter
-    val motorListe = ArrayList<MotorModel>()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
+        fireBaseDBOkunanVeriler(view.context)
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
         sync.keepSynced(true)
 
@@ -73,9 +72,8 @@ class MotorListe : Fragment(){
         })
         motorListeLayout = view.findViewById(R.id.motorListeLayout)
 
-        fireBaseDBOkunanVeriler(view.context)
 
-        //floating action bar buttonları eklendi
+        //Floatin Action Bar Butonları ----------------------------------------------------
         mFAB_cekmece = view.findViewById(R.id.menu_cekmece)
         mFAB_motor = view.findViewById(R.id.menu_motor)
 
@@ -87,6 +85,8 @@ class MotorListe : Fragment(){
 
             changeFragment(SalterEkle())
         }
+        //Floatin Action Bar Butonları ----------------------------------------------------
+
 
         return view
     }
@@ -95,7 +95,7 @@ class MotorListe : Fragment(){
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("pm3Elektrik")
             .child("Motor")
-            .addValueEventListener( object :ValueEventListener{
+            .addListenerForSingleValueEvent( object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -112,9 +112,8 @@ class MotorListe : Fragment(){
             })
     }
 
-    private fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel> , mRvContext: Context) {
-
-
+    //FirebaseDatabase Okunan Değerlerden Gelen Veriler
+    fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel> , mRvContext: Context) {
         myAdapter = MotorRVAdapter(motorGelenListe,mRvContext)
         view?.rvMotorListe?.adapter = myAdapter
 
@@ -122,16 +121,15 @@ class MotorListe : Fragment(){
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()
-
     }
 
+    //Motor Ekleden Gelen Veriler
     fun gelenVeriler(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String){
 
-        Log.e("motor_liste","$motorTag $motorMCCYeri $motorGucKW $motorDevir")
-        val mContext = view?.context as Context
-        motorListe.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
+        val mContext : Context = view!!.context
+        motorListesi.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
 
-        myAdapter = MotorRVAdapter(motorListe,mContext)
+        myAdapter = MotorRVAdapter(motorListesi,mContext)
         view?.rvMotorListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
@@ -139,6 +137,39 @@ class MotorListe : Fragment(){
 
         myAdapter.notifyDataSetChanged()
     }
+
+
+
+    //Motor Etiket Düzenleden Gelen Veriler
+//    fun motorEtiketDuzenledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String , mContext : Context){
+//
+//        motorListesi.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
+//
+//        Log.e("motorListe","$")
+//        myAdapter = MotorRVAdapter(motorListesi,mContext)
+//        view?.rvMotorListe?.adapter = myAdapter
+//
+//        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
+//        view?.rvMotorListe?.layoutManager = mLayoutManager
+//
+//        myAdapter.notifyDataSetChanged()
+//
+//    }
+
+//    override fun gidenVeri(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, mContext: Context) {
+//
+//        motorListesi.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
+//
+//        Log.e("motorEtikettenGelen","$motorTag $motorGucKW")
+//        myAdapter = MotorRVAdapter(motorListesi,mContext)
+//        view?.rvMotorListe?.adapter = myAdapter
+//
+//        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
+//        view?.rvMotorListe?.layoutManager = mLayoutManager
+//
+//        myAdapter.notifyDataSetChanged()
+//
+//    }
 
     private fun changeFragment(fragment : Fragment){
 

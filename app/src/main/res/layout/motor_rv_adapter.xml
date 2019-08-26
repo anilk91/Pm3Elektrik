@@ -6,82 +6,108 @@
                                                    android:layout_height="wrap_content">
 
     <TextView
-            android:text="1BD01"
+            android:id="@+id/tvMotorEtiketTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvMotorEtiketTag"
-            android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:textSize="12sp"/>
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="1BD01"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
+
     <TextView
-            android:text="2.1 Arka Hamur MCC"
+            android:id="@+id/tvMotorMCCYeri"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tvMotorMCCYeri" app:layout_constraintStart_toEndOf="@+id/tvMotorEtiketTag"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp" android:textSize="12sp"/>
-    <TextView
-            android:text="30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvMotorGuc"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black" app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintStart_toEndOf="@+id/textView3" android:layout_marginStart="1dp"
-            android:textSize="12sp"/>
-    <TextView
-            android:text="1000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvMotorDevir"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black" app:layout_constraintStart_toEndOf="@+id/textView"
-            android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
-            android:textSize="12sp"/>
-    <TextView
-            android:text="KW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" app:layout_constraintStart_toEndOf="@+id/tvMotorGuc"
-            android:layout_marginStart="4dp"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black" android:textSize="12sp"/>
-    <TextView
-            android:text="d/d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintStart_toEndOf="@+id/tvMotorDevir" android:layout_marginStart="4dp"
-            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-            android:textSize="12sp"/>
-    <TextView
-            android:text="("
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3" app:layout_constraintStart_toEndOf="@+id/tvMotorMCCYeri"
-            android:layout_marginStart="16dp" android:fontFamily="@font/nunito_extrabold"
+            android:text="2.1 Arka Hamur MCC"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:textSize="12sp"/>
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tvMotorEtiketTag"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-            android:text=")"
+            android:id="@+id/tvMotorGuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4" app:layout_constraintStart_toEndOf="@+id/textView2"
             android:layout_marginStart="1dp"
-            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri" android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black" android:textSize="12sp"/>
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="30"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
+
+    <TextView
+            android:id="@+id/tvMotorDevir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="1000"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
+
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="KW"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toEndOf="@+id/tvMotorGuc"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
+
+    <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="d/d"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toEndOf="@+id/tvMotorDevir"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
+
+    <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="("
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toEndOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
+
+    <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text=")"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMotorMCCYeri"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/tvMotorMCCYeri" />
     <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"

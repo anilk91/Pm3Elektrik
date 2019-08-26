@@ -1,6 +1,7 @@
 package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,6 +23,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import java.lang.Exception
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -36,10 +38,7 @@ class MotorEkle : Fragment() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
 
     companion object{
-
         var gucKW_static = 0.0
-
-
     }
 
 
@@ -88,8 +87,6 @@ class MotorEkle : Fragment() {
             }
         })
 
-
-
         button_ekle.setOnClickListener {
 
             val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
@@ -105,8 +102,10 @@ class MotorEkle : Fragment() {
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
-                    val listener = (activity as MotorEkleInterface)
+
+                    val listener : MotorEkleInterface = activity as (MotorEkleInterface)
                     listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir)
+
                     FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             }else{
@@ -118,14 +117,6 @@ class MotorEkle : Fragment() {
         changeFragment(MotorListe())
         }
         return view
-    }
-
-    private fun changeFragment(fragment : Fragment){
-
-        val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"motor_ekle_fr")
-        fragmentTransaction.commit()
-
     }
 
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
@@ -161,9 +152,13 @@ class MotorEkle : Fragment() {
             .setValue(motor_liste).addOnCompleteListener {
 
                 if(it.isSuccessful){
-                    Toast.makeText(activity,"Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                    try {
+                        Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                    }catch (exception : Exception){ }
                 }else{
-                    Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    try {
+                        Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }catch (hata : Exception){ }
                 }
             }
 
@@ -173,7 +168,9 @@ class MotorEkle : Fragment() {
                 if(it.isSuccessful){
 
                 }else{
-                    Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    try {
+                        Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }catch (hata : Exception){ }
                 }
             }
 
@@ -183,9 +180,19 @@ class MotorEkle : Fragment() {
                 if(it.isSuccessful){
 
                 }else{
-                    Toast.makeText(activity,"Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    try {
+                        Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }catch (hata : Exception){ }
                 }
             }
+    }
+
+    private fun changeFragment(fragment : Fragment){
+
+        val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"motor_ekle_fr")
+        fragmentTransaction.commit()
+
     }
 
 }

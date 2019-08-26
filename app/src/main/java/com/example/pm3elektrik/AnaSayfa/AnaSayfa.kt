@@ -12,9 +12,11 @@ import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
 import com.example.pm3elektrik.KullanicilarSayfasi.Kullanicilar
 import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
+import java.io.Serializable
 
 class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
 
@@ -108,10 +110,8 @@ class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
 
     override fun motorEkledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
 
-        Log.e("motor_salter_etiketi","$motorTag $motorMCCYeri $motorGucKW $motorDevir")
         val manager = supportFragmentManager
-        val fragmentMotorListe = manager.findFragmentById(R.id.containerMotorSalterEtiket) as MotorListe
+        val fragmentMotorListe: MotorListe = manager.findFragmentById(R.id.containerFragment) as MotorListe
         fragmentMotorListe.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir)
-
     }
 }

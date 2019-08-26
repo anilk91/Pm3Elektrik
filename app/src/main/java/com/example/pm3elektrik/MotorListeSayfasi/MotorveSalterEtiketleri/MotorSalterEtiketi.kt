@@ -1,5 +1,6 @@
 package com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.CekmeceEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
@@ -29,18 +31,16 @@ import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtike
 import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtiketInsaTipi
 import kotlinx.android.synthetic.main.activity_motor_salter_etiketi.tvMotorEtiketTag
 import java.text.DecimalFormat
+import java.util.ArrayList
 
-class MotorSalterEtiketi : AppCompatActivity() {
-
+class MotorSalterEtiketi : AppCompatActivity()  {
 
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_motor_salter_etiketi)
-
 
         val motorSalterEtiketClose = findViewById<ImageView>(R.id.imgMotorSalterClose)
         val motorEdit = findViewById<ImageView>(R.id.imgEditMotorBilgi)
@@ -197,8 +197,5 @@ class MotorSalterEtiketi : AppCompatActivity() {
             tvMotorEtiketGucHp.text = ("${motorBilgiGetir.motorGucHP} HP")
         }
         else { }
-
     }
-
-
 }
