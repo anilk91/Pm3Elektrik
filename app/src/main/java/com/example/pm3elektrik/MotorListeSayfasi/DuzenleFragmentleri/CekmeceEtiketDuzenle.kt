@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_salter_ekle.*
+import java.lang.Exception
 
 class CekmeceEtiketDuzenle : Fragment() {
 
@@ -26,18 +27,22 @@ class CekmeceEtiketDuzenle : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_salter_ekle,container,false)
 
+        val bundle :Bundle? = arguments
+        val motorTag = bundle?.getString("cekmeceEtiketDuzenle")
+
+        if(motorTag != null){
+            firebaseDBOkunanVeriler(motorTag)
+        }
+
         val buttonClose = view.findViewById<ImageView>(R.id.imgSalterClose)
         val buttonEkle = view.findViewById<Button>(R.id.buttonSalterEkle)
         surucuSpinner = view.findViewById(R.id.spinnerSurucuSecim) as Spinner
 
-        val bundle = arguments
-        val gelenMotorTag = bundle!!.getString("motor_tag")
-        firebaseDBOkunanVeriler(gelenMotorTag!! , container)
         spinnerSecim(container , view)
 
         buttonEkle.setOnClickListener {
 
-            val motorTag = etMotorTag.text.toString().toUpperCase()
+            val motor_tag = etMotorTag.text.toString().toUpperCase()
             val marka = etSalterMarka.text.toString().toUpperCase()
             val kapasite = etSalterKapasite.text.toString().toUpperCase()
             val cat = etSalterCAT.text.toString().toUpperCase()
@@ -52,9 +57,9 @@ class CekmeceEtiketDuzenle : Fragment() {
             val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString().toUpperCase()
 
 
-            if (motorTag.isNotEmpty()) {
+            if (motor_tag.isNotEmpty()) {
 
-                salter_liste.salterMotorTag = motorTag
+                salter_liste.salterMotorTag = motor_tag
                 salter_liste.salterMarka = marka
                 salter_liste.salterKapasite = kapasite
                 salter_liste.salterCAT = cat
@@ -70,30 +75,29 @@ class CekmeceEtiketDuzenle : Fragment() {
                 surucu_liste.surucuModel = surucuModel
 
                 ref.child("Salter")
-                    .child(motorTag)
+                    .child(motor_tag)
                     .setValue(salter_liste)
                     .addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_LONG).show()
+
                         } else {
-                            Toast.makeText(
-                                activity,
-                                "Kayıt Yapılamadı Hata:${it.exception?.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            try {
+                                Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                            }catch (hata : Exception){ }
                         }
                     }
                 ref.child("Surucu")
-                    .child(motorTag)
+                    .child(motor_tag)
                     .setValue(surucu_liste)
                     .addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_LONG).show()
+
                         } else {
-                            Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_LONG)
-                                .show()
+                            try {
+                                Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                            }catch (hata : Exception){ }
                         }
 
                     }
@@ -176,7 +180,7 @@ class CekmeceEtiketDuzenle : Fragment() {
 
     }
 
-    private fun firebaseDBOkunanVeriler(gelenMotorTag: String, container: ViewGroup?) {
+    private fun firebaseDBOkunanVeriler(gelenMotorTag: String) {
 
         ref.child("Salter")
             .child(gelenMotorTag)

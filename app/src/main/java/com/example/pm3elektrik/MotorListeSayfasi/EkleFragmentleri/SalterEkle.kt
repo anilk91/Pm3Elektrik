@@ -16,6 +16,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_salter_ekle.*
+import java.lang.Exception
 
 
 class SalterEkle : Fragment() {
@@ -137,13 +138,11 @@ class SalterEkle : Fragment() {
                     .addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_LONG).show()
+
                         } else {
-                            Toast.makeText(
-                                activity,
-                                "Kayıt Yapılamadı Hata:${it.exception?.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            try {
+                                Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                            }catch (hata : Exception){ }
                         }
                     }
                 ref.child("pm3Elektrik")
@@ -153,10 +152,11 @@ class SalterEkle : Fragment() {
                     .addOnCompleteListener {
 
                         if (it.isSuccessful) {
-                            Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_LONG).show()
+
                         } else {
-                            Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_LONG)
-                                .show()
+                            try {
+                                Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                            }catch (hata : Exception){ }
                         }
 
                     }

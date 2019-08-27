@@ -1,6 +1,5 @@
 package com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,7 +11,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -32,19 +30,24 @@ class MotorEtiketDuzenle : Fragment() {
 
     companion object{
         var gucKW_static = 0.0
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
 
+        val bundle :Bundle? = arguments
+        val motorTag = bundle?.getString("motorEtiketDuzenle")
+
+        if(motorTag != null){
+
+            firebaseOkunan(motorTag)
+        }
+
 
         val button_close = view.findViewById<ImageView>(R.id.imgMotorCLose)
         val button_ekle = view.findViewById<Button>(R.id.buttonMotorEkle)
 
-        val bundle = arguments
-        val gelenMotorTag = bundle!!.getString("motor_tag")
-
-        fireBaseOkunanVeriler(gelenMotorTag!!)
 
         val gucKw = view.findViewById<EditText>(R.id.etGucKw)
         val gucHp = view.findViewById<EditText>(R.id.etGucHP)
@@ -109,30 +112,7 @@ class MotorEtiketDuzenle : Fragment() {
         return view
     }
 
-    private fun fireBaseOkunanVeriler(gelenMotorTag: String) {
-        ref.child(gelenMotorTag)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {}
 
-                override fun onDataChange(p0: DataSnapshot) {
-
-                    val okunan = p0.getValue(MotorModel::class.java)
-                    etMotorIsim.setText(okunan!!.motorIsim)
-                    etMotorTag.setText(okunan.motorTag)
-                    etGucKw.setText("${okunan.motorGucKW}")
-                    etGucHP.setText("${okunan.motorGucHP}")
-                    etDevir.setText(okunan.motorDevir)
-                    etNomTripAkimi.setText(okunan.motorNomTripAkimi)
-                    etInsaTipi.setText(okunan.motorInsaTipi)
-                    etFlans.setText(okunan.motorFlans)
-                    etMotorAdres.setText(okunan.motorAdres)
-                    etMotorMCCYeri.setText(okunan.motorMCCYeri)
-                    etMotorDegTarihi.setText(okunan.motorDegTarihi)
-
-                }
-
-            })
-    }
 
     fun FirebaseDBMotorEkle(motorIsim: String, motorTag: String, motorDevir: String, motorNomTripAkimi: String,
         motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String) {
@@ -150,18 +130,42 @@ class MotorEtiketDuzenle : Fragment() {
         ref.child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {
 
-                if (it.isSuccessful) {
-                    try {
-                        Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
-                    }catch (exception : Exception){ }
-
-                } else {
+                if (it.isSuccessful) { } else {
                     try {
                         Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
                     }catch (hata : Exception){ }
 
                 }
             }
+    }
+
+    private fun firebaseOkunan(gelenMotorTag: String?) {
+
+        ref.child(gelenMotorTag!!)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {}
+
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    val okunan = p0.getValue(MotorModel::class.java)
+                    if (okunan != null) {
+                        etMotorIsim.setText(okunan.motorIsim)
+                        etMotorTag.setText(okunan.motorTag)
+                        etGucKw.setText("${okunan.motorGucKW}")
+                        etGucHP.setText("${okunan.motorGucHP}")
+                        etDevir.setText(okunan.motorDevir)
+                        etNomTripAkimi.setText(okunan.motorNomTripAkimi)
+                        etInsaTipi.setText(okunan.motorInsaTipi)
+                        etFlans.setText(okunan.motorFlans)
+                        etMotorAdres.setText(okunan.motorAdres)
+                        etMotorMCCYeri.setText(okunan.motorMCCYeri)
+                        etMotorDegTarihi.setText(okunan.motorDegTarihi)
+                    }
+
+                }
+
+            })
+
     }
 }
 

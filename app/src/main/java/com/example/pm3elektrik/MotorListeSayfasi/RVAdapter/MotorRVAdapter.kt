@@ -1,11 +1,13 @@
 package com.example.pm3elektrik.MotorListeSayfasi.RVAdapter
 
 import android.content.Context
-import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
@@ -13,7 +15,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVe
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.*
 
-class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Context):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
+class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Context, var activity: FragmentActivity?):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
@@ -49,7 +51,14 @@ class MotorRVAdapter(var motorListe : ArrayList<MotorModel>, var mContext :Conte
             motorDevir.setText(motorListesi.motorDevir)
 
             tumLayout.setOnClickListener {
-                MotorListe().motorListedenEtiketBaslat(motorListe[position].motorTag)
+
+                val bundle : Bundle? =Bundle()
+                bundle?.putString("rvGelenMotorTag",motorListe[position].motorTag)
+                val fragment = MotorVeSalterEtiket()
+                fragment.arguments = bundle
+                val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
+
             }
 
 

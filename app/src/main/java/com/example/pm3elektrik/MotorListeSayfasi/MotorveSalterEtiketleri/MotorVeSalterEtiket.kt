@@ -2,15 +2,15 @@ package com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.CekmeceEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
-import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorTagInterface
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
@@ -26,12 +26,15 @@ import kotlinx.android.synthetic.main.fragment_motor_ve_salter_etiket.*
 class MotorVeSalterEtiket : Fragment() {
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-    lateinit var motorTag: String
+    var motorTag: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_motor_ve_salter_etiket, container, false)
 
+        val bundle :Bundle? = arguments
+        motorTag = bundle?.getString("rvGelenMotorTag")
+        firebaseDBOku()
 
         val motorSalterEtiketClose = view.findViewById<ImageView>(R.id.imgMotorSalterClose)
         val motorEdit = view.findViewById<ImageView>(R.id.imgEditMotorBilgi)
@@ -39,11 +42,27 @@ class MotorVeSalterEtiket : Fragment() {
 
         motorSalterEtiketClose.setOnClickListener {
 
+            changeFragment(MotorListe())
         }
         motorEdit.setOnClickListener {
 
-            (activity as MotorTagInterface).gelenMotorTag(motorTag)
-            changeFragment(MotorEtiketDuzenle())
+            val bundleMotorEtiketDuzenle : Bundle? =Bundle()
+            bundleMotorEtiketDuzenle?.putString("motorEtiketDuzenle",motorTag)
+            val fragment = MotorEtiketDuzenle()
+            fragment.arguments = bundleMotorEtiketDuzenle
+            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.containerMotorSalterEtiket,fragment,"motor_ve_salter_etiket")?.commit()
+
+        }
+
+        salterSurucuEdit.setOnClickListener {
+
+            val bundleCekmeceEtiketDuzenle : Bundle? =Bundle()
+            bundleCekmeceEtiketDuzenle?.putString("cekmeceEtiketDuzenle",motorTag)
+            val fragment = CekmeceEtiketDuzenle()
+            fragment.arguments = bundleCekmeceEtiketDuzenle
+            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.containerMotorSalterEtiket,fragment,"motor_ve_salter_etiket")?.commit()
 
         }
 
@@ -57,7 +76,7 @@ class MotorVeSalterEtiket : Fragment() {
 
         //-----------Şalter Etiket Bilgilerini Getir--------------
         ref.child("Salter")
-            .child(motorTag)
+            .child(motorTag!!)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
@@ -68,7 +87,7 @@ class MotorVeSalterEtiket : Fragment() {
 
         //-----------Motor Bilgilerini Getir--------------
         ref.child("Motor")
-            .child(motorTag)
+            .child(motorTag!!)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
@@ -79,7 +98,7 @@ class MotorVeSalterEtiket : Fragment() {
 
         //-----------Sürücü Bilgilerini Getir--------------
         ref.child("Surucu")
-            .child(motorTag)
+            .child(motorTag!!)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
@@ -165,12 +184,6 @@ class MotorVeSalterEtiket : Fragment() {
         }
         else { }
     }
-
-    fun recyclerAdapterGelenTag(motorTag : String) {
-        Log.e("MotorVeSalter","$motorTag")
-        this.motorTag = motorTag
-    }
-
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()

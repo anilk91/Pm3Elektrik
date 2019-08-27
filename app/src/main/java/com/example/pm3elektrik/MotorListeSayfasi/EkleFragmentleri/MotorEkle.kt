@@ -152,9 +152,7 @@ class MotorEkle : Fragment() {
             .setValue(motor_liste).addOnCompleteListener {
 
                 if(it.isSuccessful){
-                    try {
-                        Toast.makeText(activity, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
-                    }catch (exception : Exception){ }
+
                 }else{
                     try {
                         Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
