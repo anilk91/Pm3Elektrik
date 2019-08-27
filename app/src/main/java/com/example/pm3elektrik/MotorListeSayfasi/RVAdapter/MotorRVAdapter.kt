@@ -20,7 +20,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.motor_rv_adapter,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.motor_rv_adapters,parent,false)
         return MyData(view)
     }
 
