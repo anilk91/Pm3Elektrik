@@ -1,11 +1,9 @@
 package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
-import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,20 +13,15 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
-import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
-
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
 import java.lang.Exception
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.text.DecimalFormat
-import javax.xml.parsers.ParserConfigurationException
-
 
 class MotorEkle : Fragment() {
 
@@ -101,10 +94,6 @@ class MotorEkle : Fragment() {
 
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
-
-
-                    val listener : MotorEkleInterface = activity as (MotorEkleInterface)
-                    listener.motorEkledenGelen(motor_tag,mcc_yeri, gucKW_static,devir,view.context)
 
                     FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
