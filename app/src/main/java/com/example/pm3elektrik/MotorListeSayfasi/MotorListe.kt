@@ -1,27 +1,18 @@
 package com.example.pm3elektrik.MotorListeSayfasi
 
-import android.app.Activity
-import android.app.ActivityManager
-import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.*
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
-import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
@@ -34,7 +25,6 @@ class MotorListe : Fragment() {
 
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
-    lateinit var motorListeLayout : ConstraintLayout
     lateinit var myAdapter : MotorRVAdapter
     var motorListesi= ArrayList<MotorModel>()
 
@@ -47,7 +37,6 @@ class MotorListe : Fragment() {
 
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
         sync.keepSynced(true)
-
 
 
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
@@ -77,8 +66,6 @@ class MotorListe : Fragment() {
 
             }
         })
-        motorListeLayout = view.findViewById(R.id.motorListeLayout)
-
 
         //Floatin Action Bar Butonları ----------------------------------------------------
         mFAB_cekmece = view.findViewById(R.id.menu_cekmece)
@@ -129,23 +116,6 @@ class MotorListe : Fragment() {
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()
-    }
-
-    //Motor Ekleden Gelen Veriler
-    fun gelenVeriler(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String , mContext: Context): ArrayList<MotorModel> {
-
-        Log.e("motorliste","$motorTag $motorDevir $motorGucKW $motorMCCYeri")
-        motorListesi.add(MotorModel(motorTag,motorMCCYeri,motorGucKW,motorDevir))
-
-        myAdapter = MotorRVAdapter(motorListesi, mContext, activity)
-        view?.rvMotorListe?.adapter = myAdapter
-
-        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
-        view?.rvMotorListe?.layoutManager = mLayoutManager
-
-        myAdapter.notifyDataSetChanged()
-
-        return motorListesi
     }
     private fun changeFragment(fragment : Fragment){
 

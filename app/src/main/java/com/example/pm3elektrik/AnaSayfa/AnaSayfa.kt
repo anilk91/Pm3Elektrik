@@ -1,6 +1,5 @@
 package com.example.pm3elektrik.AnaSayfa
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,13 +9,12 @@ import com.example.pm3elektrik.ArizaListeSayfasi.ArizaListe
 import com.example.pm3elektrik.AyarlarSayfasi.Ayarlar
 import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
 import com.example.pm3elektrik.KullanicilarSayfasi.Kullanicilar
-import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
-class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
+class AnaSayfa : AppCompatActivity() {
 
 
 
@@ -106,21 +104,5 @@ class AnaSayfa : AppCompatActivity() , MotorEkleInterface {
         val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.containerFragment,fragment,"fragment_container")
         fragmentTransaction.commit()
-    }
-
-    override fun motorEkledenGelen(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, mContext : Context) {
-
-        val manager = supportFragmentManager
-        val fragmentMotorListe: MotorListe = manager.findFragmentById(R.id.containerFragment) as MotorListe
-        fragmentMotorListe.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir,mContext)
-    }
-
-    fun motorSalterEtiketGelenVeriler(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String,mContext : Context) {
-
-        val motorListeFragment = MotorListe()
-        motorListeFragment.gelenVeriler(motorTag,motorMCCYeri,motorGucKW,motorDevir,mContext)
-        val transaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.containerFragment,motorListeFragment,"ana_sayfa_fr")
-        //transaction.commit()
     }
 }
