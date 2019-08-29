@@ -121,7 +121,7 @@ class CekmeceEtiketDuzenle : Fragment() {
         return view
     }
 
-    private fun spinnerSecim(container: ViewGroup?, view: View) {
+    private fun spinnerSecim(container: ViewGroup?, viewContext: View) {
 
                 surucuSpinner.adapter =
                     ArrayAdapter(container!!.context, android.R.layout.simple_spinner_dropdown_item, secimListesi)

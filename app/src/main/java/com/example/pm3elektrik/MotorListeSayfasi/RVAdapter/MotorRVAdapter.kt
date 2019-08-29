@@ -1,7 +1,6 @@
 package com.example.pm3elektrik.MotorListeSayfasi.RVAdapter
 
 import android.content.Context
-import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.R
@@ -21,14 +19,13 @@ import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorDevir
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorEtiketTag
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorGuc
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorMCCYeri
-import kotlinx.android.synthetic.main.motor_rv_adapters.view.*
 
 class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Context, var activity: FragmentActivity?):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.motor_rv_adapters,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.motor_rv_adapter,parent,false)
         return MyData(view)
     }
 

@@ -1,122 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#E3F2FD"
         tools:context=".AnaSayfa.AnaSayfa">
+
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/AnaConstraintLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/AnaConstraintLayout"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:background="#E3F2FD"
+            app:layout_constraintBottom_toTopOf="@+id/altBarConstraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            android:background="#DFDFDF"
-            app:layout_constraintBottom_toTopOf="@+id/altBarConstraintLayout">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/containerFragment"
+                app:layout_constraintStart_toStartOf="@+id/containerFragment"
+                app:layout_constraintTop_toTopOf="@+id/containerFragment"
+                app:srcCompat="@drawable/modern_karton_logo" />
 
         <FrameLayout
+                android:id="@+id/containerFragment"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:id="@+id/containerFragment"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-        >
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/altBarConstraintLayout"
             android:layout_width="0dp"
-            android:layout_height="55dp" android:id="@+id/altBarConstraintLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-    >
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
         <View
+                android:id="@+id/view"
                 android:layout_width="wrap_content"
-                android:layout_height="2dp" android:id="@+id/view" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                android:background="@android:color/black"/>
+                android:layout_height="2dp"
+                android:background="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp" app:srcCompat="@drawable/motor"
                 android:id="@+id/imgMotor"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="26dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="26dp"
-                app:layout_constraintTop_toBottomOf="@+id/view"/>
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:srcCompat="@drawable/motor" />
+
         <ImageView
+                android:id="@+id/imgPhone"
                 android:layout_width="30dp"
-                android:layout_height="30dp" app:srcCompat="@drawable/phone"
-                android:id="@+id/imgPhone" app:layout_constraintStart_toEndOf="@+id/imgMotor"
+                android:layout_height="30dp"
                 android:layout_marginStart="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view"/>
+                app:layout_constraintStart_toEndOf="@+id/imgMotor"
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:srcCompat="@drawable/phone" />
+
         <ImageView
+                android:id="@+id/imgFault"
                 android:layout_width="30dp"
-                android:layout_height="30dp" app:srcCompat="@drawable/fault"
-                android:id="@+id/imgFault" app:layout_constraintStart_toEndOf="@+id/imgPhone"
+                android:layout_height="30dp"
                 android:layout_marginStart="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@id/view"/>
-        <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp" app:srcCompat="@drawable/other"
-                android:id="@+id/imgOther" app:layout_constraintStart_toEndOf="@+id/imgFault"
-                android:layout_marginStart="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@id/view"/>
-        <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp" app:srcCompat="@drawable/user"
-                android:id="@+id/imgUser" app:layout_constraintStart_toEndOf="@+id/imgOther"
-                android:layout_marginStart="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@id/view"/>
-        <ImageView
-                android:layout_width="33dp"
-                android:layout_height="33dp" app:srcCompat="@drawable/setting"
-                android:id="@+id/imgSetting"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgPhone"
                 app:layout_constraintTop_toTopOf="@id/view"
-                app:layout_constraintStart_toEndOf="@+id/imgUser" android:layout_marginStart="32dp"/>
+                app:srcCompat="@drawable/fault" />
+
         <ImageView
+                android:id="@+id/imgOther"
                 android:layout_width="35dp"
-                android:layout_height="35dp" app:srcCompat="@drawable/motor_passive"
-                android:id="@+id/imgMotorPassive"
-                app:layout_constraintBottom_toBottomOf="@+id/imgMotor" app:layout_constraintEnd_toEndOf="@+id/imgMotor"
-                app:layout_constraintTop_toTopOf="@+id/imgMotor" app:layout_constraintStart_toStartOf="@+id/imgMotor"/>
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgFault"
+                app:layout_constraintTop_toTopOf="@id/view"
+                app:srcCompat="@drawable/other" />
+
         <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp" app:srcCompat="@drawable/phone_passive"
-                android:id="@+id/imgPhonePassive"
-                app:layout_constraintBottom_toBottomOf="@+id/imgPhone" app:layout_constraintEnd_toEndOf="@+id/imgPhone"
-                app:layout_constraintTop_toTopOf="@+id/imgPhone" app:layout_constraintStart_toStartOf="@+id/imgPhone"/>
-        <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp" app:srcCompat="@drawable/fault_passive"
-                android:id="@+id/imgFaultPassive"
-                app:layout_constraintBottom_toBottomOf="@+id/imgFault" app:layout_constraintEnd_toEndOf="@+id/imgFault"
-                app:layout_constraintTop_toTopOf="@+id/imgFault" app:layout_constraintStart_toStartOf="@+id/imgFault"/>
-        <ImageView
+                android:id="@+id/imgUser"
                 android:layout_width="35dp"
-                android:layout_height="35dp" app:srcCompat="@drawable/other_passive"
-                android:id="@+id/imgOtherPassive"
-                app:layout_constraintBottom_toBottomOf="@+id/imgOther" app:layout_constraintEnd_toEndOf="@+id/imgOther"
-                app:layout_constraintStart_toStartOf="@+id/imgOther" app:layout_constraintTop_toTopOf="@+id/imgOther"/>
+                android:layout_height="35dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgOther"
+                app:layout_constraintTop_toTopOf="@id/view"
+                app:srcCompat="@drawable/user" />
+
         <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp" app:srcCompat="@drawable/users_passive"
-                android:id="@+id/imgUserPassive"
-                app:layout_constraintBottom_toBottomOf="@+id/imgUser" app:layout_constraintEnd_toEndOf="@+id/imgUser"
-                app:layout_constraintTop_toTopOf="@+id/imgUser" app:layout_constraintStart_toStartOf="@+id/imgUser"/>
-        <ImageView
+                android:id="@+id/imgSetting"
                 android:layout_width="33dp"
-                android:layout_height="33dp" app:srcCompat="@drawable/setting_passive"
+                android:layout_height="33dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgUser"
+                app:layout_constraintTop_toTopOf="@id/view"
+                app:srcCompat="@drawable/setting" />
+
+        <ImageView
+                android:id="@+id/imgMotorPassive"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgMotor"
+                app:layout_constraintEnd_toEndOf="@+id/imgMotor"
+                app:layout_constraintStart_toStartOf="@+id/imgMotor"
+                app:layout_constraintTop_toTopOf="@+id/imgMotor"
+                app:srcCompat="@drawable/motor_passive" />
+
+        <ImageView
+                android:id="@+id/imgPhonePassive"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgPhone"
+                app:layout_constraintEnd_toEndOf="@+id/imgPhone"
+                app:layout_constraintStart_toStartOf="@+id/imgPhone"
+                app:layout_constraintTop_toTopOf="@+id/imgPhone"
+                app:srcCompat="@drawable/phone_passive" />
+
+        <ImageView
+                android:id="@+id/imgFaultPassive"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgFault"
+                app:layout_constraintEnd_toEndOf="@+id/imgFault"
+                app:layout_constraintStart_toStartOf="@+id/imgFault"
+                app:layout_constraintTop_toTopOf="@+id/imgFault"
+                app:srcCompat="@drawable/fault_passive" />
+
+        <ImageView
+                android:id="@+id/imgOtherPassive"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgOther"
+                app:layout_constraintEnd_toEndOf="@+id/imgOther"
+                app:layout_constraintStart_toStartOf="@+id/imgOther"
+                app:layout_constraintTop_toTopOf="@+id/imgOther"
+                app:srcCompat="@drawable/other_passive" />
+
+        <ImageView
+                android:id="@+id/imgUserPassive"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUser"
+                app:layout_constraintEnd_toEndOf="@+id/imgUser"
+                app:layout_constraintStart_toStartOf="@+id/imgUser"
+                app:layout_constraintTop_toTopOf="@+id/imgUser"
+                app:srcCompat="@drawable/users_passive" />
+
+        <ImageView
                 android:id="@+id/imgSettingPassive"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imgSetting"
                 app:layout_constraintEnd_toEndOf="@+id/imgSetting"
+                app:layout_constraintStart_toStartOf="@+id/imgSetting"
                 app:layout_constraintTop_toTopOf="@+id/imgSetting"
-                app:layout_constraintStart_toStartOf="@+id/imgSetting"/>
+                app:srcCompat="@drawable/setting_passive" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

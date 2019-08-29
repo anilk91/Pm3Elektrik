@@ -5,8 +5,19 @@
         android:id="@+id/motorListeConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DFDFDF"
+        android:background="#E3F2FD"
         tools:context=".MotorListeSayfasi.MotorListe">
+
+    <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.1"
+            android:src="@drawable/modern_karton_logo"
+            app:layout_constraintBottom_toBottomOf="@+id/containerMotorListe"
+            app:layout_constraintEnd_toEndOf="@+id/containerMotorListe"
+            app:layout_constraintStart_toStartOf="@+id/containerMotorListe"
+            app:layout_constraintTop_toTopOf="@+id/containerMotorListe" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/motorListeLayout"
