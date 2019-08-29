@@ -36,19 +36,25 @@
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintTop_toBottomOf="@+id/SurucuTextView" android:layout_marginTop="8dp"/>
+
                     <EditText
+                            android:id="@+id/etSalterKontaktorDIPSivic"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:ems="10"
-                            android:id="@+id/etSalterKontaktorDIPSivic"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorBoyut"
-                            android:hint="Dip Siviç(87654321)"
+                            android:layout_marginStart="32dp"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                            android:textColor="@android:color/black" tools:visibility="visible"
-                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-                            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"/>
+                            android:layout_marginEnd="32dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Dip Siviç(87654321)"
+                            android:inputType="numberDecimal"
+                            android:maxLength="8"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorBoyut"
+                            tools:visibility="visible" />
                     <EditText
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

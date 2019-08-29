@@ -1,6 +1,9 @@
 package com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +60,16 @@ class CekmeceEtiketDuzenle : Fragment() {
             val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString().toUpperCase()
 
 
+
+
             if (motor_tag.isNotEmpty()) {
+
+                if(dipSivic.length <= 7){
+                    Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
+
+                }else{
+                    surucu_liste.surucuDIPSivic = dipSivic
+                }
 
                 salter_liste.salterMotorTag = motor_tag
                 salter_liste.salterMarka = marka
@@ -69,7 +81,6 @@ class CekmeceEtiketDuzenle : Fragment() {
                 salter_liste.salterMccYeri = mccYeri
 
                 surucu_liste.surucuBoyut = kontaktorBoyut
-                surucu_liste.surucuDIPSivic = dipSivic
 
                 surucu_liste.surucuDegTarihi = surucuDegisimTarihi
                 surucu_liste.surucuModel = surucuModel
@@ -112,7 +123,6 @@ class CekmeceEtiketDuzenle : Fragment() {
 
     private fun spinnerSecim(container: ViewGroup?, view: View) {
 
-        val buttonEkle = view.findViewById<Button>(R.id.buttonSalterEkle)
                 surucuSpinner.adapter =
                     ArrayAdapter(container!!.context, android.R.layout.simple_spinner_dropdown_item, secimListesi)
                 surucuSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

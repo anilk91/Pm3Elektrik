@@ -2,6 +2,9 @@ package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -115,7 +118,13 @@ class SalterEkle : Fragment() {
 
             if (motorTag.isNotEmpty()) {
 
-                val listener = (activity as MotorEkleInterface)
+                if(dipSivic.length <= 7){
+                    Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
+
+                }else{
+                    surucu_liste.surucuDIPSivic = dipSivic
+                }
+
                 salter_liste.salterMotorTag = motorTag
                 salter_liste.salterMarka = marka
                 salter_liste.salterKapasite = kapasite
@@ -126,7 +135,6 @@ class SalterEkle : Fragment() {
                 salter_liste.salterMccYeri = mccYeri
 
                 surucu_liste.surucuBoyut = kontaktorBoyut
-                surucu_liste.surucuDIPSivic = dipSivic
 
                 surucu_liste.surucuDegTarihi = surucuDegisimTarihi
                 surucu_liste.surucuModel = surucuModel
