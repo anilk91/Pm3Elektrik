@@ -14,7 +14,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/motor_liste_rv_adapter_kare" />
+            app:srcCompat="@drawable/rv_adapter_arka_layout_beyaz" />
 
     <ImageView
             android:id="@+id/telefonRVLogo"
@@ -35,7 +35,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="@+id/telefonRvLayout"
             app:layout_constraintTop_toTopOf="@+id/telefonRvLayout"
-            app:srcCompat="@drawable/delete_button_siyah" />
+            app:srcCompat="@drawable/sil_butonu_mavi" />
 
     <ImageView
             android:id="@+id/imgTelefonBilgi"
@@ -44,7 +44,7 @@
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toStartOf="@+id/imgTelefonListeSil"
             app:layout_constraintTop_toTopOf="@+id/imgTelefonListeSil"
-            app:srcCompat="@drawable/bilgi_button_siyah" />
+            app:srcCompat="@drawable/bilgi_butonu_mavi" />
 
     <TextView
             android:id="@+id/textView9"
@@ -53,7 +53,7 @@
             android:layout_marginStart="24dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Tel. No:"
-            android:textColor="#696969"
+            android:textColor="#4D3EFF"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/telefonRvLayout"
             app:layout_constraintTop_toBottomOf="@+id/imgTelefonBilgi" />
@@ -65,7 +65,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="İsim:"
-            android:textColor="#696969"
+            android:textColor="#4D3EFF"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -77,20 +77,21 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="1190"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
 
     <TextView
             android:id="@+id/tvTelefonIsim"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="PM3 Elektrik Atölyesi"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/imgTelefonListeSil"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toTopOf="@+id/textView82" />
 

@@ -29,11 +29,14 @@ import kotlinx.android.synthetic.main.fragment_ambar_kayit.view.*
 
 class AmbarKayit : Fragment() {
 
-    val ambarListe = ArrayList<AmbarKayitModeli>()
+    var ambarListe = ArrayList<AmbarKayitModeli>()
     lateinit var mFAB_ambar: FloatingActionButton
+    lateinit var myAdapter : AmbarRV
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ambar_kayit, container, false)
+
+        fireBaseDBOkunanVeriler(view.context)
 
         val kayitAra = view.findViewById<EditText>(R.id.etAmbarKayitAra)
 
@@ -42,17 +45,11 @@ class AmbarKayit : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
 
-
-
             }
 
-
-
-
         })
-        mFAB_ambar = view.findViewById(R.id.menu_ambar)
-        fireBaseDBOkunanVeriler(view.context)
 
+        mFAB_ambar = view.findViewById(R.id.menu_ambar)
         mFAB_ambar.setOnClickListener {
             val ambarFragment = AmbarKayitEkleme()
             ambarFragment.show(fragmentManager,"ambar_ekle_fragmenti")
@@ -63,7 +60,7 @@ class AmbarKayit : Fragment() {
         return view
     }
 
-    private fun fireBaseDBOkunanVeriler(context: Context) {
+    fun fireBaseDBOkunanVeriler(context: Context) {
 
         val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
         ref.child("Ambar")
@@ -75,7 +72,6 @@ class AmbarKayit : Fragment() {
                     for(dataGetir in p0.children){
 
                         val okunanBilgiler = dataGetir.getValue(AmbarKayitModeli::class.java)
-
                         ambarListe.add(AmbarKayitModeli(okunanBilgiler!!.ambarStokNo,okunanBilgiler.ambarRafNo,okunanBilgiler.ambarTanim))
                     }
                     recyclerAdapter(ambarListe , context,fragmentManager)
@@ -86,9 +82,9 @@ class AmbarKayit : Fragment() {
     }
 
 
-    private fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context,fragmentManager: FragmentManager?) {
+    fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context,fragmentManager: FragmentManager?) {
 
-        val myAdapter = AmbarRV(ambarGelenListe,mContext ,fragmentManager)
+        myAdapter = AmbarRV(ambarGelenListe,mContext ,fragmentManager)
         view?.rvAmbarListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL,false)

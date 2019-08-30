@@ -2,9 +2,6 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayi
 
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +16,10 @@ import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitModel.AmbarKayitModeli
 
 import com.example.pm3elektrik.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_ambar_kayit_ekleme.*
+import com.google.firebase.database.ValueEventListener
 import java.lang.Exception
 
 class AmbarKayitEkleme : DialogFragment() {
@@ -64,6 +63,9 @@ class AmbarKayitEkleme : DialogFragment() {
                 ambarListeEkle.ambarRafNo = rafNo
                 ambarListeEkle.ambarTanim = tanim
 
+
+                gelenVeriyiOku(stokNo , ambarListeEkle)
+
                 ref.child("Ambar")
                     .push()
                     .setValue(ambarListeEkle)
@@ -74,8 +76,8 @@ class AmbarKayitEkleme : DialogFragment() {
                         }else {
                             try {
                                 Toast.makeText(activity,"Kayıt Yapılamadı Hata:${it.exception?.message}",Toast.LENGTH_LONG).show()
-                            }catch(Hata: Exception) {
-                                Toast.makeText(activity,"Hata:${Hata.message}",Toast.LENGTH_LONG).show()
+                            }catch(hata: Exception) {
+                                Toast.makeText(activity,"Hata:${hata.message}",Toast.LENGTH_LONG).show()
                             }
                         }
                     }
@@ -87,6 +89,26 @@ class AmbarKayitEkleme : DialogFragment() {
         }
 
         return view
+    }
+
+    private fun gelenVeriyiOku(
+        stokNo: String,
+        ambarListeEkle: AmbarKayitModeli
+    ) {
+
+        val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+        ref.child("Ambar")
+            .orderByValue()
+            .equalTo(stokNo)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                }
+
+
+            })
+
     }
 
     private fun changeFragment(fragment : Fragment){
