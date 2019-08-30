@@ -2,6 +2,9 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayi
 
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +14,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitModel.AmbarKayitModeli
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_ambar_kayit_ekleme.*
+import java.lang.Exception
 
 class AmbarKayitEkleme : DialogFragment() {
 
@@ -27,16 +34,31 @@ class AmbarKayitEkleme : DialogFragment() {
         val close = view.findViewById<ImageView>(R.id.imgAmbarEkleClose)
         val ekle = view.findViewById<Button>(R.id.buttonAmbarEkle)
 
+        val bundle :Bundle? = arguments
+        val stokNoBundle = bundle?.getString("rvGidenStokNo")
+        val rafNoBundle= bundle?.getString("rvGidenRafNo")
+        val tanimBundle = bundle?.getString("rvGidenTanim")
+
+        val stokEditText = view.findViewById<EditText>(R.id.etAmbarStokNo)
+        val rafEditText = view.findViewById<EditText>(R.id.etAmbarRafNo)
+        val tanimEditText = view.findViewById<EditText>(R.id.etAmbarTanim)
+
+        stokEditText.setText(stokNoBundle)
+        rafEditText.setText(rafNoBundle)
+        tanimEditText.setText(tanimBundle)
+
         close.setOnClickListener {
             dismiss()
         }
         ekle.setOnClickListener {
 
-            val stokNo=view.findViewById<EditText>(R.id.etAmbarStokNo).text.toString()
-            val rafNo=view.findViewById<EditText>(R.id.etAmbarRafNo).text.toString()
-            val tanim=view.findViewById<EditText>(R.id.etAmbarTanim).text.toString()
+            val stokNo=view.findViewById<EditText>(R.id.etAmbarStokNo).text.toString().toUpperCase()
+            val rafNo=view.findViewById<EditText>(R.id.etAmbarRafNo).text.toString().toUpperCase()
+            val tanim=view.findViewById<EditText>(R.id.etAmbarTanim).text.toString().toUpperCase()
 
             if(stokNo.isNotEmpty() && rafNo.isNotEmpty() && tanim.isNotEmpty()){
+
+                changeFragment(AmbarKayit())
 
                 ambarListeEkle.ambarStokNo = stokNo
                 ambarListeEkle.ambarRafNo = rafNo
@@ -48,9 +70,13 @@ class AmbarKayitEkleme : DialogFragment() {
                     .addOnCompleteListener {
 
                         if(it.isComplete){
-                            Toast.makeText(activity,"Kayıt Yapıldı",Toast.LENGTH_LONG).show()
+
                         }else {
-                            Toast.makeText(activity,"Kayıt Yapılamadı Hata:${it.exception?.message}",Toast.LENGTH_LONG).show()
+                            try {
+                                Toast.makeText(activity,"Kayıt Yapılamadı Hata:${it.exception?.message}",Toast.LENGTH_LONG).show()
+                            }catch(Hata: Exception) {
+                                Toast.makeText(activity,"Hata:${Hata.message}",Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
 
@@ -61,6 +87,14 @@ class AmbarKayitEkleme : DialogFragment() {
         }
 
         return view
+    }
+
+    private fun changeFragment(fragment : Fragment){
+
+        val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.containerAmbarKayit,fragment,"ambar_kayit_ekle_fr")
+        fragmentTransaction.commit()
+
     }
 
 

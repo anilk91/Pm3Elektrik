@@ -16,7 +16,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/motor_liste_rv_adapter_kare" />
+            app:srcCompat="@drawable/rv_adapter_arka_layout_beyaz" />
 
     <ImageView
             android:id="@+id/motorListeRVLogo"
@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="1BD01"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
@@ -49,7 +49,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="2.1 Arka Hamur MCC"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvMotorEtiketTag"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag" />
@@ -61,7 +61,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="30"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvMotorMCCYeri"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorMCCYeri" />
@@ -73,7 +73,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="1000"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvMotorGuc"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorGuc" />
@@ -86,7 +86,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="KW"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/tvMotorGuc"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorMCCYeri" />
@@ -99,7 +99,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="D/d"
-            android:textColor="#696969"
+            android:textColor="#4D4D4D"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/tvMotorDevir"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -130,7 +130,7 @@
             android:layout_marginStart="24dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Motor Tag:"
-            android:textColor="#696969"
+            android:textColor="#4D3EFF"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/motorListeRVLayout"
             app:layout_constraintTop_toBottomOf="@+id/imgBilgiButton" />
@@ -142,7 +142,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="MCC Yeri:"
-            android:textColor="#696969"
+            android:textColor="#4D3EFF"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -154,7 +154,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Güç:"
-            android:textColor="#696969"
+            android:textColor="#4D3EFF"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -166,7 +166,7 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Devir:"
-            android:textColor="#696969"
+            android:textColor="#4D3EFF"
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />

@@ -90,7 +90,7 @@ class TelefonEkle : DialogFragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerTelefonListesi,fragment,"motor_ekle_fr")
+        fragmentTransaction.replace(R.id.containerTelefonListesi,fragment,"telefon_ekle_fr")
         fragmentTransaction.commit()
 
     }

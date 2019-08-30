@@ -1,16 +1,25 @@
 package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarRVAdapter
 
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitEkle.AmbarKayitEkleme
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitModel.AmbarKayitModeli
 import com.example.pm3elektrik.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.ambar_rv_adapter.view.*
 
-class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context) :
+class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context , var fragmentManager: FragmentManager?) :
     RecyclerView.Adapter<AmbarRV.MyData>() {
 
 
@@ -35,12 +44,37 @@ class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context
         val stokNo = tumLayout.tvAmbarStokNo
         val rafNo = tumLayout.tvAmbarRafNo
         val tanim = tumLayout.tvAmbarTanim
+        val bilgiButonu = tumLayout.imgAmbarRVBilgiButonu as ImageView
+        val silButonu = tumLayout.imgAmbarRVSilButonu as ImageView
 
-        fun setData(ambarListe: AmbarKayitModeli, position: Int) {
+        fun setData(ambarListeSetData: AmbarKayitModeli, position: Int) {
 
-            stokNo.setText(ambarListe.ambarStokNo)
-            rafNo.setText(ambarListe.ambarRafNo)
-            tanim.setText(ambarListe.ambarTanim)
+            stokNo.setText(ambarListeSetData.ambarStokNo)
+            rafNo.setText(ambarListeSetData.ambarRafNo)
+            tanim.setText(ambarListeSetData.ambarTanim)
+
+            bilgiButonu.setOnClickListener {
+
+                val bundle : Bundle? = Bundle()
+                bundle?.putString("rvGidenStokNo",ambarListe[position].ambarStokNo)
+                bundle?.putString("rvGidenRafNo",ambarListe[position].ambarRafNo)
+                bundle?.putString("rvGidenTanim",ambarListe[position].ambarTanim)
+                val fragment = AmbarKayitEkleme()
+                fragment.arguments = bundle
+                fragment.show(fragmentManager,"ambar_kayit_ekle_fr")
+
+
+
+            }
+
+            silButonu.setOnClickListener {
+
+                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                    .child("Ambar")
+                    .child(ambarListe[position].ambarStokNo)
+                    .removeValue()
+
+            }
         }
     }
 }

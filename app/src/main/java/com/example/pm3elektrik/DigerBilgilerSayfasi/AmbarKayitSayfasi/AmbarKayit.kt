@@ -3,12 +3,14 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,9 +35,23 @@ class AmbarKayit : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ambar_kayit, container, false)
 
-        val ambarAra = view.findViewById<EditText>(R.id.etAmbarKayitAra)
+        val kayitAra = view.findViewById<EditText>(R.id.etAmbarKayitAra)
+
+        kayitAra.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+
+
+
+            }
+
+
+
+
+        })
         mFAB_ambar = view.findViewById(R.id.menu_ambar)
-        fireBaseDBOkunanVeriler()
+        fireBaseDBOkunanVeriler(view.context)
 
         mFAB_ambar.setOnClickListener {
             val ambarFragment = AmbarKayitEkleme()
@@ -47,7 +63,7 @@ class AmbarKayit : Fragment() {
         return view
     }
 
-    private fun fireBaseDBOkunanVeriler() {
+    private fun fireBaseDBOkunanVeriler(context: Context) {
 
         val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
         ref.child("Ambar")
@@ -62,7 +78,7 @@ class AmbarKayit : Fragment() {
 
                         ambarListe.add(AmbarKayitModeli(okunanBilgiler!!.ambarStokNo,okunanBilgiler.ambarRafNo,okunanBilgiler.ambarTanim))
                     }
-                    recyclerAdapter(ambarListe)
+                    recyclerAdapter(ambarListe , context,fragmentManager)
 
                 }
 
@@ -70,10 +86,9 @@ class AmbarKayit : Fragment() {
     }
 
 
-    private fun recyclerAdapter(ambarGelenListe : ArrayList<AmbarKayitModeli>) {
+    private fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context,fragmentManager: FragmentManager?) {
 
-        val mContext = view?.context as Context
-        val myAdapter = AmbarRV(ambarGelenListe,mContext)
+        val myAdapter = AmbarRV(ambarGelenListe,mContext ,fragmentManager)
         view?.rvAmbarListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL,false)
