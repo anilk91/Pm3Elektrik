@@ -1,40 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="wrap_content">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/telefonRvLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/motor_liste_rv_adapter_kare" />
+
+    <ImageView
+            android:id="@+id/telefonRVLogo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:alpha="0.07"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/telefonRvLayout"
+            app:layout_constraintStart_toStartOf="@+id/telefonRvLayout"
+            app:layout_constraintTop_toTopOf="@+id/telefonRvLayout"
+            app:srcCompat="@drawable/modern_karton_logo" />
+
+    <ImageView
+            android:id="@+id/imgTelefonListeSil"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/telefonRvLayout"
+            app:layout_constraintTop_toTopOf="@+id/telefonRvLayout"
+            app:srcCompat="@drawable/delete_button_siyah" />
+
+    <ImageView
+            android:id="@+id/imgTelefonBilgi"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toStartOf="@+id/imgTelefonListeSil"
+            app:layout_constraintTop_toTopOf="@+id/imgTelefonListeSil"
+            app:srcCompat="@drawable/bilgi_button_siyah" />
 
     <TextView
-            android:text="0000"
+            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTelefonNo" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp" android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-            android:textColor="@android:color/black"/>
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="Tel. No:"
+            android:textColor="#696969"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/telefonRvLayout"
+            app:layout_constraintTop_toBottomOf="@+id/imgTelefonBilgi" />
+
     <TextView
-            android:text="Telefon İsim"
-            android:layout_width="0dp"
+            android:id="@+id/textView82"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="İsim:"
+            android:textColor="#696969"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+            android:id="@+id/tvTelefonNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="1190"
+            android:textColor="#696969"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <TextView
             android:id="@+id/tvTelefonIsim"
-            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-            android:textColor="@android:color/black" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView9" android:layout_marginStart="4dp"/>
-    <View
-            android:layout_width="0dp"
-            android:layout_height="1dp" android:id="@+id/view3"
-            app:layout_constraintTop_toBottomOf="@+id/tvTelefonIsim" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:background="@android:color/darker_gray"
-            android:layout_marginTop="8dp"/>
-    <TextView
-            android:text="-"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView9" android:layout_marginStart="4dp"
-            app:layout_constraintStart_toEndOf="@+id/tvTelefonNo" app:layout_constraintTop_toTopOf="@+id/tvTelefonNo"
-            android:fontFamily="@font/nunito_extrabold" android:textSize="16sp"
-            android:textColor="@android:color/black" app:layout_constraintBottom_toBottomOf="@+id/tvTelefonNo"/>
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="PM3 Elektrik Atölyesi"
+            android:textColor="#696969"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView82" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

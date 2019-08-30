@@ -9,7 +9,7 @@
         tools:context=".MotorListeSayfasi.MotorListe">
 
     <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgMotorListeLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.1"

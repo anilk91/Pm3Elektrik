@@ -40,7 +40,6 @@ class MotorListe : Fragment() {
 
 
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
-
         motor_ara.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 if (p0 != null) {
@@ -51,23 +50,22 @@ class MotorListe : Fragment() {
                     for(gelen in motorListesi){
 
                         val bulunan = gelen.motorTag.toUpperCase()
-                        if(bulunan.contains(gelenVeri.toString())){
+                        if(bulunan.contains(gelenVeri)){
                             arananlar.add(gelen)
                         }
                     }
-                    myAdapter.gelenMotorTagiFiltrele(arananlar)
+                    if(myAdapter != null){
+                        myAdapter.gelenMotorTagiFiltrele(arananlar)
+                    }
 
                 }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
 
-        //Floatin Action Bar Butonları ----------------------------------------------------
+        //Floating Action Bar Butonları ---------------------------------------------------->
         mFAB_cekmece = view.findViewById(R.id.menu_cekmece)
         mFAB_motor = view.findViewById(R.id.menu_motor)
 
@@ -81,7 +79,7 @@ class MotorListe : Fragment() {
 
             changeFragment(SalterEkle())
         }
-        //Floatin Action Bar Butonları ----------------------------------------------------
+        //Floating Action Bar Butonları ----------------------------------------------------<
 
         return view
     }

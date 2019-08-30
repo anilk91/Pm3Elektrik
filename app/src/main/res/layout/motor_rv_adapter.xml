@@ -7,10 +7,11 @@
 
 
     <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/motorListeRVLayout"
             android:layout_width="0dp"
-            android:layout_height="145dp"
+            android:layout_height="165dp"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -18,15 +19,15 @@
             app:srcCompat="@drawable/motor_liste_rv_adapter_kare" />
 
     <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/motorListeRVLogo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:adjustViewBounds="false"
             android:alpha="0.07"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/motorListeRVLayout"
+            app:layout_constraintTop_toTopOf="@+id/motorListeRVLayout"
             app:srcCompat="@drawable/modern_karton_logo" />
 
     <TextView
@@ -36,20 +37,20 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="1BD01"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <TextView
             android:id="@+id/tvMotorMCCYeri"
-            android:layout_width="170dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="2.1 Arka Hamur MCC"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvMotorEtiketTag"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag" />
 
@@ -57,11 +58,11 @@
             android:id="@+id/tvMotorGuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="30"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvMotorMCCYeri"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorMCCYeri" />
 
@@ -69,11 +70,11 @@
             android:id="@+id/tvMotorDevir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="1000"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/tvMotorGuc"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorGuc" />
 
@@ -82,11 +83,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="KW"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/tvMotorGuc"
             app:layout_constraintTop_toBottomOf="@+id/tvMotorMCCYeri" />
 
@@ -95,29 +96,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
-            android:text="d/d"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:text="D/d"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/tvMotorDevir"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
             android:id="@+id/imgDeleteButton"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/motorListeRVLayout"
             app:srcCompat="@drawable/delete_button_siyah" />
 
     <ImageView
             android:id="@+id/imgBilgiButton"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgDeleteButton"
             app:layout_constraintEnd_toStartOf="@+id/imgDeleteButton"
             app:srcCompat="@drawable/bilgi_button_siyah" />
@@ -127,23 +128,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Motor Tag:"
-            android:textColor="#363636"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            android:textColor="#696969"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/motorListeRVLayout"
+            app:layout_constraintTop_toBottomOf="@+id/imgBilgiButton" />
 
     <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="MCC Yeri:"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -151,11 +151,11 @@
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Güç:"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -163,11 +163,11 @@
             android:id="@+id/textView80"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito_extrabold"
             android:text="Devir:"
-            android:textColor="#363636"
-            android:textSize="10sp"
+            android:textColor="#696969"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
