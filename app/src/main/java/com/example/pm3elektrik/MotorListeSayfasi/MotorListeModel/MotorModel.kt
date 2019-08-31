@@ -7,7 +7,7 @@ class MotorModel {
     var motorTag: String = ""
     var motorGucKW: Double = 0.0
     var motorGucHP: Double = 0.0
-    var motorDevir: String = ""
+    var motorDevir: String = "-"
     var motorNomTripAkimi: String = ""
     var motorInsaTipi: String = ""
     var motorFlans: String = ""

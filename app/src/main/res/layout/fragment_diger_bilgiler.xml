@@ -1,226 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".DigerBilgilerSayfasi.DigerBilgiler"
-                                                   android:background="#DFDFDF">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F9FD"
+        tools:context=".DigerBilgilerSayfasi.DigerBilgiler">
+
+    <ImageView
+            android:id="@+id/imgDigerBilgilerLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.1"
+            android:src="@drawable/modern_karton_logo"
+            app:layout_constraintBottom_toBottomOf="@+id/containerDigerBilgiler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/containerDigerBilgiler"
+            app:layout_constraintTop_toTopOf="@+id/containerDigerBilgiler" />
+
     <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rootDigerConstraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/rootDigerConstraintLayout"
-        >
+                android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewKumandaProjeleri"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="32dp"
-                    app:layout_constraintTop_toBottomOf="@+id/cardViewAmbarKayit"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp"
-                    android:id="@+id/cardViewKumandaProjeleri" app:cardCornerRadius="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="32dp">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:text="KUMANDA PROJE"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/textView17"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginTop="8dp" android:textSize="16sp"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
-                    <TextView
-                            android:text="PM3 Sahasında Kullanılan Kumanda Projeleri"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" android:id="@+id/textView16"
-                            android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView17"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/nunito_semibold"
-                            android:textColor="@android:color/black"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:id="@+id/cardViewKuyuVeMcc" app:cardCornerRadius="10dp"
-                    android:layout_marginStart="31dp" app:layout_constraintStart_toEndOf="@+id/cardViewAmbarKayit"
-                    android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/cardViewTrafo">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:text="KUYU PANO"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/textView19"
-                            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="16sp"
-                            android:textColor="@android:color/black"/>
-                    <TextView
-                            android:text="PM3 Sahasında Bulunan Kuyular ve Ana Besleme Noktaları"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" android:id="@+id/textView20"
-                            android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView19"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/nunito_semibold"
-                            android:textColor="@android:color/black"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:id="@+id/cardViewAmbarKayit"
-                    app:cardCornerRadius="10dp" android:layout_marginTop="32dp"
-                    app:layout_constraintTop_toBottomOf="@+id/cardViewKontaktorTrip"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:text="AMBAR KAYIT"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/textView13"
-                            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="16sp" android:textColor="@android:color/black"/>
-                    <TextView
-                            android:text="Malzeme Ambarı Stok No, Raf  Yeri ve Tanım"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:id="@+id/textView14" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView13"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/nunito_semibold"
-                            android:textColor="@android:color/black"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:id="@+id/cardViewAkimKonHesapla" app:cardCornerRadius="10dp"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintTop_toBottomOf="@+id/cardViewKuyuVeMcc"
-                    android:layout_marginStart="31dp"
-                    app:layout_constraintStart_toEndOf="@+id/cardViewKumandaProjeleri"
-                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="32dp">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:text="AKIM KONVERTÖR"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/textView21"
-                            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="16sp" android:textColor="@android:color/black"/>
-                    <TextView
-                            android:text="Akım Konvertörü Çıkış Hesaplama mA ve % Cinsinden"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" android:id="@+id/textView22"
-                            android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView21"
-                            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
-                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:id="@+id/cardViewKontaktorTrip" app:cardCornerRadius="10dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="32dp" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="20dp">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <TextView
-                            android:text="KONTAKTÖR"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/textView8"
-                            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" android:textSize="16sp"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"/>
-                    <TextView
-                            android:text="Low Range'den Size 5'e Kontaktör Trip Tablosu"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:id="@+id/textView10"
-                            app:layout_constraintTop_toBottomOf="@+id/textView8"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/nunito_semibold"
-                            android:textColor="@android:color/black" android:layout_marginBottom="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="16dp"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:id="@+id/cardViewTrafo"
+                    android:layout_marginBottom="32dp"
                     app:cardCornerRadius="10dp"
-                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp"
-                    app:layout_constraintStart_toEndOf="@+id/cardViewKontaktorTrip" android:layout_marginStart="31dp"
-            >
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewAmbarKayit">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                     <TextView
-                            android:text="TRAFO"
+                            android:id="@+id/textView17"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView11"
-                            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="KUMANDA PROJE"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="16sp" android:textColor="@android:color/black"/>
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <TextView
-                            android:text="Trafoların Etiket Bilgileri ve Değişim Tarihleri"
+                            android:id="@+id/textView16"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:id="@+id/textView12" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView11"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="PM3 Sahasında Kullanılan Kumanda Projeleri"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent" android:textAlignment="textStart"
-                            android:fontFamily="@font/nunito_semibold" android:textColor="@android:color/black"/>
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewKuyuVeMcc"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="31dp"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/cardViewAmbarKayit"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewTrafo">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="KUYU PANO"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="PM3 Sahasında Bulunan Kuyular ve Ana Besleme Noktaları"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewAmbarKayit"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewKontaktorTrip">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="AMBAR KAYIT"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="Malzeme Ambarı Stok No, Raf  Yeri ve Tanım"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewAkimKonHesapla"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="31dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardViewKumandaProjeleri"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewKuyuVeMcc">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="AKIM KONVERTÖR"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/textView22"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="Akım Konvertörü Çıkış Hesaplama mA ve % Cinsinden"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewKontaktorTrip"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="KONTAKTÖR"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="Low Range'den Size 5'e Kontaktör Trip Tablosu"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewTrafo"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginStart="31dp"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/cardViewKontaktorTrip"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="TRAFO"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="Trafoların Etiket Bilgileri ve Değişim Tarihleri"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView11" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <FrameLayout
+            android:id="@+id/containerDigerBilgiler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/containerDigerBilgiler"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

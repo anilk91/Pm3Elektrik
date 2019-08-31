@@ -4,14 +4,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E3F2FD"
+        android:background="#F7F5F5"
         tools:context=".AnaSayfa.AnaSayfa">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/AnaConstraintLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#E3F2FD"
+            android:background="#F4F9FD"
             app:layout_constraintBottom_toTopOf="@+id/altBarConstraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

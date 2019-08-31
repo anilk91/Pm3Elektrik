@@ -5,7 +5,7 @@
         android:id="@+id/motorListeConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E3F2FD"
+        android:background="#F4F9FD"
         tools:context=".MotorListeSayfasi.MotorListe">
 
     <ImageView

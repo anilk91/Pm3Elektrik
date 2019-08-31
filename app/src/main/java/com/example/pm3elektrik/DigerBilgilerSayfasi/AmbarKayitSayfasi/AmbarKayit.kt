@@ -45,6 +45,25 @@ class AmbarKayit : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
 
+                if (p0 != null) {
+
+                    val gelenVeri = p0.toString().toUpperCase()
+                    val arananlar = ArrayList<AmbarKayitModeli>()
+
+                    for (gelen in ambarListe) {
+
+                        val bulunanStokNo = gelen.ambarStokNo.toUpperCase()
+                        val bulunanTanim = gelen.ambarTanim
+                        if (bulunanStokNo.contains(gelenVeri)) {
+                            arananlar.add(gelen)
+                        } else if (bulunanTanim.contains(gelenVeri))
+                            arananlar.add(gelen)
+                    }
+                    if (myAdapter != null) {
+                        myAdapter.gelenAmbarKaydiFiltrele(arananlar)
+                    }
+                }
+
             }
 
         })

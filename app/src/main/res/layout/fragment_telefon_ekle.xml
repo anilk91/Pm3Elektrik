@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="wrap_content"
-                                                   tools:context=".TelefonListeSayfasi.TelefonEkleFragment.TelefonEkle"
-                                                   android:background="#DFDFDF">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F4F9FD"
+        tools:context=".TelefonListeSayfasi.TelefonEkleFragment.TelefonEkle">
+
     <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/imgTelefonEkleClose"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/buttonTelefonEkle"
-            android:layout_marginTop="8dp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            app:cardCornerRadius="15dp" android:id="@+id/cardView2">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonTelefonEkle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgTelefonEkleClose">
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             <EditText
+                    android:id="@+id/etTelefonIsim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/etTelefonIsim"
-                    android:hint="İsim Giriniz.."
-                    android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                    android:textColor="@android:color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="48dp"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="48dp"
-                    app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    android:ems="10"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:hint="İsim Giriniz.."
+                    android:inputType="textPersonName"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                     android:id="@+id/etTelefonNo"
@@ -51,32 +61,43 @@
                     app:layout_constraintTop_toBottomOf="@+id/etTelefonIsim" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
     <ImageView
-            android:src="@drawable/close"
+            android:id="@+id/imgTelefonEkleClose"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:id="@+id/imgTelefonEkleClose" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
-    <Button
-            android:text="EKLE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonTelefonEkle"
-            android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-    />
-    <TextView
-            android:text="-TELEFON EKLE-"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView2" android:fontFamily="@font/nunito_extrabold"
-            android:textSize="14sp" android:textColor="@android:color/black"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+            android:id="@+id/buttonTelefonEkle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="EKLE"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="-TELEFON EKLE-"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

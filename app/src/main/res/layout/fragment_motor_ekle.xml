@@ -1,163 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".MotorListeSayfasi.EkleFragmentleri.MotorEkle"
-                                                   android:id="@+id/motorEkleConst" android:background="#DFDFDF">
-    <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="0dp" app:layout_constraintTop_toBottomOf="@+id/imgMotorCLose"
-            android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/motorEkleScrollView">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/motorEkleConst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F9FD"
+        tools:context=".MotorListeSayfasi.EkleFragmentleri.MotorEkle">
 
-        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                           android:layout_height="match_parent">
+    <ImageView
+            android:id="@+id/imgMotorEkleLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.1"
+            android:src="@drawable/modern_karton_logo"
+            app:layout_constraintBottom_toBottomOf="@+id/motorEkleScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+            android:id="@+id/motorEkleScrollView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgMotorCLose">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <Button
-                    android:text="EKLE"
+                    android:id="@+id/buttonMotorEkle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/buttonMotorEkle"
-                    android:fontFamily="@font/nunito_extrabold"
-                    android:textColor="@android:color/black"
                     android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@+id/cardView"
-                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" android:background="#F48FB1"/>
-            <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="EKLE"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginEnd="16dp" android:layout_marginStart="16dp"
-                    app:cardCornerRadius="15dp" android:id="@+id/cardView"
-                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp">
+                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                     <EditText
+                            android:id="@+id/etMotorIsim"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/etMotorIsim" app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="32dp"
-                            android:layout_marginStart="32dp" android:hint="Motor/Pompa İsmi"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                            android:textColor="@android:color/black"/>
-                    <EditText
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/etMotorTag"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" android:hint="Motor Tag"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:layout_marginStart="32dp" android:layout_marginEnd="32dp"
-                            android:textSize="12sp" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorIsim"/>
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:ems="10"
-                            android:id="@+id/etGucKw"
-                            app:layout_constraintStart_toStartOf="@+id/etMotorTag" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:hint="Güç (KW)"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:ems="10"
-                            android:id="@+id/etGucHP"
-                            app:layout_constraintEnd_toEndOf="@+id/etMotorTag" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:textColor="@android:color/black" android:hint="Güç (HP)" android:textSize="12sp"/>
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:ems="10"
-                            android:id="@+id/etDevir"
-                            app:layout_constraintStart_toStartOf="@+id/etGucKw"
+                            android:layout_marginStart="32dp"
                             android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etGucKw" android:hint="Devir"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:layout_marginEnd="32dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Motor/Pompa İsmi"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <EditText
+                            android:id="@+id/etMotorTag"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="32dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Motor Tag"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorIsim" />
+
+                    <EditText
+                            android:id="@+id/etGucKw"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Güç (KW)"
                             android:inputType="numberDecimal"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@+id/etMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" />
+
+                    <EditText
+                            android:id="@+id/etGucHP"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Güç (HP)"
+                            android:inputType="numberDecimal"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" />
+
+                    <EditText
+                            android:id="@+id/etDevir"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Devir"
+                            android:inputType="numberDecimal"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@+id/etGucKw"
+                            app:layout_constraintTop_toBottomOf="@+id/etGucKw" />
+
+                    <EditText
                             android:id="@+id/etNomTripAkimi"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
                             android:hint="Nom. Trip Akımı"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            app:layout_constraintTop_toBottomOf="@+id/etGucHP" android:layout_marginTop="16dp"
-                            app:layout_constraintEnd_toEndOf="@+id/etGucHP" android:textSize="12sp"/>
+                            android:inputType="numberDecimal"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etGucHP"
+                            app:layout_constraintTop_toBottomOf="@+id/etGucHP" />
+
                     <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
                             android:id="@+id/etInsaTipi"
-                            app:layout_constraintStart_toStartOf="@+id/etDevir" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etDevir" android:hint="İnşa Tipi (Marka)"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
-                    <EditText
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="İnşa Tipi (Marka)"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@+id/etDevir"
+                            app:layout_constraintTop_toBottomOf="@+id/etDevir" />
+
+                    <EditText
                             android:id="@+id/etFlans"
-                            app:layout_constraintEnd_toEndOf="@+id/etNomTripAkimi" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etNomTripAkimi" android:hint="Flanş"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
-                    <EditText
-                            android:layout_width="0dp"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Flanş"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etNomTripAkimi"
+                            app:layout_constraintTop_toBottomOf="@+id/etNomTripAkimi" />
+
+                    <EditText
                             android:id="@+id/etMotorAdres"
-                            app:layout_constraintStart_toStartOf="@+id/etInsaTipi"
-                            app:layout_constraintEnd_toEndOf="@+id/etFlans" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etInsaTipi" android:hint="Adres"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
-                    <EditText
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Adres"
                             android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/etMotorMCCYeri"
-                            app:layout_constraintStart_toStartOf="@+id/etMotorAdres"
-                            app:layout_constraintEnd_toEndOf="@+id/etMotorAdres" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorAdres" android:hint="MCC Yeri"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp"/>
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etFlans"
+                            app:layout_constraintStart_toStartOf="@+id/etInsaTipi"
+                            app:layout_constraintTop_toBottomOf="@+id/etInsaTipi" />
+
                     <EditText
+                            android:id="@+id/etMotorMCCYeri"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="date"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="MCC Yeri"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etMotorAdres"
+                            app:layout_constraintStart_toStartOf="@+id/etMotorAdres"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorAdres" />
+
+                    <EditText
                             android:id="@+id/etMotorDegTarihi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Değişim Tarihi"
+                            android:inputType="date"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/etMotorMCCYeri"
                             app:layout_constraintStart_toStartOf="@+id/etMotorMCCYeri"
-                            app:layout_constraintEnd_toEndOf="@+id/etMotorMCCYeri" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorMCCYeri" android:hint="Değişim Tarihi"
-                            android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                            android:textSize="12sp" app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_marginBottom="24dp"/>
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorMCCYeri" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -165,11 +234,15 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <ImageView
-            android:src="@drawable/close"
+            android:id="@+id/imgMotorCLose"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:id="@+id/imgMotorCLose" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

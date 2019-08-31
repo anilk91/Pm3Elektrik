@@ -82,6 +82,16 @@ class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context
                 notifyItemRangeChanged(position,ambarListe.size)
 
             }
+
+
         }
+    }
+    fun gelenAmbarKaydiFiltrele(arananlar: java.util.ArrayList<AmbarKayitModeli>) {
+
+
+        ambarListe = ArrayList<AmbarKayitModeli>()
+        ambarListe.addAll(arananlar)
+        notifyDataSetChanged()
+
     }
 }

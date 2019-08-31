@@ -1,97 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="wrap_content"
-                                                   tools:context=".DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKonvertorHesap"
-                                                   android:background="#DFDFDF">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F4F9FD"
+        tools:context=".DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKonvertorHesap">
 
 
     <ImageView
-            android:src="@drawable/close"
+            android:id="@+id/imgAkimBilgisiClose"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:id="@+id/imgAkimBilgisiClose" android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAkimBilgisiHesapla"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView26"
-            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/buttonAkimBilgisiHesapla">
+            app:layout_constraintTop_toBottomOf="@+id/textView26">
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
                     android:id="@+id/etNominalAkim"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="48dp" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="48dp" android:hint="Nominal Akım" android:textSize="12sp"
-                    android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
-                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
-            <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="48dp"
                     android:ems="10"
-                    android:id="@+id/etAnlikCikisAkimi" android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/etNominalAkim"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="48dp"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="48dp"
-                    android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                    android:textColor="@android:color/black" android:hint="Anlık Çekilen Akım"/>
-            <TextView
-                    android:text="SONUÇ:"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:hint="Nominal Akım"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                    android:id="@+id/etAnlikCikisAkimi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView23"
+                    android:layout_marginStart="48dp"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/etAnlikCikisAkimi" android:fontFamily="@font/nunito_extrabold"
-                    android:textColor="@android:color/black" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="64dp"/>
+                    android:layout_marginEnd="48dp"
+                    android:ems="10"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:hint="Anlık Çekilen Akım"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etNominalAkim" />
+
             <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="SONUÇ:"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etAnlikCikisAkimi" />
+
+            <TextView
+                    android:id="@+id/tvSonucMA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="72dp"
+                    android:fontFamily="@font/nunito_extrabold"
                     android:text="20 mA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvSonucMA" android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/etAnlikCikisAkimi" android:layout_marginStart="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/textView23" android:fontFamily="@font/nunito_extrabold"
-                    android:textColor="@android:color/holo_red_dark" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="72dp"/>
+                    android:textColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView23"
+                    app:layout_constraintTop_toBottomOf="@+id/etAnlikCikisAkimi" />
+
             <TextView
-                    android:text="% 100"
+                    android:id="@+id/tvSonucYuzde"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvSonucYuzde"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSonucMA" android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="@+id/tvSonucMA" android:fontFamily="@font/nunito_extrabold"
-                    android:textColor="@android:color/holo_red_dark" android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="% 100"
+                    android:textColor="@android:color/holo_red_dark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvSonucMA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSonucMA" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
     <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_extrabold"
             android:text="-AKIM KONVERTÖRÜ DOĞRULUK-"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView26" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/imgAkimBilgisiClose" app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="14sp" android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAkimBilgisiClose" />
+
     <Button
-            android:text="EKLE"
+            android:id="@+id/buttonAkimBilgisiHesapla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonAkimBilgisiHesapla" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp" android:fontFamily="@font/nunito_extrabold"
-            android:textColor="@android:color/black"/>
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="EKLE"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

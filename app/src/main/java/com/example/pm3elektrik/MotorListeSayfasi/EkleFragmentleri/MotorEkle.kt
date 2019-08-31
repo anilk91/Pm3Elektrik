@@ -4,6 +4,7 @@ package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 import java.lang.Exception
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -95,6 +97,7 @@ class MotorEkle : Fragment() {
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
+
                     FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
 
             }else{
@@ -110,6 +113,8 @@ class MotorEkle : Fragment() {
 
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
                   motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String){
+
+
 
         motor_liste.motorIsim = motorIsim
         motor_liste.motorTag = motorTag

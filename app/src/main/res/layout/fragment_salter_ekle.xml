@@ -1,41 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   android:background="#DFDFDF">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F9FD">
 
+
+    <ImageView
+            android:id="@+id/imgSalterEkleLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/modern_karton_logo" />
 
     <ScrollView
+            android:id="@+id/salterScrollView"
             android:layout_width="match_parent"
-            android:layout_height="0dp" app:layout_constraintTop_toBottomOf="@+id/imgSalterClose"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/salterScrollView" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="16dp">
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgSalterClose">
+
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:id="@+id/constraintLayout">
+                android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
+                    android:id="@+id/SurucuCardView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/SurucuCardView"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/SalterCardView" android:layout_marginTop="24dp"
-                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:cardCornerRadius="15dp">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/SalterCardView">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                     <Spinner
+                            android:id="@+id/spinnerSurucuSecim"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/spinnerSurucuSecim"
-                            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
-                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintTop_toBottomOf="@+id/SurucuTextView" android:layout_marginTop="8dp"/>
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/SurucuTextView" />
 
                     <EditText
                             android:id="@+id/etSalterKontaktorDIPSivic"
@@ -55,189 +79,249 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorBoyut"
                             tools:visibility="visible" />
+
                     <EditText
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
                             android:id="@+id/etSalterSurucuModel"
-                            android:hint="Model Seri No"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorDIPSivic"
-                            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
-                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
-                            tools:visibility="visible"/>
-                    <EditText
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="date"
-                            android:ems="10"
-                            android:id="@+id/etSalterSurucuDegTarihi"
+                            android:layout_marginStart="32dp"
                             android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterSurucuModel"
+                            android:layout_marginEnd="32dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Model Seri No"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorDIPSivic"
+                            tools:visibility="visible" />
+
+                    <EditText
+                            android:id="@+id/etSalterSurucuDegTarihi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="32dp"
+                            android:layout_marginBottom="24dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
                             android:hint="Sürücü Değişim Tarihi"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                            android:textColor="@android:color/black" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="32dp" tools:visibility="visible"
-                            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="24dp"/>
+                            android:inputType="date"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterSurucuModel"
+                            tools:visibility="visible" />
+
                     <TextView
-                            android:text="-SÜRÜCÜ-"
+                            android:id="@+id/SurucuTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SurucuTextView"
-                            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="18sp"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="-SÜRÜCÜ-"
                             android:textColor="@android:color/black"
-                            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <EditText
+                            android:id="@+id/etSalterKontaktorBoyut"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:ems="10"
-                            android:id="@+id/etSalterKontaktorBoyut"
                             android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/spinnerSurucuSecim"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp" android:hint="Boyut"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Boyut"
+                            android:inputType="number"
+                            android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/spinnerSurucuSecim"
-                            app:layout_constraintStart_toStartOf="@+id/spinnerSurucuSecim"/>
+                            app:layout_constraintStart_toStartOf="@+id/spinnerSurucuSecim"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerSurucuSecim" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
+                    android:id="@+id/SalterCardView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/SalterCardView"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:cardCornerRadius="15dp" android:layout_marginTop="8dp">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
 
                     <EditText
+                            android:id="@+id/etSalterMCCYeri"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/etSalterMCCYeri"
-                            app:layout_constraintStart_toStartOf="@+id/etSalterDemeraj"
-                            app:layout_constraintEnd_toEndOf="@+id/etSalterDegTarihi"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterDemeraj"
-                            android:layout_marginTop="16dp" android:hint="MCC Yeri"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="12sp" android:textColor="@android:color/black"
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="24dp"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="date"
                             android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="MCC Yeri"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/etSalterDegTarihi"
+                            app:layout_constraintStart_toStartOf="@+id/etSalterDemeraj"
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterDemeraj" />
+
+                    <EditText
                             android:id="@+id/etSalterDegTarihi"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Şalter Değişim Tarihi"
+                            android:inputType="date"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="@+id/etSalterSTYLE"
-                            android:hint="Şalter Değişim Tarihi" android:layout_marginTop="16dp"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterSTYLE"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="12sp" android:textColor="@android:color/black"/>
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterSTYLE" />
+
                     <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
                             android:id="@+id/etSalterDemeraj"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Demeraj"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/etSalterCAT"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterCAT"
-                            android:layout_marginTop="16dp" android:hint="Demeraj"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="12sp" android:textColor="@android:color/black"/>
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterCAT" />
+
                     <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
                             android:id="@+id/etSalterSTYLE"
-                            app:layout_constraintEnd_toEndOf="@+id/etSalterKapasite"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterKapasite"
-                            android:layout_marginTop="16dp" android:hint="STYLE"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="12sp" android:textColor="@android:color/black"/>
-                    <EditText
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
+                            android:hint="STYLE"
                             android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/etSalterCAT"
-                            app:layout_constraintTop_toBottomOf="@+id/etSalterMarka"
-                            app:layout_constraintStart_toStartOf="@+id/etSalterMarka" android:layout_marginTop="16dp"
-                            android:hint="CAT" android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                            android:textColor="@android:color/black"/>
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etSalterKapasite"
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterKapasite" />
+
                     <EditText
+                            android:id="@+id/etSalterCAT"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
-                            android:id="@+id/etSalterKapasite"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" android:layout_marginTop="16dp"
-                            android:hint="Kapasite" app:layout_constraintEnd_toEndOf="@+id/etMotorTag"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="12sp"
-                            android:textColor="@android:color/black"/>
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="CAT"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@+id/etSalterMarka"
+                            app:layout_constraintTop_toBottomOf="@+id/etSalterMarka" />
+
                     <EditText
+                            android:id="@+id/etSalterKapasite"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Kapasite"
+                            android:inputType="numberDecimal"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" />
+
+                    <EditText
+                            android:id="@+id/etSalterMarka"
                             android:layout_width="150dp"
                             android:layout_height="0dp"
-                            android:inputType="textPersonName"
+                            android:layout_marginTop="16dp"
                             android:ems="10"
-                            android:id="@+id/etSalterMarka"
-                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag"
-                            app:layout_constraintStart_toStartOf="@+id/etMotorTag"
-                            android:layout_marginTop="16dp" android:hint="Marka"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="12sp" android:textColor="@android:color/black"/>
+                            android:hint="Marka"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@+id/etMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorTag" />
+
                     <EditText
+                            android:id="@+id/etMotorTag"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/etMotorTag"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" android:hint="Motor TAG"
                             android:layout_marginStart="32dp"
-                            android:layout_marginEnd="32dp" android:fontFamily="@font/nunito_extrabold"
-                            android:textSize="12sp" app:layout_constraintHorizontal_bias="0.0"
-                            android:textColor="@android:color/black" android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/SalterTextView"/>
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Motor TAG"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/SalterTextView" />
+
                     <TextView
-                            android:text="-ŞALTER-"
+                            android:id="@+id/SalterTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/SalterTextView"
-                            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-                            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                            android:fontFamily="@font/nunito_extrabold" android:textSize="18sp"
-                            android:textColor="@android:color/black"/>
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="-ŞALTER-"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <Button
-                    android:text="EKLE"
+                    android:id="@+id/buttonSalterEkle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/buttonSalterEkle"
-                    android:fontFamily="@font/nunito_extrabold" android:textColor="@android:color/black"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="EKLE"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="24dp"
-                    app:layout_constraintTop_toBottomOf="@+id/SurucuCardView"
-                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+                    app:layout_constraintTop_toBottomOf="@+id/SurucuCardView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <ImageView
-            android:src="@drawable/close"
+            android:id="@+id/imgSalterClose"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:id="@+id/imgSalterClose" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
