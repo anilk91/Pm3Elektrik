@@ -63,16 +63,23 @@ class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context
                 fragment.arguments = bundle
                 fragment.show(fragmentManager,"ambar_kayit_ekle_fr")
 
-
-
             }
 
             silButonu.setOnClickListener {
 
+                val stokNo = ambarListe[position].ambarStokNo
+                val s1 = stokNo.substring(0..0)
+                val s2 = stokNo.substring(2..stokNo.lastIndex)
+                val stokNoSonHal = s1+s2
+
                 FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
                     .child("Ambar")
-                    .child(ambarListe[position].ambarStokNo)
+                    .child(stokNoSonHal)
                     .removeValue()
+
+                ambarListe.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position,ambarListe.size)
 
             }
         }
