@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/nunito_extrabold"
-            android:hint="Telefon No veya İsim Giriniz.."
+            android:hint="Telefon No veya İsim Giriniz..."
             android:inputType="textPersonName"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"

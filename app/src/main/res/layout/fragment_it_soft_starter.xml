@@ -11,10 +11,32 @@
             android:id="@+id/itSoftStarterSayfaLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.1"
+            android:alpha="0.05"
             android:src="@drawable/modern_karton_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+            android:id="@+id/etItSoftStarterArizaAra"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/nunito_extrabold"
+            android:hint="Arıza Kodunu Giriniz..."
+            android:inputType="number"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvItSoftStarterListe"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etItSoftStarterArizaAra" />
 </androidx.constraintlayout.widget.ConstraintLayout>
