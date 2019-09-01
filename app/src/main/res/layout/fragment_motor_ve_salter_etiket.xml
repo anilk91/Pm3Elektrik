@@ -191,12 +191,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:text="Değ. Tarihi :"
+                            android:text="Motor Değ. Tarihi :"
                             android:textColor="@android:color/holo_red_dark"
                             android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
@@ -209,7 +207,7 @@
                             android:text="İsim"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView74"
                             app:layout_constraintTop_toTopOf="@+id/textView74" />
 
                     <TextView
@@ -221,7 +219,7 @@
                             android:text="Tag"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView70"
                             app:layout_constraintTop_toTopOf="@+id/textView70" />
 
                     <TextView
@@ -233,7 +231,7 @@
                             android:text="Güç KW"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView71"
                             app:layout_constraintTop_toTopOf="@+id/textView71" />
 
                     <TextView
@@ -254,10 +252,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/nunito_semibold"
-                            android:text="Devir d/d"
+                            android:text="Devir D/d"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView72"
                             app:layout_constraintTop_toTopOf="@+id/textView72" />
 
                     <TextView
@@ -281,7 +279,7 @@
                             android:text="Marka"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView75"
                             app:layout_constraintTop_toTopOf="@+id/textView75" />
 
                     <TextView
@@ -293,7 +291,7 @@
                             android:text="Flanş"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView76"
                             app:layout_constraintTop_toTopOf="@+id/textView76" />
 
                     <TextView
@@ -305,7 +303,7 @@
                             android:text="Adres"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView77"
                             app:layout_constraintTop_toTopOf="@+id/textView77" />
 
                     <TextView
@@ -317,7 +315,7 @@
                             android:text="MCC"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView78"
                             app:layout_constraintTop_toTopOf="@+id/textView78" />
 
                     <TextView
@@ -327,11 +325,11 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/nunito_semibold"
-                            android:text="Tarih"
+                            android:text="Motor Tarih"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/textView73"
+                            app:layout_constraintStart_toEndOf="@+id/textView79"
                             app:layout_constraintTop_toTopOf="@+id/textView79" />
 
                     <TextView
@@ -346,6 +344,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -427,7 +426,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView99" />
+                            app:layout_constraintTop_toBottomOf="@+id/tvCekmeceDegTarihi" />
 
                     <TextView
                             android:id="@+id/textView95"
@@ -488,7 +487,7 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:text="Değ. Tarihi :"
+                            android:text="Şalter Değ. Tarihi :"
                             android:textColor="@android:color/holo_red_dark"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -526,12 +525,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/nunito_extrabold"
                             android:text="Değ. Tarihi :"
                             android:textColor="@android:color/holo_red_dark"
                             android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvDipSivicYazisi" />
 
@@ -544,7 +541,7 @@
                             android:text="Şalter"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView92"
                             app:layout_constraintTop_toTopOf="@+id/textView92" />
 
                     <TextView
@@ -556,7 +553,7 @@
                             android:text="Kapasite"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView97"
                             app:layout_constraintTop_toTopOf="@+id/textView97" />
 
                     <TextView
@@ -568,7 +565,7 @@
                             android:text="Cat"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView93"
                             app:layout_constraintTop_toTopOf="@+id/textView93" />
 
                     <TextView
@@ -580,7 +577,7 @@
                             android:text="Style"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView94"
                             app:layout_constraintTop_toTopOf="@+id/textView94" />
 
                     <TextView
@@ -592,7 +589,7 @@
                             android:text="Demeraj"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView98"
                             app:layout_constraintTop_toTopOf="@+id/textView98" />
 
                     <TextView
@@ -601,10 +598,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/nunito_semibold"
-                            android:text="Tarih"
+                            android:text="Şalter Tarih"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView99"
                             app:layout_constraintTop_toTopOf="@+id/textView99" />
 
                     <TextView
@@ -628,7 +625,7 @@
                             android:text="Model / Marka"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/textView96"
                             app:layout_constraintTop_toTopOf="@+id/textView96" />
 
                     <TextView
@@ -640,7 +637,7 @@
                             android:text="Boyut"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/tvBoyutYazisi"
                             app:layout_constraintTop_toTopOf="@+id/tvBoyutYazisi" />
 
                     <TextView
@@ -652,7 +649,7 @@
                             android:text="Dip Siviç(87654321)"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintStart_toEndOf="@+id/tvDipSivicYazisi"
                             app:layout_constraintTop_toTopOf="@+id/tvDipSivicYazisi" />
 
                     <TextView
@@ -660,11 +657,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
+                            android:layout_marginBottom="8dp"
                             android:fontFamily="@font/nunito_semibold"
                             android:text="Tarih"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView95"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textView102"
                             app:layout_constraintTop_toTopOf="@+id/textView102" />
 
                     <TextView
@@ -679,6 +678,30 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                            android:id="@+id/textView87"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="Çekmece Değ. Tarihi :"
+                            android:textColor="@android:color/holo_red_dark"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="@+id/textView99"
+                            app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+                    <TextView
+                            android:id="@+id/tvCekmeceDegTarihi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:text="Çekmece Tarih"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toEndOf="@+id/textView87"
+                            app:layout_constraintTop_toTopOf="@+id/textView87" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

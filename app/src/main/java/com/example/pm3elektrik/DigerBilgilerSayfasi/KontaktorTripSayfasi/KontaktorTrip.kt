@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.DipSivicVeMotoraGoreAkimSayfasi.DipSiviceGoreAkim
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.DipSivicVeMotoraGoreAkimSayfasi.MotorAkiminaGoreDipSivic
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTripSiniflari.SizeLowRange
 
 import com.example.pm3elektrik.R
@@ -23,6 +25,16 @@ class KontaktorTrip : Fragment() {
         val sizeUc = view.findViewById<CardView>(R.id.cardViewSize3)
         val sizeDort = view.findViewById<CardView>(R.id.cardViewSize4)
         val sizeBes = view.findViewById<CardView>(R.id.cardViewSize5)
+        val motorAkiminaGoreDip = view.findViewById<CardView>(R.id.cardMotorAkGoreDip)
+        val dipSiviceGoreMotorAkimi = view.findViewById<CardView>(R.id.cardDipSivicMotorAkBul)
+
+        motorAkiminaGoreDip.setOnClickListener {
+            MotorAkiminaGoreDipSivic().show(fragmentManager,"dialog_fr_motor_akima_gore")
+        }
+
+        dipSiviceGoreMotorAkimi.setOnClickListener {
+            DipSiviceGoreAkim().show(fragmentManager,"dialog_fr_dip_sivice_gore")
+        }
 
         sizeLowRange.setOnClickListener {
             changeFragment(SizeLowRange())

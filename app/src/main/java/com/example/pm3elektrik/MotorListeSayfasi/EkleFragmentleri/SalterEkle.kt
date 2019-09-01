@@ -2,25 +2,19 @@ package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.FragmentTransaction
-import com.example.pm3elektrik.MotorListeSayfasi.MotorInterface.MotorEkleInterface
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
-
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_salter_ekle.*
 import java.lang.Exception
-
 
 class SalterEkle : Fragment() {
 
@@ -103,12 +97,13 @@ class SalterEkle : Fragment() {
 
             val motorTag = etMotorTag.text.toString().toUpperCase()
             val marka = etSalterMarka.text.toString().toUpperCase()
-            val kapasite = etSalterKapasite.text.toString().toUpperCase()
+            val kapasite = etSalterKapasite.text.toString()
             val cat = etSalterCAT.text.toString().toUpperCase()
             val style = etSalterSTYLE.text.toString().toUpperCase()
             val demeraj = etSalterDemeraj.text.toString().toUpperCase()
-            val degisimTarihi = etSalterDegTarihi.text.toString().toUpperCase()
+            val degisimTarihi = etSalterDegTarihi.text.toString()
             val mccYeri = etSalterMCCYeri.text.toString().toUpperCase()
+            val cekmeceDegTarihi = etCekmeceDegTarihi.text.toString()
 
 
             val dipSivic = etSalterKontaktorDIPSivic.text.toString().toUpperCase()
@@ -118,12 +113,15 @@ class SalterEkle : Fragment() {
 
             if (motorTag.isNotEmpty()) {
 
-                if(dipSivic.length <= 7){
-                    Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
+                if(!dipSivic.isNullOrEmpty() && !dipSivic.isNullOrBlank()){
+                    if(dipSivic.length <= 7){
+                        Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
 
-                }else{
-                    surucu_liste.surucuDIPSivic = dipSivic
-                }
+                    }else{
+                        surucu_liste.surucuDIPSivic = dipSivic
+                    }
+                }else{ }
+
 
                 salter_liste.salterMotorTag = motorTag
                 salter_liste.salterMarka = marka
@@ -133,6 +131,7 @@ class SalterEkle : Fragment() {
                 salter_liste.salterDemeraj = demeraj
                 salter_liste.salterDegTarihi = degisimTarihi
                 salter_liste.salterMccYeri = mccYeri
+                salter_liste.cekmeceDegTarihi = cekmeceDegTarihi
 
                 surucu_liste.surucuBoyut = kontaktorBoyut
 

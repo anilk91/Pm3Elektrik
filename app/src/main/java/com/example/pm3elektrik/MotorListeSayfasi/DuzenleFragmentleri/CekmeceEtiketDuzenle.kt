@@ -47,12 +47,13 @@ class CekmeceEtiketDuzenle : Fragment() {
 
             val motor_tag = etMotorTag.text.toString().toUpperCase()
             val marka = etSalterMarka.text.toString().toUpperCase()
-            val kapasite = etSalterKapasite.text.toString().toUpperCase()
+            val kapasite = etSalterKapasite.text.toString()
             val cat = etSalterCAT.text.toString().toUpperCase()
             val style = etSalterSTYLE.text.toString().toUpperCase()
             val demeraj = etSalterDemeraj.text.toString().toUpperCase()
-            val degisimTarihi = etSalterDegTarihi.text.toString().toUpperCase()
+            val degisimTarihi = etSalterDegTarihi.text.toString()
             val mccYeri = etSalterMCCYeri.text.toString().toUpperCase()
+            val cekmeceDegTarihi = etCekmeceDegTarihi.text.toString()
 
             val dipSivic = etSalterKontaktorDIPSivic.text.toString().toUpperCase()
             val kontaktorBoyut = etSalterKontaktorBoyut.text.toString().toUpperCase()
@@ -64,12 +65,13 @@ class CekmeceEtiketDuzenle : Fragment() {
 
             if (motor_tag.isNotEmpty()) {
 
-                if(dipSivic.length <= 7){
-                    Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
-
-                }else{
-                    surucu_liste.surucuDIPSivic = dipSivic
-                }
+                if(!dipSivic.isNullOrEmpty() && !dipSivic.isNullOrBlank()){
+                    if(dipSivic.length <= 7){
+                        Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
+                    }else{
+                        surucu_liste.surucuDIPSivic = dipSivic
+                    }
+                }else{ }
 
                 salter_liste.salterMotorTag = motor_tag
                 salter_liste.salterMarka = marka
@@ -79,6 +81,7 @@ class CekmeceEtiketDuzenle : Fragment() {
                 salter_liste.salterDemeraj = demeraj
                 salter_liste.salterDegTarihi = degisimTarihi
                 salter_liste.salterMccYeri = mccYeri
+                salter_liste.cekmeceDegTarihi = cekmeceDegTarihi
 
                 surucu_liste.surucuBoyut = kontaktorBoyut
 
@@ -209,6 +212,7 @@ class CekmeceEtiketDuzenle : Fragment() {
                         etSalterDemeraj.setText(okunan.salterDemeraj)
                         etSalterDegTarihi.setText(okunan.salterDegTarihi)
                         etSalterMCCYeri.setText(okunan.salterMccYeri)
+                        etCekmeceDegTarihi.setText(okunan.cekmeceDegTarihi)
                     }else{ }
                 }
             })

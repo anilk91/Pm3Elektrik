@@ -50,17 +50,23 @@ class RVAcs140(var arizaListe : ArrayList<ACS140ArizaModel>, var mContext : Cont
             madde2.setText(gelenAriza.madde2)
             madde3.setText(gelenAriza.madde3)
 
-            if (gelenAriza.madde3.isNullOrEmpty()){
+            if (gelenAriza.madde3.isNullOrBlank()){
                 madde3.visibility = View.GONE
                 madde2.visibility = View.VISIBLE
                 madde1.visibility = View.VISIBLE
+            }else{
+                madde3.visibility = View.VISIBLE
             }
             if (gelenAriza.madde2.isNullOrBlank()){
                 madde2.visibility = View.GONE
                 madde1.visibility = View.VISIBLE
+            }else{
+                madde2.visibility = View.VISIBLE
             }
             if (gelenAriza.madde1.isNullOrBlank()){
                 madde1.visibility = View.GONE
+            }else {
+                madde1.visibility = View.VISIBLE
             }
 
         }

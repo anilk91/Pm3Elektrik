@@ -10,9 +10,10 @@ class SalterModel {
     var salterDemeraj="Bilinmiyor"
     var salterDegTarihi="Bilinmiyor"
     var salterMccYeri = "Bilinmiyor"
+    var cekmeceDegTarihi ="Bilinmiyor"
 
     constructor(salterMotorTag : String, salterMarka :String, salterKapasite:String,salterCAT: String, salterSTYLE : String,salterDemeraj :String,
-                salterDegTarihi : String , salterMccYeri : String){
+                salterDegTarihi : String , salterMccYeri : String , cekmeceDegTarihi : String){
 
         this.salterMotorTag = salterMotorTag
         this.salterMarka = salterMarka
@@ -22,6 +23,7 @@ class SalterModel {
         this.salterDemeraj = salterDemeraj
         this.salterDegTarihi = salterDegTarihi
         this.salterMccYeri = salterMccYeri
+        this.cekmeceDegTarihi = cekmeceDegTarihi
     }
 
     constructor()

@@ -116,14 +116,15 @@ class MotorVeSalterEtiket : Fragment() {
 
 
         if (surucuBilgileriGetir != null) {
-            if (surucuBilgileriGetir.surucuBoyut.isNotEmpty() && surucuBilgileriGetir.surucuDIPSivic.isNotEmpty()) {
+            if (!surucuBilgileriGetir.surucuBoyut.isNullOrBlank() && !surucuBilgileriGetir.surucuDIPSivic.isNullOrBlank()) {
 
                 tvSurucuEtiketKonBoyut.text = (surucuBilgileriGetir.surucuBoyut)
                 tvSurucuEtiketKonDip.text = (surucuBilgileriGetir.surucuDIPSivic)
                 tvSurucuEtiketTipi.text = (surucuBilgileriGetir.surucuIsim)
                 tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
                 tvSurucuEtiketDegTarihi.text = (surucuBilgileriGetir.surucuDegTarihi)
-            } else if (surucuBilgileriGetir.surucuBoyut.isEmpty() && surucuBilgileriGetir.surucuDIPSivic.isEmpty()) {
+
+            } else if (surucuBilgileriGetir.surucuBoyut.isNullOrBlank() && surucuBilgileriGetir.surucuDIPSivic.isNullOrBlank()) {
 
                 tvSurucuEtiketKonBoyut.visibility = View.GONE
                 tvSurucuEtiketKonDip.visibility = View.GONE
@@ -135,14 +136,13 @@ class MotorVeSalterEtiket : Fragment() {
                 tvSurucuEtiketDegTarihi.text = surucuBilgileriGetir.surucuDegTarihi
 
             } else {
-                tvSurucuEtiketKonBoyut.setText(surucuBilgileriGetir.surucuBoyut)
-                tvSurucuEtiketKonDip.setText(surucuBilgileriGetir.surucuDIPSivic)
-                tvSurucuEtiketTipi.setText(surucuBilgileriGetir.surucuIsim)
-                tvSurucuEtiketModel.setText(surucuBilgileriGetir.surucuModel)
-                tvSurucuEtiketDegTarihi.setText(surucuBilgileriGetir.surucuDegTarihi)
+//                tvSurucuEtiketKonBoyut.setText(surucuBilgileriGetir.surucuBoyut)
+//                tvSurucuEtiketKonDip.setText(surucuBilgileriGetir.surucuDIPSivic)
+//                tvSurucuEtiketTipi.setText(surucuBilgileriGetir.surucuIsim)
+//                tvSurucuEtiketModel.setText(surucuBilgileriGetir.surucuModel)
+//                tvSurucuEtiketDegTarihi.setText(surucuBilgileriGetir.surucuDegTarihi)
             }
-        } else {
-        }
+        } else { }
     }
 
     private fun salterEtiketBilgileriGelen(p0: DataSnapshot) {
@@ -157,6 +157,7 @@ class MotorVeSalterEtiket : Fragment() {
             tvSalterEtiketStyle.text = (cekmeceBilgiGetir.salterSTYLE)
             tvSalterEtiketDemeraj.text = (cekmeceBilgiGetir.salterDemeraj)
             tvSalterEtiketDegTarihi.text = (cekmeceBilgiGetir.salterDegTarihi)
+            tvCekmeceDegTarihi.text = (cekmeceBilgiGetir.cekmeceDegTarihi)
         } else {
         }
 
@@ -172,7 +173,7 @@ class MotorVeSalterEtiket : Fragment() {
 
             tvMotorEtiketPompaIsim.text = (motorBilgiGetir.motorIsim)
             tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
-            tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " d/d")
+            tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " D/d")
             tvMotorEtiketNomTripAkim.text = (motorBilgiGetir.motorNomTripAkimi + " A")
             tvMotorEtiketInsaTipi.text = (motorBilgiGetir.motorInsaTipi)
             tvMotorEtiketFlans.text = (motorBilgiGetir.motorFlans)
