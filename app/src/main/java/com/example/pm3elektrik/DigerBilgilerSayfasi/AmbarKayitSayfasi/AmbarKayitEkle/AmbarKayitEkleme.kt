@@ -79,6 +79,8 @@ class AmbarKayitEkleme : DialogFragment() {
                         }
                     }
             }
+
+            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         return view

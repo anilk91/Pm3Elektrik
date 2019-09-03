@@ -119,6 +119,7 @@ class CekmeceEtiketDuzenle : Fragment() {
             } else {
                 Toast.makeText(activity, "Motor Tag Alanını Doldurunuz... ", Toast.LENGTH_LONG).show()
             }
+            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         return view

@@ -77,6 +77,8 @@ class TelefonEkle : DialogFragment() {
             }else {
                 Toast.makeText(activity,"Boş Alanları Doldurunuz",Toast.LENGTH_LONG).show()
             }
+
+            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         buttonClose.setOnClickListener {

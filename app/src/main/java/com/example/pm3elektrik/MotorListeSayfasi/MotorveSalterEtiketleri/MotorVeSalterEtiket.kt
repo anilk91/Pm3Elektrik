@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import kotlinx.android.synthetic.main.fragment_motor_ve_salter_etiket.*
 
 
@@ -27,12 +28,17 @@ class MotorVeSalterEtiket : Fragment() {
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     var motorTag: String? = null
+    val bilgiYok = "Bilgi Yok"
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val view = inflater.inflate(R.layout.fragment_motor_ve_salter_etiket, container, false)
 
-        val bundle :Bundle? = arguments
+        val bundle: Bundle? = arguments
         motorTag = bundle?.getString("rvGelenMotorTag")
         firebaseDBOku()
 
@@ -46,23 +52,33 @@ class MotorVeSalterEtiket : Fragment() {
         }
         motorEdit.setOnClickListener {
 
-            val bundleMotorEtiketDuzenle : Bundle? =Bundle()
-            bundleMotorEtiketDuzenle?.putString("motorEtiketDuzenle",motorTag)
+            val bundleMotorEtiketDuzenle: Bundle? = Bundle()
+            bundleMotorEtiketDuzenle?.putString("motorEtiketDuzenle", motorTag)
             val fragment = MotorEtiketDuzenle()
             fragment.arguments = bundleMotorEtiketDuzenle
-            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.containerMotorSalterEtiket,fragment,"motor_ve_salter_etiket")?.commit()
+            val transaction: FragmentTransaction? =
+                activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(
+                R.id.containerMotorSalterEtiket,
+                fragment,
+                "motor_ve_salter_etiket"
+            )?.commit()
 
         }
 
         salterSurucuEdit.setOnClickListener {
 
-            val bundleCekmeceEtiketDuzenle : Bundle? =Bundle()
-            bundleCekmeceEtiketDuzenle?.putString("cekmeceEtiketDuzenle",motorTag)
+            val bundleCekmeceEtiketDuzenle: Bundle? = Bundle()
+            bundleCekmeceEtiketDuzenle?.putString("cekmeceEtiketDuzenle", motorTag)
             val fragment = CekmeceEtiketDuzenle()
             fragment.arguments = bundleCekmeceEtiketDuzenle
-            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.containerMotorSalterEtiket,fragment,"motor_ve_salter_etiket")?.commit()
+            val transaction: FragmentTransaction? =
+                activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(
+                R.id.containerMotorSalterEtiket,
+                fragment,
+                "motor_ve_salter_etiket"
+            )?.commit()
 
         }
 
@@ -71,7 +87,6 @@ class MotorVeSalterEtiket : Fragment() {
     }
 
     private fun firebaseDBOku() {
-
 
 
         //-----------Şalter Etiket Bilgilerini Getir--------------
@@ -116,16 +131,20 @@ class MotorVeSalterEtiket : Fragment() {
 
 
         if (surucuBilgileriGetir != null) {
-            if (!surucuBilgileriGetir.surucuBoyut.isNullOrBlank() && !surucuBilgileriGetir.surucuDIPSivic.isNullOrBlank()) {
+            if (surucuBilgileriGetir.surucuIsim == "Kontaktör") {
 
                 tvSurucuEtiketKonBoyut.text = (surucuBilgileriGetir.surucuBoyut)
                 tvSurucuEtiketKonDip.text = (surucuBilgileriGetir.surucuDIPSivic)
                 tvSurucuEtiketTipi.text = (surucuBilgileriGetir.surucuIsim)
                 tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
-                tvSurucuEtiketDegTarihi.text = (surucuBilgileriGetir.surucuDegTarihi)
 
-            } else if (surucuBilgileriGetir.surucuBoyut.isNullOrBlank() && surucuBilgileriGetir.surucuDIPSivic.isNullOrBlank()) {
+                if (surucuBilgileriGetir.surucuDegTarihi.isNullOrBlank()){
+                    tvSurucuEtiketDegTarihi.text = bilgiYok
+                }else{
+                    tvSurucuEtiketDegTarihi.text = surucuBilgileriGetir.surucuDegTarihi
+                }
 
+            } else {
                 tvSurucuEtiketKonBoyut.visibility = View.GONE
                 tvSurucuEtiketKonDip.visibility = View.GONE
                 tvBoyutYazisi.visibility = View.GONE
@@ -133,34 +152,68 @@ class MotorVeSalterEtiket : Fragment() {
 
                 tvSurucuEtiketTipi.text = surucuBilgileriGetir.surucuIsim
                 tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
-                tvSurucuEtiketDegTarihi.text = surucuBilgileriGetir.surucuDegTarihi
 
-            } else {
-//                tvSurucuEtiketKonBoyut.setText(surucuBilgileriGetir.surucuBoyut)
-//                tvSurucuEtiketKonDip.setText(surucuBilgileriGetir.surucuDIPSivic)
-//                tvSurucuEtiketTipi.setText(surucuBilgileriGetir.surucuIsim)
-//                tvSurucuEtiketModel.setText(surucuBilgileriGetir.surucuModel)
-//                tvSurucuEtiketDegTarihi.setText(surucuBilgileriGetir.surucuDegTarihi)
+                if (surucuBilgileriGetir.surucuDegTarihi.isNullOrBlank()){
+
+                    tvSurucuEtiketDegTarihi.text = bilgiYok
+                }else{
+                    tvSurucuEtiketDegTarihi.text = surucuBilgileriGetir.surucuDegTarihi
+                }
+
+
             }
-        } else { }
+        } else {
+        }
     }
 
     private fun salterEtiketBilgileriGelen(p0: DataSnapshot) {
 
-        val cekmeceBilgiGetir = p0.getValue(SalterModel::class.java)
+        val cekmeceBilgileri = p0.getValue(SalterModel::class.java)
 
-
-        if (cekmeceBilgiGetir != null) {
-            tvSalterMarka.text = (cekmeceBilgiGetir.salterMarka)
-            tvSalterKapasite.text = (cekmeceBilgiGetir.salterKapasite)
-            tvSalterEtiketCat.text = (cekmeceBilgiGetir.salterCAT)
-            tvSalterEtiketStyle.text = (cekmeceBilgiGetir.salterSTYLE)
-            tvSalterEtiketDemeraj.text = (cekmeceBilgiGetir.salterDemeraj)
-            tvSalterEtiketDegTarihi.text = (cekmeceBilgiGetir.salterDegTarihi)
-            tvCekmeceDegTarihi.text = (cekmeceBilgiGetir.cekmeceDegTarihi)
-        } else {
+        //-----------------------------
+        if (cekmeceBilgileri?.salterMarka.isNullOrBlank()) {
+            tvSalterMarka.text = (bilgiYok)
+        } else  {
+            tvSalterMarka.text = (cekmeceBilgileri?.salterMarka)
         }
 
+        //--------------------------------
+        if (cekmeceBilgileri?.salterKapasite.isNullOrBlank()) {
+            tvSalterKapasite.text = (bilgiYok)
+        } else  {
+            tvSalterKapasite.text = (cekmeceBilgileri?.salterKapasite)
+        }
+
+        //--------------------------------
+        if (cekmeceBilgileri?.salterCAT.isNullOrBlank()) {
+            tvSalterEtiketCat.text = (bilgiYok)
+        } else {
+            tvSalterEtiketCat.text = (cekmeceBilgileri?.salterCAT)
+        }
+        //------------------------------
+         if (cekmeceBilgileri?.salterSTYLE.isNullOrBlank()) {
+            tvSalterEtiketStyle.text = (bilgiYok)
+        } else  {
+            tvSalterEtiketStyle.text = (cekmeceBilgileri?.salterSTYLE)
+        }
+        //-------------------------------------
+        if (cekmeceBilgileri?.salterDemeraj.isNullOrBlank()) {
+            tvSalterEtiketDemeraj.text = (bilgiYok)
+        } else  {
+            tvSalterEtiketDemeraj.text = (cekmeceBilgileri?.salterDemeraj)
+        }
+        //-----------------------------------
+        if (cekmeceBilgileri?.salterDegTarihi.isNullOrBlank()) {
+            tvSalterEtiketDegTarihi.text = (bilgiYok)
+        } else  {
+            tvSalterEtiketDegTarihi.text = (cekmeceBilgileri?.salterDegTarihi)
+        }
+        //-----------------------------------
+        if (cekmeceBilgileri?.cekmeceDegTarihi.isNullOrBlank()) {
+            tvCekmeceDegTarihi.text = (bilgiYok)
+        } else  {
+            tvCekmeceDegTarihi.text = (cekmeceBilgileri?.cekmeceDegTarihi)
+        }
 
     }
 
@@ -171,17 +224,73 @@ class MotorVeSalterEtiket : Fragment() {
 
         if (motorBilgiGetir != null) {
 
-            tvMotorEtiketPompaIsim.text = (motorBilgiGetir.motorIsim)
             tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
-            tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " D/d")
-            tvMotorEtiketNomTripAkim.text = (motorBilgiGetir.motorNomTripAkimi + " A")
-            tvMotorEtiketInsaTipi.text = (motorBilgiGetir.motorInsaTipi)
-            tvMotorEtiketFlans.text = (motorBilgiGetir.motorFlans)
-            tvMotorEtiketAdres.text = (motorBilgiGetir.motorAdres)
             tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
-            tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
-            tvMotorEtiketGucKw.text = ("${motorBilgiGetir.motorGucKW} KW")
-            tvMotorEtiketGucHp.text = ("${motorBilgiGetir.motorGucHP} HP")
+
+            //------------------------------------------------------------
+            if (motorBilgiGetir.motorIsim.isNullOrBlank()){
+                tvMotorEtiketPompaIsim.text = bilgiYok
+            }else{
+                tvMotorEtiketPompaIsim.text = (motorBilgiGetir.motorIsim)
+            }
+
+            //------------------------------------------------------------
+            if (motorBilgiGetir.motorDevir.isNullOrBlank()){
+                tvMotorEtiketDevir.text = bilgiYok
+            }else{
+                tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " D/d")
+            }
+
+            //------------------------------------------------------------
+            if(motorBilgiGetir.motorNomTripAkimi.isNullOrBlank()){
+                tvMotorEtiketNomTripAkim.text = bilgiYok
+            }else{
+                tvMotorEtiketNomTripAkim.text = (motorBilgiGetir.motorNomTripAkimi + " A")
+            }
+
+            //--------------------------------------------------------------
+            if (motorBilgiGetir.motorInsaTipi.isNullOrBlank()){
+                tvMotorEtiketInsaTipi.text = bilgiYok
+            }else{
+                tvMotorEtiketInsaTipi.text = (motorBilgiGetir.motorInsaTipi)
+            }
+
+            //----------------------------------------------------------------
+
+            if (motorBilgiGetir.motorFlans.isNullOrBlank()){
+                tvMotorEtiketFlans.text = bilgiYok
+            }else{
+                tvMotorEtiketFlans.text = (motorBilgiGetir.motorFlans)
+            }
+
+            //-----------------------------------------------------------------
+            if (motorBilgiGetir.motorAdres.isNullOrBlank()){
+                tvMotorEtiketAdres.text = bilgiYok
+            }else{
+                tvMotorEtiketAdres.text = (motorBilgiGetir.motorAdres)
+            }
+
+            //---------------------------------------------------------------
+            if (motorBilgiGetir.motorDegTarihi.isNullOrBlank()){
+                tvMotorEtiketDegTarih.text = bilgiYok
+            }else{
+                tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
+            }
+
+            //-------------------------------------------------------------
+            if (motorBilgiGetir.motorGucKW == 0.0){
+                tvMotorEtiketGucKw.text = bilgiYok
+            }else{
+                tvMotorEtiketGucKw.text = ("${motorBilgiGetir.motorGucKW} KW")
+            }
+
+            //---------------------------------------------------------
+            if (motorBilgiGetir.motorGucHP == 0.0){
+                tvMotorEtiketGucHp.text = bilgiYok
+            }else {
+                tvMotorEtiketGucHp.text = ("${motorBilgiGetir.motorGucHP} HP")
+            }
+
         }
         else { }
     }

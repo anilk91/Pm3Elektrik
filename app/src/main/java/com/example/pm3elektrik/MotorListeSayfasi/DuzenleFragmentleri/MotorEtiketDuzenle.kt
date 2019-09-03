@@ -3,6 +3,7 @@ package com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 import java.lang.Exception
 import java.math.BigDecimal
@@ -30,7 +32,6 @@ class MotorEtiketDuzenle : Fragment() {
 
     companion object{
         var gucKW_static = 0.0
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,14 +41,11 @@ class MotorEtiketDuzenle : Fragment() {
         val motorTag = bundle?.getString("motorEtiketDuzenle")
 
         if(motorTag != null){
-
             firebaseOkunan(motorTag)
         }
 
-
         val button_close = view.findViewById<ImageView>(R.id.imgMotorCLose)
         val button_ekle = view.findViewById<Button>(R.id.buttonMotorEkle)
-
 
         val gucKw = view.findViewById<EditText>(R.id.etGucKw)
         val gucHp = view.findViewById<EditText>(R.id.etGucHP)
@@ -65,7 +63,6 @@ class MotorEtiketDuzenle : Fragment() {
                     motor_liste.motorGucKW = kw
                     gucKW_static = kw
                 }
-
             }
         })
 
@@ -80,7 +77,6 @@ class MotorEtiketDuzenle : Fragment() {
                    val kw_karsiligi =  BigDecimal(kw).setScale(1, RoundingMode.HALF_EVEN)
                    motor_liste.motorGucKW = kw_karsiligi.toDouble()
                    motor_liste.motorGucHP = hp
-
                    gucKW_static = kw_karsiligi.toDouble()
                }
             }
@@ -92,13 +88,13 @@ class MotorEtiketDuzenle : Fragment() {
 
                 val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
                 val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
-                val devir = view.findViewById<EditText>(R.id.etDevir).text.toString().toUpperCase()
-                val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString().toUpperCase()
+                val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
+                val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
                 val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
                 val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
                 val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
                 val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
-                val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
+                val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
 
 
                 FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
@@ -106,6 +102,7 @@ class MotorEtiketDuzenle : Fragment() {
             } else {
                 Toast.makeText(activity, "Lütfen Motor Tag ve Mcc Yerini Giriniz", Toast.LENGTH_LONG).show()
             }
+            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         return view

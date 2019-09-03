@@ -52,10 +52,19 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
         fun setData(motorListesi: MotorModel, position: Int) {
 
+            if (motorListesi.motorDevir.isNullOrBlank()){
+                motorDevir.setText("Bilgi Yok")
+            }else{
+                motorDevir.setText("${motorListesi.motorDevir} D/d")
+            }
+            if (motorListesi.motorGucKW == 0.0){
+                motorGuc.setText("Bilgi Yok")
+            }else{
+                motorGuc.setText("${motorListesi.motorGucKW} KW")
+            }
             motorTag.setText(motorListesi.motorTag)
             mCCYeri.setText(motorListesi.motorMCCYeri)
-            motorGuc.setText("${motorListesi.motorGucKW}")
-            motorDevir.setText(motorListesi.motorDevir)
+
 
             motorBilgi.setOnClickListener {
 
@@ -67,7 +76,6 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                 transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
 
             }
-
             motorDelete.setOnClickListener {
 
                 // Motor Bilgilerini Sil-----------------------------

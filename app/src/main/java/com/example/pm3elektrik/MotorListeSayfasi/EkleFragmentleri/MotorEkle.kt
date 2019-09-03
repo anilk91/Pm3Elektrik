@@ -86,13 +86,13 @@ class MotorEkle : Fragment() {
 
             val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
             val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
-            val devir = view.findViewById<EditText>(R.id.etDevir).text.toString().toUpperCase()
-            val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString().toUpperCase()
+            val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
+            val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
             val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
             val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
             val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
             val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
-            val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString().toUpperCase()
+            val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
 
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
@@ -103,6 +103,8 @@ class MotorEkle : Fragment() {
             }else{
                 Toast.makeText(activity,"Lütfen Motor Tag ve Mcc Yerini Giriniz",Toast.LENGTH_LONG).show()
             }
+
+            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         button_close.setOnClickListener {

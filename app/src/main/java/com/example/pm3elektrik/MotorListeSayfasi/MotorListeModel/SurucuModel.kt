@@ -2,11 +2,11 @@ package com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel
 
 class SurucuModel {
 
-    var surucuIsim ="Bilinmiyor"
-    var surucuModel="Bilinmiyor"
-    var surucuDegTarihi = "Bilinmiyor"
-    var surucuBoyut ="Bilinmiyor"
-    var surucuDIPSivic ="Bilinmiyor"
+    var surucuIsim =""
+    var surucuModel=""
+    var surucuDegTarihi = ""
+    var surucuBoyut =""
+    var surucuDIPSivic =""
 
     constructor(surucuIsim : String,surucuModel : String, surucuDegTarihi : String){
 
