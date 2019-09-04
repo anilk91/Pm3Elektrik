@@ -93,12 +93,13 @@ class MotorEkle : Fragment() {
             val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
             val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
             val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
+            val motor_not = view.findViewById<EditText>(R.id.etMotorNot).text.toString().toUpperCase()
 
 
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
 
-                    FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi)
+                    FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi,motor_not)
 
             }else{
                 Toast.makeText(activity,"Lütfen Motor Tag ve Mcc Yerini Giriniz",Toast.LENGTH_LONG).show()
@@ -114,7 +115,7 @@ class MotorEkle : Fragment() {
     }
 
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
-                  motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String){
+                  motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String , motorNot : String){
 
 
 
@@ -127,6 +128,7 @@ class MotorEkle : Fragment() {
         motor_liste.motorAdres = motorAdres
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
+        motor_liste.motorNot = motorNot
 
         salterListe.salterMotorTag = motorTag
         salterListe.salterMccYeri = motorMCCYeri

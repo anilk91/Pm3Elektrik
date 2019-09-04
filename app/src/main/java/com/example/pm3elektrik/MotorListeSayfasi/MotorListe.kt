@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.CekmeceEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
-import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.SalterEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
@@ -70,14 +70,11 @@ class MotorListe : Fragment() {
         mFAB_motor = view.findViewById(R.id.menu_motor)
 
         mFAB_motor.setOnClickListener {
-
             changeFragment(MotorEkle())
-
-
         }
         mFAB_cekmece.setOnClickListener {
 
-            changeFragment(SalterEkle())
+            changeFragment(CekmeceEkle())
         }
         //Floating Action Bar Butonları ----------------------------------------------------<
 
@@ -97,6 +94,7 @@ class MotorListe : Fragment() {
                         val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir))
+
                     }
                     recyclerAdapter(motorListesi,mContext)
 
@@ -106,11 +104,12 @@ class MotorListe : Fragment() {
     }
 
     //FirebaseDatabase Okunan Değerlerden Gelen Veriler
-    fun recyclerAdapter(motorGelenListe : ArrayList<MotorModel> , mRvContext: Context) {
-        myAdapter = MotorRVAdapter(motorGelenListe,mRvContext,activity)
+    fun recyclerAdapter(motorGelenListe: ArrayList<MotorModel>, mContext: Context) {
+
+        myAdapter = MotorRVAdapter(motorGelenListe,mContext,activity)
         view?.rvMotorListe?.adapter = myAdapter
 
-        val mLayoutManager = LinearLayoutManager(mRvContext,RecyclerView.VERTICAL,false)
+        val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()

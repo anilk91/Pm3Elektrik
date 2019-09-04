@@ -291,6 +291,13 @@ class MotorVeSalterEtiket : Fragment() {
                 tvMotorEtiketGucHp.text = ("${motorBilgiGetir.motorGucHP} HP")
             }
 
+            //------------------------------------------------
+            if(motorBilgiGetir.motorNot.isNullOrBlank()){
+                tvMotorNot.text = bilgiYok
+            }else{
+                tvMotorNot.text = ("${motorBilgiGetir.motorNot}")
+            }
+
         }
         else { }
     }

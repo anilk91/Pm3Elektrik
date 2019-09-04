@@ -216,17 +216,32 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:layout_marginBottom="24dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
                             android:hint="Değişim Tarihi"
                             android:inputType="date"
                             android:textColor="@android:color/black"
                             android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/etMotorMCCYeri"
                             app:layout_constraintStart_toStartOf="@+id/etMotorMCCYeri"
                             app:layout_constraintTop_toBottomOf="@+id/etMotorMCCYeri" />
+
+                    <EditText
+                            android:id="@+id/etMotorNot"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Not Bilgisi"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/etMotorDegTarihi"
+                            app:layout_constraintStart_toStartOf="@+id/etMotorDegTarihi"
+                            app:layout_constraintTop_toBottomOf="@+id/etMotorDegTarihi" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

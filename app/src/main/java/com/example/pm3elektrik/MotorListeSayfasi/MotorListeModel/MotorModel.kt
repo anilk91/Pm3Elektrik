@@ -14,9 +14,10 @@ class MotorModel {
     var motorAdres: String = ""
     var motorMCCYeri: String = ""
     var motorDegTarihi: String = ""
+    var motorNot = ""
 
     constructor(motorIsim : String ,motorTag: String, motorGucKW: Double, motorGucHP: Double, motorDevir: String, motorNomTripAkimi: String,
-        motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String
+        motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String, motorNot:String
     ) {
 
         this.motorIsim = motorIsim
@@ -30,6 +31,7 @@ class MotorModel {
         this.motorAdres = motorAdres
         this.motorMCCYeri = motorMCCYeri
         this.motorDegTarihi = motorDegTarihi
+        this.motorNot = motorNot
     }
 
     constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String) {
