@@ -25,7 +25,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.motor_rv_adapter,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_motor_liste_adapter,parent,false)
         return MyData(view)
     }
 
@@ -45,12 +45,29 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
         var mCCYeri = tumLayout.tvMotorMCCYeri
         var motorGuc = tumLayout.tvMotorGuc
         var motorDevir = tumLayout.tvMotorDevir
+        var devirYazisi = tumLayout.tvDevirYazisi
+        var gucYazisi = tumLayout.tvGucYazisi
         var motorBilgi = tumLayout.imgBilgiButton as ImageView
         var motorDelete = tumLayout.imgDeleteButton as ImageView
 
 
 
         fun setData(motorListesi: MotorModel, position: Int) {
+
+            if (motorListesi.motorDevir == "Sadece Salter"){
+//                motorDevir.visibility = View.GONE
+//                devirYazisi.visibility = View.GONE
+                devirYazisi.setText("Kapasite :")
+                motorDevir.setText("${motorListesi.cekmeceKapasite} A")
+            }else{}
+
+            if (motorListesi.motorGucKW == 1500000.0){
+//                motorGuc.visibility = View.GONE
+//                gucYazisi.visibility = View.GONE
+                gucYazisi.setText("Şalter :")
+                motorGuc.setText("Marka - ${motorListesi.cekmeceMarka} Model - ${motorListesi.cekmeceModel}")
+
+            }else{}
 
             if (motorListesi.motorDevir.isNullOrBlank()){
                 motorDevir.setText("Bilgi Yok")
@@ -64,6 +81,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
             }
             motorTag.setText(motorListesi.motorTag)
             mCCYeri.setText(motorListesi.motorMCCYeri)
+
 
 
             motorBilgi.setOnClickListener {

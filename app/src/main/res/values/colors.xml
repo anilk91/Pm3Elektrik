@@ -5,4 +5,5 @@
     <color name="primaryLightColor">#FFCCCB</color>
     <color name="colorAccent">#D81B60</color>
     <color name="primaryTextColor">#000000</color>
+    <color name="rvAdapterUstBarColor">#B4B4B4</color>
 </resources>

@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
@@ -19,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 class CekmeceEkle : Fragment() {
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
-    val cekmeceListe = CekmeceModel()
+    val cekmeceListe = MotorModel()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -67,7 +68,11 @@ class CekmeceEkle : Fragment() {
         cekmeceListe.cekmeceCat = cat
         cekmeceListe.cekmeceSalterDegisim = degTarihi
         cekmeceListe.cekmeceDemeraj = demeraj
-        cekmeceListe.cekmeceMccYeri = mccYeri
+
+        cekmeceListe.motorMCCYeri = mccYeri
+        cekmeceListe.motorTag = isim
+        cekmeceListe.motorGucKW = 1500000.0
+        cekmeceListe.motorDevir = "Sadece Salter"
 
 
         ref.push()
@@ -82,36 +87,6 @@ class CekmeceEkle : Fragment() {
                     }catch (hata:Exception){ }
                 }
             }
-    }
-
-    class CekmeceModel{
-
-        var cekmeceIsim = ""
-        var cekmeceMarka = ""
-        var cekmeceModel = ""
-        var cekmeceKapasite = ""
-        var cekmeceCat = ""
-        var cekmeceSalterDegisim=""
-        var cekmeceDemeraj = ""
-        var cekmeceMccYeri = ""
-
-        constructor(cekmeceIsim: String, cekmeceMarka: String, cekmeceModel: String, cekmeceKapasite: String, cekmeceCat: String, cekmeceSalterDegisim: String, cekmeceDemeraj: String , cekmeceMccYeri : String) {
-
-            this.cekmeceIsim = cekmeceIsim
-            this.cekmeceMarka = cekmeceMarka
-            this.cekmeceModel = cekmeceModel
-            this.cekmeceKapasite = cekmeceKapasite
-            this.cekmeceCat = cekmeceCat
-            this.cekmeceSalterDegisim = cekmeceSalterDegisim
-            this.cekmeceDemeraj = cekmeceDemeraj
-            this.cekmeceMccYeri = cekmeceMccYeri
-        }
-        constructor(cekmeceIsim: String, cekmeceMccYeri: String) {
-            this.cekmeceIsim = cekmeceIsim
-            this.cekmeceMccYeri = cekmeceMccYeri
-        }
-
-        constructor()
     }
 
     private fun changeFragment(fragment : Fragment){
