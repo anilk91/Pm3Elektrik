@@ -46,7 +46,7 @@
                     android:textColor="#4D3EFF"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag" />
 
             <TextView
                     android:id="@+id/tvGucYazisi"
@@ -74,7 +74,7 @@
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvGucYazisi" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvMotorGuc" />
 
             <TextView
                     android:id="@+id/tvMotorEtiketTag"
@@ -93,6 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/nunito_extrabold"
                     android:text="Mcc Yeri"
@@ -100,25 +101,29 @@
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView37"
-                    app:layout_constraintTop_toTopOf="@+id/textView37" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag" />
 
             <TextView
                     android:id="@+id/tvMotorGuc"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito_extrabold"
                     android:text="Güç"
                     android:textColor="#4D4D4D"
                     android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvGucYazisi"
-                    app:layout_constraintTop_toTopOf="@+id/tvGucYazisi" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvMotorMCCYeri" />
 
             <TextView
                     android:id="@+id/tvMotorDevir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/nunito_extrabold"
                     android:text="Devir"
@@ -126,7 +131,7 @@
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvDevirYazisi"
-                    app:layout_constraintTop_toTopOf="@+id/tvDevirYazisi" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvMotorGuc" />
 
             <ImageView
                     android:id="@+id/imageView5"

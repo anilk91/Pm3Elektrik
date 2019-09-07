@@ -71,8 +71,7 @@ class CekmeceEkle : Fragment() {
 
         cekmeceListe.motorMCCYeri = mccYeri
         cekmeceListe.motorTag = isim
-        cekmeceListe.motorGucKW = 1500000.0
-        cekmeceListe.motorDevir = "Sadece Salter"
+        cekmeceListe.motorGelenVeri = "cekmeceEkle"
 
 
         ref.push()

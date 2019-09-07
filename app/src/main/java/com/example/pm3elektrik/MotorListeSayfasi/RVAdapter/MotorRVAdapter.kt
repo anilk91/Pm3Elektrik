@@ -54,33 +54,30 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
         fun setData(motorListesi: MotorModel, position: Int) {
 
-            if (motorListesi.motorDevir == "Sadece Salter"){
-//                motorDevir.visibility = View.GONE
-//                devirYazisi.visibility = View.GONE
+            if (motorListesi.motorGelenVeri == "cekmeceEkle"){
                 devirYazisi.setText("Kapasite :")
                 motorDevir.setText("${motorListesi.cekmeceKapasite} A")
-            }else{}
-
-            if (motorListesi.motorGucKW == 1500000.0){
-//                motorGuc.visibility = View.GONE
-//                gucYazisi.visibility = View.GONE
                 gucYazisi.setText("Şalter :")
-                motorGuc.setText("Marka - ${motorListesi.cekmeceMarka} Model - ${motorListesi.cekmeceModel}")
-
+                motorGuc.setText("${motorListesi.cekmeceMarka}\nModel - ${motorListesi.cekmeceModel}")
+                motorTag.setText(motorListesi.motorTag)
+                mCCYeri.setText(motorListesi.motorMCCYeri)
             }else{}
 
-            if (motorListesi.motorDevir.isNullOrBlank()){
-                motorDevir.setText("Bilgi Yok")
-            }else{
-                motorDevir.setText("${motorListesi.motorDevir} D/d")
-            }
-            if (motorListesi.motorGucKW == 0.0){
-                motorGuc.setText("Bilgi Yok")
-            }else{
-                motorGuc.setText("${motorListesi.motorGucKW} KW")
-            }
-            motorTag.setText(motorListesi.motorTag)
-            mCCYeri.setText(motorListesi.motorMCCYeri)
+            if (motorListesi.motorGelenVeri == "motorEkle"){
+                if (motorListesi.motorDevir.isNullOrBlank()){
+                    motorDevir.setText("Bilgi Yok")
+                }else{
+                    motorDevir.setText("${motorListesi.motorDevir} D/d")
+                }
+                if (motorListesi.motorGucKW == 0.0){
+                    motorGuc.setText("Bilgi Yok")
+                }else{
+                    motorGuc.setText("${motorListesi.motorGucKW} KW")
+                }
+                motorTag.setText(motorListesi.motorTag)
+                mCCYeri.setText(motorListesi.motorMCCYeri)
+            }else{}
+
 
 
 

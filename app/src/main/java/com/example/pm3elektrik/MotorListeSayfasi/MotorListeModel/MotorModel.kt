@@ -15,6 +15,8 @@ class MotorModel {
     var motorDegTarihi: String = ""
     var motorNot = ""
 
+    var motorGelenVeri = ""
+
     //-----ÇEKMECE ŞALTER İÇERİK OLANLAR-----
     //motorTag push() metodu olucak
     //Diğer bilgiler değer olucak
@@ -30,7 +32,7 @@ class MotorModel {
 
 
     constructor(motorIsim : String ,motorTag: String, motorGucKW: Double, motorGucHP: Double, motorDevir: String, motorNomTripAkimi: String,
-        motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String, motorNot:String
+        motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String, motorNot:String, motorGelenVeri : String
     ) {
 
         this.motorIsim = motorIsim
@@ -45,6 +47,7 @@ class MotorModel {
         this.motorMCCYeri = motorMCCYeri
         this.motorDegTarihi = motorDegTarihi
         this.motorNot = motorNot
+        this.motorGelenVeri = motorGelenVeri
     }
 
 
@@ -57,7 +60,7 @@ class MotorModel {
 
     }
 
-    constructor(motorTag: String, motorMCCYeri: String, cekmeceIsim: String, cekmeceMarka: String, cekmeceModel: String, cekmeceKapasite: String, cekmeceCat: String, cekmeceSalterDegisim: String, cekmeceDemeraj: String) {
+    constructor(motorTag: String, motorMCCYeri: String, cekmeceIsim: String, cekmeceMarka: String, cekmeceModel: String, cekmeceKapasite: String, cekmeceCat: String, cekmeceSalterDegisim: String, cekmeceDemeraj: String , motorGelenVeri : String) {
 
         this.motorTag = motorTag
         this.motorMCCYeri = motorMCCYeri
@@ -68,6 +71,7 @@ class MotorModel {
         this.cekmeceCat = cekmeceCat
         this.cekmeceSalterDegisim = cekmeceSalterDegisim
         this.cekmeceDemeraj = cekmeceDemeraj
+        this.motorGelenVeri = motorGelenVeri
     }
 
     constructor(motorTag: String, motorMCCYeri: String) {
@@ -77,7 +81,7 @@ class MotorModel {
 
 
     constructor()
-    constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String) {
+    constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String , motorGelenVeri : String) {
 
         this.motorTag = motorTag
         this.motorMCCYeri = motorMCCYeri
@@ -86,6 +90,7 @@ class MotorModel {
         this.cekmeceModel = cekmeceModel
         this.cekmeceMarka = cekmeceMarka
         this.cekmeceKapasite = cekmeceKapasite
+        this.motorGelenVeri = motorGelenVeri
     }
 
 }

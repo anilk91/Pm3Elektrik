@@ -129,6 +129,7 @@ class MotorEkle : Fragment() {
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
         motor_liste.motorNot = motorNot
+        motor_liste.motorGelenVeri = "motorEkle"
 
         salterListe.salterMotorTag = motorTag
         salterListe.salterMccYeri = motorMCCYeri

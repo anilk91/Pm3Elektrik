@@ -124,6 +124,7 @@ class MotorEtiketDuzenle : Fragment() {
         motor_liste.motorMCCYeri = motorMCCYeri
         motor_liste.motorDegTarihi = motorDegTarihi
         motor_liste.motorNot = motorNot
+        motor_liste.motorGelenVeri = "motorEkle"
 
         ref.child(motorTag)
             .setValue(motor_liste).addOnCompleteListener {
