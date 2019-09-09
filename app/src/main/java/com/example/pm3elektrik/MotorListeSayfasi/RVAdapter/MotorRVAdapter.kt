@@ -1,11 +1,15 @@
 package com.example.pm3elektrik.MotorListeSayfasi.RVAdapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
@@ -13,7 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.*
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorDevir
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorEtiketTag
@@ -50,9 +57,26 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
         var motorBilgi = tumLayout.imgBilgiButton as ImageView
         var motorDelete = tumLayout.imgDeleteButton as ImageView
 
-
-
         fun setData(motorListesi: MotorModel, position: Int) {
+
+            if (motorListesi.motorGelenVeri == "motorEkle"){
+                if (motorListesi.motorDevir.isNullOrBlank()){
+                    devirYazisi.setText("Devir :")
+                    motorDevir.setText("Bilgi Yok")
+                }else{
+                    devirYazisi.setText("Devir :")
+                    motorDevir.setText("${motorListesi.motorDevir} D/d")
+                }
+                if (motorListesi.motorGucKW == 0.0){
+                    gucYazisi.setText("Güç :")
+                    motorGuc.setText("Bilgi Yok")
+                }else{
+                    gucYazisi.setText("Güç :")
+                    motorGuc.setText("${motorListesi.motorGucKW} KW")
+                }
+                motorTag.setText(motorListesi.motorTag)
+                mCCYeri.setText(motorListesi.motorMCCYeri)
+            }
 
             if (motorListesi.motorGelenVeri == "cekmeceEkle"){
                 devirYazisi.setText("Kapasite :")
@@ -61,22 +85,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                 motorGuc.setText("${motorListesi.cekmeceMarka}\nModel - ${motorListesi.cekmeceModel}")
                 motorTag.setText(motorListesi.motorTag)
                 mCCYeri.setText(motorListesi.motorMCCYeri)
-            }else{}
-
-            if (motorListesi.motorGelenVeri == "motorEkle"){
-                if (motorListesi.motorDevir.isNullOrBlank()){
-                    motorDevir.setText("Bilgi Yok")
-                }else{
-                    motorDevir.setText("${motorListesi.motorDevir} D/d")
-                }
-                if (motorListesi.motorGucKW == 0.0){
-                    motorGuc.setText("Bilgi Yok")
-                }else{
-                    motorGuc.setText("${motorListesi.motorGucKW} KW")
-                }
-                motorTag.setText(motorListesi.motorTag)
-                mCCYeri.setText(motorListesi.motorMCCYeri)
-            }else{}
+            }
 
 
 
@@ -93,26 +102,57 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
             }
             motorDelete.setOnClickListener {
 
-                // Motor Bilgilerini Sil-----------------------------
-                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                    .child("Motor")
-                    .child(motorListe[position].motorTag)
-                    .removeValue()
-                //Şalter Bilgilerini Sil--------------------------------
-                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                    .child("Salter")
-                    .child(motorListe[position].motorTag)
-                    .removeValue()
+                //AlertDialog Penceresi------------------------------
+                val builder = AlertDialog.Builder(mContext)
+                builder.setTitle("Seçimi Sil?")
+                builder.setMessage("${motorListesi.motorTag} Etiketine Ait Tüm Bilgileri Silmek İstiyor Musunuz?")
 
-                //Sürücü Bilgilerini Sil---------------------------------
-                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                    .child("Surucu")
-                    .child(motorListe[position].motorTag)
-                    .removeValue()
+                builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
 
-                motorListe.removeAt(position)
-                notifyItemRemoved(position)
-                notifyItemRangeChanged(position,motorListe.size)
+                        //Çekmece ve Motor Bilgilerini Sil----------------------------
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Motor")
+                            .orderByChild("motorTag")
+                            .equalTo("${motorListesi.motorTag}")
+                            .addListenerForSingleValueEvent(object : ValueEventListener{
+                                override fun onCancelled(p0: DatabaseError) {}
+                                override fun onDataChange(p0: DataSnapshot) {
+
+                                    for (gelen in p0.children){
+                                        gelen.ref.removeValue()
+                                    }
+                                }
+                            })
+
+                        //Şalter Bilgilerini Sil--------------------------------
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Salter")
+                            .child(motorListe[position].motorTag)
+                            .removeValue()
+
+                        //Sürücü Bilgilerini Sil---------------------------------
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Surucu")
+                            .child(motorListe[position].motorTag)
+                            .removeValue()
+
+                        motorListe.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position,motorListe.size)
+
+                        Toast.makeText(mContext,"${motorListesi.motorTag} Silindi!",Toast.LENGTH_SHORT).show()
+                    }
+                })
+                builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        Toast.makeText(mContext,"Seçim Silinmedi!",Toast.LENGTH_SHORT).show()
+                    }
+                })
+
+                val dialog : AlertDialog =builder.create()
+                dialog.show()
+
 
             }
 
