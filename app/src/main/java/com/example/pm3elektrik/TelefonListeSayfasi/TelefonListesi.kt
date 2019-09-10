@@ -51,7 +51,7 @@ class TelefonListesi : Fragment() {
         mFAB_telefon.setOnClickListener {
 
             val telefonEkle = TelefonEkle()
-            telefonEkle.show(fragmentManager,"telefon_ekle_dialog_fr")
+            telefonEkle.show(fragmentManager!!,"telefon_ekle_dialog_fr")
 
         }
 

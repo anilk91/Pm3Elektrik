@@ -12,7 +12,9 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKonvertorHesap
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
+import com.example.pm3elektrik.DigerBilgilerSayfasi.DriveUniteleriSayfasi.DriveUniteEkle
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTrip
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KuyuPanoSayfasi.KuyuPanolari
 
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.fragment_diger_bilgiler.view.*
@@ -25,23 +27,21 @@ class DigerBilgiler : Fragment() {
         val ambarSayfasi= view.findViewById<CardView>(R.id.cardViewAmbarKayit)
         val akimKonvertorSayfasi = view.findViewById<CardView>(R.id.cardViewAkimKonHesapla)
         val kontaktorTripSayfasi = view.findViewById<CardView>(R.id.cardViewKontaktorTrip)
+        val kuyuPanolariSayfasi = view.findViewById<CardView>(R.id.cardViewKuyuVeMcc)
+        val driveUniteleriSayfasi = view.findViewById<CardView>(R.id.cardViewDriveUnite)
 
-        ambarSayfasi.setOnClickListener {
-
-            changeFragment(AmbarKayit())
-
-        }
+        ambarSayfasi.setOnClickListener { changeFragment(AmbarKayit()) }
 
         akimKonvertorSayfasi.setOnClickListener {
-
             val akimKonSayfa = AkimKonvertorHesap()
-            akimKonSayfa.show(fragmentManager,"akim_konvertor_fragment")
+            akimKonSayfa.show(fragmentManager!!,"akim_konvertor_fragment")
         }
 
-        kontaktorTripSayfasi.setOnClickListener {
+        kontaktorTripSayfasi.setOnClickListener { changeFragment(KontaktorTrip()) }
 
-            changeFragment(KontaktorTrip())
-        }
+        kuyuPanolariSayfasi.setOnClickListener { changeFragment(KuyuPanolari()) }
+
+        driveUniteleriSayfasi.setOnClickListener { changeFragment(DriveUniteEkle()) }
 
 
 

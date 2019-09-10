@@ -29,11 +29,11 @@ class KontaktorTrip : Fragment() {
         val dipSiviceGoreMotorAkimi = view.findViewById<CardView>(R.id.cardDipSivicMotorAkBul)
 
         motorAkiminaGoreDip.setOnClickListener {
-            MotorAkiminaGoreDipSivic().show(fragmentManager,"dialog_fr_motor_akima_gore")
+            MotorAkiminaGoreDipSivic().show(fragmentManager!!,"dialog_fr_motor_akima_gore")
         }
 
         dipSiviceGoreMotorAkimi.setOnClickListener {
-            DipSiviceGoreAkim().show(fragmentManager,"dialog_fr_dip_sivice_gore")
+            DipSiviceGoreAkim().show(fragmentManager!!,"dialog_fr_dip_sivice_gore")
         }
 
         sizeLowRange.setOnClickListener {

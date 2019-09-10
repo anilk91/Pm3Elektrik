@@ -61,7 +61,7 @@ class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context
                 bundle?.putString("rvGidenTanim",ambarListe[position].ambarTanim)
                 val fragment = AmbarKayitEkleme()
                 fragment.arguments = bundle
-                fragment.show(fragmentManager,"ambar_kayit_ekle_fr")
+                fragment.show(fragmentManager!!,"ambar_kayit_ekle_fr")
 
             }
 

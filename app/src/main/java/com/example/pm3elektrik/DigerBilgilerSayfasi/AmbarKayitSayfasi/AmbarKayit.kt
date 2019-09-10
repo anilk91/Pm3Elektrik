@@ -71,7 +71,7 @@ class AmbarKayit : Fragment() {
         mFAB_ambar = view.findViewById(R.id.menu_ambar)
         mFAB_ambar.setOnClickListener {
             val ambarFragment = AmbarKayitEkleme()
-            ambarFragment.show(fragmentManager,"ambar_ekle_fragmenti")
+            ambarFragment.show(fragmentManager!!,"ambar_ekle_fragmenti")
         }
 
 

@@ -58,7 +58,7 @@ class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentMana
                 bundle?.putString("rvGidenTelNo",telefonListe[position].telefonNo)
                 val fragment = TelefonEkle()
                 fragment.arguments = bundle
-                fragment.show(fragmentManager,"telefon_ekle_dialog_fr")
+                fragment.show(fragmentManager!!,"telefon_ekle_dialog_fr")
             }
 
             telefonListeSil.setOnClickListener {
