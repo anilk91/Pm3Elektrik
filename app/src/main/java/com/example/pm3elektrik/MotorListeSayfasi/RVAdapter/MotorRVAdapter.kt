@@ -57,6 +57,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
         var motorBilgi = tumLayout.imgBilgiButton as ImageView
         var motorDelete = tumLayout.imgDeleteButton as ImageView
 
+
         fun setData(motorListesi: MotorModel, position: Int) {
 
             if (motorListesi.motorGelenVeri == "motorEkle"){
