@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F4F9FD"
-        tools:context=".DigerBilgilerSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle">
+        tools:context=".MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle">
 
 
     <ImageView
@@ -21,6 +21,7 @@
     <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +49,7 @@
                         android:layout_height="wrap_content">
 
                     <EditText
-                            android:id="@+id/etDriveMotorTag"
+                            android:id="@+id/etDriveMotorIsim"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
@@ -56,7 +57,7 @@
                             android:layout_marginEnd="32dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="TAG No"
+                            android:hint="Motor İsim"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
@@ -65,8 +66,22 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                            android:id="@+id/etDriveGuc"
-                            android:layout_width="100dp"
+                            android:id="@+id/etDriveMotorTag"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Motor Tag"
+                            android:inputType="textPersonName"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorIsim"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorIsim" />
+
+                    <EditText
+                            android:id="@+id/etDriveMotorGuc"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
@@ -75,276 +90,126 @@
                             android:inputType="number"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorTag"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorTag" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorIsim"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorIsim" />
 
                     <EditText
-                            android:id="@+id/etDriveAkim"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Akım"
-                            android:inputType="number"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toStartOf="@+id/etDriveVoltaj"
-                            app:layout_constraintStart_toEndOf="@+id/etDriveGuc"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorTag" />
-
-                    <EditText
-                            android:id="@+id/etDriveVoltaj"
-                            android:layout_width="100dp"
+                            android:id="@+id/etDriveMotorDevir"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Voltaj"
+                            android:hint="Devir"
                             android:inputType="number"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="@+id/etDriveMotorTag"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorTag" />
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorTag"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorGuc" />
 
                     <EditText
-                            android:id="@+id/etDriveModul"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Modül"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveVoltaj"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveGuc"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveAkim" />
-
-                    <EditText
-                            android:id="@+id/etDriveCode"
+                            android:id="@+id/etDriveMotorTripAkimi"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Code"
+                            android:hint="Trip Akımı"
                             android:inputType="number"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveModul"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveModul" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorGuc"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorGuc" />
 
                     <EditText
-                            android:id="@+id/etDriveSeriNo"
+                            android:id="@+id/etDriveMotorInsaTipi"
                             android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Seri No"
-                            android:inputType="number"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveModul"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveModul" />
-
-                    <EditText
-                            android:id="@+id/etDriveIGBT"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="IGBT"
+                            android:hint="İnşa Tipi"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveSeriNo"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveCode"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveCode" />
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorDevir"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorDevir" />
 
                     <EditText
-                            android:id="@+id/etDriveKondansator"
-                            android:layout_width="0dp"
+                            android:id="@+id/etDriveMotorFlans"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Kondansatör"
+                            android:hint="Flanş"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveIGBT"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveIGBT"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveIGBT" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorTripAkimi"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorTripAkimi" />
 
                     <EditText
-                            android:id="@+id/etDriveThick"
+                            android:id="@+id/etDriveMotorAdres"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Thick-FirmHybrid"
+                            android:hint="Adres"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveKondansator"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveKondansator"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveKondansator" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorFlans"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorInsaTipi"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorInsaTipi" />
 
                     <EditText
-                            android:id="@+id/etDriveTetiklemeAna"
+                            android:id="@+id/etDriveUniteSeriNoU"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Tetikleme (Ana) PC"
+                            android:hint="Drive Ünite Seri No (U)"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveThick"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveThick"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveThick" />
+                            app:layout_constraintEnd_toEndOf="@+id/spinnerDriveUniteSecim"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/spinnerDriveUniteSecim"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerDriveUniteSecim" />
 
                     <EditText
-                            android:id="@+id/etDriveIGBTTetikleme"
+                            android:id="@+id/etDriveUniteSeriNoV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="IGBT Tetikleme"
+                            android:hint="Drive Ünite Seri No (V)"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveTetiklemeAna"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveTetiklemeAna"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveTetiklemeAna" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteSeriNoU"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveUniteSeriNoU"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteSeriNoU" />
 
                     <EditText
-                            android:id="@+id/etDriveTetiklemeBesPCB"
+                            android:id="@+id/etDriveUniteSeriNoW"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Tetikleme Bes. PCB"
+                            android:hint="Drive Ünite Seri No (W)"
                             android:inputType="textPersonName"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveIGBTTetikleme"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveIGBTTetikleme"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveIGBTTetikleme" />
-
-                    <EditText
-                            android:id="@+id/etDriveNintBesleme"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Nint Besleme PCB"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveTetiklemeBesPCB"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveTetiklemeBesPCB"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveTetiklemeBesPCB" />
-
-                    <EditText
-                            android:id="@+id/etDrive24VBesleme"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="24V Besleme"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveNintBesleme"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveNintBesleme"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveNintBesleme" />
-
-                    <EditText
-                            android:id="@+id/etDriveKontrolUnit"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Drive Kont. Unit"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDrive24VBesleme"
-                            app:layout_constraintStart_toStartOf="@+id/etDrive24VBesleme"
-                            app:layout_constraintTop_toBottomOf="@+id/etDrive24VBesleme" />
-
-                    <EditText
-                            android:id="@+id/etDriveFan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Fan"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveKontrolUnit"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveKontrolUnit"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveKontrolUnit" />
-
-                    <EditText
-                            android:id="@+id/etDriveSigorta1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Sigorta"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveFan"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveFan"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveFan" />
-
-                    <EditText
-                            android:id="@+id/etDriveSigorta2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Sigorta"
-                            android:inputType="textPersonName"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveSigorta1"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveSigorta1"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveSigorta1" />
-
-                    <EditText
-                            android:id="@+id/etDriveUniteDegTarih"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:ems="10"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Ünite Değişim Tarihi"
-                            android:inputType="date"
-                            android:textColor="@android:color/black"
-                            android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveSigorta2"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveSigorta2"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveSigorta2" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteSeriNoV"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveUniteSeriNoV"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteSeriNoV" />
 
                     <EditText
                             android:id="@+id/etDriveMotorDegTarihi"
@@ -357,23 +222,43 @@
                             android:inputType="date"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteDegTarih"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveUniteDegTarih"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteDegTarih" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorAdres"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorAdres"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorAdres" />
+
+                    <Spinner
+                            android:id="@+id/spinnerDriveUniteSecim"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorDegTarihi"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorDegTarihi"
+                            app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+                    <View
+                            android:id="@+id/view15"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@android:color/darker_gray"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorDegTarihi" />
 
                     <Button
                             android:id="@+id/buttonDriveEkle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="24dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginBottom="16dp"
                             android:text="EKLE"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveSigorta2"
-                            app:layout_constraintHorizontal_bias="0.497"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveSigorta2"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorDegTarihi"
-                            app:layout_constraintVertical_bias="1.0" />
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteSeriNoW"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveUniteSeriNoW"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteSeriNoW" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>

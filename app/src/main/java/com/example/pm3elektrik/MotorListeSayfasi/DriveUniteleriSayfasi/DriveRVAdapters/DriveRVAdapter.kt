@@ -1,4 +1,4 @@
-package com.example.pm3elektrik.DigerBilgilerSayfasi.DriveUniteleriSayfasi.DriveRVAdapters
+package com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveRVAdapters
 
 
 import android.content.Context
@@ -9,13 +9,13 @@ import android.widget.ImageView
 import androidx.appcompat.view.menu.MenuView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pm3elektrik.DigerBilgilerSayfasi.DriveUniteleriSayfasi.DriveUniteModel.DriveModel
+import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteModel.DriveModel
 
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.rv_drive_unite_adapter.view.*
 
 
-class DriveRVAdapter(var motorListe : ArrayList<DriveModel>,var mContext : Context) : RecyclerView.Adapter<DriveRVAdapter.MyData>() {
+class DriveRVAdapter(var motorListe : ArrayList<DriveModel>, var mContext : Context) : RecyclerView.Adapter<DriveRVAdapter.MyData>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {

@@ -60,6 +60,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
         fun setData(motorListesi: MotorModel, position: Int) {
 
+            //-----DİĞER MOTORDAN GELEN BİLGİLER-----------------------------------
             if (motorListesi.motorGelenVeri == "motorEkle"){
                 if (motorListesi.motorDevir.isNullOrBlank()){
                     devirYazisi.setText("Devir :")
@@ -79,6 +80,28 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                 mCCYeri.setText(motorListesi.motorMCCYeri)
             }
 
+            //-----DRİVE MOTORDAN GELEN BİLGİLER-----------------------------------
+            if (motorListesi.motorGelenVeri == "driveMotorEkle"){
+                if (motorListesi.motorDevir.isNullOrBlank()){
+                    devirYazisi.setText("Devir :")
+                    motorDevir.setText("Bilgi Yok")
+                }else{
+                    devirYazisi.setText("Devir :")
+                    motorDevir.setText("${motorListesi.motorDevir} D/d")
+                }
+                if (motorListesi.motorGucKVA.isNullOrBlank()){
+                    gucYazisi.setText("Güç :")
+                    motorGuc.setText("Bilgi Yok")
+                }else{
+                    gucYazisi.setText("Güç :")
+                    motorGuc.setText("${motorListesi.motorGucKVA} KVA")
+                }
+                motorTag.setText(motorListesi.motorTag)
+                mCCYeri.setText(motorListesi.motorMCCYeri)
+            }
+
+
+            //-----ÇEKMECEDEN GELEN BİLGİLER-----------------------------------
             if (motorListesi.motorGelenVeri == "cekmeceEkle"){
                 devirYazisi.setText("Kapasite :")
                 motorDevir.setText("${motorListesi.cekmeceKapasite} A")

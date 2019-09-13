@@ -28,10 +28,8 @@ class MotorModel {
 
     //-----DRİVE ÜNİTELERİ İÇERİK------------
 
-    var seriNoU = ""
-    var seriNoV = ""
-    var seriNoW = ""
-    var uniteDegTarihi = ""
+    var motorGucKVA = ""
+
 
 
     constructor(motorIsim : String ,motorTag: String, motorGucKW: Double, motorGucHP: Double, motorDevir: String, motorNomTripAkimi: String,
@@ -84,7 +82,7 @@ class MotorModel {
 
 
     constructor()
-    constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String , motorGelenVeri : String) {
+    constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String , motorGelenVeri : String , motorGucKVA : String) {
 
         this.motorTag = motorTag
         this.motorMCCYeri = motorMCCYeri
@@ -94,24 +92,7 @@ class MotorModel {
         this.cekmeceMarka = cekmeceMarka
         this.cekmeceKapasite = cekmeceKapasite
         this.motorGelenVeri = motorGelenVeri
-    }
-
-    constructor(
-        motorTag: String,
-        motorGucKW: Double,
-        motorMCCYeri: String,
-        seriNoU: String,
-        seriNoV: String,
-        seriNoW: String,
-        uniteDegTarihi: String
-    ) {
-        this.motorTag = motorTag
-        this.motorGucKW = motorGucKW
-        this.motorMCCYeri = motorMCCYeri
-        this.seriNoU = seriNoU
-        this.seriNoV = seriNoV
-        this.seriNoW = seriNoW
-        this.uniteDegTarihi = uniteDegTarihi
+        this.motorGucKVA = motorGucKVA
     }
 
 

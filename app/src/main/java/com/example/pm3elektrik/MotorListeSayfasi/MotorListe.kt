@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.CekmeceEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
@@ -25,6 +26,7 @@ class MotorListe : Fragment() {
 
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
+    lateinit var mFAB_drive: FloatingActionButton
     lateinit var myAdapter : MotorRVAdapter
     var motorListesi= ArrayList<MotorModel>()
 
@@ -68,6 +70,7 @@ class MotorListe : Fragment() {
         //Floating Action Bar Butonları ---------------------------------------------------->
         mFAB_cekmece = view.findViewById(R.id.menu_cekmece)
         mFAB_motor = view.findViewById(R.id.menu_motor)
+        mFAB_drive = view.findViewById(R.id.menu_drive_motor)
 
         mFAB_motor.setOnClickListener {
             changeFragment(MotorEkle())
@@ -75,6 +78,9 @@ class MotorListe : Fragment() {
         mFAB_cekmece.setOnClickListener {
 
             changeFragment(CekmeceEkle())
+        }
+        mFAB_drive.setOnClickListener {
+            changeFragment(DriveUniteEkle())
         }
         //Floating Action Bar Butonları ----------------------------------------------------<
 
@@ -93,7 +99,7 @@ class MotorListe : Fragment() {
 
                         val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
-                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir , okunanBilgiler.cekmeceModel,okunanBilgiler.cekmeceMarka,okunanBilgiler.cekmeceKapasite,okunanBilgiler.motorGelenVeri))
+                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir , okunanBilgiler.cekmeceModel,okunanBilgiler.cekmeceMarka,okunanBilgiler.cekmeceKapasite,okunanBilgiler.motorGelenVeri , okunanBilgiler.motorGucKVA))
 
                     }
                     recyclerAdapter(motorListesi,mContext)
