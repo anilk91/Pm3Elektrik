@@ -6,18 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKonvertorHesap
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
-import com.example.pm3elektrik.DigerBilgilerSayfasi.DriveUniteleriSayfasi.DriveUniteEkle
+import com.example.pm3elektrik.DigerBilgilerSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTrip
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KuyuPanoSayfasi.KuyuPanolari
 
 import com.example.pm3elektrik.R
-import kotlinx.android.synthetic.main.fragment_diger_bilgiler.view.*
 
 class DigerBilgiler : Fragment() {
 
@@ -41,7 +38,7 @@ class DigerBilgiler : Fragment() {
 
         kuyuPanolariSayfasi.setOnClickListener { changeFragment(KuyuPanolari()) }
 
-        driveUniteleriSayfasi.setOnClickListener { changeFragment(DriveUniteEkle()) }
+        driveUniteleriSayfasi.setOnClickListener { changeFragment(DriveUnite()) }
 
 
 

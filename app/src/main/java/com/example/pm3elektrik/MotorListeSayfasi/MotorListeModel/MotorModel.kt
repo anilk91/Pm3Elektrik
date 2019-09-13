@@ -18,10 +18,6 @@ class MotorModel {
     var motorGelenVeri = ""
 
     //-----ÇEKMECE ŞALTER İÇERİK OLANLAR-----
-    //motorTag push() metodu olucak
-    //Diğer bilgiler değer olucak
-    //motorMCCYeride kullanılacak
-
     var cekmeceIsim = ""
     var cekmeceMarka = ""
     var cekmeceModel = ""
@@ -29,6 +25,13 @@ class MotorModel {
     var cekmeceCat = ""
     var cekmeceSalterDegisim=""
     var cekmeceDemeraj = ""
+
+    //-----DRİVE ÜNİTELERİ İÇERİK------------
+
+    var seriNoU = ""
+    var seriNoV = ""
+    var seriNoW = ""
+    var uniteDegTarihi = ""
 
 
     constructor(motorIsim : String ,motorTag: String, motorGucKW: Double, motorGucHP: Double, motorDevir: String, motorNomTripAkimi: String,
@@ -92,5 +95,24 @@ class MotorModel {
         this.cekmeceKapasite = cekmeceKapasite
         this.motorGelenVeri = motorGelenVeri
     }
+
+    constructor(
+        motorTag: String,
+        motorGucKW: Double,
+        motorMCCYeri: String,
+        seriNoU: String,
+        seriNoV: String,
+        seriNoW: String,
+        uniteDegTarihi: String
+    ) {
+        this.motorTag = motorTag
+        this.motorGucKW = motorGucKW
+        this.motorMCCYeri = motorMCCYeri
+        this.seriNoU = seriNoU
+        this.seriNoV = seriNoV
+        this.seriNoW = seriNoW
+        this.uniteDegTarihi = uniteDegTarihi
+    }
+
 
 }
