@@ -40,47 +40,43 @@ class DriveUniteEkle : Fragment() {
             val insaTipi = view.findViewById<EditText>(R.id.etDriveMotorInsaTipi).text.toString().toUpperCase()
             val flans = view.findViewById<EditText>(R.id.etDriveMotorFlans).text.toString().toUpperCase()
             val adres = view.findViewById<EditText>(R.id.etDriveMotorAdres).text.toString().toUpperCase()
+            val motorDegTarihi = view.findViewById<EditText>(R.id.etDriveMotorDegTarihi).text.toString()
             val seriNoU = view.findViewById<EditText>(R.id.etDriveUniteSeriNoU).text.toString()
             val seriNoV = view.findViewById<EditText>(R.id.etDriveUniteSeriNoV).text.toString()
             val seriNoW = view.findViewById<EditText>(R.id.etDriveUniteSeriNoW).text.toString()
-            val motorDegTarihi = view.findViewById<EditText>(R.id.etDriveMotorDegTarihi).text.toString()
+            val uModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteUDegTarihi).text.toString()
+            val vModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteVDegTarihi).text.toString()
+            val wModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteWDegTarihi).text.toString()
 
-            //firebaseDBEkle(tag,guc,akim,voltaj,modul,code,seriNo,igbt,kondansator,thickFirm,anaTetikleme,igbtTetikleme,tetiklemePCB,nintBes,bes24v,kontUnit,
-                //fan,sigorta1,sigorta2,uniteDegTarih,motorDegTarihi)
+            firebaseDBEkle(isim, tag, guc, devir, tripAkim, insaTipi, flans, adres, motorDegTarihi, seriNoU, seriNoV, seriNoW, uModulDegTarih,
+                vModulDegTarih, wModulDegTarih)
         }
-
-
-
         return view
     }
 
-    private fun firebaseDBEkle(tag: String, guc: String, akim: String, voltaj: String, modul: String, code: String, seriNo: String, igbt: String, kondansator: String, thickFirm: String, anaTetikleme: String, igbtTetikleme: String,
-                               tetiklemePCB: String, nintBes: String, bes24v: String, kontUnit: String, fan: String, sigorta1: String, sigorta2: String, uniteDegTarih: String, motorDegTarihi: String) {
+    private fun firebaseDBEkle(isim: String, tag: String, guc: String, devir: String, tripAkim: String, insaTipi: String, flans: String, adres: String,
+        motorDegTarihi: String, seriNoU: String, seriNoV: String, seriNoW: String, uModulDegTarih: String, vModulDegTarih: String, wModulDegTarih: String
+    ) {
 
-        driveMotorListe.driveTagNo = tag
-        driveMotorListe.driveGuc = guc
-        driveMotorListe.driveAkim = akim
-        driveMotorListe.driveVoltaj = voltaj
-        driveMotorListe.driveModul = modul
-        driveMotorListe.driveCode = code
-        driveMotorListe.driveSeriNo = seriNo
-        driveMotorListe.driveIGBT = igbt
-        driveMotorListe.driveKondansator = kondansator
-        driveMotorListe.driveThickFirm = thickFirm
-        driveMotorListe.driveAnaTetikleme = anaTetikleme
-        driveMotorListe.driveIGBTtetikleme = igbtTetikleme
-        driveMotorListe.driveTetiklemeBesPCB = tetiklemePCB
-        driveMotorListe.driveNintBesPCB = nintBes
-        driveMotorListe.drive24vBes = bes24v
-        driveMotorListe.driveKontUnit = kontUnit
-        driveMotorListe.driveFan = fan
-        driveMotorListe.driveSigorta1 = sigorta1
-        driveMotorListe.driveSigorta2 = sigorta2
-        driveMotorListe.driveDegTarihi = uniteDegTarih
-        driveMotorListe.driveMotorDegTarihi = motorDegTarihi
+        driveMotorListe.isim = isim
+        driveMotorListe.tag = tag
+        driveMotorListe.guc = guc
+        driveMotorListe.devir = devir
+        driveMotorListe.tripAkim = tripAkim
+        driveMotorListe.insaTipi = insaTipi
+        driveMotorListe.flans = flans
+        driveMotorListe.adres = adres
+        driveMotorListe.motorDegTarihi = motorDegTarihi
+        driveMotorListe.seriNoU = seriNoU
+        driveMotorListe.seriNoV = seriNoV
+        driveMotorListe.seriNoW = seriNoW
+        driveMotorListe.uModulDegTarihi = uModulDegTarih
+        driveMotorListe.vModulDegTarihi = vModulDegTarih
+        driveMotorListe.wModulDegTarihi = wModulDegTarih
+
 
         motorListe.motorTag = tag
-        motorListe.motorGucKVA = guc
+        motorListe.motorGucKW = guc.toDouble()
         motorListe.motorDevir = "1000"
         motorListe.motorMCCYeri = "DRİVE MCC"
         motorListe.motorGelenVeri = "driveMotorEkle"

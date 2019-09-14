@@ -32,14 +32,13 @@
                 android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="12dp"
-                    android:layout_marginBottom="12dp"
                     app:cardCornerRadius="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -63,7 +62,7 @@
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView127" />
 
                     <EditText
                             android:id="@+id/etDriveMotorTag"
@@ -166,18 +165,73 @@
                             app:layout_constraintTop_toBottomOf="@+id/etDriveMotorInsaTipi" />
 
                     <EditText
-                            android:id="@+id/etDriveUniteSeriNoU"
+                            android:id="@+id/etDriveMotorDegTarihi"
                             android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="24dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="Motor Değişim Tarihi"
+                            android:inputType="date"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorAdres"
+                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorAdres"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorAdres" />
+
+                    <TextView
+                            android:id="@+id/textView127"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="- DRİVE MOTOR -"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/cardView5"
+                    app:layout_constraintStart_toStartOf="@+id/cardView5"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView5">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <Spinner
+                            android:id="@+id/spinnerDriveUniteSecim"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginEnd="32dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView126" />
+
+                    <EditText
+                            android:id="@+id/etDriveUniteSeriNoU"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Drive Ünite Seri No (U)"
-                            android:inputType="textPersonName"
+                            android:hint="Seri No (U)"
+                            android:inputType="number"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/spinnerDriveUniteSecim"
-                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="@+id/spinnerDriveUniteSecim"
                             app:layout_constraintTop_toBottomOf="@+id/spinnerDriveUniteSecim" />
 
@@ -188,8 +242,8 @@
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Drive Ünite Seri No (V)"
-                            android:inputType="textPersonName"
+                            android:hint="Seri No (V)"
+                            android:inputType="number"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="@+id/etDriveUniteSeriNoU"
@@ -201,66 +255,86 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
+                            android:layout_marginBottom="24dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Drive Ünite Seri No (W)"
-                            android:inputType="textPersonName"
+                            android:hint="Seri No (W)"
+                            android:inputType="number"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/etDriveUniteSeriNoV"
                             app:layout_constraintStart_toStartOf="@+id/etDriveUniteSeriNoV"
                             app:layout_constraintTop_toBottomOf="@+id/etDriveUniteSeriNoV" />
 
+                    <TextView
+                            android:id="@+id/textView126"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="- SÜRÜCÜ -"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <EditText
-                            android:id="@+id/etDriveMotorDegTarihi"
-                            android:layout_width="0dp"
+                            android:id="@+id/etDriveUniteUDegTarihi"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:ems="10"
                             android:fontFamily="@font/nunito_extrabold"
-                            android:hint="Motor Değişim Tarihi"
+                            android:hint="U Modül Değ. Tarihi"
                             android:inputType="date"
                             android:textColor="@android:color/black"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorAdres"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorAdres"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorAdres" />
+                            app:layout_constraintEnd_toEndOf="@+id/spinnerDriveUniteSecim"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerDriveUniteSecim" />
 
-                    <Spinner
-                            android:id="@+id/spinnerDriveUniteSecim"
-                            android:layout_width="0dp"
+                    <EditText
+                            android:id="@+id/etDriveUniteVDegTarihi"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveMotorDegTarihi"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveMotorDegTarihi"
-                            app:layout_constraintTop_toBottomOf="@+id/view15" />
+                            android:layout_marginTop="8dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="V Modül Değ. Tarihi"
+                            android:inputType="date"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteUDegTarihi"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteUDegTarihi" />
 
-                    <View
-                            android:id="@+id/view15"
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@android:color/darker_gray"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveMotorDegTarihi" />
-
-                    <Button
-                            android:id="@+id/buttonDriveEkle"
-                            android:layout_width="wrap_content"
+                    <EditText
+                            android:id="@+id/etDriveUniteWDegTarihi"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="24dp"
-                            android:layout_marginBottom="16dp"
-                            android:text="EKLE"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteSeriNoW"
-                            app:layout_constraintStart_toStartOf="@+id/etDriveUniteSeriNoW"
-                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteSeriNoW" />
+                            android:layout_marginTop="8dp"
+                            android:ems="10"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:hint="W Modül Değ. Tarihi"
+                            android:inputType="date"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp"
+                            app:layout_constraintEnd_toEndOf="@+id/etDriveUniteVDegTarihi"
+                            app:layout_constraintTop_toBottomOf="@+id/etDriveUniteVDegTarihi" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
+            <Button
+                    android:id="@+id/buttonDriveEkle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="EKLE"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

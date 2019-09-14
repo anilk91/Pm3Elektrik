@@ -90,12 +90,12 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     devirYazisi.setText("Devir :")
                     motorDevir.setText("${motorListesi.motorDevir} D/d")
                 }
-                if (motorListesi.motorGucKVA.isNullOrBlank()){
+                if (motorListesi.motorGucKW == 0.0 ){
                     gucYazisi.setText("Güç :")
                     motorGuc.setText("Bilgi Yok")
                 }else{
                     gucYazisi.setText("Güç :")
-                    motorGuc.setText("${motorListesi.motorGucKVA} KVA")
+                    motorGuc.setText("${motorListesi.motorGucKW} KW")
                 }
                 motorTag.setText(motorListesi.motorTag)
                 mCCYeri.setText(motorListesi.motorMCCYeri)
@@ -127,12 +127,17 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
 
                 }else{}
-//                val bundle : Bundle? =Bundle()
-//                bundle?.putString("rvGelenMotorTag",motorListe[position].motorTag)
-//                val fragment = MotorVeSalterEtiket()
-//                fragment.arguments = bundle
-//                val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-//                transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
+
+                if (motorListesi.motorGelenVeri == "motorEkle"){
+
+                    val bundle : Bundle? =Bundle()
+                    bundle?.putString("rvGelenMotorTag",motorListe[position].motorTag)
+                    val fragment = MotorVeSalterEtiket()
+                    fragment.arguments = bundle
+                    val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
+                }
+
 
             }
             motorDelete.setOnClickListener {

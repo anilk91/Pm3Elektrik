@@ -48,10 +48,10 @@ class DriveRVAdapter(var motorListe : ArrayList<DriveModel>, var mContext : Cont
 
         fun setData(gelenMotorListe: DriveModel, position: Int) {
 
-            tag.setText(gelenMotorListe.driveTagNo)
-            guc.setText(gelenMotorListe.driveGuc + " KVA")
-            seriNo.setText(gelenMotorListe.driveSeriNo)
-            degTarihi.setText(gelenMotorListe.driveDegTarihi)
+            tag.setText(gelenMotorListe.tag)
+            guc.setText(gelenMotorListe.guc + " KW")
+            seriNo.setText(gelenMotorListe.seriNoU)
+            degTarihi.setText(gelenMotorListe.uModulDegTarihi)
 
             deleteButton.setOnClickListener {  }
 
