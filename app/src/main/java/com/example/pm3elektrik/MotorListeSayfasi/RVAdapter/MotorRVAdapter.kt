@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.R
@@ -116,12 +117,22 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
             motorBilgi.setOnClickListener {
 
-                val bundle : Bundle? =Bundle()
-                bundle?.putString("rvGelenMotorTag",motorListe[position].motorTag)
-                val fragment = MotorVeSalterEtiket()
-                fragment.arguments = bundle
-                val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
+                if (motorListesi.motorGelenVeri == "driveMotorEkle"){
+
+                    val bundle : Bundle? =Bundle()
+                    bundle?.putString("rvGelenMotorTag",motorListe[position].motorTag)
+                    val fragment = DriveUnite()
+                    fragment.arguments = bundle
+                    val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
+
+                }else{}
+//                val bundle : Bundle? =Bundle()
+//                bundle?.putString("rvGelenMotorTag",motorListe[position].motorTag)
+//                val fragment = MotorVeSalterEtiket()
+//                fragment.arguments = bundle
+//                val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+//                transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
 
             }
             motorDelete.setOnClickListener {
@@ -167,7 +178,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
                         Toast.makeText(mContext,"${motorListesi.motorTag} Silindi!",Toast.LENGTH_SHORT).show()
                     }
-                })
+            })
                 builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener{
                     override fun onClick(p0: DialogInterface?, p1: Int) {
                         Toast.makeText(mContext,"Seçim Silinmedi!",Toast.LENGTH_SHORT).show()

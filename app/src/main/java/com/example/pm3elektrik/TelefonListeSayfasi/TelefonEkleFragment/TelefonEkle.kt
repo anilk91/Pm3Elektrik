@@ -47,7 +47,6 @@ class TelefonEkle : DialogFragment() {
 
             if(telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty() ){
 
-                TelefonListesi().telefonEkledenGelen(telefonIsim.text.toString().toUpperCase(),telefonNo.text.toString(),view,view.context)
 
                 telefonModel.telefonIsim = telefonIsim.text.toString().toUpperCase()
                 telefonModel.telefonNo = telefonNo.text.toString()

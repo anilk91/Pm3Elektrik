@@ -31,21 +31,10 @@ class TelefonListesi : Fragment() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     lateinit var myAdapter : TelefonRV
 
-    companion object{
-        var isim = ""
-        var numara = ""
-
-    }
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_telefon_listesi, container, false)
 
         fireBaseDBOkunanVeriler(view.context , view)
-        val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
-        sync.keepSynced(true)
-
-        Log.e("telefonListeOnCre","$isim $numara")
 
         mFAB_telefon = view.findViewById(R.id.menu_telefon)
         mFAB_telefon.setOnClickListener {
@@ -125,18 +114,5 @@ class TelefonListesi : Fragment() {
         myAdapter.notifyDataSetChanged()
     }
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor-----------------------<
-
-
-    fun telefonEkledenGelen(telIsim:String , telNo:String , view: View, mContext: Context): String {
-
-        Log.e("telefonEkledenGelen","$telIsim $telNo")
-        isim = telIsim
-        numara = telNo
-
-
-        return telIsim
-
-    }
-
 
 }
