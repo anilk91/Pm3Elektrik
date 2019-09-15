@@ -89,6 +89,9 @@ class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context
                         ambarListe.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position,ambarListe.size)
+
+                        Toast.makeText(mContext,"${ambarListeSetData.ambarStokNo} Silindi!",Toast.LENGTH_SHORT).show()
+
                     }
                 })
 

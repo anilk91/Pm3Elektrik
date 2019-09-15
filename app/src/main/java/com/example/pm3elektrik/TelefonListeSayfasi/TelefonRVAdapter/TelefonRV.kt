@@ -80,6 +80,9 @@ class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentMana
                         telefonListe.removeAt(position)
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position,telefonListe.size)
+
+                        Toast.makeText(mContext,"${telefon.telefonNo} Silindi!",Toast.LENGTH_SHORT).show()
+
                     }
                 })
 

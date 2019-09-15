@@ -39,7 +39,23 @@ class DriveUniteEkle : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
+                if (p2 == 0){
+
+                    etDriveUniteSeriNoU.visibility = View.GONE
+                    etDriveUniteUDegTarihi.visibility = View.GONE
+
+                    etDriveUniteSeriNoW.visibility = View.GONE
+                    etDriveUniteWDegTarihi.visibility = View.GONE
+
+                    etDriveUniteSeriNoV.visibility = View.GONE
+                    etDriveUniteVDegTarihi.visibility = View.GONE
+
+                }
+
                 if (p2 == 1){
+
+                    etDriveUniteSeriNoU.visibility = View.VISIBLE
+                    etDriveUniteUDegTarihi.visibility = View.VISIBLE
 
                     etDriveUniteSeriNoU.setHint("Seri No")
                     etDriveUniteUDegTarihi.setHint("Modül Değ. Tarihi")
@@ -52,6 +68,17 @@ class DriveUniteEkle : Fragment() {
 
                 }
                 else if (p2 == 2){
+
+                    etDriveUniteSeriNoU.visibility = View.VISIBLE
+                    etDriveUniteUDegTarihi.visibility = View.VISIBLE
+                    etDriveUniteSeriNoU.setHint("Seri No (U)")
+                    etDriveUniteUDegTarihi.setHint("U Modül Değ. Tarihi")
+
+                    etDriveUniteSeriNoW.visibility = View.VISIBLE
+                    etDriveUniteWDegTarihi.visibility = View.VISIBLE
+
+                    etDriveUniteSeriNoV.visibility = View.VISIBLE
+                    etDriveUniteVDegTarihi.visibility = View.VISIBLE
 
                 }
                 else if (p2 == 3){
