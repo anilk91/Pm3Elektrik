@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
+import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteModel.DriveModel
+import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_drive_unite_ekle.*
 import java.lang.Exception
 
 class DriveUniteEkle : Fragment() {
@@ -23,12 +24,48 @@ class DriveUniteEkle : Fragment() {
     val motorListe = MotorModel()
     val driveUniteRef = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Drive")
     val motorRef = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
+    val uniteSecim = arrayOf("Ünite Kapasite Seçiniz","180 KVA","490 KVA","900 KVA","1040 KVA")
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drive_unite_ekle, container, false)
 
         val ekle = view.findViewById<Button>(R.id.buttonDriveEkle)
+        val close = view.findViewById<ImageView>(R.id.imgDriveUniteEkleClose)
+        val spinnerSecim = view.findViewById<Spinner>(R.id.spinnerDriveUniteSecim)
+
+        spinnerSecim.adapter = ArrayAdapter(view.context,android.R.layout.simple_spinner_dropdown_item,uniteSecim)
+        spinnerSecim.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                if (p2 == 1){
+
+                    etDriveUniteSeriNoU.setHint("Seri No")
+                    etDriveUniteUDegTarihi.setHint("Modül Değ. Tarihi")
+
+                    etDriveUniteSeriNoW.visibility = View.GONE
+                    etDriveUniteWDegTarihi.visibility = View.GONE
+
+                    etDriveUniteSeriNoV.visibility = View.GONE
+                    etDriveUniteVDegTarihi.visibility = View.GONE
+
+                }
+                else if (p2 == 2){
+
+                }
+                else if (p2 == 3){
+
+                }
+
+            }
+
+
+        }
+
+        close.setOnClickListener {
+            changeFragment(MotorListe())
+        }
 
         ekle.setOnClickListener {
 
@@ -106,6 +143,13 @@ class DriveUniteEkle : Fragment() {
                 }
             }
 
+    }
+
+    private fun changeFragment(fragment : Fragment){
+
+        val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.containerMotorListe,fragment,"fragment_drive_unite_ekle")
+        fragmentTransaction?.commit()
     }
 
 }

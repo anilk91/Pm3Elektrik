@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveRVAdapters.DriveUniteNotlariRV
@@ -30,6 +31,7 @@ class DriveUnite : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drive_unite, container, false)
+
         val notEkle = view.findViewById<ImageView>(R.id.imgDriveUniteNotEkle)
 
         val bundle: Bundle? = arguments
@@ -83,4 +85,6 @@ class DriveUnite : Fragment() {
 
         myAdapter.notifyDataSetChanged()
     }
+
+
 }

@@ -79,7 +79,7 @@ class AmbarKayit : Fragment() {
         return view
     }
 
-    fun fireBaseDBOkunanVeriler(context: Context) {
+    private fun fireBaseDBOkunanVeriler(context: Context) {
 
         val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
         ref.child("Ambar")
@@ -101,7 +101,7 @@ class AmbarKayit : Fragment() {
     }
 
 
-    fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context,fragmentManager: FragmentManager?) {
+    private fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context,fragmentManager: FragmentManager?) {
 
         myAdapter = AmbarRV(ambarGelenListe,mContext ,fragmentManager)
         view?.rvAmbarListe?.adapter = myAdapter

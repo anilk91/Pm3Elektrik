@@ -1,13 +1,16 @@
 package com.example.pm3elektrik.TelefonListeSayfasi.TelefonRVAdapter
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonEkleFragment.TelefonEkle
@@ -15,7 +18,7 @@ import com.example.pm3elektrik.TelefonListeSayfasi.TelefonModel.TelefonListeMode
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.telefon_rv_adapter.view.*
 
-class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentManager: FragmentManager?) : RecyclerView.Adapter<TelefonRV.MyData>() {
+class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentManager: FragmentManager?, var mContext: Context) : RecyclerView.Adapter<TelefonRV.MyData>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
@@ -63,14 +66,32 @@ class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentMana
 
             telefonListeSil.setOnClickListener {
 
-                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                    .child("Telefon")
-                    .child(telefonListe[position].telefonNo)
-                    .removeValue()
+                val builder = AlertDialog.Builder(mContext)
+                builder.setTitle("Seçimi Sil?")
+                builder.setMessage("${telefon.telefonNo} Nolu Telefon Kaydını Silmek İstiyor Musunuz?")
 
-                telefonListe.removeAt(position)
-                notifyItemRemoved(position)
-                notifyItemRangeChanged(position,telefonListe.size)
+                builder.setPositiveButton("EVET",object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Telefon")
+                            .child(telefonListe[position].telefonNo)
+                            .removeValue()
+
+                        telefonListe.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position,telefonListe.size)
+                    }
+                })
+
+                builder.setNegativeButton("HAYIR",object: DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        Toast.makeText(mContext,"Seçim Silinmedi",Toast.LENGTH_SHORT).show()
+                    }
+                })
+
+                val dialog : AlertDialog =builder.create()
+                dialog.show()
+
             }
         }
 

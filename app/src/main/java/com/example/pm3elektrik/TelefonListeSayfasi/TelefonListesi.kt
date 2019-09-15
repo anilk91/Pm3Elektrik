@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -105,7 +104,7 @@ class TelefonListesi : Fragment() {
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor----------------------->
     fun recyclerAdapter(telefonGelenListe: ArrayList<TelefonListeModel>, view: View, mContext: Context){
 
-        myAdapter = TelefonRV(telefonGelenListe,fragmentManager)
+        myAdapter = TelefonRV(telefonGelenListe,fragmentManager,mContext)
         view.rvTelefonListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)

@@ -1,12 +1,15 @@
 package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarRVAdapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
@@ -67,20 +70,36 @@ class AmbarRV(var ambarListe: ArrayList<AmbarKayitModeli>, var mContext: Context
 
             silButonu.setOnClickListener {
 
-                val stokNo = ambarListe[position].ambarStokNo
-                val s1 = stokNo.substring(0..0)
-                val s2 = stokNo.substring(2..stokNo.lastIndex)
-                val stokNoSonHal = s1+s2
 
-                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                    .child("Ambar")
-                    .child(stokNoSonHal)
-                    .removeValue()
+                val builder = AlertDialog.Builder(mContext)
+                builder.setTitle("Seçimi Sil?")
+                builder.setMessage("${ambarListeSetData.ambarStokNo} Nolu Ambar Kaydını Silmek İstiyor Musunuz?")
+                builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        val stokNo = ambarListe[position].ambarStokNo
+                        val s1 = stokNo.substring(0..0)
+                        val s2 = stokNo.substring(2..stokNo.lastIndex)
+                        val stokNoSonHal = s1+s2
 
-                ambarListe.removeAt(position)
-                notifyItemRemoved(position)
-                notifyItemRangeChanged(position,ambarListe.size)
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Ambar")
+                            .child(stokNoSonHal)
+                            .removeValue()
 
+                        ambarListe.removeAt(position)
+                        notifyItemRemoved(position)
+                        notifyItemRangeChanged(position,ambarListe.size)
+                    }
+                })
+
+                builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        Toast.makeText(mContext,"Seçim Silinmedi",Toast.LENGTH_SHORT).show()
+                    }
+                })
+
+                val dialog : AlertDialog = builder.create()
+                dialog.show()
             }
 
 
