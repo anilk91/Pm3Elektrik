@@ -17,6 +17,7 @@ class DriveModel {
     var uModulDegTarihi = ""
     var vModulDegTarihi = ""
     var wModulDegTarihi = ""
+    var uniteGucKVA = ""
 
 
 
@@ -36,7 +37,8 @@ class DriveModel {
         seriNoW: String,
         uModulDegTarihi: String,
         vModulDegTarihi: String,
-        wModulDegTarihi: String
+        wModulDegTarihi: String,
+        uniteGucKVA : String
     ) {
         this.isim = isim
         this.tag = tag
@@ -53,6 +55,7 @@ class DriveModel {
         this.uModulDegTarihi = uModulDegTarihi
         this.vModulDegTarihi = vModulDegTarihi
         this.wModulDegTarihi = wModulDegTarihi
+        this.uniteGucKVA = uniteGucKVA
     }
 
 

@@ -24,7 +24,7 @@ class DriveUniteEkle : Fragment() {
     val motorListe = MotorModel()
     val driveUniteRef = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Drive")
     val motorRef = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
-    val uniteSecim = arrayOf("Ünite Kapasite Seçiniz","180 KVA","490 KVA","900 KVA","1040 KVA")
+    val uniteSecim = arrayOf("Ünite Kapasite Seçiniz","20 KVA","60 KVA","180 KVA","250 KVA","490 KVA","600 KVA","900 KVA","1040 KVA","1380 KVA")
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,7 +52,13 @@ class DriveUniteEkle : Fragment() {
 
                 }
 
-                if (p2 == 1){
+                else if (p2 == 1 || p2 == 2 || p2 == 3 || p2 == 4 || p2 == 5){
+
+                    if (p2 == 1){ driveMotorListe.uniteGucKVA = "20"}
+                    else if (p2 == 2){ driveMotorListe.uniteGucKVA = "60"}
+                    else if (p2 == 3){ driveMotorListe.uniteGucKVA = "180"}
+                    else if (p2 == 4){ driveMotorListe.uniteGucKVA = "250"}
+                    else if (p2 == 5){ driveMotorListe.uniteGucKVA = "490"}
 
                     etDriveUniteSeriNoU.visibility = View.VISIBLE
                     etDriveUniteUDegTarihi.visibility = View.VISIBLE
@@ -66,8 +72,16 @@ class DriveUniteEkle : Fragment() {
                     etDriveUniteSeriNoV.visibility = View.GONE
                     etDriveUniteVDegTarihi.visibility = View.GONE
 
+                    driveMotorListe.uniteGucKVA
+
                 }
-                else if (p2 == 2){
+                else if (p2 == 6 || p2 == 7 || p2 == 8 || p2 == 9){
+
+                    if (p2 == 6){ driveMotorListe.uniteGucKVA = "600"}
+                    else if (p2 == 7){ driveMotorListe.uniteGucKVA = "900"}
+                    else if (p2 == 8){ driveMotorListe.uniteGucKVA = "1040"}
+                    else if (p2 == 9){ driveMotorListe.uniteGucKVA = "1380"}
+
 
                     etDriveUniteSeriNoU.visibility = View.VISIBLE
                     etDriveUniteUDegTarihi.visibility = View.VISIBLE
@@ -79,9 +93,6 @@ class DriveUniteEkle : Fragment() {
 
                     etDriveUniteSeriNoV.visibility = View.VISIBLE
                     etDriveUniteVDegTarihi.visibility = View.VISIBLE
-
-                }
-                else if (p2 == 3){
 
                 }
 
@@ -112,6 +123,7 @@ class DriveUniteEkle : Fragment() {
             val vModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteVDegTarihi).text.toString()
             val wModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteWDegTarihi).text.toString()
 
+
             firebaseDBEkle(isim, tag, guc, devir, tripAkim, insaTipi, flans, adres, motorDegTarihi, seriNoU, seriNoV, seriNoW, uModulDegTarih,
                 vModulDegTarih, wModulDegTarih)
         }
@@ -141,7 +153,7 @@ class DriveUniteEkle : Fragment() {
 
         motorListe.motorTag = tag
         motorListe.motorGucKW = guc.toDouble()
-        motorListe.motorDevir = "1000"
+        motorListe.motorDevir = devir
         motorListe.motorMCCYeri = "DRİVE MCC"
         motorListe.motorGelenVeri = "driveMotorEkle"
 
@@ -169,6 +181,8 @@ class DriveUniteEkle : Fragment() {
                     }catch (hata : Exception){ }
                 }
             }
+
+        Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
 
     }
 
