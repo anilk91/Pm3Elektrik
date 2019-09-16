@@ -25,6 +25,7 @@ class MotorModel {
     var cekmeceCat = ""
     var cekmeceSalterDegisim=""
     var cekmeceDemeraj = ""
+    var cekmeceUid = ""
 
     //-----DRİVE ÜNİTELERİ İÇERİK------------
 
@@ -73,6 +74,7 @@ class MotorModel {
         this.cekmeceSalterDegisim = cekmeceSalterDegisim
         this.cekmeceDemeraj = cekmeceDemeraj
         this.motorGelenVeri = motorGelenVeri
+
     }
 
     constructor(motorTag: String, motorMCCYeri: String) {
@@ -82,7 +84,7 @@ class MotorModel {
 
 
     constructor()
-    constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String , motorGelenVeri : String , motorGucKVA : String) {
+    constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String , motorGelenVeri : String , motorGucKVA : String , cekmeceUid : String) {
 
         this.motorTag = motorTag
         this.motorMCCYeri = motorMCCYeri
@@ -93,6 +95,7 @@ class MotorModel {
         this.cekmeceKapasite = cekmeceKapasite
         this.motorGelenVeri = motorGelenVeri
         this.motorGucKVA = motorGucKVA
+        this.cekmeceUid = cekmeceUid
     }
 
 

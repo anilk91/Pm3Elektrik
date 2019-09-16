@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F9FD"
+    tools:context=".MotorListeSayfasi.CekmecesiSalterOlanSayfa.CekmecesiSalterOlanEtiket">
+
+
+    <ImageView
+        android:id="@+id/imgSalterOlanEtiketLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.1"
+        android:src="@drawable/modern_karton_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgSalterOlanEtiketClose"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSalterOlanEtiketClose">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanEtiketIsim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Şalter İsim"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView104"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Marka :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSalterOlanEtiketIsim" />
+
+                    <TextView
+                        android:id="@+id/textView105"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Model :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView104" />
+
+                    <TextView
+                        android:id="@+id/textView106"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="CAT :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView105" />
+
+                    <TextView
+                        android:id="@+id/textView107"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Kapasite :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView106" />
+
+                    <TextView
+                        android:id="@+id/textView108"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Demeraj :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView107" />
+
+                    <TextView
+                        android:id="@+id/textView109"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="MCC Yeri :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView108" />
+
+                    <TextView
+                        android:id="@+id/textView111"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Değ. Tarihi :"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView109" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanMarka"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Marka"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/textView104"
+                        app:layout_constraintTop_toTopOf="@+id/textView104" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanModel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Model"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/textView105"
+                        app:layout_constraintTop_toTopOf="@+id/textView105" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanCat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="CAT"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/textView106"
+                        app:layout_constraintTop_toTopOf="@+id/textView106" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanKapasite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Kapasite"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/textView107"
+                        app:layout_constraintTop_toTopOf="@+id/textView107" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanDemeraj"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Demeraj / Trip Ayar"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/textView108"
+                        app:layout_constraintTop_toTopOf="@+id/textView108" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanMccYeri"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="MCC Yeri"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toEndOf="@+id/textView109"
+                        app:layout_constraintTop_toTopOf="@+id/textView109" />
+
+                    <TextView
+                        android:id="@+id/tvSalterOlanDegTarihi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Değişim Tarihi"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView111"
+                        app:layout_constraintTop_toTopOf="@+id/textView111" />
+
+                    <ImageView
+                        android:id="@+id/imgSalterOlanEtiketDuzenle"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/edit"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvSalterOlanEtiketIsim"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvSalterOlanEtiketIsim" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/containerCekmeceSalterOlan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

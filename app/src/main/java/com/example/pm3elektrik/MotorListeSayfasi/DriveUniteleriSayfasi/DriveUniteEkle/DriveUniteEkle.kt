@@ -13,7 +13,11 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import kotlinx.android.synthetic.main.fragment_drive_unite_ekle.*
 import java.lang.Exception
 
@@ -25,6 +29,7 @@ class DriveUniteEkle : Fragment() {
     val driveUniteRef = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Drive")
     val motorRef = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
     val uniteSecim = arrayOf("Ünite Kapasite Seçiniz","20 KVA","60 KVA","180 KVA","250 KVA","490 KVA","600 KVA","900 KVA","1040 KVA","1380 KVA")
+    var motorTag: String? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,6 +38,14 @@ class DriveUniteEkle : Fragment() {
         val ekle = view.findViewById<Button>(R.id.buttonDriveEkle)
         val close = view.findViewById<ImageView>(R.id.imgDriveUniteEkleClose)
         val spinnerSecim = view.findViewById<Spinner>(R.id.spinnerDriveUniteSecim)
+
+        val bundle :Bundle? = arguments
+        motorTag = bundle?.getString("driveUniteGelenTag")
+
+        if (!motorTag.isNullOrEmpty()){
+
+            firebaseOkunanVerileriEdittexteIsle(view)
+        }
 
         spinnerSecim.adapter = ArrayAdapter(view.context,android.R.layout.simple_spinner_dropdown_item,uniteSecim)
         spinnerSecim.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -128,6 +141,62 @@ class DriveUniteEkle : Fragment() {
                 vModulDegTarih, wModulDegTarih)
         }
         return view
+    }
+
+    private fun firebaseOkunanVerileriEdittexteIsle(view: View) {
+
+        driveUniteRef.child(motorTag!!)
+            .addListenerForSingleValueEvent(object  : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    val isim = view.findViewById<EditText>(R.id.etDriveMotorIsim)
+                    val tag = view.findViewById<EditText>(R.id.etDriveMotorTag)
+                    val guc = view.findViewById<EditText>(R.id.etDriveMotorGuc)
+                    val devir = view.findViewById<EditText>(R.id.etDriveMotorDevir)
+                    val tripAkim = view.findViewById<EditText>(R.id.etDriveMotorTripAkimi)
+                    val insaTipi = view.findViewById<EditText>(R.id.etDriveMotorInsaTipi)
+                    val flans = view.findViewById<EditText>(R.id.etDriveMotorFlans)
+                    val adres = view.findViewById<EditText>(R.id.etDriveMotorAdres)
+                    val motorDegTarihi = view.findViewById<EditText>(R.id.etDriveMotorDegTarihi)
+                    val seriNoU = view.findViewById<EditText>(R.id.etDriveUniteSeriNoU)
+                    val seriNoV = view.findViewById<EditText>(R.id.etDriveUniteSeriNoV)
+                    val seriNoW = view.findViewById<EditText>(R.id.etDriveUniteSeriNoW)
+                    val uModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteUDegTarihi)
+                    val vModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteVDegTarihi)
+                    val wModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteWDegTarihi)
+
+
+                    val gelenBilgiler = p0.getValue(DriveModel::class.java)
+
+                    if(gelenBilgiler != null){
+
+                        isim.setText(gelenBilgiler.isim)
+                        tag.setText(gelenBilgiler.tag)
+                        guc.setText(gelenBilgiler.guc)
+                        devir.setText(gelenBilgiler.devir)
+                        tripAkim.setText(gelenBilgiler.tripAkim)
+                        insaTipi.setText(gelenBilgiler.insaTipi)
+                        flans.setText(gelenBilgiler.flans)
+                        adres.setText(gelenBilgiler.adres)
+                        motorDegTarihi.setText(gelenBilgiler.motorDegTarihi)
+                        seriNoU.setText(gelenBilgiler.seriNoU)
+                        seriNoV.setText(gelenBilgiler.seriNoV)
+                        seriNoW.setText(gelenBilgiler.seriNoW)
+                        uModulDegTarih.setText(gelenBilgiler.uModulDegTarihi)
+                        vModulDegTarih.setText(gelenBilgiler.vModulDegTarihi)
+                        wModulDegTarih.setText(gelenBilgiler.wModulDegTarihi)
+
+
+                    }
+
+
+
+                }
+
+
+            })
+
     }
 
     private fun firebaseDBEkle(isim: String, tag: String, guc: String, devir: String, tripAkim: String, insaTipi: String, flans: String, adres: String,

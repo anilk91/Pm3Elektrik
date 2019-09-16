@@ -2,6 +2,7 @@ package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,19 +16,22 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
 import com.example.pm3elektrik.R
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class CekmeceEkle : Fragment() {
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
     val cekmeceListe = MotorModel()
-
+    var uniqIDGelen: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_cekmece_ekle, container, false)
 
         val close = view.findViewById<ImageView>(R.id.imgCekmeceEkleClose)
         val buttonEkle = view.findViewById<Button>(R.id.btnCekmeceSalterEkle)
+
+        val bundle :Bundle? = arguments
+        uniqIDGelen = bundle?.getString("salterOlanCekmecedenGelen")
 
         close.setOnClickListener {
             changeFragment(MotorListe())
@@ -54,12 +58,55 @@ class CekmeceEkle : Fragment() {
 
         }
 
+        if (uniqIDGelen != null){
 
-
+            firebaseOkunanBilgileriEdittexteIsle(uniqIDGelen!!, view)
+        }
         return view
     }
 
+    private fun firebaseOkunanBilgileriEdittexteIsle(motorTag: String , view : View) {
+
+        ref.child(uniqIDGelen!!)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    val isim = view.findViewById<EditText>(R.id.etCekmeceIsim)
+                    val marka = view.findViewById<EditText>(R.id.etCekmeceSalterIsmi)
+                    val model = view.findViewById<EditText>(R.id.etCekmeceSalterModel)
+                    val cat = view.findViewById<EditText>(R.id.etCekmeceSalterCat)
+                    val kapasite = view.findViewById<EditText>(R.id.etCekmeceSalterKapasite)
+                    val degTarihi = view.findViewById<EditText>(R.id.etCekmeceSalterDegTarihi)
+                    val demeraj = view.findViewById<EditText>(R.id.etCekmeceSalterDemeraj)
+                    val mccYeri = view.findViewById<EditText>(R.id.etCekmeceMccYeri)
+
+                    if (p0.getValue() != null){
+                        val okunan = p0.getValue(MotorModel::class.java)
+                        if (okunan != null){
+
+                            isim.setText(okunan.cekmeceIsim)
+                            marka.setText(okunan.cekmeceMarka)
+                            model.setText(okunan.cekmeceModel)
+                            cat.setText(okunan.cekmeceCat)
+                            kapasite.setText(okunan.cekmeceKapasite)
+                            demeraj.setText(okunan.cekmeceDemeraj)
+                            mccYeri.setText(okunan.motorMCCYeri)
+                            degTarihi.setText(okunan.cekmeceSalterDegisim)
+                        }
+                    }
+
+
+                }
+
+
+            })
+
+    }
+
     private fun firebaseDBEkle(isim: String, marka: String, model: String, kapasite: String, cat: String, degTarihi: String, demeraj: String , mccYeri : String) {
+
+        val uniqueID = ref.push().key
 
         cekmeceListe.cekmeceIsim = isim
         cekmeceListe.cekmeceMarka = marka
@@ -69,23 +116,47 @@ class CekmeceEkle : Fragment() {
         cekmeceListe.cekmeceSalterDegisim = degTarihi
         cekmeceListe.cekmeceDemeraj = demeraj
 
+
         cekmeceListe.motorMCCYeri = mccYeri
         cekmeceListe.motorTag = isim
         cekmeceListe.motorGelenVeri = "cekmeceEkle"
 
 
-        ref.push()
-            .setValue(cekmeceListe)
-            .addOnCompleteListener { it->
 
-                if(it.isComplete){
+        if (uniqIDGelen != null ){
 
-                }else{
-                    try{
-                        Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                    }catch (hata:Exception){ }
+            ref.child(uniqIDGelen!!)
+                .setValue(cekmeceListe)
+                .addOnCompleteListener { it->
+
+                    if(it.isComplete){
+
+                    }else{
+                        try{
+                            Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }catch (hata:Exception){ }
+                    }
                 }
-            }
+
+        }else {
+
+            cekmeceListe.cekmeceUid = uniqueID!!
+            ref.child(uniqueID)
+                .setValue(cekmeceListe)
+                .addOnCompleteListener { it->
+
+                    if(it.isComplete){
+
+                    }else{
+                        try{
+                            Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }catch (hata:Exception){ }
+                    }
+                }
+
+        }
+
+
     }
 
     private fun changeFragment(fragment : Fragment){

@@ -99,7 +99,7 @@ class MotorListe : Fragment() {
 
                         val okunanBilgiler = dataGetir.getValue(MotorModel::class.java)
 
-                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir , okunanBilgiler.cekmeceModel,okunanBilgiler.cekmeceMarka,okunanBilgiler.cekmeceKapasite,okunanBilgiler.motorGelenVeri , okunanBilgiler.motorGucKVA))
+                        motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir , okunanBilgiler.cekmeceModel,okunanBilgiler.cekmeceMarka,okunanBilgiler.cekmeceKapasite,okunanBilgiler.motorGelenVeri , okunanBilgiler.motorGucKVA,okunanBilgiler.cekmeceUid))
 
                     }
                     recyclerAdapter(motorListesi,mContext)

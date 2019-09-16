@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.MotorListeSayfasi.CekmecesiSalterOlanSayfa.CekmecesiSalterOlanEtiket
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
@@ -138,6 +139,17 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
                 }
 
+                if (motorListesi.motorGelenVeri == "cekmeceEkle"){
+
+                    val bundle : Bundle? =Bundle()
+                    bundle?.putString("rvGelenTag",motorListe[position].cekmeceUid)
+                    val fragment = CekmecesiSalterOlanEtiket()
+                    fragment.arguments = bundle
+                    val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
+
+                }else{}
+
 
             }
             motorDelete.setOnClickListener {
@@ -150,20 +162,33 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                 builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
                     override fun onClick(p0: DialogInterface?, p1: Int) {
 
-                        //Çekmece ve Motor Bilgilerini Sil----------------------------
+//                        //Çekmece ve Motor Bilgilerini Sil----------------------------
+//                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+//                            .child("Motor")
+//                            .orderByChild("motorTag")
+//                            .equalTo("${motorListesi.motorTag}")
+//                            .addListenerForSingleValueEvent(object : ValueEventListener{
+//                                override fun onCancelled(p0: DatabaseError) {}
+//                                override fun onDataChange(p0: DataSnapshot) {
+//
+//                                    for (gelen in p0.children){
+//                                        gelen.ref.removeValue()
+//                                    }
+//                                }
+//                            })
+
+                        //Motor Bilgilerini Sil---------------------------------------
                         FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
                             .child("Motor")
-                            .orderByChild("motorTag")
-                            .equalTo("${motorListesi.motorTag}")
-                            .addListenerForSingleValueEvent(object : ValueEventListener{
-                                override fun onCancelled(p0: DatabaseError) {}
-                                override fun onDataChange(p0: DataSnapshot) {
+                            .child(motorListe[position].motorTag)
+                            .removeValue()
 
-                                    for (gelen in p0.children){
-                                        gelen.ref.removeValue()
-                                    }
-                                }
-                            })
+                        //Çekmecesi Şalter Olan Bilgileri Sil-------------------------
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Motor")
+                            .child(motorListe[position].cekmeceUid)
+                            .removeValue()
+
 
                         //Şalter Bilgilerini Sil--------------------------------
                         FirebaseDatabase.getInstance().reference.child("pm3Elektrik")

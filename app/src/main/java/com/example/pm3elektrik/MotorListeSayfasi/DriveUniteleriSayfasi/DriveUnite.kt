@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveRVAdapters.DriveUniteNotlariRV
+import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteModel.DriveModel
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteModel.UniteNotuModel
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.UniteNotEkle.DriveUniteNotEkle
@@ -37,6 +38,20 @@ class DriveUnite : Fragment() {
 
         val close = view.findViewById<ImageView>(R.id.imgDriveEtiketClose)
         val notEkle = view.findViewById<ImageView>(R.id.imgDriveUniteNotEkle)
+        val motorVeUniteEtiketDuzenle = view.findViewById<ImageView>(R.id.imgDriveEtiketDuzenle)
+
+        motorVeUniteEtiketDuzenle.setOnClickListener {
+
+//            changeFragment(DriveUniteEkle())
+
+            val bundle : Bundle? =Bundle()
+            bundle?.putString("driveUniteGelenTag",motorTag)
+            val fragment = DriveUniteEkle()
+            fragment.arguments = bundle
+            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.containerMotorListe,fragment,"drive_unite_fr")?.commit()
+
+        }
 
 
         close.setOnClickListener {
@@ -72,21 +87,21 @@ class DriveUnite : Fragment() {
 
                     if(p0 != null){
 
-                        val gelen : DriveModel = p0.getValue(DriveModel::class.java) as DriveModel
+                        val gelen = p0.getValue(DriveModel::class.java)
 
-                        tvDriveMotorIsim.setText(gelen.isim)
-                        tvDriveMotorTag.setText(gelen.tag)
-                        tvDriveMotorGuc.setText(gelen.guc)
-                        tvDriveMotorDevir.setText(gelen.devir)
-                        tvDriveMotorTripAkim.setText(gelen.tripAkim)
-                        tvDriveMotorInsaTipi.setText(gelen.insaTipi)
-                        tvDriveMotorFlans.setText(gelen.flans)
-                        tvDriveMotorDegTarihi.setText(gelen.motorDegTarihi)
-                        tvDriveMotorAdres.setText(gelen.adres)
-                        tvDriveMotorAdres.setText(gelen.adres)
-                        tvDriveUniteGuc.setText(gelen.uniteGucKVA + " KVA")
+                        tvDriveMotorIsim.setText(gelen?.isim)
+                        tvDriveMotorTag.setText(gelen?.tag)
+                        tvDriveMotorGuc.setText(gelen?.guc)
+                        tvDriveMotorDevir.setText(gelen?.devir)
+                        tvDriveMotorTripAkim.setText(gelen?.tripAkim)
+                        tvDriveMotorInsaTipi.setText(gelen?.insaTipi)
+                        tvDriveMotorFlans.setText(gelen?.flans)
+                        tvDriveMotorDegTarihi.setText(gelen?.motorDegTarihi)
+                        tvDriveMotorAdres.setText(gelen?.adres)
+                        tvDriveMotorAdres.setText(gelen?.adres)
+                        tvDriveUniteGuc.setText(gelen?.uniteGucKVA + " KVA")
 
-                        if (gelen.uniteGucKVA == "20" || gelen.uniteGucKVA == "60" || gelen.uniteGucKVA == "180" || gelen.uniteGucKVA == "250" || gelen.uniteGucKVA == "490"){
+                        if (gelen?.uniteGucKVA == "20" || gelen?.uniteGucKVA == "60" || gelen?.uniteGucKVA == "180" || gelen?.uniteGucKVA == "250" || gelen?.uniteGucKVA == "490"){
 
                             tvSNoYazisiW.visibility = View.GONE
                             tvDegTarihiW.visibility = View.GONE
@@ -98,18 +113,18 @@ class DriveUnite : Fragment() {
                             tvDriveUniteDegTarihiW.visibility = View.GONE
 
                             tvSNoYazisiU.setText("S. No :")
-                            tvDriveUniteSeriNoU.setText(gelen.seriNoU)
-                            tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
+                            tvDriveUniteSeriNoU.setText(gelen?.seriNoU)
+                            tvDriveUniteDegTarihiU.setText(gelen?.uModulDegTarihi)
 
-                        }else if (gelen.uniteGucKVA == "600" || gelen.uniteGucKVA == "900" || gelen.uniteGucKVA == "1040" || gelen.uniteGucKVA == "1380"){
+                        }else if (gelen?.uniteGucKVA == "600" || gelen?.uniteGucKVA == "900" || gelen?.uniteGucKVA == "1040" || gelen?.uniteGucKVA == "1380"){
 
-                            tvDriveUniteSeriNoU.setText(gelen.seriNoU)
-                            tvDriveUniteSeriNoV.setText(gelen.seriNoV)
-                            tvDriveUniteSeriNoW.setText(gelen.seriNoW)
+                            tvDriveUniteSeriNoU.setText(gelen?.seriNoU)
+                            tvDriveUniteSeriNoV.setText(gelen?.seriNoV)
+                            tvDriveUniteSeriNoW.setText(gelen?.seriNoW)
 
-                            tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
-                            tvDriveUniteDegTarihiV.setText(gelen.vModulDegTarihi)
-                            tvDriveUniteDegTarihiW.setText(gelen.wModulDegTarihi)
+                            tvDriveUniteDegTarihiU.setText(gelen?.uModulDegTarihi)
+                            tvDriveUniteDegTarihiV.setText(gelen?.vModulDegTarihi)
+                            tvDriveUniteDegTarihiW.setText(gelen?.wModulDegTarihi)
 
                         }
 
@@ -159,9 +174,7 @@ class DriveUnite : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.containerMotorListe,fragment,"fragment_drive_unite_etiket")
+        fragmentTransaction?.replace(R.id.containerFragment,fragment,"fragment_drive_unite_etiket")
         fragmentTransaction?.commit()
     }
-
-
 }
