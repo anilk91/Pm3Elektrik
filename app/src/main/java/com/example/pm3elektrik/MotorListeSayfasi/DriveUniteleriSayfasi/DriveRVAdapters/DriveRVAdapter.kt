@@ -49,7 +49,7 @@ class DriveRVAdapter(var motorListe : ArrayList<DriveModel>, var mContext : Cont
         fun setData(gelenMotorListe: DriveModel, position: Int) {
 
             tag.setText(gelenMotorListe.tag)
-            guc.setText(gelenMotorListe.guc + " KW")
+            guc.setText("gelenMotorListe.guc" + " KW")
             seriNo.setText(gelenMotorListe.seriNoU)
             degTarihi.setText(gelenMotorListe.uModulDegTarihi)
 

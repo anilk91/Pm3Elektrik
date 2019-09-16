@@ -32,6 +32,7 @@ class DriveUnite : Fragment() {
     var uniteNotListe = ArrayList<UniteNotuModel>()
     lateinit var myAdapter : DriveUniteNotlariRV
     var motorTag: String? = null
+    val bilgiYok = "Bilgi Yok"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drive_unite, container, false)
@@ -41,8 +42,6 @@ class DriveUnite : Fragment() {
         val motorVeUniteEtiketDuzenle = view.findViewById<ImageView>(R.id.imgDriveEtiketDuzenle)
 
         motorVeUniteEtiketDuzenle.setOnClickListener {
-
-//            changeFragment(DriveUniteEkle())
 
             val bundle : Bundle? =Bundle()
             bundle?.putString("driveUniteGelenTag",motorTag)
@@ -85,49 +84,11 @@ class DriveUnite : Fragment() {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
-                    if(p0 != null){
+                    if(p0.getValue() != null){
 
                         val gelen = p0.getValue(DriveModel::class.java)
 
-                        tvDriveMotorIsim.setText(gelen?.isim)
-                        tvDriveMotorTag.setText(gelen?.tag)
-                        tvDriveMotorGuc.setText(gelen?.guc)
-                        tvDriveMotorDevir.setText(gelen?.devir)
-                        tvDriveMotorTripAkim.setText(gelen?.tripAkim)
-                        tvDriveMotorInsaTipi.setText(gelen?.insaTipi)
-                        tvDriveMotorFlans.setText(gelen?.flans)
-                        tvDriveMotorDegTarihi.setText(gelen?.motorDegTarihi)
-                        tvDriveMotorAdres.setText(gelen?.adres)
-                        tvDriveMotorAdres.setText(gelen?.adres)
-                        tvDriveUniteGuc.setText(gelen?.uniteGucKVA + " KVA")
-
-                        if (gelen?.uniteGucKVA == "20" || gelen?.uniteGucKVA == "60" || gelen?.uniteGucKVA == "180" || gelen?.uniteGucKVA == "250" || gelen?.uniteGucKVA == "490"){
-
-                            tvSNoYazisiW.visibility = View.GONE
-                            tvDegTarihiW.visibility = View.GONE
-                            tvSNoYazisiV.visibility = View.GONE
-                            tvDegTarihiV.visibility = View.GONE
-                            tvDriveUniteSeriNoV.visibility = View.GONE
-                            tvDriveUniteSeriNoW.visibility = View.GONE
-                            tvDriveUniteDegTarihiV.visibility = View.GONE
-                            tvDriveUniteDegTarihiW.visibility = View.GONE
-
-                            tvSNoYazisiU.setText("S. No :")
-                            tvDriveUniteSeriNoU.setText(gelen?.seriNoU)
-                            tvDriveUniteDegTarihiU.setText(gelen?.uModulDegTarihi)
-
-                        }else if (gelen?.uniteGucKVA == "600" || gelen?.uniteGucKVA == "900" || gelen?.uniteGucKVA == "1040" || gelen?.uniteGucKVA == "1380"){
-
-                            tvDriveUniteSeriNoU.setText(gelen?.seriNoU)
-                            tvDriveUniteSeriNoV.setText(gelen?.seriNoV)
-                            tvDriveUniteSeriNoW.setText(gelen?.seriNoW)
-
-                            tvDriveUniteDegTarihiU.setText(gelen?.uModulDegTarihi)
-                            tvDriveUniteDegTarihiV.setText(gelen?.vModulDegTarihi)
-                            tvDriveUniteDegTarihiW.setText(gelen?.wModulDegTarihi)
-
-                        }
-
+                        gelenBilgileriTexteIsle(gelen)
 
                     }
                 }
@@ -145,13 +106,13 @@ class DriveUnite : Fragment() {
             override fun onCancelled(p0: DatabaseError) {}
             override fun onDataChange(p0: DataSnapshot) {
 
-                if (p0 != null){
+                if (p0.getValue() != null){
 
                     for (gelen in p0.children){
 
                         val okunan = gelen.getValue(UniteNotuModel::class.java)
 
-                        uniteNotListe.add(UniteNotuModel(okunan!!.uniteNotu,okunan!!.uniteNotuTarih , okunan!!.sistemSaat))
+                        uniteNotListe.add(UniteNotuModel(okunan!!.uniteNotu,okunan.uniteNotuTarih , okunan.sistemSaat))
                     }
                     firebaseGelenRecyclerView(uniteNotListe,mContext ,view)
                 }
@@ -160,7 +121,7 @@ class DriveUnite : Fragment() {
 
     }
 
-     private fun firebaseGelenRecyclerView(uniteNotListe: ArrayList<UniteNotuModel>, mContext: Context, view: View) {
+    private fun firebaseGelenRecyclerView(uniteNotListe: ArrayList<UniteNotuModel>, mContext: Context, view: View) {
 
         myAdapter = DriveUniteNotlariRV(uniteNotListe,mContext,motorTag!!)
         view.rvUniteNotlariListesi?.adapter = myAdapter
@@ -171,10 +132,87 @@ class DriveUnite : Fragment() {
         myAdapter.notifyDataSetChanged()
     }
 
+    private fun gelenBilgileriTexteIsle(gelen: DriveModel?) {
+
+        tvDriveMotorTag.setText(gelen?.tag)
+        tvDriveMotorGuc.setText("${gelen?.guc} KW")
+
+        //--------isim-----------------------------
+        if (gelen?.isim!!.isNullOrBlank()){
+            tvDriveMotorIsim.setText("Motor İsim Yok")
+        }else { tvDriveMotorIsim.setText(gelen?.isim) }
+
+        //-------devir-----------------------------
+        if (gelen?.devir!!.isNullOrBlank()){
+            tvDriveMotorDevir.setText(bilgiYok)
+        }else { tvDriveMotorDevir.setText(gelen?.devir + " D/d") }
+
+        //-------trip akım-------------------------
+        if (gelen?.tripAkim!!.isNullOrBlank()){
+            tvDriveMotorTripAkim.setText(bilgiYok)
+        }else { tvDriveMotorTripAkim.setText(gelen?.tripAkim + " A") }
+
+        //--------inşa tipi-----------------------------
+        if (gelen?.insaTipi!!.isNullOrBlank()){
+            tvDriveMotorInsaTipi.setText(bilgiYok)
+        }else { tvDriveMotorInsaTipi.setText(gelen?.insaTipi) }
+
+        //--------flanş-----------------------------
+        if (gelen?.flans!!.isNullOrBlank()){
+            tvDriveMotorFlans.setText(bilgiYok)
+        }else { tvDriveMotorFlans.setText(gelen?.flans) }
+
+        //--------motor değişim tarihi-----------------------------
+        if (gelen?.motorDegTarihi!!.isNullOrBlank()){
+            tvDriveMotorDegTarihi.setText(bilgiYok)
+        }else { tvDriveMotorDegTarihi.setText(gelen?.motorDegTarihi) }
+
+        //--------motor adres-----------------------------
+        if (gelen?.adres!!.isNullOrBlank()){
+            tvDriveMotorAdres.setText(bilgiYok)
+        }else { tvDriveMotorAdres.setText(gelen?.adres) }
+
+        //--------ünite güç KVA-----------------------------
+        if (gelen?.uniteGucKVA!!.isNullOrBlank()){
+            tvDriveUniteGuc.setText(bilgiYok)
+        }else { tvDriveUniteGuc.setText(gelen?.uniteGucKVA + " KVA") }
+
+
+        if (gelen?.uniteGucKVA == "20" || gelen?.uniteGucKVA == "60" || gelen?.uniteGucKVA == "180" || gelen?.uniteGucKVA == "250" || gelen?.uniteGucKVA == "490"){
+
+            tvSNoYazisiW.visibility = View.GONE
+            tvDegTarihiW.visibility = View.GONE
+            tvSNoYazisiV.visibility = View.GONE
+            tvDegTarihiV.visibility = View.GONE
+            tvDriveUniteSeriNoV.visibility = View.GONE
+            tvDriveUniteSeriNoW.visibility = View.GONE
+            tvDriveUniteDegTarihiV.visibility = View.GONE
+            tvDriveUniteDegTarihiW.visibility = View.GONE
+
+            tvSNoYazisiU.setText("S. No :")
+            tvDriveUniteSeriNoU.setText(gelen.seriNoU)
+            tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
+
+        }else if (gelen?.uniteGucKVA == "600" || gelen?.uniteGucKVA == "900" || gelen?.uniteGucKVA == "1040" || gelen?.uniteGucKVA == "1380"){
+
+            tvDriveUniteSeriNoU.setText(gelen.seriNoU)
+            tvDriveUniteSeriNoV.setText(gelen.seriNoV)
+            tvDriveUniteSeriNoW.setText(gelen.seriNoW)
+
+            tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
+            tvDriveUniteDegTarihiV.setText(gelen.vModulDegTarihi)
+            tvDriveUniteDegTarihiW.setText(gelen.wModulDegTarihi)
+
+        }
+
+    }
+
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.containerFragment,fragment,"fragment_drive_unite_etiket")
         fragmentTransaction?.commit()
     }
+
+
 }

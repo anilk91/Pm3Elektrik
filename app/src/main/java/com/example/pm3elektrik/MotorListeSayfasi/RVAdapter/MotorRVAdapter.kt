@@ -162,32 +162,32 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                 builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
                     override fun onClick(p0: DialogInterface?, p1: Int) {
 
-//                        //Çekmece ve Motor Bilgilerini Sil----------------------------
+                        //Çekmece ve Motor Bilgilerini Sil----------------------------
+                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                            .child("Motor")
+                            .orderByChild("motorTag")
+                            .equalTo("${motorListesi.motorTag}")
+                            .addListenerForSingleValueEvent(object : ValueEventListener{
+                                override fun onCancelled(p0: DatabaseError) {}
+                                override fun onDataChange(p0: DataSnapshot) {
+
+                                    for (gelen in p0.children){
+                                        gelen.ref.removeValue()
+                                    }
+                                }
+                            })
+
+//                        //Motor Bilgilerini Sil---------------------------------------
 //                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
 //                            .child("Motor")
-//                            .orderByChild("motorTag")
-//                            .equalTo("${motorListesi.motorTag}")
-//                            .addListenerForSingleValueEvent(object : ValueEventListener{
-//                                override fun onCancelled(p0: DatabaseError) {}
-//                                override fun onDataChange(p0: DataSnapshot) {
+//                            .child(motorListe[position].motorTag)
+//                            .removeValue()
 //
-//                                    for (gelen in p0.children){
-//                                        gelen.ref.removeValue()
-//                                    }
-//                                }
-//                            })
-
-                        //Motor Bilgilerini Sil---------------------------------------
-                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                            .child("Motor")
-                            .child(motorListe[position].motorTag)
-                            .removeValue()
-
-                        //Çekmecesi Şalter Olan Bilgileri Sil-------------------------
-                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                            .child("Motor")
-                            .child(motorListe[position].cekmeceUid)
-                            .removeValue()
+//                        //Çekmecesi Şalter Olan Bilgileri Sil-------------------------
+//                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+//                            .child("Motor")
+//                            .child(motorListe[position].cekmeceUid)
+//                            .removeValue()
 
 
                         //Şalter Bilgilerini Sil--------------------------------

@@ -48,14 +48,11 @@ class CekmeceEkle : Fragment() {
             val demeraj = view.findViewById<EditText>(R.id.etCekmeceSalterDemeraj).text.toString().toUpperCase()
             val mccYeri = view.findViewById<EditText>(R.id.etCekmeceMccYeri).text.toString().toUpperCase()
 
-            if (!isim.isNullOrEmpty()){
+            if (!isim.isNullOrEmpty() && !mccYeri.isNullOrEmpty()){
                 firebaseDBEkle(isim,marka,model,kapasite,cat,degTarihi,demeraj,mccYeri)
             }else{
-                Toast.makeText(view.context,"Çekmece İsmini Giriniz!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context,"Çekmece İsim ve MCC Yerini Giriniz",Toast.LENGTH_SHORT).show()
             }
-
-            Toast.makeText(view.context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
-
         }
 
         if (uniqIDGelen != null){
@@ -156,7 +153,7 @@ class CekmeceEkle : Fragment() {
 
         }
 
-
+        Toast.makeText(view?.context,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
     }
 
     private fun changeFragment(fragment : Fragment){

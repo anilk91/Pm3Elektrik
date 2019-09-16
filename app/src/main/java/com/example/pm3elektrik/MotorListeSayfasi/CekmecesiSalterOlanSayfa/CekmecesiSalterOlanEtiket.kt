@@ -25,6 +25,7 @@ class CekmecesiSalterOlanEtiket : Fragment() {
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
     var uniqIDGelen: String? = null
+    val bilgiYok = "Bilgi Yok"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_cekmecesi_salter_olan_etiket, container, false)
@@ -59,32 +60,61 @@ class CekmecesiSalterOlanEtiket : Fragment() {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
-                    val isim = view.findViewById<TextView>(R.id.tvSalterOlanEtiketIsim)
-                    val marka = view.findViewById<TextView>(R.id.tvSalterOlanMarka)
-                    val model = view.findViewById<TextView>(R.id.tvSalterOlanModel)
-                    val cat = view.findViewById<TextView>(R.id.tvSalterOlanCat)
-                    val kapasite = view.findViewById<TextView>(R.id.tvSalterOlanKapasite)
-                    val demeraj = view.findViewById<TextView>(R.id.tvSalterOlanDemeraj)
-                    val mccYeri = view.findViewById<TextView>(R.id.tvSalterOlanMccYeri)
-                    val degTarihi  = view.findViewById<TextView>(R.id.tvSalterOlanDegTarihi)
-
-
                     if (p0.getValue() != null){
                         val okunan = p0.getValue(MotorModel::class.java)
                             if (okunan != null){
-
-                                    isim.setText(okunan.cekmeceIsim)
-                                    marka.setText(okunan.cekmeceMarka)
-                                    model.setText(okunan.cekmeceModel)
-                                    cat.setText(okunan.cekmeceCat)
-                                    kapasite.setText(okunan.cekmeceKapasite)
-                                    demeraj.setText(okunan.cekmeceDemeraj)
-                                    mccYeri.setText(okunan.motorMCCYeri)
-                                    degTarihi.setText(okunan.cekmeceSalterDegisim)
+                                gelenBilgileriTexteIsle(okunan,view)
                             }
                     }
                 }
             })
+
+
+    }
+
+    private fun gelenBilgileriTexteIsle(okunan: MotorModel, view: View) {
+
+        val isim = view.findViewById<TextView>(R.id.tvSalterOlanEtiketIsim)
+        val marka = view.findViewById<TextView>(R.id.tvSalterOlanMarka)
+        val model = view.findViewById<TextView>(R.id.tvSalterOlanModel)
+        val cat = view.findViewById<TextView>(R.id.tvSalterOlanCat)
+        val kapasite = view.findViewById<TextView>(R.id.tvSalterOlanKapasite)
+        val demeraj = view.findViewById<TextView>(R.id.tvSalterOlanDemeraj)
+        val mccYeri = view.findViewById<TextView>(R.id.tvSalterOlanMccYeri)
+        val degTarihi  = view.findViewById<TextView>(R.id.tvSalterOlanDegTarihi)
+
+        isim.setText(okunan.cekmeceIsim)
+        mccYeri.setText(okunan.motorMCCYeri)
+
+        //--------marka-------------------------
+        if (okunan.cekmeceMarka.isNullOrBlank()){
+            marka.setText(bilgiYok)
+        }else{marka.setText(okunan.cekmeceMarka)}
+
+        //--------model-------------------------
+        if (okunan.cekmeceModel.isNullOrBlank()){
+            model.setText(bilgiYok)
+        }else{model.setText(okunan.cekmeceModel)}
+
+        //--------cat-------------------------
+        if (okunan.cekmeceCat.isNullOrBlank()){
+            cat.setText(bilgiYok)
+        }else{cat.setText(okunan.cekmeceCat)}
+
+        //--------kapasite-------------------------
+        if (okunan.cekmeceKapasite.isNullOrBlank()){
+            kapasite.setText(bilgiYok)
+        }else{kapasite.setText(okunan.cekmeceKapasite + " A")}
+
+        //--------demeraj-------------------------
+        if (okunan.cekmeceDemeraj.isNullOrBlank()){
+            demeraj.setText(bilgiYok)
+        }else{demeraj.setText(okunan.cekmeceDemeraj)}
+
+        //--------değişim tarihi-------------------------
+        if (okunan.cekmeceSalterDegisim.isNullOrBlank()){
+            degTarihi.setText(bilgiYok)
+        }else{degTarihi.setText(okunan.cekmeceSalterDegisim)}
 
 
     }

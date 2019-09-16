@@ -4,7 +4,7 @@ class DriveModel {
 
     var isim = ""
     var tag = ""
-    var guc = ""
+    var guc = 0.0
     var devir = ""
     var tripAkim = ""
     var insaTipi = ""
@@ -25,7 +25,7 @@ class DriveModel {
     constructor(
         isim: String,
         tag: String,
-        guc: String,
+        guc: Double,
         devir: String,
         tripAkim: String,
         insaTipi: String,

@@ -173,7 +173,7 @@ class DriveUniteEkle : Fragment() {
 
                         isim.setText(gelenBilgiler.isim)
                         tag.setText(gelenBilgiler.tag)
-                        guc.setText(gelenBilgiler.guc)
+                        guc.setText("${gelenBilgiler.guc}")
                         devir.setText(gelenBilgiler.devir)
                         tripAkim.setText(gelenBilgiler.tripAkim)
                         insaTipi.setText(gelenBilgiler.insaTipi)
@@ -203,9 +203,16 @@ class DriveUniteEkle : Fragment() {
         motorDegTarihi: String, seriNoU: String, seriNoV: String, seriNoW: String, uModulDegTarih: String, vModulDegTarih: String, wModulDegTarih: String
     ) {
 
+        if (!guc.isNullOrBlank()){
+            motorListe.motorGucKW = guc.toDouble()
+            driveMotorListe.guc = guc.toDouble()
+        }else{
+            motorListe.motorGucKW = 0.0
+            driveMotorListe.guc = 0.0
+        }
         driveMotorListe.isim = isim
         driveMotorListe.tag = tag
-        driveMotorListe.guc = guc
+
         driveMotorListe.devir = devir
         driveMotorListe.tripAkim = tripAkim
         driveMotorListe.insaTipi = insaTipi
@@ -221,7 +228,7 @@ class DriveUniteEkle : Fragment() {
 
 
         motorListe.motorTag = tag
-        motorListe.motorGucKW = guc.toDouble()
+
         motorListe.motorDevir = devir
         motorListe.motorMCCYeri = "DRİVE MCC"
         motorListe.motorGelenVeri = "driveMotorEkle"
