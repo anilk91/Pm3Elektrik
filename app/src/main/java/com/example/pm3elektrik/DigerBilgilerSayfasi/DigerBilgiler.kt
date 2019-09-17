@@ -12,7 +12,9 @@ import com.example.pm3elektrik.DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKo
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTrip
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KumandaProjeSayfasi.KumandaProjeleri
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KuyuPanoSayfasi.KuyuPanolari
+import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.Trafolar
 
 import com.example.pm3elektrik.R
 
@@ -26,6 +28,8 @@ class DigerBilgiler : Fragment() {
         val kontaktorTripSayfasi = view.findViewById<CardView>(R.id.cardViewKontaktorTrip)
         val kuyuPanolariSayfasi = view.findViewById<CardView>(R.id.cardViewKuyuVeMcc)
         val driveUniteleriSayfasi = view.findViewById<CardView>(R.id.cardViewDriveUnite)
+        val kumandaProjeleriSayfasi = view.findViewById<CardView>(R.id.cardViewKumandaProjeleri)
+        val trafoSayfasi = view.findViewById<CardView>(R.id.cardViewTrafo)
 
         ambarSayfasi.setOnClickListener { changeFragment(AmbarKayit()) }
 
@@ -40,7 +44,9 @@ class DigerBilgiler : Fragment() {
 
         driveUniteleriSayfasi.setOnClickListener { changeFragment(DriveUnite()) }
 
+        kumandaProjeleriSayfasi.setOnClickListener { changeFragment(KumandaProjeleri()) }
 
+        trafoSayfasi.setOnClickListener { changeFragment(Trafolar()) }
 
 
         return view
