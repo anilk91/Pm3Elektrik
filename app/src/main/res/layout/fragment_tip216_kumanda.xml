@@ -8,25 +8,14 @@
     tools:context=".DigerBilgilerSayfasi.KumandaProjeSayfasi.Tip216KumandaProjeSayfasi.Tip216Kumanda">
 
 
-    <ImageView
-        android:id="@+id/imgTip216KumandaClose"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/photoView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgTip216KumandaClose">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.github.chrisbanes.photoview.PhotoView>
 
