@@ -72,7 +72,7 @@
                 android:text="Sürücü Tipi :"
                 android:textColor="@android:color/holo_red_dark"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView136" />
+                app:layout_constraintTop_toBottomOf="@+id/tvKuyuAdres" />
 
             <TextView
                 android:id="@+id/textView139"
@@ -80,13 +80,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="Pano Değ. Tarihi :"
                 android:textColor="@android:color/holo_red_dark"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView138" />
+                app:layout_constraintTop_toBottomOf="@+id/tvKuyuPanoAnaBesleme" />
 
             <TextView
                 android:id="@+id/tvKuyuSurucuTipi"
@@ -115,6 +113,32 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView139"
                 app:layout_constraintTop_toTopOf="@+id/textView139" />
+
+            <TextView
+                android:id="@+id/textView141"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Ana Besleme :"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvKuyuSurucuTipi" />
+
+            <TextView
+                android:id="@+id/tvKuyuPanoAnaBesleme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="Ana Besleme"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView141"
+                app:layout_constraintTop_toTopOf="@+id/textView141" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

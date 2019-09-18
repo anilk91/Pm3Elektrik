@@ -22,8 +22,6 @@ class KuyuPanolari : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_kuyu_panolari, container, false)
-        val close = view.findViewById<ImageView>(R.id.imgKuyuPanoClose)
-
 
         kuyuGelenListe()
         myAdapter = RVKuyuPano(kuyuListe,view.context)
@@ -40,13 +38,13 @@ class KuyuPanolari : Fragment() {
 
     private fun kuyuGelenListe() {
 
-        kuyuListe.add(KuyuPanoModel("1 NOLU KUYU","Mazot İstasyonu Yanı","Yıldız - Üçgen Kontaktör","Bilgi Yok"))
-        kuyuListe.add(KuyuPanoModel("4 NOLU KUYU","Arıtma","Yıldız - Üçgen Kontaktör","Bilgi Yok"))
-        kuyuListe.add(KuyuPanoModel("5 NOLU KUYU","Araç Bakım Karşısı","Yıldız - Üçgen Kontaktör","Bilgi Yok"))
-        kuyuListe.add(KuyuPanoModel("6 NOLU KUYU","Mekanik Atölye Arkası","Siemens Easy Soft Starter","Bilgi Yok"))
-        kuyuListe.add(KuyuPanoModel("8 NOLU KUYU","PM4 Güvenlik Girişi","Yıldız - Üçgen Kontaktör","Bilgi Yok"))
-        kuyuListe.add(KuyuPanoModel("9 NOLU KUYU","Jeneratör Hizasında Paratoner Direği Yanı","Yıldız - Üçgen Kontaktör","Bilgi Yok"))
-        kuyuListe.add(KuyuPanoModel("10 NOLU KUYU","4 Nolu Kapı Yanı","Yıldız - Üçgen Kontaktör","Bilgi Yok"))
+        kuyuListe.add(KuyuPanoModel("1 NOLU KUYU","Mazot İstasyonu Yanı","Yıldız - Üçgen Kontaktör","Bilgi Yok","Mcc 6/7 7.7 Ön"))
+        kuyuListe.add(KuyuPanoModel("4 NOLU KUYU","Arıtma","Yıldız - Üçgen Kontaktör","Bilgi Yok","Arıtma"))
+        kuyuListe.add(KuyuPanoModel("5 NOLU KUYU","Araç Bakım Karşısı","Yıldız - Üçgen Kontaktör","Bilgi Yok","Jeneratör Dairesi"))
+        kuyuListe.add(KuyuPanoModel("6 NOLU KUYU","Mekanik Atölye Arkası","Siemens Easy Soft Starter","Bilgi Yok","Mcc 6/7 7.7 Ön"))
+        kuyuListe.add(KuyuPanoModel("8 NOLU KUYU","PM4 Güvenlik Girişi","Yıldız - Üçgen Kontaktör","Bilgi Yok","Jeneratör Dairesi"))
+        kuyuListe.add(KuyuPanoModel("9 NOLU KUYU","Jeneratör Hizasında Paratoner Direği Yanı","Yıldız - Üçgen Kontaktör","Bilgi Yok","Jeneratör Dairesi"))
+        kuyuListe.add(KuyuPanoModel("10 NOLU KUYU","4 Nolu Kapı Yanı","Yıldız - Üçgen Kontaktör","Bilgi Yok","Jeneratör Dairesi"))
 
     }
 

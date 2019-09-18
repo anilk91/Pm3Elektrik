@@ -6,12 +6,14 @@ class KuyuPanoModel {
     var kuyuAdres = ""
     var kuyuSurucu = ""
     var kuyuDegTarihi = ""
+    var kuyuAnaBesleme = ""
 
-    constructor(kuyuIsim: String, kuyuAdres: String, kuyuSurucu: String, kuyuDegTarihi: String) {
+    constructor(kuyuIsim: String, kuyuAdres: String, kuyuSurucu: String, kuyuDegTarihi: String, kuyuAnaBesleme : String) {
         this.kuyuIsim = kuyuIsim
         this.kuyuAdres = kuyuAdres
         this.kuyuSurucu = kuyuSurucu
         this.kuyuDegTarihi = kuyuDegTarihi
+        this.kuyuAnaBesleme = kuyuAnaBesleme
     }
 
     constructor()

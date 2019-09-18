@@ -40,6 +40,7 @@ class RVKuyuPano(var kuyuListe : ArrayList<KuyuPanoModel>, var mContext : Contex
         val adres = tumLayout.tvKuyuAdres
         val surucuTipi = tumLayout.tvKuyuSurucuTipi
         val panoDegTarih = tumLayout.tvKuyuPanoDegTarihi
+        val kuyuBesleme = tumLayout.tvKuyuPanoAnaBesleme
 
         fun setData(gelenKuyuListe : KuyuPanoModel, position: Int){
 
@@ -47,6 +48,7 @@ class RVKuyuPano(var kuyuListe : ArrayList<KuyuPanoModel>, var mContext : Contex
             adres.setText(gelenKuyuListe.kuyuAdres)
             surucuTipi.setText(gelenKuyuListe.kuyuSurucu)
             panoDegTarih.setText(gelenKuyuListe.kuyuDegTarihi)
+            kuyuBesleme.setText(gelenKuyuListe.kuyuAnaBesleme)
 
         }
 

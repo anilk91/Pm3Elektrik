@@ -55,7 +55,8 @@ class DigerBilgiler : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerDigerBilgiler,fragment,"diger_bilgiler")
+        fragmentTransaction.add(R.id.containerDigerBilgiler,fragment,"diger_bilgiler")
+        fragmentTransaction.addToBackStack("diger_bilgiler_sayfasi_fr")
         fragmentTransaction.commit()
 
     }
