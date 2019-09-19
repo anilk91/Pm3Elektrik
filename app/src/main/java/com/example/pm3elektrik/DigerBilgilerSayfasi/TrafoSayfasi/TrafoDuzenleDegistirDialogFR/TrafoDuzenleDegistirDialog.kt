@@ -2,7 +2,9 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoDuzenleDe
 
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +14,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoEtiketDuzenle.TrafoGosterDuzenle
 
 import com.example.pm3elektrik.R
 
@@ -27,20 +31,13 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
 
         fotoYukle.setOnClickListener {
 
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            startActivityForResult(intent,100)
+            ekle.setOnClickListener {
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                startActivityForResult(intent, 100)
+
+            }
         }
-
-        ekle.setOnClickListener {
-
-
-
-
-
-        }
-
-
 
         return view
     }
@@ -51,10 +48,8 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
         if(requestCode == 100 && resultCode == Activity.RESULT_OK && data != null){
 
             val galeridenGelenResimYolu = data.data
-            Log.e("GelenResim","$galeridenGelenResimYolu")
 
+            TrafoGosterDuzenle().gelenResimUri(galeridenGelenResimYolu)
         }
     }
-
-
 }
