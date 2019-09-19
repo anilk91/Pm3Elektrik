@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "443030078575-5gjb4q3heqp8smkntu2lu2h4u3t1940v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pm3elektrik",
+            "certificate_hash": "a44c06c062ff9634bd4a334cf7fffec381fa2ad9"
+          }
+        },
+        {
           "client_id": "443030078575-0bt0bd9979q95jf94dqfo5r8ihjqto84.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

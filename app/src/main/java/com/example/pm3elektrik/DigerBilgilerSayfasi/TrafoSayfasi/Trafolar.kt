@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
 import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.RVTrafoAdapter.RVTrafo
 import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoModel.TrafoModel
 
@@ -38,7 +37,7 @@ class Trafolar : Fragment() {
         trafoListesi.add(TrafoModel("TRAFO 12"))
         trafoListesi.add(TrafoModel("TRAFO 13"))
 
-        myAdapter = RVTrafo(trafoListesi,view.context)
+        myAdapter = RVTrafo(trafoListesi,view.context , activity)
         view.rvTrafoListesi.adapter = myAdapter
         val mLayoutManager = GridLayoutManager(view.context,3,RecyclerView.VERTICAL,false)
         view.rvTrafoListesi.layoutManager = mLayoutManager

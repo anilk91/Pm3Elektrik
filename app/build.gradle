@@ -48,4 +48,5 @@ dependencies {
     //floating action bar kütüphanesi
     implementation 'com.github.clans:fab:1.6.4'
 
+    implementation 'com.google.firebase:firebase-storage:16.0.4'
 }
