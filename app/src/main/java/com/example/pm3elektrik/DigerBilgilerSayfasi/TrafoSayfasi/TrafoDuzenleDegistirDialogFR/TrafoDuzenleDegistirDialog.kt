@@ -30,13 +30,13 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
         val not = view.findViewById<EditText>(R.id.etTrafoNot)
 
         fotoYukle.setOnClickListener {
-
-            ekle.setOnClickListener {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.type = "image/*"
                 startActivityForResult(intent, 100)
+        }
 
-            }
+        ekle.setOnClickListener {
+            dismiss()
         }
 
         return view
@@ -45,11 +45,13 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 100 && resultCode == Activity.RESULT_OK && data != null){
+        if (requestCode != Activity.RESULT_CANCELED) {
+            if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
 
-            val galeridenGelenResimYolu = data.data
+                val galeridenGelenResimYolu = data.data
 
-            TrafoGosterDuzenle().gelenResimUri(galeridenGelenResimYolu)
+                TrafoGosterDuzenle().gelenResimUri(galeridenGelenResimYolu)
+            }
         }
     }
 }

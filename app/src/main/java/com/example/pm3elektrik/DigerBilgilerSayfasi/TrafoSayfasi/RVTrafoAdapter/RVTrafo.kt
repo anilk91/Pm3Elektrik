@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
@@ -40,6 +41,7 @@ class RVTrafo(var trafoListesi: ArrayList<TrafoModel>, var mContext: Context, va
 
         val tumLayout = itemView as ConstraintLayout
         val isim = tumLayout.tvTrafoIsim
+        val cardViewLayout = tumLayout.cardViewRVLayout as CardView
 
 
         fun setData(gelenTrafoListesi: TrafoModel, position: Int) {
@@ -47,7 +49,7 @@ class RVTrafo(var trafoListesi: ArrayList<TrafoModel>, var mContext: Context, va
             isim.setText(gelenTrafoListesi.trafoIsim)
 
 
-            tumLayout.setOnClickListener {
+            cardViewLayout.setOnClickListener {
 
                 val bundle : Bundle? = Bundle()
                 bundle?.putString("rvGelenTrafoIsim",gelenTrafoListesi.trafoIsim)

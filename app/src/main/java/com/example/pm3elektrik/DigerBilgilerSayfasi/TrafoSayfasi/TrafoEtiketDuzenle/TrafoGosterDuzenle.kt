@@ -32,10 +32,11 @@ class TrafoGosterDuzenle : Fragment(){
         val edit = view.findViewById<ImageView>(R.id.imgTrafoEtiketDuzenle)
         val textIsim = view.findViewById<TextView>(R.id.tvTrafoEtiketIsim)
 
+        photoView = view?.findViewById<PhotoView>(R.id.photoView)
+
 
         val bundle: Bundle? = arguments
         trafoIsim = bundle?.getString("rvGelenTrafoIsim")
-        Log.e("trafoIsim","$trafoIsim")
 
         textIsim.setText(trafoIsim)
 
@@ -83,17 +84,20 @@ class TrafoGosterDuzenle : Fragment(){
 
     }
 
-    fun gelenResimUri(resim: Uri?) {
+    fun gelenResimUri(resim: Uri?): Uri? {
 
         gelenResimUri = resim
 
-        photoView = view?.findViewById<PhotoView>(R.id.imageView4)
-        Log.e("gelenresim","$resim")
 
-        Picasso.get().load(resim).into(photoView)
+        return gelenResimUri
 
+    }
 
+    override fun onResume() {
 
+        Picasso.get().load(gelenResimUri).into(photoView)
+
+        super.onResume()
     }
 
 
