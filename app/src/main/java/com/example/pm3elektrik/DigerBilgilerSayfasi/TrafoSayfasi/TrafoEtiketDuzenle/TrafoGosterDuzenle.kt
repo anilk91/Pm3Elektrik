@@ -2,6 +2,7 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoEtiketDuz
 
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoDuzenleDegistirDialogFR.TrafoDuzenleDegistirDialog
 
 import com.example.pm3elektrik.R
@@ -22,6 +24,7 @@ import com.squareup.picasso.Picasso
 class TrafoGosterDuzenle : Fragment(){
 
     var trafoIsim: String? = null
+    var trafoResim: String? = null
     var izinlerVerildi = false
     var gelenResimUri : Uri? = null
     var photoView : PhotoView? = null
@@ -34,17 +37,25 @@ class TrafoGosterDuzenle : Fragment(){
 
         photoView = view?.findViewById<PhotoView>(R.id.photoView)
 
-
         val bundle: Bundle? = arguments
         trafoIsim = bundle?.getString("rvGelenTrafoIsim")
-
         textIsim.setText(trafoIsim)
+
+        val bundleResimDialog: Bundle? = arguments
+        trafoResim = bundleResimDialog?.getString("trafoDialogGelenResim")
+        Picasso.get().load(trafoResim).into(photoView)
+
 
         edit.setOnClickListener {
 
             if (izinlerVerildi){
-                val dialogFragment = TrafoDuzenleDegistirDialog()
-                dialogFragment.show(fragmentManager!!,"trafo_duzenle_dialog_fr")
+
+                val bundleDialogaGonder : Bundle? = Bundle()
+                bundleDialogaGonder?.putString("dialogTrafoDuzenleyeIsimGonder",trafoIsim)
+                val fragment = TrafoDuzenleDegistirDialog()
+                fragment.arguments = bundleDialogaGonder
+                fragment.show(fragmentManager!!,"trafo_duzenle_dialog_fr")
+
             }else{
                 galeriIzniniVer(view)
             }
@@ -81,23 +92,6 @@ class TrafoGosterDuzenle : Fragment(){
 
             Toast.makeText(view?.context,"Tüm İzinleri Vermeniz Gerekiyor",Toast.LENGTH_LONG).show()
         }
-
-    }
-
-    fun gelenResimUri(resim: Uri?): Uri? {
-
-        gelenResimUri = resim
-
-
-        return gelenResimUri
-
-    }
-
-    override fun onResume() {
-
-        Picasso.get().load(gelenResimUri).into(photoView)
-
-        super.onResume()
     }
 
 

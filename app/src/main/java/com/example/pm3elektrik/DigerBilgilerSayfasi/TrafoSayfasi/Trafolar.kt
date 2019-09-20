@@ -22,7 +22,7 @@ class Trafolar : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_trafolar, container, false)
 
-        trafoListesi.add(TrafoModel("REGEL (ANA) TRAFO"))
+        trafoListesi.add(TrafoModel("REGEL TRAFO"))
         trafoListesi.add(TrafoModel("TRAFO 1"))
         trafoListesi.add(TrafoModel("TRAFO 2"))
         trafoListesi.add(TrafoModel("TRAFO 3"))
