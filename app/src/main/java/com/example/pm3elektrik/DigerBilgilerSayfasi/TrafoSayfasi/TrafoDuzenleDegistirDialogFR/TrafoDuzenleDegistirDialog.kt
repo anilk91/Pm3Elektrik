@@ -19,7 +19,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoEtiketDuzenle.TrafoGosterDuzenle
 
 import com.example.pm3elektrik.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
@@ -31,6 +35,7 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
     var gelenResimYoluURI : Uri? = null
     var trafoIsim : String? = null
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_trafo_duzenle_degistir, container, false)
 
@@ -41,7 +46,6 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
 
         val bundleTrafoIsim: Bundle? = arguments
         trafoIsim = bundleTrafoIsim?.getString("dialogTrafoDuzenleyeIsimGonder")
-        Log.e("gelenTrafoIsim","$trafoIsim")
 
         fotoYukle.setOnClickListener {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -122,29 +126,46 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
             val tr2 = trafoIsim?.substring(6..10)
             val tr3 = tr1+tr2
             trafoIsim = tr3
-            Log.e("regelTrafo","$tr3")
+
 
         }else {
             val tr1 = trafoIsim?.substring(0..4)
             val tr2 = trafoIsim?.substring(6)
             val tr3 = tr1+tr2
             trafoIsim = tr3
-            Log.e("digerTrafo","$tr3")
+
 
         }
         FirebaseStorage.getInstance().reference
             .child("pm3Elektrik").child("Trafo").child(trafoIsim!!)
             .putBytes(result!!)
-            .addOnSuccessListener { object : OnSuccessListener<UploadTask.TaskSnapshot>{
-                override fun onSuccess(p0: UploadTask.TaskSnapshot?) {
+            .addOnCompleteListener { object : OnCompleteListener<UploadTask.TaskSnapshot>{
+                override fun onComplete(p0: Task<UploadTask.TaskSnapshot>) {
 
-                    val downloadURL = p0?.metadata
-                    val downloadURL1 = p0?.storage
-                    Log.e("gelenURL","$downloadURL \n $downloadURL1")
+                    val downloadURL =p0.result?.storage?.downloadUrl.toString()
+                    FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                        .child("Trafo")
+                        .child(trafoIsim!!)
+                        .child(downloadURL)
+
                 }
 
 
             } }
+
+//            .addOnSuccessListener { object : OnSuccessListener<UploadTask.TaskSnapshot>{
+//                override fun onSuccess(p0: UploadTask.TaskSnapshot?) {
+//
+//                    val downloadURL = p0?.storage?.downloadUrl.toString()
+//                    FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+//                        .child("Trafo")
+//                        .child(trafoIsim!!)
+//                        .child(downloadURL)
+//
+//                }
+//
+//
+//            } }
 
     }
 
