@@ -34,22 +34,22 @@ class KullaniciKayit : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
 
-
         kayitOl.setOnClickListener {
 
-            Log.e("deneme","${isim.toString()} ${sicilNo.toString()} ${mailAdres.toString()} ${sifre.toString()} ${sifreTekrar.toString()}")
             if (isim.isNotEmpty() && sicilNo.isNotEmpty() && mailAdres.isNotEmpty() && sifre.isNotEmpty() && sifreTekrar.isNotEmpty()){
 
                 if (sifre.toString().equals(sifreTekrar.toString())){
 
-
                     mAuth.createUserWithEmailAndPassword(mailAdres.toString(),sifre.toString()).addOnCompleteListener {
 
                         if (it.isSuccessful){
+                            onayMailiGonder()
                             Toast.makeText(view.context, "Kayıt Yapıldı Mail Adresinizi Onaylayınız", Toast.LENGTH_SHORT).show()
+                            FirebaseAuth.getInstance().signOut()
+
                         }else {
-                            Toast.makeText(view.context, "Kayıt Yapılamadı Hata: ${it.exception}", Toast.LENGTH_SHORT).show()
-                            Log.e("HATA","${it.exception}")
+                            Toast.makeText(view.context, "Kayıt Yapılamadı Hata: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+
                         }
                         kullaniciModel.isim = isim.toString()
                         kullaniciModel.sicilNo = sicilNo.toString().toInt()
@@ -72,6 +72,24 @@ class KullaniciKayit : Fragment() {
         }
 
         return view
+    }
+
+    private fun onayMailiGonder() {
+
+
+        val kullanici = FirebaseAuth.getInstance().currentUser
+
+        if (kullanici != null){
+
+            kullanici.sendEmailVerification().addOnCompleteListener {
+
+                if (it.isSuccessful){
+                    Toast.makeText(view?.context,"Onay Maili Gönderildi",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(view?.context,"Onay Maili Gönderilemedi Hata: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 
