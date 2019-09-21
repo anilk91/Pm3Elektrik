@@ -17,9 +17,15 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoEtiketDuzenle.TrafoGosterDuzenle
+import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoModel.TrafoModel
 
 import com.example.pm3elektrik.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.SuccessContinuation
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
@@ -29,19 +35,18 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
 
     var galeridenGelenResimYolu : String? = null
     var gelenResimYoluURI : Uri? = null
-    var trafoIsim : String? = null
+    private var trafoIsim : String? = null
+    val trafoModel = TrafoModel()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_trafo_duzenle_degistir, container, false)
 
         val fotoYukle = view.findViewById<Button>(R.id.btnTrafoFotoYukle)
         val ekle = view.findViewById<Button>(R.id.btnTrafoBilgiEkle)
-        val degTarihi = view.findViewById<EditText>(R.id.etTrafoDegTarihi)
-        val not = view.findViewById<EditText>(R.id.etTrafoNot)
 
         val bundleTrafoIsim: Bundle? = arguments
         trafoIsim = bundleTrafoIsim?.getString("dialogTrafoDuzenleyeIsimGonder")
-        Log.e("gelenTrafoIsim","$trafoIsim")
 
         fotoYukle.setOnClickListener {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
@@ -50,9 +55,27 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
         }
 
         ekle.setOnClickListener {
+            val degTarihi = view.findViewById<EditText>(R.id.etTrafoDegTarihi).text.toString()
+            val not = view.findViewById<EditText>(R.id.etTrafoNot).text.toString()
 
-            resimKompres(gelenResimYoluURI)
-            dismiss()
+                trafoModel.trafoDegTarihi = degTarihi
+                trafoModel.trafoNot = not
+
+
+            if (!gelenResimYoluURI?.path.isNullOrBlank()){
+                resimKompres(gelenResimYoluURI)
+                dismiss()
+            }else{
+
+                trafoModel.trafoIsim = trafoIsim!!
+                val trafoBoslukYok = trafoIsim!!.replace("\\s".toRegex(), "")
+                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                    .child("Trafo")
+                    .child(trafoBoslukYok)
+                    .setValue(trafoModel)
+
+            }
+
         }
 
         return view
@@ -110,50 +133,34 @@ class TrafoDuzenleDegistirDialog : DialogFragment() {
             super.onPostExecute(result)
             uploadResimFirebaseStorage(result)
         }
-
-
     }
 
     private fun uploadResimFirebaseStorage(result: ByteArray?) {
 
-        if (trafoIsim == "REGEL TRAFO" && !trafoIsim.isNullOrEmpty()){
+        val trafoBoslukYok = trafoIsim!!.replace("\\s".toRegex(), "")
+        trafoModel.trafoIsim = trafoIsim!!
 
-            val tr1 = trafoIsim?.substring(0..4)
-            val tr2 = trafoIsim?.substring(6..10)
-            val tr3 = tr1+tr2
-            trafoIsim = tr3
-            Log.e("regelTrafo","$tr3")
-
-        }else {
-            val tr1 = trafoIsim?.substring(0..4)
-            val tr2 = trafoIsim?.substring(6)
-            val tr3 = tr1+tr2
-            trafoIsim = tr3
-            Log.e("digerTrafo","$tr3")
-
-        }
         FirebaseStorage.getInstance().reference
-            .child("pm3Elektrik").child("Trafo").child(trafoIsim!!)
+            .child("pm3Elektrik").child("Trafo").child(trafoBoslukYok)
             .putBytes(result!!)
-            .addOnSuccessListener { object : OnSuccessListener<UploadTask.TaskSnapshot>{
-                override fun onSuccess(p0: UploadTask.TaskSnapshot?) {
 
-                    val downloadURL = p0?.metadata
-                    val downloadURL1 = p0?.storage
-                    Log.e("gelenURL","$downloadURL \n $downloadURL1")
-                }
+        FirebaseStorage.getInstance().reference.child("pm3Elektrik").child("Trafo").child(trafoBoslukYok)
+            .downloadUrl.addOnCompleteListener {
 
-
-            } }
-
+            val downloadURL = it.result.toString()
+            trafoModel.trafoResimURL = downloadURL
+            FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                .child("Trafo")
+                .child(trafoBoslukYok)
+                .setValue(trafoModel)
+        }
     }
 
     private fun converToBitmap(myBitmap: Bitmap, i: Int): ByteArray? {
 
         val stream = ByteArrayOutputStream()
-        myBitmap.compress(Bitmap.CompressFormat.JPEG,i,stream)
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, i, stream)
         return stream.toByteArray()
-
     }
 
     private fun resimKompres(gelenResimYolu: Uri?) {

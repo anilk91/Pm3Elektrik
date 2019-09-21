@@ -8,88 +8,93 @@
     tools:context=".DigerBilgilerSayfasi.TrafoSayfasi.TrafoEtiketDuzenle.TrafoGosterDuzenle">
 
 
-    <TextView
-        android:id="@+id/tvTrafoEtiketIsim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nunito_extrabold"
-        android:text="TRAFO İSİM"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView143"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nunito_extrabold"
-        android:text="Trafo Değişim Tarihi :"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTrafoEtiketIsim" />
+        <TextView
+            android:id="@+id/tvTrafoEtiketNot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Not"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView144"
+            app:layout_constraintTop_toBottomOf="@+id/tvTrafoEtiketDegTarihi" />
 
-    <TextView
-        android:id="@+id/textView144"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nunito_extrabold"
-        android:text="Not :"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView143" />
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTrafoEtiketNot">
 
-    <TextView
-        android:id="@+id/tvTrafoEtiketDegTarihi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="Değişim Tarihi"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toEndOf="@+id/textView143"
-        app:layout_constraintTop_toTopOf="@+id/textView143" />
+        </com.github.chrisbanes.photoview.PhotoView>
 
-    <TextView
-        android:id="@+id/tvTrafoEtiketNot"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="Not"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView144"
-        app:layout_constraintTop_toTopOf="@+id/textView144" />
+        <TextView
+            android:id="@+id/textView144"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="Not :"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvTrafoEtiketNot" />
 
-    <ImageView
-        android:id="@+id/imgTrafoEtiketDuzenle"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/edit_siyah"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTrafoEtiketIsim"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvTrafoEtiketIsim" />
+        <ImageView
+            android:id="@+id/imgTrafoEtiketDuzenle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/edit_siyah"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTrafoEtiketIsim"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvTrafoEtiketIsim" />
 
-    <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/photoView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTrafoEtiketNot">
+        <TextView
+            android:id="@+id/tvTrafoEtiketIsim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="TRAFO İSİM"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </com.github.chrisbanes.photoview.PhotoView>
+        <TextView
+            android:id="@+id/textView143"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_extrabold"
+            android:text="Trafo Değişim Tarihi :"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTrafoEtiketIsim" />
+
+        <TextView
+            android:id="@+id/tvTrafoEtiketDegTarihi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Değişim Tarihi"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView143"
+            app:layout_constraintTop_toTopOf="@+id/textView143" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/containerTrafoEtiketDuzenle"
