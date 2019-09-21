@@ -44,9 +44,6 @@ class KullaniciKayit : Fragment() {
 
                         if (it.isSuccessful){
                             onayMailiGonder()
-                            Toast.makeText(view.context, "Kayıt Yapıldı Mail Adresinizi Onaylayınız", Toast.LENGTH_SHORT).show()
-                            FirebaseAuth.getInstance().signOut()
-
                         }else {
                             Toast.makeText(view.context, "Kayıt Yapılamadı Hata: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
 
@@ -84,9 +81,11 @@ class KullaniciKayit : Fragment() {
             kullanici.sendEmailVerification().addOnCompleteListener {
 
                 if (it.isSuccessful){
-                    Toast.makeText(view?.context,"Onay Maili Gönderildi",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(view?.context,"Kayıt Yapıldı Onay Maili Gönderildi",Toast.LENGTH_SHORT).show()
+                    FirebaseAuth.getInstance().signOut()
                 }else{
                     Toast.makeText(view?.context,"Onay Maili Gönderilemedi Hata: ${it.exception?.message}",Toast.LENGTH_SHORT).show()
+
                 }
             }
         }

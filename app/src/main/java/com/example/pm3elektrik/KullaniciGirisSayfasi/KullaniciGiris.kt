@@ -21,6 +21,7 @@ class KullaniciGiris : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kullanici_giris)
 
+
         initMyAuthStateListener()
 
         val mailAdres = etKullaniciGirisMailAdres.text
@@ -37,9 +38,7 @@ class KullaniciGiris : AppCompatActivity() {
 
                     if(it.isSuccessful){
 
-                        Toast.makeText(this@KullaniciGiris,"Giriş Yapıldı",Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@KullaniciGiris,AnaSayfa::class.java)
-                        startActivity(intent)
+                        initMyAuthStateListener()
 
                     }else {
                         Toast.makeText(this,"Giriş Yapılamadı Hata: ${it.exception?.message}",Toast.LENGTH_LONG).show()
@@ -89,7 +88,7 @@ class KullaniciGiris : AppCompatActivity() {
                                 "Mail Onaylanmamış Lütfen Mail Adresinizi Kontrol Ediniz",
                                 Toast.LENGTH_LONG
                             ).show()
-                            FirebaseAuth.getInstance().signOut()
+
                         }
                     }
 
@@ -104,8 +103,8 @@ class KullaniciGiris : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         FirebaseAuth.getInstance().addAuthStateListener ( mAuthStateListener )
+
     }
 
     override fun onStop() {

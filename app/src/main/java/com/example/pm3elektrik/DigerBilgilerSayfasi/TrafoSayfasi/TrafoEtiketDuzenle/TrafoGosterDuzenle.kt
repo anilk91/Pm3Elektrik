@@ -1,8 +1,6 @@
 package com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoEtiketDuzenle
 
 import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,19 +12,22 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoDuzenleDegistirDialogFR.TrafoDuzenleDegistirDialog
+import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.TrafoModel.TrafoModel
 
 import com.example.pm3elektrik.R
 import com.github.chrisbanes.photoview.PhotoView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 class TrafoGosterDuzenle : Fragment(){
 
-    var trafoIsim: String? = null
-    var trafoResim: String? = null
-    var izinlerVerildi = false
-    var gelenResimUri : Uri? = null
+    private var trafoIsim: String? = null
+    private var trafoResim: String? = null
+    private var izinlerVerildi = false
     var photoView : PhotoView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,7 +46,11 @@ class TrafoGosterDuzenle : Fragment(){
         trafoResim = bundleResimDialog?.getString("trafoDialogGelenResim")
         Picasso.get().load(trafoResim).into(photoView)
 
+        if (trafoIsim != null){
+            val isimBoslukYok = trafoIsim!!.replace("\\s".toRegex(), "")
 
+            firebaseDataBaseOku(view,isimBoslukYok)
+        }
         edit.setOnClickListener {
 
             if (izinlerVerildi){
@@ -66,6 +71,33 @@ class TrafoGosterDuzenle : Fragment(){
         return view
     }
 
+    private fun firebaseDataBaseOku(view: View, trafoGelenIsim: String) {
+
+        val textIsim = view.findViewById<TextView>(R.id.tvTrafoEtiketIsim)
+        val trafoDegTarihi = view.findViewById<TextView>(R.id.tvTrafoEtiketDegTarihi)
+        val not = view.findViewById<TextView>(R.id.tvTrafoEtiketNot)
+        val photoViewFB = view.findViewById<PhotoView>(R.id.photoView)
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Trafo").child(trafoGelenIsim)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    val gelen = p0.getValue(TrafoModel::class.java)
+
+                    if (gelen != null){
+                        if (gelen.trafoDegTarihi.isNullOrEmpty()){ trafoDegTarihi.setText("Bilgi Yok") }
+                        else{ trafoDegTarihi.setText(gelen.trafoDegTarihi) }
+
+                        if (gelen.trafoNot.isNullOrEmpty()){ not.setText("Bilgi Yok") }
+                        else { not.setText(gelen.trafoNot) }
+
+                        textIsim.setText(gelen.trafoIsim)
+                        Picasso.get().load(gelen.trafoResimURL).into(photoViewFB)
+                    }
+                }
+            })
+    }
     private fun galeriIzniniVer(mView: View) {
 
         val izinler = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
