@@ -27,9 +27,8 @@ class DigerBilgiler : Fragment() {
         val akimKonvertorSayfasi = view.findViewById<CardView>(R.id.cardViewAkimKonHesapla)
         val kontaktorTripSayfasi = view.findViewById<CardView>(R.id.cardViewKontaktorTrip)
         val kuyuPanolariSayfasi = view.findViewById<CardView>(R.id.cardViewKuyuVeMcc)
-        val driveUniteleriSayfasi = view.findViewById<CardView>(R.id.cardViewDriveUnite)
         val kumandaProjeleriSayfasi = view.findViewById<CardView>(R.id.cardViewKumandaProjeleri)
-        val trafoSayfasi = view.findViewById<CardView>(R.id.cardViewTrafo)
+
 
         ambarSayfasi.setOnClickListener { changeFragment(AmbarKayit()) }
 
@@ -42,11 +41,7 @@ class DigerBilgiler : Fragment() {
 
         kuyuPanolariSayfasi.setOnClickListener { changeFragment(KuyuPanolari()) }
 
-        driveUniteleriSayfasi.setOnClickListener { changeFragment(DriveUnite()) }
-
         kumandaProjeleriSayfasi.setOnClickListener { changeFragment(KumandaProjeleri()) }
-
-        trafoSayfasi.setOnClickListener { changeFragment(Trafolar()) }
 
 
         return view

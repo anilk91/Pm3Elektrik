@@ -10,14 +10,14 @@ import android.view.ViewGroup
 import com.example.pm3elektrik.R
 import com.github.chrisbanes.photoview.PhotoView
 
-class SizeLowRange : Fragment() {
+class SizeUcveDort : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_size_low_range, container, false)
+        val view = inflater.inflate(R.layout.fragment_size_uc_ve_dort, container, false)
 
         val photoView = view.findViewById<PhotoView>(R.id.photoView)
 
-        photoView.setImageResource(R.drawable.low_range)
+        photoView.setImageResource(R.drawable.size3_ve_size4)
 
         return view
     }

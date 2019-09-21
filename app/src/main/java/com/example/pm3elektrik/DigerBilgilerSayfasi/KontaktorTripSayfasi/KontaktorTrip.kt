@@ -10,7 +10,10 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.DipSivicVeMotoraGoreAkimSayfasi.DipSiviceGoreAkim
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.DipSivicVeMotoraGoreAkimSayfasi.MotorAkiminaGoreDipSivic
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTripSiniflari.SizeBesveAlti
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTripSiniflari.SizeBirveIki
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTripSiniflari.SizeLowRange
+import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTripSiniflari.SizeUcveDort
 
 import com.example.pm3elektrik.R
 
@@ -20,11 +23,9 @@ class KontaktorTrip : Fragment() {
         val view = inflater.inflate(R.layout.fragment_kontaktor_trip, container, false)
 
         val sizeLowRange = view.findViewById<CardView>(R.id.cardViewLowRange)
-        val sizeBir = view.findViewById<CardView>(R.id.cardViewSize1)
-        val sizeIki = view.findViewById<CardView>(R.id.cardViewSize2)
-        val sizeUc = view.findViewById<CardView>(R.id.cardViewSize3)
-        val sizeDort = view.findViewById<CardView>(R.id.cardViewSize4)
-        val sizeBes = view.findViewById<CardView>(R.id.cardViewSize5)
+        val sizeBirveIki = view.findViewById<CardView>(R.id.cardViewSize1ve2)
+        val sizeUcveDort = view.findViewById<CardView>(R.id.cardViewSize3ve4)
+        val sizeBesveAlti = view.findViewById<CardView>(R.id.cardViewSize5ve6)
         val motorAkiminaGoreDip = view.findViewById<CardView>(R.id.cardMotorAkGoreDip)
         val dipSiviceGoreMotorAkimi = view.findViewById<CardView>(R.id.cardDipSivicMotorAkBul)
 
@@ -36,19 +37,10 @@ class KontaktorTrip : Fragment() {
             DipSiviceGoreAkim().show(fragmentManager!!,"dialog_fr_dip_sivice_gore")
         }
 
-        sizeLowRange.setOnClickListener {
-            changeFragment(SizeLowRange())
-        }
-
-        sizeBir.setOnClickListener {  }
-        sizeIki.setOnClickListener {  }
-        sizeUc.setOnClickListener {  }
-        sizeDort.setOnClickListener {  }
-        sizeBes.setOnClickListener {  }
-
-
-
-
+        sizeLowRange.setOnClickListener { changeFragment(SizeLowRange()) }
+        sizeBirveIki.setOnClickListener { changeFragment(SizeBirveIki()) }
+        sizeUcveDort.setOnClickListener { changeFragment(SizeUcveDort()) }
+        sizeBesveAlti.setOnClickListener { changeFragment(SizeBesveAlti()) }
 
         return view
     }
@@ -57,7 +49,8 @@ class KontaktorTrip : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerKontaktorTripSayfasi,fragment,"kontaktor_trip_sayfasi")
+        fragmentTransaction.add(R.id.containerKontaktorTripSayfasi,fragment,"kontaktor_trip_sayfasi")
+        fragmentTransaction.addToBackStack("kontaktor_trip_sayfasi")
         fragmentTransaction.commit()
 
     }
