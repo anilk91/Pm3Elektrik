@@ -19,7 +19,10 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 import com.example.pm3elektrik.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 import java.lang.Exception
 import java.math.BigDecimal
@@ -31,11 +34,11 @@ class MotorEkle : Fragment() {
     val salterListe = SalterModel()
     val surucuListe = SurucuModel()
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+    var SERVER_KEY : String? = null
 
     companion object{
         var gucKW_static = 0.0
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ekle, container, false)
@@ -45,6 +48,8 @@ class MotorEkle : Fragment() {
 
         val gucKw = view.findViewById<EditText>(R.id.etGucKw)
         val gucHp = view.findViewById<EditText>(R.id.etGucHP)
+
+        serverKeyOku()
 
         gucKw.addTextChangedListener( object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -112,6 +117,17 @@ class MotorEkle : Fragment() {
         changeFragment(MotorListe())
         }
         return view
+    }
+
+    private fun serverKeyOku() {
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Server").child("server_key")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+                    SERVER_KEY = p0.getValue().toString()
+                }
+            })
     }
 
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
