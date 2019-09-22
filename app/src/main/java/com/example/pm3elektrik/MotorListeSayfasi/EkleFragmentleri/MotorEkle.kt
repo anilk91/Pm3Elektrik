@@ -19,11 +19,15 @@ import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 import com.example.pm3elektrik.R
+import com.example.pm3elektrik.Retrofit.FCMInterface
+import com.example.pm3elektrik.Retrofit.FCMModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_motor_ekle.*
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -35,6 +39,7 @@ class MotorEkle : Fragment() {
     val surucuListe = SurucuModel()
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     var SERVER_KEY : String? = null
+    val BASE_URL = "https://fcm.googleapis.com/fcm/"
 
     companion object{
         var gucKW_static = 0.0
@@ -174,6 +179,37 @@ class MotorEkle : Fragment() {
                     }catch (hata : Exception){ }
                 }
             }
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val myInterface = retrofit.create(FCMInterface::class.java)
+        val headers = HashMap<String, String>()
+        headers.put("Content-Type", "application/json")
+        headers.put("Authorization", "key= $SERVER_KEY")
+
+        val data = FCMModel.Data("Motor $motorTag","Eklendi/Değiştirildi","Hüseyin Özsoy Tarafından")
+
+        val bildirim:FCMModel = FCMModel(data)
+
+        val istek = myInterface.bildirimGonder(headers,bildirim)
+
+        istek.enqueue(object : Callback<Response<FCMModel>>{
+            override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
+
+                Log.e("BAŞARILI","Hata: ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
+
+                Log.e("BAŞARILI","Gönderildi: ${response.message()}")
+
+            }
+
+
+        })
 
         ref.child("Salter")
             .child(motorTag)

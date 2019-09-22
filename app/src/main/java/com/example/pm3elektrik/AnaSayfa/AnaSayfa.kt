@@ -22,6 +22,7 @@ class AnaSayfa : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ana_sayfa)
 
+        gelenPendingIntent()
         imgMotorPassive.visibility = View.INVISIBLE
         changeFragment(MotorListe())
 
@@ -97,6 +98,16 @@ class AnaSayfa : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun gelenPendingIntent() {
+
+        val gelenIntent = intent
+
+        if (gelenIntent.hasExtra("motor_liste_sayfa")){
+            intent.putExtra("motor_liste_sayfa","motor_liste_sayfa")
+            changeFragment(MotorListe())
+        }
     }
 
     fun changeFragment(fragment : Fragment){
