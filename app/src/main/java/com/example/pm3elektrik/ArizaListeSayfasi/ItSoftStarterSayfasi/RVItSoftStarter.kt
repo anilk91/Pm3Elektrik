@@ -33,7 +33,7 @@ class RVItSoftStarter (var arizaListe : ArrayList<ItSoftStarterArizaModel>,mCont
     inner class MyData(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         var tumLayout = itemView as ConstraintLayout
-        var arizaKodu = tumLayout.tvArizaKodu
+        var arizaKodu = tumLayout.tvAcs380ArizaKodu
         var aciklama = tumLayout.tvArizaTanim
         var ekstraAciklama = tumLayout.tvEkstraArizaTanim
 

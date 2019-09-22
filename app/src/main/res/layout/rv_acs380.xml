@@ -8,7 +8,7 @@
 
 
     <TextView
-            android:id="@+id/tvArizaKodu"
+            android:id="@+id/tvAcs380ArizaKodu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -16,7 +16,7 @@
             android:text="Arıza Kodu"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvTanim" />
+            app:layout_constraintTop_toTopOf="@+id/tvAcs380Tanim" />
 
     <TextView
             android:id="@+id/textView91"
@@ -26,11 +26,11 @@
             android:fontFamily="@font/nunito_extrabold"
             android:text="-"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toEndOf="@+id/tvArizaKodu"
-            app:layout_constraintTop_toTopOf="@+id/tvTanim" />
+            app:layout_constraintStart_toEndOf="@+id/tvAcs380ArizaKodu"
+            app:layout_constraintTop_toTopOf="@+id/tvAcs380Tanim" />
 
     <TextView
-            android:id="@+id/tvTanim"
+            android:id="@+id/tvAcs380Tanim"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -44,16 +44,174 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <View
-            android:id="@+id/view14"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTanim" />
+        android:id="@+id/view14"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380Aciklama5" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="-"
+        android:textColor="#4D4D4D"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAcs380TanimDetay" />
+
+    <TextView
+        android:id="@+id/tvAcs380TanimDetay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Tanım Detay"
+        android:textColor="#4D4D4D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView32"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380Tanim" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="-"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAcs380Aciklama1" />
+
+    <TextView
+        android:id="@+id/tvAcs380Aciklama1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Açıklama"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView34"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380TanimDetay" />
+
+    <TextView
+        android:id="@+id/textView142"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="-"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAcs380Aciklama2" />
+
+    <TextView
+        android:id="@+id/tvAcs380Aciklama2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Açıklama"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView142"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380Aciklama1" />
+
+    <TextView
+        android:id="@+id/textView146"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="-"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAcs380Aciklama3" />
+
+    <TextView
+        android:id="@+id/tvAcs380Aciklama3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Açıklama"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView146"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380Aciklama2" />
+
+    <TextView
+        android:id="@+id/textView148"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="-"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAcs380Aciklama4" />
+
+    <TextView
+        android:id="@+id/tvAcs380Aciklama4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Açıklama"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView148"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380Aciklama3" />
+
+    <TextView
+        android:id="@+id/textView150"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="-"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAcs380Aciklama5" />
+
+    <TextView
+        android:id="@+id/tvAcs380Aciklama5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Açıklama"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView150"
+        app:layout_constraintTop_toBottomOf="@+id/tvAcs380Aciklama4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

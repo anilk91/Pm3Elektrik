@@ -2,8 +2,6 @@ package com.example.pm3elektrik.ArizaListeSayfasi.DanfossArizaSayfasi
 
 
 import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +37,7 @@ class RVDanfoss (var arizaListe : ArrayList<DanfossArizaModel>, var mContext : C
 
 
         var tumLayout = itemView as ConstraintLayout
-        var arizaKodu = tumLayout.tvArizaKodu
+        var arizaKodu = tumLayout.tvAcs380ArizaKodu
         var tanim = tumLayout.tvArizaTanim
 
         fun setData(gelenAriza : DanfossArizaModel , position : Int){

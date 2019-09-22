@@ -68,9 +68,27 @@ class Acs380Ariza : Fragment() {
 
     fun gelenArizalar(){
 
-        arizaListe.add(ACS380ArizaModel("FL1","Overcurrent"))
-        arizaListe.add(ACS380ArizaModel("FL2","Motor Stall"))
-        arizaListe.add(ACS380ArizaModel("FL3","Earth Fault"))
+        arizaListe.add(ACS380ArizaModel("2001","Overcurrent","Output current limit controller is active. ","Check motor load","Check acceleration time (2202 and 2205).","Check motor and motor cable (including phasing).","Check ambient conditions. Load capacity decreases if installation site ambient temperature exceeds 40°C. See section Derating on page 291."))
+        arizaListe.add(ACS380ArizaModel("2002","OverVoltage","DC overvoltage controller is active.","Check deceleration time (2203 and 2206).","Check input power line for static or transient overvoltage."))
+        arizaListe.add(ACS380ArizaModel("2003","Undervoltage","DC undervoltage controller is active.","Check input power supply."))
+        arizaListe.add(ACS380ArizaModel("2004","DIRLOCK","Change of direction is not allowed.","Check parameter 1003 DIRECTION settings."))
+        arizaListe.add(ACS380ArizaModel("2005","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2006","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2007","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2008","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2009","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2010","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2011","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2012","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2013","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2018","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2019","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2021","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2022","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2023","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2024","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2025","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
+        arizaListe.add(ACS380ArizaModel("2026","Undervoltage","DC undervoltage controller is active.","Check input power supply"))
 
     }
 

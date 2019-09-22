@@ -35,7 +35,7 @@ class RVAcs140(var arizaListe : ArrayList<ACS140ArizaModel>, var mContext : Cont
     inner class MyData(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var tumLayout = itemView as ConstraintLayout
-        var arizaKodu = tumLayout.tvArizaKodu
+        var arizaKodu = tumLayout.tvAcs380ArizaKodu
         var tanim = tumLayout.tvArizaTanim
         var madde1 = tumLayout.tvMadde1
         var madde2 = tumLayout.tvMadde2

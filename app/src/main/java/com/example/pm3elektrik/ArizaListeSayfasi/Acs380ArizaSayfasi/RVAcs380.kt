@@ -35,13 +35,25 @@ class RVAcs380 (var arizaListe : ArrayList<ACS380ArizaModel> , var mContext : Co
 
 
         var tumLayout = itemView as ConstraintLayout
-        var arizaKodu = tumLayout.tvArizaKodu
-        var tanim = tumLayout.tvTanim
+        var arizaKodu = tumLayout.tvAcs380ArizaKodu
+        var tanim = tumLayout.tvAcs380Tanim
+        var tanimDetay = tumLayout.tvAcs380TanimDetay
+        var aciklama1 = tumLayout.tvAcs380Aciklama1
+        var aciklama2 = tumLayout.tvAcs380Aciklama2
+        var aciklama3 = tumLayout.tvAcs380Aciklama3
+        var aciklama4 = tumLayout.tvAcs380Aciklama4
+        var aciklama5 = tumLayout.tvAcs380Aciklama5
 
         fun setData(gelenAriza : ACS380ArizaModel, position: Int) {
 
             arizaKodu.setText(gelenAriza.arizaKodu)
             tanim.setText(gelenAriza.tanim)
+            tanimDetay.setText(gelenAriza.tanimDetay)
+            aciklama1.setText(gelenAriza.aciklama1)
+            aciklama2.setText(gelenAriza.aciklama2)
+            aciklama3.setText(gelenAriza.aciklama3)
+            aciklama4.setText(gelenAriza.aciklama4)
+            aciklama5.setText(gelenAriza.aciklama5)
         }
     }
 
