@@ -9,6 +9,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -41,7 +42,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         pendingIntent.putExtra("motor_liste_sayfa",baslik)
 
         val bildirimPendingIntent = PendingIntent.getActivity(this,10,pendingIntent,PendingIntent.FLAG_UPDATE_CURRENT)
-
 
         val builder = NotificationCompat.Builder(this,"Gelen Bildirim")
             .setSmallIcon(R.drawable.motor_passive)

@@ -2,6 +2,7 @@ package com.example.pm3elektrik.AnaSayfa
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -103,6 +104,10 @@ class AnaSayfa : AppCompatActivity() {
     private fun gelenPendingIntent() {
 
         val gelenIntent = intent
+
+        val gelen = gelenIntent.getStringExtra("motor_liste_sayfa")
+
+        Log.e("gelenIntent","Gelen String Veri: $gelen")
 
         if (gelenIntent.hasExtra("motor_liste_sayfa")){
             intent.putExtra("motor_liste_sayfa","motor_liste_sayfa")
