@@ -180,6 +180,8 @@ class MotorEkle : Fragment() {
                 }
             }
 
+
+        //MOTOR EKLEDEN DİĞER KAYITLI KULLANICILARA BİLDİRİM GÖNDERİLİYOR---------------------------------------------->
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -190,9 +192,9 @@ class MotorEkle : Fragment() {
         headers.put("Content-Type", "application/json")
         headers.put("Authorization", "key="+SERVER_KEY)
 
-        val data = FCMModel.Data("Motor $motorTag","Eklendi/Değiştirildi","Hüseyin Özsoy Tarafından")
+        val data = FCMModel.Data("Motor $motorTag","Eklendi/Değiştirildi","motor_ekleme")
 
-        val bildirim:FCMModel = FCMModel("f0PIVT7dfJQ:APA91bHpx7_IBw6XvFD8tXbA20Q9nB7NwkItTOUdZu71ky9NZKNIEf-_SWSkYLttJeY7jHWKiE3t9lj0qOZaupbYH9QGkTgaRQcv4mNNiDKFFBZ9_kjXj89kbFC-brIO9hIjvjR3qLQl",
+        val bildirim:FCMModel = FCMModel("cqobKHk1Tbc:APA91bEu2V8ieCMKSTeuD8J-diKt49jP-6LrzbHPg9lLXETxkreiGhCp-929xrOqYN2avkb6_ofX3ISYwmZi1v_Ous1SgnvsNZ31NDrh1umUYw9nTkWTxZpD_4tDROJDaPvg4e3DWzp4",
             data)
 
         val istek = myInterface.bildirimGonder(headers,bildirim)
@@ -213,6 +215,8 @@ class MotorEkle : Fragment() {
 
 
         })
+
+        //MOTOR EKLEDEN DİĞER KAYITLI KULLANICILARA BİLDİRİM GÖNDERİLİYOR----------------------------------------------<
 
         ref.child("Salter")
             .child(motorTag)

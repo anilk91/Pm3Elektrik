@@ -106,6 +106,7 @@ class AnaSayfa : AppCompatActivity() {
     private fun gelenTokenID() {
 
         val token = FirebaseInstanceId.getInstance().token
+        Log.e("tokenID","$token")
 
     }
 
