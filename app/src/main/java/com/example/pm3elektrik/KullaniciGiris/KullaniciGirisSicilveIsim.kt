@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
+import com.example.pm3elektrik.FirebaseCloudMessage.FirebaseCloudMessage
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -29,6 +30,8 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
         val ekle = findViewById<Button>(R.id.btnKullaniciyiKaydet)
 
         kullaniciKaydiniKontrolEt()
+
+        kullaniciTokenIDKaydet()
 
         ekle.setOnClickListener {
 
@@ -58,6 +61,11 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                 Toast.makeText(this,"Boş Alanları Doldurunuz",Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun kullaniciTokenIDKaydet() {
+
+
     }
 
 

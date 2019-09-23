@@ -188,23 +188,26 @@ class MotorEkle : Fragment() {
         val myInterface = retrofit.create(FCMInterface::class.java)
         val headers = HashMap<String, String>()
         headers.put("Content-Type", "application/json")
-        headers.put("Authorization", "key= $SERVER_KEY")
+        headers.put("Authorization", "key="+SERVER_KEY)
 
         val data = FCMModel.Data("Motor $motorTag","Eklendi/Değiştirildi","Hüseyin Özsoy Tarafından")
 
-        val bildirim:FCMModel = FCMModel(data)
+        val bildirim:FCMModel = FCMModel("f0PIVT7dfJQ:APA91bHpx7_IBw6XvFD8tXbA20Q9nB7NwkItTOUdZu71ky9NZKNIEf-_SWSkYLttJeY7jHWKiE3t9lj0qOZaupbYH9QGkTgaRQcv4mNNiDKFFBZ9_kjXj89kbFC-brIO9hIjvjR3qLQl",
+            data)
 
         val istek = myInterface.bildirimGonder(headers,bildirim)
+
 
         istek.enqueue(object : Callback<Response<FCMModel>>{
             override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
 
-                Log.e("BAŞARILI","Hata: ${t.message}")
+                Log.e("BAŞARISIZ","Hata: ${t.message}")
             }
 
             override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
 
-                Log.e("BAŞARILI","Gönderildi: ${response.message()}")
+                Log.e("BAŞARILI","Gönderildi: $response")
+
 
             }
 

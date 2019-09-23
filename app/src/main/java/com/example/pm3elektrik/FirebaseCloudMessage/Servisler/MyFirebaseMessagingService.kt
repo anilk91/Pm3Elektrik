@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.R
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -26,15 +27,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val icerik = p0.data.get("icerik")
         val bildirim = p0.data.get("bildirim_turu")
 
+        Log.e("gelenBildirimSer","$baslik, $icerik, $bildirim")
 
         bildirimGonder(baslik, icerik, bildirim)
-
-
 
     }
 
 
-    @SuppressLint("ResourceAsColor")
     private fun bildirimGonder(baslik: String?, icerik: String?, bildirim: String?) {
 
         val pendingIntent = Intent(this,AnaSayfa::class.java)
@@ -43,14 +42,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val bildirimPendingIntent = PendingIntent.getActivity(this,10,pendingIntent,PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val builder = NotificationCompat.Builder(this,"Gelen Bildirim")
+        val builder = NotificationCompat.Builder(this,"gelen_bildirim")
             .setSmallIcon(R.drawable.motor_passive)
             .setLargeIcon(BitmapFactory.decodeResource(resources,R.drawable.motor_passive))
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentTitle(baslik)
             .setContentText(icerik)
             .setSubText("Hüseyin Özsoy")
-            .setColor(R.color.colorAccent)
             .setAutoCancel(true)
             .setStyle(NotificationCompat.BigTextStyle().bigText(icerik))
             .setNumber(987)

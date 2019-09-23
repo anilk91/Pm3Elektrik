@@ -13,6 +13,7 @@ import com.example.pm3elektrik.KullanicilarSayfasi.Kullanicilar
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
 class AnaSayfa : AppCompatActivity() {
@@ -26,6 +27,7 @@ class AnaSayfa : AppCompatActivity() {
         gelenPendingIntent()
         imgMotorPassive.visibility = View.INVISIBLE
         changeFragment(MotorListe())
+        gelenTokenID()
 
 
         imgMotorPassive.setOnClickListener {
@@ -98,6 +100,12 @@ class AnaSayfa : AppCompatActivity() {
             changeFragment(Ayarlar())
 
         }
+
+    }
+
+    private fun gelenTokenID() {
+
+        val token = FirebaseInstanceId.getInstance().token
 
     }
 
