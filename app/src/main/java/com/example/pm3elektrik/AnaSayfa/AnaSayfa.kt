@@ -107,12 +107,12 @@ class AnaSayfa : AppCompatActivity() {
 
         val gelenIntent = intent
 
-        val gelen = gelenIntent.getStringExtra("motor_liste_sayfa")
+        val gelen = gelenIntent.getStringExtra("ana_sayfa")
 
-        Log.e("gelenIntent","Gelen String Veri: $gelen")
+        Log.e("gelenIntent","Gelen motor tag ana sayfa: $gelen")
 
-        if (gelenIntent.hasExtra("motor_liste_sayfa")){
-            intent.putExtra("motor_liste_sayfa","motor_liste_sayfa")
+        if (gelenIntent.hasExtra("ana_sayfa")){
+            intent.putExtra("motor_liste_sayfa","ana_sayfa")
             changeFragment(MotorListe())
         }
     }

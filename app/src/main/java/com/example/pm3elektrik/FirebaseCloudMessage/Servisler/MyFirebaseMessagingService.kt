@@ -14,6 +14,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
+import com.example.pm3elektrik.KullaniciGiris.KullaniciGirisSicilveIsim
 import com.example.pm3elektrik.R
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -28,11 +29,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val baslik = p0.data.get("baslik")
         val icerik = p0.data.get("icerik")
         val bildirim = p0.data.get("bildirim_turu")
+        val kullaniciIsmi = p0.data.get("gonderen_isim")
 
-        bildirimGonder(baslik, icerik, bildirim)
+        bildirimGonder(baslik, icerik, bildirim, kullaniciIsmi)
     }
 
-    private fun bildirimGonder(baslik: String?, icerik: String?, bildirim: String?) {
+    private fun bildirimGonder(baslik: String?, icerik: String?, bildirim: String?, kullaniciIsmi : String?) {
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -41,9 +43,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 createNotifChannel(this) }
         }
 
-        val pendingIntent = Intent(this, AnaSayfa::class.java)
+        val pendingIntent = Intent(this, KullaniciGirisSicilveIsim::class.java)
         pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        pendingIntent.putExtra("motor_liste_sayfa", bildirim)
+        pendingIntent.putExtra("kullanici_giris_kayit_sayfasi", bildirim)
 
         val bildirimPendingIntent = PendingIntent.getActivity(this, 10, pendingIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
@@ -53,7 +55,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentTitle(baslik)
             .setContentText(icerik)
-            //.setSubText(dene)
+            .setSubText(kullaniciIsmi)
             .setAutoCancel(true)
             .setStyle(NotificationCompat.BigTextStyle().bigText(icerik))
             .setNumber(987)

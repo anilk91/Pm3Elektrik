@@ -1,5 +1,6 @@
 package com.example.pm3elektrik.KullaniciGiris
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
+import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,7 +40,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
             if (isim.text.toString().isNotEmpty() && sicilNo.text.toString().isNotEmpty()){
 
-                val sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+                val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi",0)
                 val editor = sharedPreferences.edit()
                 editor.putString("KEY_ISIM",isim.text.toString().toUpperCase())
                 editor.putInt("KEY_SICIL_NO",sicilNo.text.toString().toInt())
@@ -53,6 +55,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                         if (it.isComplete){
                             Toast.makeText(this,"Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                            kullaniciKaydiniKontrolEt()
                         }else {
                             Toast.makeText(this,"Kayıt Başarısız: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
                             Toast.makeText(this,"İnternet Bağlantınızı Kontrol Ediniz", Toast.LENGTH_SHORT).show()
@@ -70,12 +73,13 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                 kullaniciToken = it.result?.token
             }
 
+                Log.e("KullaniciToken","$kullaniciToken")
         return kullaniciToken
     }
 
     private fun kullaniciKaydiniKontrolEt() {
 
-        val sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi",0)
         val isim = sharedPreferences.getString("KEY_ISIM","")
         val sicilNo = sharedPreferences.getInt("KEY_SICIL_NO",0)
 
@@ -88,15 +92,35 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                     override fun onCancelled(p0: DatabaseError) {}
                     override fun onDataChange(p0: DataSnapshot) {
 
-                        for (okunan in p0.children){
+                        for (okunan in p0.children) {
 
                             val gelen = okunan.getValue(KullaniciModel::class.java)
 
-                            if (gelen!!.sicilNo.equals(sicilNo)){
+                            if (gelen != null) {
+                            if (gelen.sicilNo.equals(sicilNo)) {
 
                                 tokenIDGuncelle(sicilNo)
-                                val intent = Intent(this@KullaniciGirisSicilveIsim , AnaSayfa::class.java)
-                                startActivity(intent)
+
+                                val gelenIntent = intent
+
+                                    val gelenbilgiMotorTag = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
+
+                                    if (gelenbilgiMotorTag != null){
+                                        Log.e("gelenIntent","Gelen Motor Tag Verisi: $gelenbilgiMotorTag")
+
+//                                        if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
+//                                            intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
+//                                            startActivity(gelenIntent)
+//                                        }
+                                    } else{
+
+                                    val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
+                                    startActivity(intent)
+                                }
+
+
+
+                                }
                             }else{
                                 Toast.makeText(this@KullaniciGirisSicilveIsim,"Lütfen Kayıt Olunuz",Toast.LENGTH_LONG).show()
                             }
@@ -111,5 +135,23 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child(sicilNo.toString())
             .child("kullaniciToken")
             .setValue(kullaniciTokenIDKaydetGuncelle())
+    }
+
+    private fun gelenPendingIntent() {
+
+        val gelenIntent = intent
+
+        if(gelenIntent != null){
+
+            val gelen = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
+
+            Log.e("gelenIntent","Gelen Motor Tag Verisi: $gelen")
+
+            if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
+                intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
+                startActivity(gelenIntent)
+            }
+        }
+
     }
 }

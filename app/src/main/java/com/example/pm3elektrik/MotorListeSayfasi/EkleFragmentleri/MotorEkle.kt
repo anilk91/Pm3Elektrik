@@ -1,7 +1,6 @@
 package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
@@ -26,15 +26,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
-import java.lang.reflect.Array
 import java.math.BigDecimal
 import java.math.RoundingMode
 
 class MotorEkle : Fragment() {
+
 
     val motor_liste = MotorModel()
     val salterListe = SalterModel()
@@ -42,8 +41,11 @@ class MotorEkle : Fragment() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     var SERVER_KEY : String? = null
     val BASE_URL = "https://fcm.googleapis.com/fcm/"
-    val gelenTOkenlar = ArrayList<String>()
+    var kullaniciTokenleriArrayList = ArrayList<String>()
     lateinit var bildirim : FCMModel
+    var kullaniciIsmi : String? = null
+    var sicilNo : Int? = 0
+
 
     companion object{
         var gucKW_static = 0.0
@@ -59,6 +61,8 @@ class MotorEkle : Fragment() {
         val gucHp = view.findViewById<EditText>(R.id.etGucHP)
 
         serverKeyOku()
+
+        kullaniciKayittanGelenIsimveSicilNo()
 
         gucKw.addTextChangedListener( object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -142,8 +146,6 @@ class MotorEkle : Fragment() {
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
                   motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String , motorNot : String){
 
-
-
         motor_liste.motorIsim = motorIsim
         motor_liste.motorTag = motorTag
         motor_liste.motorDevir = motorDevir
@@ -186,53 +188,10 @@ class MotorEkle : Fragment() {
 
 
         //MOTOR EKLEDEN DİĞER KAYITLI KULLANICILARA BİLDİRİM GÖNDERİLİYOR---------------------------------------------->
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val myInterface = retrofit.create(FCMInterface::class.java)
-        val headers = HashMap<String, String>()
-        headers.put("Content-Type", "application/json")
-        headers.put("Authorization", "key="+SERVER_KEY)
-
-        val data = FCMModel.Data("$motorTag TAG Nolu Motor","Eklendi","$motorTag","")
-
-
-        gelenTOkenlar.add("f0PIVT7dfJQ:APA91bHpx7_IBw6XvFD8tXbA20Q9nB7NwkItTOUdZu71ky9NZKNIEf-_SWSkYLttJeY7jHWKiE3t9lj0qOZaupbYH9QGkTgaRQcv4mNNiDKFFBZ9_kjXj89kbFC-brIO9hIjvjR3qLQl")
-        gelenTOkenlar.add("frWhBrg3nNU:APA91bHmgarn1-fTXEjAqCuaMC2xzUnWEjDp4rz1Z2ZnGEonfmgfjpF2-GUj2CZrEIOeezs-VLAniixSfWw3PqgcUGEGWkCAWxu3ddHVe9Ns20kAtq4OtJUso5rABZFROkewXh9S0aum")
-        gelenTOkenlar.add("cTHZIXuM9OY:APA91bHMZk7JgmmBD-glwlDK5z-1ySHbTD7qgYE-DUF2HnUSwWe-tzDvL7Vip40Fu4DXPfDAGwXINMDyfV12wq_auoMlIV13ycrZ8c6xOp-2iovDomaiShn_gaCTijb_jbWaFj5QaNO6")
-
-        for (index in 0..2){
-            bildirim = FCMModel(gelenTOkenlar.get(index), data)
-
-            val istek = myInterface.bildirimGonder(headers,bildirim)
-
-
-            istek.enqueue(object : Callback<Response<FCMModel>>{
-                override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
-
-                    Log.e("BAŞARISIZ","Hata: ${t.message}")
-                }
-
-                override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
-
-                    Log.e("BAŞARILI","Gönderildi: $response")
-
-
-                }
-
-
-            })
-        }
-
-
-
-
-
-
-
+        fbDatabaseTokenlariAlveBildirimGonder(motorTag,sicilNo)
         //MOTOR EKLEDEN DİĞER KAYITLI KULLANICILARA BİLDİRİM GÖNDERİLİYOR----------------------------------------------<
+
+
 
         ref.child("Salter")
             .child(motorTag)
@@ -259,6 +218,64 @@ class MotorEkle : Fragment() {
             }
     }
 
+    private fun fbDatabaseTokenlariAlveBildirimGonder(motorTag : String, sicilNo: Int?) {
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val myInterface = retrofit.create(FCMInterface::class.java)
+        val headers = HashMap<String, String>()
+        headers.put("Content-Type", "application/json")
+        headers.put("Authorization", "key="+SERVER_KEY)
+
+        val data = FCMModel.Data("$motorTag TAG Nolu Motor","Eklendi",motorTag,kullaniciIsmi!!)
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").orderByKey()
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    for(tumKullaniciSicilNo in p0.children){
+
+                        val gelenSiciller = tumKullaniciSicilNo.getValue(KullaniciModel::class.java)
+
+                        if (gelenSiciller != null){
+
+                            // buraya ünlem eklenecek---------------------------------------------------------------------------------------------------------
+                            if (gelenSiciller.sicilNo.equals(sicilNo)){
+                                kullaniciTokenleriArrayList.add(gelenSiciller.kullaniciToken)
+                            }
+                        }
+
+                    }
+
+                    for (index in 0..kullaniciTokenleriArrayList.size-1){
+                        bildirim = FCMModel(kullaniciTokenleriArrayList.get(index), data)
+
+                        val istek = myInterface.bildirimGonder(headers,bildirim)
+                        istek.enqueue(object : Callback<Response<FCMModel>>{
+                            override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
+
+                                Log.e("BAŞARISIZ","Hata: ${t.message}")
+                            }
+
+                            override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
+
+                                Log.e("BAŞARILI","Gönderildi: $response")
+
+
+                            }
+
+
+                        })
+                    }
+                    kullaniciTokenleriArrayList.clear()
+                }
+            })
+    }
+
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
@@ -267,4 +284,14 @@ class MotorEkle : Fragment() {
 
     }
 
+    fun kullaniciKayittanGelenIsimveSicilNo(){
+
+        val sharedPreferences = context?.getSharedPreferences("gelenKullaniciIsmi",0)
+        val isim = sharedPreferences?.getString("KEY_ISIM","")
+        val sicil = sharedPreferences?.getInt("KEY_SICIL_NO",0)
+        kullaniciIsmi = isim
+        sicilNo = sicil
+
+        Log.e("sharedPrefGelen","$isim $sicil")
+    }
 }
