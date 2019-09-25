@@ -27,8 +27,6 @@ class AnaSayfa : AppCompatActivity() {
         gelenPendingIntent()
         imgMotorPassive.visibility = View.INVISIBLE
         changeFragment(MotorListe())
-        gelenTokenID()
-
 
         imgMotorPassive.setOnClickListener {
 
@@ -103,12 +101,7 @@ class AnaSayfa : AppCompatActivity() {
 
     }
 
-    private fun gelenTokenID() {
 
-        val token = FirebaseInstanceId.getInstance().token
-        Log.e("tokenID","$token")
-
-    }
 
     private fun gelenPendingIntent() {
 

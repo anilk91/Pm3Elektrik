@@ -1,6 +1,7 @@
 package com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri
 
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -29,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_motor_ekle.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import java.lang.reflect.Array
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -40,6 +42,8 @@ class MotorEkle : Fragment() {
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     var SERVER_KEY : String? = null
     val BASE_URL = "https://fcm.googleapis.com/fcm/"
+    val gelenTOkenlar = ArrayList<String>()
+    lateinit var bildirim : FCMModel
 
     companion object{
         var gucKW_static = 0.0
@@ -192,29 +196,41 @@ class MotorEkle : Fragment() {
         headers.put("Content-Type", "application/json")
         headers.put("Authorization", "key="+SERVER_KEY)
 
-        val data = FCMModel.Data("Motor $motorTag","Eklendi/Değiştirildi","motor_ekleme")
-
-        val bildirim:FCMModel = FCMModel("cqobKHk1Tbc:APA91bEu2V8ieCMKSTeuD8J-diKt49jP-6LrzbHPg9lLXETxkreiGhCp-929xrOqYN2avkb6_ofX3ISYwmZi1v_Ous1SgnvsNZ31NDrh1umUYw9nTkWTxZpD_4tDROJDaPvg4e3DWzp4",
-            data)
-
-        val istek = myInterface.bildirimGonder(headers,bildirim)
+        val data = FCMModel.Data("$motorTag TAG Nolu Motor","Eklendi","$motorTag","")
 
 
-        istek.enqueue(object : Callback<Response<FCMModel>>{
-            override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
+        gelenTOkenlar.add("f0PIVT7dfJQ:APA91bHpx7_IBw6XvFD8tXbA20Q9nB7NwkItTOUdZu71ky9NZKNIEf-_SWSkYLttJeY7jHWKiE3t9lj0qOZaupbYH9QGkTgaRQcv4mNNiDKFFBZ9_kjXj89kbFC-brIO9hIjvjR3qLQl")
+        gelenTOkenlar.add("frWhBrg3nNU:APA91bHmgarn1-fTXEjAqCuaMC2xzUnWEjDp4rz1Z2ZnGEonfmgfjpF2-GUj2CZrEIOeezs-VLAniixSfWw3PqgcUGEGWkCAWxu3ddHVe9Ns20kAtq4OtJUso5rABZFROkewXh9S0aum")
+        gelenTOkenlar.add("cTHZIXuM9OY:APA91bHMZk7JgmmBD-glwlDK5z-1ySHbTD7qgYE-DUF2HnUSwWe-tzDvL7Vip40Fu4DXPfDAGwXINMDyfV12wq_auoMlIV13ycrZ8c6xOp-2iovDomaiShn_gaCTijb_jbWaFj5QaNO6")
 
-                Log.e("BAŞARISIZ","Hata: ${t.message}")
-            }
+        for (index in 0..2){
+            bildirim = FCMModel(gelenTOkenlar.get(index), data)
 
-            override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
-
-                Log.e("BAŞARILI","Gönderildi: $response")
-
-
-            }
+            val istek = myInterface.bildirimGonder(headers,bildirim)
 
 
-        })
+            istek.enqueue(object : Callback<Response<FCMModel>>{
+                override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
+
+                    Log.e("BAŞARISIZ","Hata: ${t.message}")
+                }
+
+                override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
+
+                    Log.e("BAŞARILI","Gönderildi: $response")
+
+
+                }
+
+
+            })
+        }
+
+
+
+
+
+
 
         //MOTOR EKLEDEN DİĞER KAYITLI KULLANICILARA BİLDİRİM GÖNDERİLİYOR----------------------------------------------<
 

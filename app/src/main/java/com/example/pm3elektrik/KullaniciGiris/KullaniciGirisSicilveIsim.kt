@@ -9,17 +9,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
-import com.example.pm3elektrik.FirebaseCloudMessage.FirebaseCloudMessage
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.iid.FirebaseInstanceId
 
 class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     var kullaniciModel = KullaniciModel()
+    var kullaniciToken : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +30,9 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
         val sicilNo = findViewById<EditText>(R.id.etKullaniciKayitIsYeriSicil)
         val ekle = findViewById<Button>(R.id.btnKullaniciyiKaydet)
 
-        kullaniciKaydiniKontrolEt()
+        kullaniciTokenIDKaydetGuncelle()
 
-        kullaniciTokenIDKaydet()
+        kullaniciKaydiniKontrolEt()
 
         ekle.setOnClickListener {
 
@@ -45,6 +46,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                 kullaniciModel.isim = isim.text.toString().toUpperCase()
                 kullaniciModel.sicilNo = sicilNo.text.toString().toInt()
+                kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
 
                 FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child(sicilNo.text.toString())
                     .setValue(kullaniciModel).addOnCompleteListener {
@@ -63,11 +65,13 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
         }
     }
 
-    private fun kullaniciTokenIDKaydet() {
+    private fun kullaniciTokenIDKaydetGuncelle(): String? {
+            FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener {
+                kullaniciToken = it.result?.token
+            }
 
-
+        return kullaniciToken
     }
-
 
     private fun kullaniciKaydiniKontrolEt() {
 
@@ -76,6 +80,8 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
         val sicilNo = sharedPreferences.getInt("KEY_SICIL_NO",0)
 
         if (isim!!.isNotEmpty() && sicilNo != 0){
+
+            Log.e("girisKayitKontrol","$isim $sicilNo")
 
             FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").orderByValue()
                 .addValueEventListener(object : ValueEventListener {
@@ -88,6 +94,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                             if (gelen!!.sicilNo.equals(sicilNo)){
 
+                                tokenIDGuncelle(sicilNo)
                                 val intent = Intent(this@KullaniciGirisSicilveIsim , AnaSayfa::class.java)
                                 startActivity(intent)
                             }else{
@@ -97,5 +104,12 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                     }
                 })
         }else{Toast.makeText(this,"Kayıtlı Kullanıcı Yok",Toast.LENGTH_LONG).show()}
+    }
+
+    private fun tokenIDGuncelle(sicilNo: Int) {
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child(sicilNo.toString())
+            .child("kullaniciToken")
+            .setValue(kullaniciTokenIDKaydetGuncelle())
     }
 }
