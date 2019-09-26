@@ -24,9 +24,8 @@ class AnaSayfa : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ana_sayfa)
 
-        gelenPendingIntent()
         imgMotorPassive.visibility = View.INVISIBLE
-        changeFragment(MotorListe())
+        gelenPendingIntent()
 
         imgMotorPassive.setOnClickListener {
 
@@ -101,20 +100,26 @@ class AnaSayfa : AppCompatActivity() {
 
     }
 
-
-
     private fun gelenPendingIntent() {
 
         val gelenIntent = intent
 
-        val gelen = gelenIntent.getStringExtra("ana_sayfa")
+        val gelenbilgiMotorTag = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
 
-        Log.e("gelenIntent","Gelen motor tag ana sayfa: $gelen")
+        if (gelenbilgiMotorTag != null){
 
-        if (gelenIntent.hasExtra("ana_sayfa")){
-            intent.putExtra("motor_liste_sayfa","ana_sayfa")
+            val bundle : Bundle? =Bundle()
+            bundle?.putString("anaSayfadanGelenMotorTag",gelenbilgiMotorTag)
+            val fragment = MotorListe()
+            fragment.arguments = bundle
+            val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
+            transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
+
+        }else{
+
             changeFragment(MotorListe())
         }
+
     }
 
     fun changeFragment(fragment : Fragment){

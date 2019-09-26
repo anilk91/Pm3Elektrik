@@ -2,6 +2,7 @@ package com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import kotlinx.android.synthetic.main.fragment_motor_ve_salter_etiket.*
 
 
@@ -30,17 +30,15 @@ class MotorVeSalterEtiket : Fragment() {
     var motorTag: String? = null
     val bilgiYok = "Bilgi Yok"
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_motor_ve_salter_etiket, container, false)
 
         val bundle: Bundle? = arguments
         motorTag = bundle?.getString("rvGelenMotorTag")
-        firebaseDBOku()
+
+        Log.e("motorEtiketGor","$motorTag")
+
+        firebaseDBOku(motorTag)
 
         val motorSalterEtiketClose = view.findViewById<ImageView>(R.id.imgMotorSalterClose)
         val motorEdit = view.findViewById<ImageView>(R.id.imgEditMotorBilgi)
@@ -65,7 +63,6 @@ class MotorVeSalterEtiket : Fragment() {
             )?.commit()
 
         }
-
         salterSurucuEdit.setOnClickListener {
 
             val bundleCekmeceEtiketDuzenle: Bundle? = Bundle()
@@ -82,17 +79,17 @@ class MotorVeSalterEtiket : Fragment() {
 
         }
 
-
         return view
     }
 
-    private fun firebaseDBOku() {
+    private fun firebaseDBOku(gelenMotorTag: String?) {
 
+        Log.e("motorEtiketGorFB","$motorTag")
 
         //-----------Şalter Etiket Bilgilerini Getir--------------
         ref.child("Salter")
-            .child(motorTag!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .child(gelenMotorTag!!)
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -102,8 +99,8 @@ class MotorVeSalterEtiket : Fragment() {
 
         //-----------Motor Bilgilerini Getir--------------
         ref.child("Motor")
-            .child(motorTag!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .child(gelenMotorTag)
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
                     motorEtiketBilgileriGelen(p0)
@@ -113,8 +110,8 @@ class MotorVeSalterEtiket : Fragment() {
 
         //-----------Sürücü Bilgilerini Getir--------------
         ref.child("Surucu")
-            .child(motorTag!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .child(gelenMotorTag)
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -162,7 +159,6 @@ class MotorVeSalterEtiket : Fragment() {
 
 
             }
-        } else {
         }
     }
 
@@ -297,9 +293,7 @@ class MotorVeSalterEtiket : Fragment() {
             }else{
                 tvMotorNot.text = ("${motorBilgiGetir.motorNot}")
             }
-
         }
-        else { }
     }
     private fun changeFragment(fragment : Fragment){
 

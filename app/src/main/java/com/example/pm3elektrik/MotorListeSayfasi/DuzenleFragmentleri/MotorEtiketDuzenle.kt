@@ -40,6 +40,7 @@ class MotorEtiketDuzenle : Fragment() {
         val bundle :Bundle? = arguments
         val motorTag = bundle?.getString("motorEtiketDuzenle")
 
+
         if(motorTag != null){
             firebaseOkunan(motorTag)
         }

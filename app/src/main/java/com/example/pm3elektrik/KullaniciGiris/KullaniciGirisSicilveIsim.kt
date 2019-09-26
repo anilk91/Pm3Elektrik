@@ -96,7 +96,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                             val gelen = okunan.getValue(KullaniciModel::class.java)
 
-                            if (gelen != null) {
+                            if (gelen?.sicilNo != null) {
                             if (gelen.sicilNo.equals(sicilNo)) {
 
                                 tokenIDGuncelle(sicilNo)
@@ -106,20 +106,21 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                                     val gelenbilgiMotorTag = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
 
                                     if (gelenbilgiMotorTag != null){
-                                        Log.e("gelenIntent","Gelen Motor Tag Verisi: $gelenbilgiMotorTag")
+
+                                        val pendingIntent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
+                                        pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        pendingIntent.putExtra("kullanici_giris_kayit_sayfasi", gelenbilgiMotorTag)
+                                        startActivity(pendingIntent)
 
 //                                        if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
 //                                            intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
-//                                            startActivity(gelenIntent)
+//
 //                                        }
                                     } else{
 
                                     val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
                                     startActivity(intent)
-                                }
-
-
-
+                                    }
                                 }
                             }else{
                                 Toast.makeText(this@KullaniciGirisSicilveIsim,"Lütfen Kayıt Olunuz",Toast.LENGTH_LONG).show()
@@ -137,21 +138,21 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
             .setValue(kullaniciTokenIDKaydetGuncelle())
     }
 
-    private fun gelenPendingIntent() {
-
-        val gelenIntent = intent
-
-        if(gelenIntent != null){
-
-            val gelen = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
-
-            Log.e("gelenIntent","Gelen Motor Tag Verisi: $gelen")
-
-            if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
-                intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
-                startActivity(gelenIntent)
-            }
-        }
-
-    }
+//    private fun gelenPendingIntent() {
+//
+//        val gelenIntent = intent
+//
+//        if(gelenIntent != null){
+//
+//            val gelen = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
+//
+//            Log.e("gelenIntent","Gelen Motor Tag Verisi: $gelen")
+//
+//            if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
+//                intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
+//                startActivity(gelenIntent)
+//            }
+//        }
+//
+//    }
 }

@@ -1,9 +1,11 @@
 package com.example.pm3elektrik.MotorListeSayfasi
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -11,9 +13,11 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle
+import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.CekmeceEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
+import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
@@ -36,6 +40,8 @@ class MotorListe : Fragment() {
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
         fireBaseDBOkunanVeriler(view.context)
+
+        pendingIntentAnaSayfadanGelen()
 
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
         sync.keepSynced(true)
@@ -116,12 +122,31 @@ class MotorListe : Fragment() {
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
-        myAdapter.notifyDataSetChanged()
+        //myAdapter.notifyDataSetChanged()
     }
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.containerMotorListe,fragment,"fragment_motor_liste")
         fragmentTransaction?.commit()
+    }
+    fun pendingIntentAnaSayfadanGelen(){
+
+        val bundle :Bundle? = arguments
+        val motorTag = bundle?.getString("anaSayfadanGelenMotorTag")
+
+        Log.e("anaSayfadanGelenTag","$motorTag")
+
+        if (motorTag != null){
+
+            val bundleMotorListe = Bundle()
+            bundleMotorListe.putString("rvGelenMotorTag",motorTag)
+            val fragment = MotorVeSalterEtiket()
+            fragment.arguments = bundleMotorListe
+            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.containerMotorListe,fragment,"fragment_motor_liste")?.commit()
+
+        }
+
     }
 }

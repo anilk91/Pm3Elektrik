@@ -127,7 +127,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
                     transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
 
-                }else{}
+                }
 
                 if (motorListesi.motorGelenVeri == "motorEkle"){
 
@@ -147,10 +147,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     fragment.arguments = bundle
                     val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
                     transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
-
-                }else{}
-
-
+                }
             }
             motorDelete.setOnClickListener {
 
@@ -166,30 +163,17 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                         FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
                             .child("Motor")
                             .orderByChild("motorTag")
-                            .equalTo("${motorListesi.motorTag}")
-                            .addListenerForSingleValueEvent(object : ValueEventListener{
+                            .equalTo(motorListesi.motorTag)
+                            .addValueEventListener(object : ValueEventListener{
                                 override fun onCancelled(p0: DatabaseError) {}
                                 override fun onDataChange(p0: DataSnapshot) {
 
                                     for (gelen in p0.children){
                                         gelen.ref.removeValue()
+
                                     }
                                 }
                             })
-
-//                        //Motor Bilgilerini Sil---------------------------------------
-//                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-//                            .child("Motor")
-//                            .child(motorListe[position].motorTag)
-//                            .removeValue()
-//
-//                        //Çekmecesi Şalter Olan Bilgileri Sil-------------------------
-//                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-//                            .child("Motor")
-//                            .child(motorListe[position].cekmeceUid)
-//                            .removeValue()
-
-
                         //Şalter Bilgilerini Sil--------------------------------
                         FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
                             .child("Salter")
@@ -203,8 +187,9 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                             .removeValue()
 
                         motorListe.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position,motorListe.size)
+                        notifyDataSetChanged()
+//                        notifyItemRemoved(position)
+//                        notifyItemRangeChanged(position,motorListe.size)
 
                         Toast.makeText(mContext,"${motorListesi.motorTag} Silindi!",Toast.LENGTH_SHORT).show()
                     }
@@ -230,7 +215,5 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
         motorListe = ArrayList<MotorModel>()
         motorListe.addAll(gelenTag)
         notifyDataSetChanged()
-
-
     }
 }

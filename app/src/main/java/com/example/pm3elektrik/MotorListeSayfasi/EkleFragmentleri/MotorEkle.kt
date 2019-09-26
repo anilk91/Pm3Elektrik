@@ -243,8 +243,8 @@ class MotorEkle : Fragment() {
 
                         if (gelenSiciller != null){
 
-                            // buraya ünlem eklenecek---------------------------------------------------------------------------------------------------------
-                            if (gelenSiciller.sicilNo.equals(sicilNo)){
+
+                            if (!gelenSiciller.sicilNo.equals(sicilNo)){
                                 kullaniciTokenleriArrayList.add(gelenSiciller.kullaniciToken)
                             }
                         }
@@ -291,7 +291,5 @@ class MotorEkle : Fragment() {
         val sicil = sharedPreferences?.getInt("KEY_SICIL_NO",0)
         kullaniciIsmi = isim
         sicilNo = sicil
-
-        Log.e("sharedPrefGelen","$isim $sicil")
     }
 }
