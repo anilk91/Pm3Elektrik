@@ -103,19 +103,18 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                                 val gelenIntent = intent
 
-                                    val gelenbilgiMotorTag = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
+                                    val gelenTur = gelenIntent.getStringExtra("gelenTur")
+                                    val gelenTag = gelenIntent.getStringExtra("gelenTag")
 
-                                    if (gelenbilgiMotorTag != null){
+
+                                    if (gelenTur != null){
 
                                         val pendingIntent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
                                         pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                        pendingIntent.putExtra("kullanici_giris_kayit_sayfasi", gelenbilgiMotorTag)
+                                        pendingIntent.putExtra("gelenTur", gelenTur)
+                                        pendingIntent.putExtra("gelenTag", gelenTag)
                                         startActivity(pendingIntent)
 
-//                                        if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
-//                                            intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
-//
-//                                        }
                                     } else{
 
                                     val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
@@ -137,22 +136,4 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
             .child("kullaniciToken")
             .setValue(kullaniciTokenIDKaydetGuncelle())
     }
-
-//    private fun gelenPendingIntent() {
-//
-//        val gelenIntent = intent
-//
-//        if(gelenIntent != null){
-//
-//            val gelen = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
-//
-//            Log.e("gelenIntent","Gelen Motor Tag Verisi: $gelen")
-//
-//            if (gelenIntent.hasExtra("kullanici_giris_kayit_sayfasi")){
-//                intent.putExtra("ana_sayfa","kullanici_giris_kayit_sayfasi")
-//                startActivity(gelenIntent)
-//            }
-//        }
-//
-//    }
 }

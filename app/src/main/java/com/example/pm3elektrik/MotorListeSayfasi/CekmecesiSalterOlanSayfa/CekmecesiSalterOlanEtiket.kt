@@ -33,7 +33,12 @@ class CekmecesiSalterOlanEtiket : Fragment() {
         val close = view.findViewById<ImageView>(R.id.imgSalterOlanEtiketClose)
         val duzenle = view.findViewById<ImageView>(R.id.imgSalterOlanEtiketDuzenle)
 
-        close.setOnClickListener { changeFragment(MotorListe()) }
+        close.setOnClickListener {
+
+            if(view != null){
+                changeFragment(MotorListe())
+            }
+        }
 
         duzenle.setOnClickListener {
 
@@ -47,6 +52,7 @@ class CekmecesiSalterOlanEtiket : Fragment() {
 
         val bundle :Bundle? = arguments
         uniqIDGelen = bundle?.getString("rvGelenTag")
+        Log.e("gelenUniqID",uniqIDGelen)
 
 
         firebaseOkunanVerileriTextViewIsle(view)
@@ -56,7 +62,7 @@ class CekmecesiSalterOlanEtiket : Fragment() {
     private fun firebaseOkunanVerileriTextViewIsle(view: View) {
 
         ref.child(uniqIDGelen!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addValueEventListener(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 

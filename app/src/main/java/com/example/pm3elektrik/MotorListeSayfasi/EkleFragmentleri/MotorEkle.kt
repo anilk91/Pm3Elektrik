@@ -132,17 +132,6 @@ class MotorEkle : Fragment() {
         return view
     }
 
-    private fun serverKeyOku() {
-
-        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Server").child("server_key")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {}
-                override fun onDataChange(p0: DataSnapshot) {
-                    SERVER_KEY = p0.getValue().toString()
-                }
-            })
-    }
-
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
                   motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String , motorNot : String){
 
@@ -230,7 +219,7 @@ class MotorEkle : Fragment() {
         headers.put("Content-Type", "application/json")
         headers.put("Authorization", "key="+SERVER_KEY)
 
-        val data = FCMModel.Data("$motorTag TAG Nolu Motor","Eklendi",motorTag,kullaniciIsmi!!)
+        val data = FCMModel.Data("$motorTag TAG Nolu Motor","Eklendi","motor",kullaniciIsmi!!,motorTag)
 
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").orderByKey()
             .addListenerForSingleValueEvent(object : ValueEventListener{
@@ -276,20 +265,31 @@ class MotorEkle : Fragment() {
             })
     }
 
-    private fun changeFragment(fragment : Fragment){
-
-        val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"motor_ekle_fr")
-        fragmentTransaction.commit()
-
-    }
-
-    fun kullaniciKayittanGelenIsimveSicilNo(){
+    private fun kullaniciKayittanGelenIsimveSicilNo(){
 
         val sharedPreferences = context?.getSharedPreferences("gelenKullaniciIsmi",0)
         val isim = sharedPreferences?.getString("KEY_ISIM","")
         val sicil = sharedPreferences?.getInt("KEY_SICIL_NO",0)
         kullaniciIsmi = isim
         sicilNo = sicil
+    }
+
+    private fun serverKeyOku() {
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Server").child("server_key")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+                    SERVER_KEY = p0.getValue().toString()
+                }
+            })
+    }
+
+    private fun changeFragment(fragment : Fragment){
+
+        val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.containerMotorListe,fragment,"motor_ekle_fr")
+        fragmentTransaction.commit()
+
     }
 }

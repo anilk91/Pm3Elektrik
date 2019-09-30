@@ -1,7 +1,6 @@
 package com.example.pm3elektrik.FirebaseCloudMessage.Servisler
 
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -13,10 +12,8 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciGirisSicilveIsim
 import com.example.pm3elektrik.R
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -28,13 +25,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val baslik = p0.data.get("baslik")
         val icerik = p0.data.get("icerik")
-        val bildirim = p0.data.get("bildirim_turu")
+        val bildirimTuru = p0.data.get("bildirim_turu")
         val kullaniciIsmi = p0.data.get("gonderen_isim")
+        val bildirimTag = p0.data.get("bildirim_tag")
 
-        bildirimGonder(baslik, icerik, bildirim, kullaniciIsmi)
+
+        Log.e("telefon","$baslik $icerik $bildirimTuru $bildirimTag $kullaniciIsmi")
+        bildirimGonder(baslik, icerik, bildirimTuru, kullaniciIsmi, bildirimTag)
     }
 
-    private fun bildirimGonder(baslik: String?, icerik: String?, bildirim: String?, kullaniciIsmi : String?) {
+    private fun bildirimGonder(baslik: String?, icerik: String?, bildirimTuru: String?, kullaniciIsmi: String?, bildirimTag: String?) {
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -45,13 +45,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val pendingIntent = Intent(this, KullaniciGirisSicilveIsim::class.java)
         pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        pendingIntent.putExtra("kullanici_giris_kayit_sayfasi", bildirim)
+        pendingIntent.putExtra("gelenTur", bildirimTuru)
+        pendingIntent.putExtra("gelenTag", bildirimTag)
 
         val bildirimPendingIntent = PendingIntent.getActivity(this, 10, pendingIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val builder = NotificationCompat.Builder(this,NOTIF_CHANNEL_ID)
-            .setSmallIcon(R.drawable.motor_passive)
-            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.motor_passive))
+            .setSmallIcon(R.drawable.modern_karton_logo)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.modern_karton_logo))
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setContentTitle(baslik)
             .setContentText(icerik)

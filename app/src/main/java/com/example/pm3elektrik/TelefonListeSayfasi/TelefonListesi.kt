@@ -5,11 +5,13 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm3elektrik.R
@@ -113,5 +115,4 @@ class TelefonListesi : Fragment() {
         myAdapter.notifyDataSetChanged()
     }
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor-----------------------<
-
 }

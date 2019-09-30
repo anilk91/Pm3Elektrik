@@ -9,14 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.SurucuModel
 import com.example.pm3elektrik.R
+import com.example.pm3elektrik.Retrofit.FCMInterface
+import com.example.pm3elektrik.Retrofit.FCMModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_salter_ekle.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 
 class CekmeceEtiketDuzenle : Fragment() {
@@ -26,12 +34,22 @@ class CekmeceEtiketDuzenle : Fragment() {
     val salter_liste = SalterModel()
     val surucu_liste = SurucuModel()
     lateinit var surucuSpinner : Spinner
+    var SERVER_KEY : String? = null
+    val BASE_URL = "https://fcm.googleapis.com/fcm/"
+    var kullaniciTokenleriArrayList = ArrayList<String>()
+    lateinit var bildirim : FCMModel
+    var kullaniciIsmi : String? = null
+    var sicilNo : Int? = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_salter_ekle,container,false)
 
         val bundle :Bundle? = arguments
         val motorTag = bundle?.getString("cekmeceEtiketDuzenle")
+
+        serverKeyOku()
+
+        kullaniciKayittanGelenIsimveSicilNo()
 
         if(motorTag != null){
             firebaseDBOkunanVeriler(motorTag)
@@ -71,7 +89,7 @@ class CekmeceEtiketDuzenle : Fragment() {
                     }else{
                         surucu_liste.surucuDIPSivic = dipSivic
                     }
-                }else{ }
+                }
 
                 salter_liste.salterMotorTag = motor_tag
                 salter_liste.salterMarka = marka
@@ -119,6 +137,8 @@ class CekmeceEtiketDuzenle : Fragment() {
             } else {
                 Toast.makeText(activity, "Motor Tag Alanını Doldurunuz... ", Toast.LENGTH_LONG).show()
             }
+
+            fbDatabaseTokenlariAlveBildirimGonder(motorTag!!)
             Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
@@ -214,7 +234,7 @@ class CekmeceEtiketDuzenle : Fragment() {
                         etSalterDegTarihi.setText(okunan.salterDegTarihi)
                         etSalterMCCYeri.setText(okunan.salterMccYeri)
                         etCekmeceDegTarihi.setText(okunan.cekmeceDegTarihi)
-                    }else{ }
+                    }
                 }
             })
 
@@ -237,6 +257,84 @@ class CekmeceEtiketDuzenle : Fragment() {
                             etSalterSurucuDegTarihi.setText(okunanSurucu.surucuDegTarihi)
                         }
                     }
+                }
+            })
+    }
+
+    private fun fbDatabaseTokenlariAlveBildirimGonder(motorTag : String) {
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val myInterface = retrofit.create(FCMInterface::class.java)
+        val headers = HashMap<String, String>()
+        headers.put("Content-Type", "application/json")
+        headers.put("Authorization", "key="+SERVER_KEY)
+
+        val data = FCMModel.Data("$motorTag TAG Nolu Çekmece","Düzenlendi","motor",kullaniciIsmi!!,motorTag)
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").orderByKey()
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    for(tumKullaniciSicilNo in p0.children){
+
+                        val gelenSiciller = tumKullaniciSicilNo.getValue(KullaniciModel::class.java)
+
+                        if (gelenSiciller != null){
+
+
+                            if (!gelenSiciller.sicilNo.equals(sicilNo)){
+                                kullaniciTokenleriArrayList.add(gelenSiciller.kullaniciToken)
+                            }
+                        }
+
+                    }
+
+                    for (index in 0..kullaniciTokenleriArrayList.size-1){
+                        bildirim = FCMModel(kullaniciTokenleriArrayList.get(index), data)
+
+                        val istek = myInterface.bildirimGonder(headers,bildirim)
+                        istek.enqueue(object : Callback<Response<FCMModel>> {
+                            override fun onFailure(call: Call<Response<FCMModel>>, t: Throwable) {
+
+                                Log.e("BAŞARISIZ","Hata: ${t.message}")
+                            }
+
+                            override fun onResponse(call: Call<Response<FCMModel>>, response: Response<Response<FCMModel>>) {
+
+                                Log.e("BAŞARILI","Gönderildi: $response")
+
+
+                            }
+
+
+                        })
+                    }
+                    kullaniciTokenleriArrayList.clear()
+                }
+            })
+    }
+
+    private fun kullaniciKayittanGelenIsimveSicilNo(){
+
+        val sharedPreferences = context?.getSharedPreferences("gelenKullaniciIsmi",0)
+        val isim = sharedPreferences?.getString("KEY_ISIM","")
+        val sicil = sharedPreferences?.getInt("KEY_SICIL_NO",0)
+        kullaniciIsmi = isim
+        sicilNo = sicil
+    }
+
+    private fun serverKeyOku() {
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Server").child("server_key")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+                    SERVER_KEY = p0.getValue().toString()
                 }
             })
     }

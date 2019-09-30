@@ -3,7 +3,6 @@ package com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,12 +40,15 @@ class DriveUnite : Fragment() {
         val notEkle = view.findViewById<ImageView>(R.id.imgDriveUniteNotEkle)
         val motorVeUniteEtiketDuzenle = view.findViewById<ImageView>(R.id.imgDriveEtiketDuzenle)
 
+        val bundle: Bundle? = arguments
+        motorTag = bundle?.getString("rvGelenMotorTag")
+
         motorVeUniteEtiketDuzenle.setOnClickListener {
 
-            val bundle : Bundle? =Bundle()
-            bundle?.putString("driveUniteGelenTag",motorTag)
+            val duzenleBundle : Bundle? =Bundle()
+            duzenleBundle?.putString("driveUniteGelenTag",motorTag)
             val fragment = DriveUniteEkle()
-            fragment.arguments = bundle
+            fragment.arguments = duzenleBundle
             val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.containerMotorListe,fragment,"drive_unite_fr")?.commit()
 
@@ -57,9 +59,6 @@ class DriveUnite : Fragment() {
 
             changeFragment(MotorListe())
         }
-
-        val bundle: Bundle? = arguments
-        motorTag = bundle?.getString("rvGelenMotorTag")
 
         notEkle.setOnClickListener {
 
@@ -80,7 +79,7 @@ class DriveUnite : Fragment() {
     private fun firebaseDatabaseOkunanMotorBilgi(mContext: Context?, view: View) {
 
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Drive").child(motorTag!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addValueEventListener(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -100,9 +99,8 @@ class DriveUnite : Fragment() {
 
     private fun firebaseDatabaseOkunanNotlar(mContext: Context, view: View) {
 
-
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("DriveUniteNot").child(motorTag!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addValueEventListener(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {}
             override fun onDataChange(p0: DataSnapshot) {
 

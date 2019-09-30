@@ -10,10 +10,11 @@ import com.example.pm3elektrik.ArizaListeSayfasi.ArizaListe
 import com.example.pm3elektrik.AyarlarSayfasi.Ayarlar
 import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
 import com.example.pm3elektrik.KullanicilarSayfasi.Kullanicilar
+import com.example.pm3elektrik.MotorListeSayfasi.CekmecesiSalterOlanSayfa.CekmecesiSalterOlanEtiket
+import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
-import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
 class AnaSayfa : AppCompatActivity() {
@@ -104,16 +105,53 @@ class AnaSayfa : AppCompatActivity() {
 
         val gelenIntent = intent
 
-        val gelenbilgiMotorTag = gelenIntent.getStringExtra("kullanici_giris_kayit_sayfasi")
+        val gelenTur = gelenIntent.getStringExtra("gelenTur")
+        val gelenTag = gelenIntent.getStringExtra("gelenTag")
 
-        if (gelenbilgiMotorTag != null){
+        Log.e("gelenTur","$gelenTur")
+        Log.e("gelenTag","$gelenTag")
 
-            val bundle : Bundle? =Bundle()
-            bundle?.putString("anaSayfadanGelenMotorTag",gelenbilgiMotorTag)
-            val fragment = MotorListe()
-            fragment.arguments = bundle
-            val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
-            transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
+        if (gelenTur != null){
+
+            if (gelenTur == "motor"){
+                val bundle : Bundle? =Bundle()
+                bundle?.putString("anaSayfadanGelenMotorTag",gelenTag)
+                val fragment = MotorListe()
+                fragment.arguments = bundle
+                val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
+                transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
+
+            }else if(gelenTur == "telefon"){
+                val fragment = TelefonListesi()
+                val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
+                transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
+
+                imgPhonePassive.visibility = View.INVISIBLE
+                imgMotorPassive.visibility = View.VISIBLE
+                imgFaultPassive.visibility = View.VISIBLE
+                imgOtherPassive.visibility = View.VISIBLE
+                imgUserPassive.visibility = View.VISIBLE
+                imgSettingPassive.visibility = View.VISIBLE
+            }else if (gelenTur == "cekmece"){
+
+                val bundle : Bundle? =Bundle()
+                bundle?.putString("rvGelenTag",gelenTag)
+                val fragment = CekmecesiSalterOlanEtiket()
+                fragment.arguments = bundle
+                val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
+                transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
+
+            }else if (gelenTur == "drive"){
+
+                val bundle : Bundle? =Bundle()
+                bundle?.putString("rvGelenMotorTag",gelenTag)
+                val fragment = DriveUnite()
+                fragment.arguments = bundle
+                val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
+                transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
+
+            }
+
 
         }else{
 
@@ -122,7 +160,7 @@ class AnaSayfa : AppCompatActivity() {
 
     }
 
-    fun changeFragment(fragment : Fragment){
+    private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.containerFragment,fragment,"fragment_container")

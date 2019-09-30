@@ -25,12 +25,15 @@ class FCMModel {
         var bildirim_turu : String? = null
         @SerializedName("gonderen_isim")
         var gonderen_isim : String? = null
+        @SerializedName("bildirim_tag")
+        var bildirim_tag : String? = null
 
-        constructor(baslik: String, icerik: String, bildirim_turu: String, gonderen_isim : String) {
+        constructor(baslik: String, icerik: String, bildirim_turu: String, gonderen_isim : String, bildirim_tag : String) {
             this.baslik = baslik
             this.icerik = icerik
             this.bildirim_turu = bildirim_turu
             this.gonderen_isim = gonderen_isim
+            this.bildirim_tag = bildirim_tag
         }
     }
 }

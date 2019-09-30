@@ -105,16 +105,24 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
             //-----ÇEKMECEDEN GELEN BİLGİLER-----------------------------------
             if (motorListesi.motorGelenVeri == "cekmeceEkle"){
-                devirYazisi.setText("Kapasite :")
-                motorDevir.setText("${motorListesi.cekmeceKapasite} A")
-                gucYazisi.setText("Şalter :")
-                motorGuc.setText("${motorListesi.cekmeceMarka}\nModel - ${motorListesi.cekmeceModel}")
                 motorTag.setText(motorListesi.motorTag)
                 mCCYeri.setText(motorListesi.motorMCCYeri)
+                if(motorListesi.cekmeceKapasite.isNullOrBlank()){
+                    devirYazisi.setText("Kapasite :")
+                    motorDevir.setText("Bilgi Yok")
+                }else{
+                    devirYazisi.setText("Kapasite :")
+                    motorDevir.setText("${motorListesi.cekmeceKapasite} A")
+                }
+
+                if(motorListesi.cekmeceMarka.isNullOrBlank()){
+                    gucYazisi.setText("Şalter :")
+                    motorGuc.setText("Bilgi Yok")
+                }else{
+                    gucYazisi.setText("Şalter :")
+                    motorGuc.setText("${motorListesi.cekmeceMarka}\nModel - ${motorListesi.cekmeceModel}")
+                }
             }
-
-
-
 
             motorBilgi.setOnClickListener {
 

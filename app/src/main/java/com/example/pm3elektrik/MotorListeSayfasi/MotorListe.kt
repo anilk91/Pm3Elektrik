@@ -130,7 +130,7 @@ class MotorListe : Fragment() {
         fragmentTransaction?.replace(R.id.containerMotorListe,fragment,"fragment_motor_liste")
         fragmentTransaction?.commit()
     }
-    fun pendingIntentAnaSayfadanGelen(){
+    private fun pendingIntentAnaSayfadanGelen(){
 
         val bundle :Bundle? = arguments
         val motorTag = bundle?.getString("anaSayfadanGelenMotorTag")
