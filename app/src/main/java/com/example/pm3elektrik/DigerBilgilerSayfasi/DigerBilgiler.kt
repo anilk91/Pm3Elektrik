@@ -10,15 +10,15 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AkimKonvertörSayfasi.AkimKonvertorHesap
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit
-import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KontaktorTripSayfasi.KontaktorTrip
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KumandaProjeSayfasi.KumandaProjeleri
 import com.example.pm3elektrik.DigerBilgilerSayfasi.KuyuPanoSayfasi.KuyuPanolari
-import com.example.pm3elektrik.DigerBilgilerSayfasi.TrafoSayfasi.Trafolar
 
 import com.example.pm3elektrik.R
 
 class DigerBilgiler : Fragment() {
+
+    var ambarKayit: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_diger_bilgiler, container, false)
@@ -28,6 +28,14 @@ class DigerBilgiler : Fragment() {
         val kontaktorTripSayfasi = view.findViewById<CardView>(R.id.cardViewKontaktorTrip)
         val kuyuPanolariSayfasi = view.findViewById<CardView>(R.id.cardViewKuyuVeMcc)
         val kumandaProjeleriSayfasi = view.findViewById<CardView>(R.id.cardViewKumandaProjeleri)
+
+        val bundle: Bundle? = arguments
+        ambarKayit = bundle?.getString("DigerBilgilereGir")
+
+        if(ambarKayit != null){
+            changeFragment(AmbarKayit())
+        }
+
 
 
         ambarSayfasi.setOnClickListener { changeFragment(AmbarKayit()) }

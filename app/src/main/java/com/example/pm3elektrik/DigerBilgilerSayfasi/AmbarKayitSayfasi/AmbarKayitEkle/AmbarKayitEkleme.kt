@@ -102,7 +102,7 @@ class AmbarKayitEkleme : DialogFragment() {
                     }
             }
 
-            fbDatabaseTokenlariAlveBildirimGonder(stokNo)
+            fbDatabaseTokenlariAlveBildirimGonder(stokNo, tanim)
             Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
@@ -116,7 +116,7 @@ class AmbarKayitEkleme : DialogFragment() {
 
     }
 
-    private fun fbDatabaseTokenlariAlveBildirimGonder(stokNumarasi : String) {
+    private fun fbDatabaseTokenlariAlveBildirimGonder(stokNumarasi: String, tanim: String) {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -128,7 +128,7 @@ class AmbarKayitEkleme : DialogFragment() {
         headers.put("Content-Type", "application/json")
         headers.put("Authorization", "key="+SERVER_KEY)
 
-        val data = FCMModel.Data("$stokNumarasi Stok Numarası","Eklendi/Düzenlendi","ambar",kullaniciIsmi!!,stokNumarasi)
+        val data = FCMModel.Data("$stokNumarasi $tanim","Eklendi/Düzenlendi","ambar",kullaniciIsmi!!,stokNumarasi)
 
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").orderByKey()
             .addListenerForSingleValueEvent(object : ValueEventListener {

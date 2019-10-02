@@ -19,21 +19,21 @@
             app:layout_constraintTop_toTopOf="@+id/tvUniteNotu" />
 
     <TextView
-            android:id="@+id/tvUniteNotu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:fontFamily="@font/nunito_semibold"
-            android:text="Ünite Notu"
-            android:textColor="@android:color/black"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@+id/view17"
-            app:layout_constraintEnd_toStartOf="@+id/imgDriveUniteEdit"
-            app:layout_constraintStart_toEndOf="@+id/tvUniteNotuTarih"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/tvUniteNotu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:text="Ünite Notu"
+        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/view17"
+        app:layout_constraintEnd_toStartOf="@+id/imgDriveUniteNotDelete"
+        app:layout_constraintStart_toEndOf="@+id/tvUniteNotuTarih"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
             android:id="@+id/tvUniteNotuTarih"
@@ -48,23 +48,14 @@
             app:layout_constraintTop_toTopOf="@+id/tvUniteNotu" />
 
     <ImageView
-            android:id="@+id/imgDriveUniteNotDelete"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/delete_button_siyah"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-            android:id="@+id/imgDriveUniteEdit"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="24dp"
-            android:src="@drawable/edit_siyah"
-            app:layout_constraintEnd_toStartOf="@+id/imgDriveUniteNotDelete"
-            app:layout_constraintTop_toTopOf="@+id/imgDriveUniteNotDelete" />
+        android:id="@+id/imgDriveUniteNotDelete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/delete_button_siyah"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
             android:id="@+id/view17"

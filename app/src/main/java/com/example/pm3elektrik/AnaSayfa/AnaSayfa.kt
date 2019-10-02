@@ -150,6 +150,21 @@ class AnaSayfa : AppCompatActivity() {
                 val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
                 transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
 
+            }else if(gelenTur == "ambar"){
+
+                imgOtherPassive.visibility = View.INVISIBLE
+                imgFaultPassive.visibility = View.VISIBLE
+                imgMotorPassive.visibility = View.VISIBLE
+                imgUserPassive.visibility = View.VISIBLE
+                imgSettingPassive.visibility = View.VISIBLE
+                imgPhonePassive.visibility = View.VISIBLE
+
+                val bundle : Bundle? =Bundle()
+                bundle?.putString("DigerBilgilereGir",gelenTag)
+                val fragment = DigerBilgiler()
+                fragment.arguments = bundle
+                val transaction : FragmentTransaction? = supportFragmentManager.beginTransaction()
+                transaction?.replace(R.id.containerFragment,fragment,"rv_fragment")?.commit()
             }
 
 

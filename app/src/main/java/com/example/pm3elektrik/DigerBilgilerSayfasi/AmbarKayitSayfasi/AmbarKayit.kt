@@ -110,16 +110,5 @@ class AmbarKayit : Fragment() {
         view?.rvAmbarListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()
-
     }
-
-    private fun changeFragment(fragment : Fragment){
-
-        val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerAmbarKayit,fragment,"fragment")
-        fragmentTransaction.commit()
-
-    }
-
-
 }

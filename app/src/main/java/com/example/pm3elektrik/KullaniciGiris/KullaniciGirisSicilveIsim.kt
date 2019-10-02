@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
+import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciYetkiModel
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -23,6 +24,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     var kullaniciModel = KullaniciModel()
     var kullaniciToken : String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                 kullaniciModel.isim = isim.text.toString().toUpperCase()
                 kullaniciModel.sicilNo = sicilNo.text.toString().toInt()
                 kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
+
 
                 FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child(sicilNo.text.toString())
                     .setValue(kullaniciModel).addOnCompleteListener {

@@ -41,6 +41,7 @@ class TelefonEkle : DialogFragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var telefonYetki = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,6 +52,7 @@ class TelefonEkle : DialogFragment() {
 
         kullaniciKayittanGelenIsimveSicilNo()
         serverKeyOku()
+        firebaseDBTelefonYetkiOku()
 
         val bundle :Bundle? = arguments
         val isim = bundle?.getString("rvGidenTelIsim")
@@ -63,16 +65,21 @@ class TelefonEkle : DialogFragment() {
 
         buttonEkle.setOnClickListener {
 
-            telefonIsim.text.toString().toUpperCase()
+            if (telefonYetki == true){
+                telefonIsim.text.toString().toUpperCase()
             telefonNo.text.toString()
 
-            if(telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty() ){
+            if (telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty()) {
 
 
                 telefonModel.telefonIsim = telefonIsim.text.toString().toUpperCase()
                 telefonModel.telefonNo = telefonNo.text.toString()
 
-                fbDatabaseTokenlariAlveBildirimGonder(telefonNo.text.toString(),telefonIsim.text.toString(),kullaniciIsmi)
+                fbDatabaseTokenlariAlveBildirimGonder(
+                    telefonNo.text.toString(),
+                    telefonIsim.text.toString(),
+                    kullaniciIsmi
+                )
 
                 changeFragment(TelefonListesi())
 
@@ -80,13 +87,18 @@ class TelefonEkle : DialogFragment() {
                     .child(telefonNo.text.toString())
                     .setValue(telefonModel)
                     .addOnCompleteListener {
-                        if (it.isComplete){
+                        if (it.isComplete) {
 
-                        }else {
+                        } else {
                             try {
-                                Toast.makeText(activity,"Kayıt Yapılamadı Hata: ${it.exception?.message}",Toast.LENGTH_LONG).show()
-                            }catch (hata : Exception){
-                                Toast.makeText(activity,"Hata: ${hata.message}",Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    activity,
+                                    "Kayıt Yapılamadı Hata: ${it.exception?.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } catch (hata: Exception) {
+                                Toast.makeText(activity, "Hata: ${hata.message}", Toast.LENGTH_LONG)
+                                    .show()
                             }
 
 
@@ -94,14 +106,18 @@ class TelefonEkle : DialogFragment() {
                     }
 
 
-
-
-            }else {
-                Toast.makeText(activity,"Boş Alanları Doldurunuz",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(activity, "Boş Alanları Doldurunuz", Toast.LENGTH_LONG).show()
             }
 
-            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
-        }
+            Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
+
+        }else{
+                Toast.makeText(view.context,"Ekleme İzniniz Yok!", Toast.LENGTH_LONG).show()
+            }
+    }
+
+
 
         buttonClose.setOnClickListener {
 
@@ -109,6 +125,19 @@ class TelefonEkle : DialogFragment() {
         }
 
         return view
+    }
+
+    private fun firebaseDBTelefonYetkiOku() {
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child("$sicilNo")
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    val telefonYetkiOku = p0.getValue(KullaniciModel::class.java)
+                    telefonYetki = telefonYetkiOku!!.telefonYetki
+                }
+            })
     }
 
     private fun changeFragment(fragment : Fragment){

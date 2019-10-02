@@ -50,7 +50,7 @@ class DriveUniteNotlariRV(var uniteNotListesi: ArrayList<UniteNotuModel>, var mC
         var not = tumLayout.tvUniteNotu
         var tarih = tumLayout.tvUniteNotuTarih
         var sil = tumLayout.imgDriveUniteNotDelete
-        var edit = tumLayout.imgDriveUniteEdit
+
 
 
         fun setData(gelenUniteNotListesi: UniteNotuModel, position: Int) {
@@ -92,7 +92,6 @@ class DriveUniteNotlariRV(var uniteNotListesi: ArrayList<UniteNotuModel>, var mC
                 val dialog : AlertDialog =builder.create()
                 dialog.show()
             }
-            edit.setOnClickListener {  }
         }
     }
 }
