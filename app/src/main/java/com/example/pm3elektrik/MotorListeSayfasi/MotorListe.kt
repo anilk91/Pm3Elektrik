@@ -28,7 +28,7 @@ import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.fragment_motor_liste.*
 
 
-class MotorListe : Fragment() {
+class MotorListe : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
@@ -37,34 +37,20 @@ class MotorListe : Fragment() {
     var motorListesi= ArrayList<MotorModel>()
     lateinit var swipeRefresh: SwipeRefreshLayout
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
         swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
 
-        fireBaseDBOkunanVeriler(view.context)
-
         pendingIntentAnaSayfadanGelen()
 
-        swipeRefresh.setOnRefreshListener {
+        fireBaseDBOkunanVeriler(view.context)
 
-            fireBaseDBOkunanVeriler(view.context)
-            Toast.makeText(view!!.context, "Güncellendi", Toast.LENGTH_SHORT).show()
-            Handler().postDelayed(object : Runnable{
-                override fun run() {
-                    swipeRefresh.isRefreshing = false
-                }
-            },1200)
-
-        }
-
-
+        swipeRefresh.setOnRefreshListener (this)
 
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
         sync.keepSynced(true)
-
 
         val motor_ara = view.findViewById<EditText>(R.id.etMotorArama)
         motor_ara.addTextChangedListener(object : TextWatcher{
@@ -81,6 +67,7 @@ class MotorListe : Fragment() {
                             arananlar.add(gelen)
                         }
                     }
+
                     if(myAdapter != null){
                         myAdapter.gelenMotorTagiFiltrele(arananlar)
                     }
@@ -113,7 +100,6 @@ class MotorListe : Fragment() {
     }
     private fun fireBaseDBOkunanVeriler(mContext : Context) {
 
-        swipeRefresh.isRefreshing = false
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("pm3Elektrik")
             .child("Motor")
@@ -142,9 +128,6 @@ class MotorListe : Fragment() {
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
         view?.rvMotorListe?.layoutManager = mLayoutManager
 
-        swipeRefresh.isRefreshing = true
-
-        //myAdapter.notifyDataSetChanged()
     }
     private fun changeFragment(fragment : Fragment){
 
@@ -157,8 +140,6 @@ class MotorListe : Fragment() {
         val bundle :Bundle? = arguments
         val motorTag = bundle?.getString("anaSayfadanGelenMotorTag")
 
-        Log.e("anaSayfadanGelenTag","$motorTag")
-
         if (motorTag != null){
 
             val bundleMotorListe = Bundle()
@@ -170,5 +151,17 @@ class MotorListe : Fragment() {
 
         }
 
+    }
+
+    override fun onRefresh() {
+
+        fireBaseDBOkunanVeriler(view!!.context)
+
+        Handler().postDelayed(object : Runnable {
+            override fun run() {
+
+                swipeRefresh.isRefreshing = false
+            }
+        },1200)
     }
 }

@@ -3,6 +3,7 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitEkle.AmbarKayitEkleme
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitModel.AmbarKayitModeli
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarRVAdapter.AmbarRV
@@ -27,16 +29,21 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_ambar_kayit.view.*
 
 
-class AmbarKayit : Fragment() {
+class AmbarKayit : Fragment() , SwipeRefreshLayout.OnRefreshListener {
 
     var ambarListe = ArrayList<AmbarKayitModeli>()
     lateinit var mFAB_ambar: FloatingActionButton
     lateinit var myAdapter : AmbarRV
+    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ambar_kayit, container, false)
 
+        swipeRefresh = view.findViewById(R.id.swipeRefresh)
+
         fireBaseDBOkunanVeriler(view.context)
+
+        swipeRefresh.setOnRefreshListener(this)
 
         val kayitAra = view.findViewById<EditText>(R.id.etAmbarKayitAra)
 
@@ -110,5 +117,17 @@ class AmbarKayit : Fragment() {
         view?.rvAmbarListe?.layoutManager = mLayoutManager
 
         myAdapter.notifyDataSetChanged()
+    }
+
+    override fun onRefresh() {
+
+        fireBaseDBOkunanVeriler(view!!.context)
+
+        Handler().postDelayed(object : Runnable{
+            override fun run() {
+                swipeRefresh.isRefreshing = false
+            }
+        },1200)
+
     }
 }

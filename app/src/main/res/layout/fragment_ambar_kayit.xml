@@ -7,40 +7,51 @@
         android:background="#F4F9FD"
         tools:context=".DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayit">
 
-
     <ImageView
-            android:id="@+id/imgAmbarListeLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.1"
-            android:src="@drawable/modern_karton_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/containerAmbarKayit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/containerAmbarKayit" />
+        android:id="@+id/imgAmbarListeLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.1"
+        android:src="@drawable/modern_karton_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/containerAmbarKayit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/containerAmbarKayit" />
 
     <EditText
-            android:id="@+id/etAmbarKayitAra"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:fontFamily="@font/nunito_extrabold"
-            android:hint="Stok No veya Tanım Giriniz..."
-            android:inputType="textPersonName"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/etAmbarKayitAra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/nunito_extrabold"
+        android:hint="Stok No veya Tanım Giriniz..."
+        android:inputType="textPersonName"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAmbarKayitAra">
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAmbarListe"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAmbarKayitAra" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <com.github.clans.fab.FloatingActionMenu
             android:id="@+id/menuAmbar"

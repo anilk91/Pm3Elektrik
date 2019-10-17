@@ -3,6 +3,7 @@ package com.example.pm3elektrik.TelefonListeSayfasi
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -14,6 +15,7 @@ import android.widget.EditText
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonEkleFragment.TelefonEkle
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonModel.TelefonListeModel
@@ -25,17 +27,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_telefon_listesi.view.*
 
-class TelefonListesi : Fragment() {
+class TelefonListesi : Fragment() , SwipeRefreshLayout.OnRefreshListener{
+
 
     lateinit var mFAB_telefon: FloatingActionButton
     var telefonModel = ArrayList<TelefonListeModel>()
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     lateinit var myAdapter : TelefonRV
+    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_telefon_listesi, container, false)
 
+        swipeRefresh = view.findViewById(R.id.swipeRefresh)
+
         fireBaseDBOkunanVeriler(view.context , view)
+
+        swipeRefresh.setOnRefreshListener(this)
 
         mFAB_telefon = view.findViewById(R.id.menu_telefon)
         mFAB_telefon.setOnClickListener {
@@ -115,4 +123,15 @@ class TelefonListesi : Fragment() {
         myAdapter.notifyDataSetChanged()
     }
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor-----------------------<
+
+    override fun onRefresh() {
+
+        fireBaseDBOkunanVeriler(view!!.context , view!!)
+        Handler().postDelayed(object : Runnable{
+            override fun run() {
+                swipeRefresh.isRefreshing = false
+            }
+        },1200)
+
+    }
 }

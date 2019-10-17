@@ -210,11 +210,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
                 val dialog : AlertDialog =builder.create()
                 dialog.show()
-
-
             }
-
-
         }
     }
 
@@ -223,5 +219,6 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
         motorListe = ArrayList<MotorModel>()
         motorListe.addAll(gelenTag)
         notifyDataSetChanged()
+
     }
 }
