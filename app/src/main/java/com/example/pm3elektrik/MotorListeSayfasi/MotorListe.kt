@@ -42,20 +42,24 @@ class MotorListe : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
+        swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
 
+        fireBaseDBOkunanVeriler(view.context)
 
         pendingIntentAnaSayfadanGelen()
 
-        swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
-
-//        swipeRefresh.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_dark,android.R.color.holo_orange_dark)
         swipeRefresh.setOnRefreshListener {
 
             fireBaseDBOkunanVeriler(view.context)
-            Toast.makeText(view!!.context, "Yenilendi", Toast.LENGTH_LONG).show()
+            Toast.makeText(view!!.context, "Güncellendi", Toast.LENGTH_SHORT).show()
+            Handler().postDelayed(object : Runnable{
+                override fun run() {
+                    swipeRefresh.isRefreshing = false
+                }
+            },1200)
+
         }
 
-        fireBaseDBOkunanVeriler(view.context)
 
 
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
@@ -109,14 +113,12 @@ class MotorListe : Fragment() {
     }
     private fun fireBaseDBOkunanVeriler(mContext : Context) {
 
-
+        swipeRefresh.isRefreshing = false
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("pm3Elektrik")
             .child("Motor")
             .addListenerForSingleValueEvent( object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {
-                    swipeRefresh.isRefreshing = false
-                }
+                override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
                     for(dataGetir in p0.children){
