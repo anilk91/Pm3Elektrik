@@ -1,121 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/rv_adapter_arka_layout_beyaz" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-            android:id="@+id/imgAmbarRVLogo"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:alpha="0.1"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:srcCompat="@drawable/modern_karton_logo" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/tvAmbarStokNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="Y.000000"
-            android:textColor="#4D4D4D"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/textView84" />
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/rv_adapter_icin_ust_bar_kare" />
 
-    <TextView
-            android:id="@+id/tvAmbarRafNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="G8-5a"
-            android:textColor="#4D4D4D"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/textView15" />
+            <ImageView
+                android:id="@+id/imgAmbarRVSilButonu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView6"
+                app:srcCompat="@drawable/delete_button_siyah" />
 
-    <TextView
-            android:id="@+id/tvAmbarTanim"
-            android:layout_width="277dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="Tanım"
-            android:textColor="#4D4D4D"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/textView15"
-            app:layout_constraintTop_toTopOf="@+id/textView18" />
+            <ImageView
+                android:id="@+id/imgAmbarRVBilgiButonu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                app:layout_constraintEnd_toStartOf="@+id/imgAmbarRVSilButonu"
+                app:layout_constraintTop_toTopOf="@+id/imageView6"
+                app:srcCompat="@drawable/bilgi_button_siyah" />
 
-    <TextView
-            android:id="@+id/textView84"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="Stok No:"
-            android:textColor="#4D3EFF"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgAmbarRVBilgiButonu" />
+            <TextView
+                android:id="@+id/textView84"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Stok No:"
+                android:textColor="#4D3EFF"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
-    <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="Raf Adres:"
-            android:textColor="#4D3EFF"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@+id/textView84"
-            app:layout_constraintTop_toBottomOf="@+id/textView84" />
+            <ImageView
+                android:id="@+id/imgAmbarRVLogo"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:alpha="0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                app:srcCompat="@drawable/modern_karton_logo" />
 
-    <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/nunito_extrabold"
-            android:text="Tanım:"
-            android:textColor="#4D3EFF"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@+id/textView15"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            <TextView
+                android:id="@+id/tvAmbarStokNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Y.000000"
+                android:textColor="#4D4D4D"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/textView84"
+                app:layout_constraintTop_toTopOf="@+id/textView84" />
 
-    <ImageView
-            android:id="@+id/imgAmbarRVBilgiButonu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgAmbarRVSilButonu"
-            app:layout_constraintEnd_toStartOf="@+id/imgAmbarRVSilButonu"
-            app:layout_constraintTop_toTopOf="@+id/imgAmbarRVSilButonu"
-            app:srcCompat="@drawable/bilgi_butonu_mavi" />
+            <TextView
+                android:id="@+id/tvAmbarRafNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="G8-5a"
+                android:textColor="#4D4D4D"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/textView15"
+                app:layout_constraintTop_toTopOf="@+id/textView15" />
 
-    <ImageView
-            android:id="@+id/imgAmbarRVSilButonu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            app:srcCompat="@drawable/sil_butonu_mavi" />
+            <TextView
+                android:id="@+id/tvAmbarTanim"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Tanım"
+                android:textColor="#4D4D4D"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView18"
+                app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Raf Adres:"
+                android:textColor="#4D3EFF"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/nunito_extrabold"
+                android:text="Tanım:"
+                android:textColor="#4D3EFF"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

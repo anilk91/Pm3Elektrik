@@ -12,6 +12,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciGirisSicilveIsim
 import com.example.pm3elektrik.R
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -29,8 +30,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val kullaniciIsmi = p0.data.get("gonderen_isim")
         val bildirimTag = p0.data.get("bildirim_tag")
 
-
-        Log.e("telefon","$baslik $icerik $bildirimTuru $bildirimTag $kullaniciIsmi")
         bildirimGonder(baslik, icerik, bildirimTuru, kullaniciIsmi, bildirimTag)
     }
 
@@ -43,7 +42,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 createNotifChannel(this) }
         }
 
-        val pendingIntent = Intent(this, KullaniciGirisSicilveIsim::class.java)
+        val pendingIntent = Intent(this, AnaSayfa::class.java)
         pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         pendingIntent.putExtra("gelenTur", bildirimTuru)
         pendingIntent.putExtra("gelenTag", bildirimTag)

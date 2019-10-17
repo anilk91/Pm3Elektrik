@@ -23,7 +23,7 @@ class ArizaListe : Fragment() {
 
         val itSoftStarter = view.findViewById<CardView>(R.id.cardViewItSoftStarter)
         val acs140 = view.findViewById<CardView>(R.id.cardViewACS140)
-        val acs380 = view.findViewById<CardView>(R.id.cardViewACS380)
+//        val acs380 = view.findViewById<CardView>(R.id.cardViewACS380)
         val danfoss = view.findViewById<CardView>(R.id.cardViewDanfoss)
         itSoftStarter.setOnClickListener {
             changeFragment(ItSoftStarterAriza())
@@ -31,9 +31,9 @@ class ArizaListe : Fragment() {
         acs140.setOnClickListener {
             changeFragment(Acs140Ariza())
         }
-        acs380.setOnClickListener {
-            changeFragment(Acs380Ariza())
-        }
+//        acs380.setOnClickListener {
+//            changeFragment(Acs380Ariza())
+//        }
         danfoss.setOnClickListener {
             changeFragment(DanfossAriza())
         }

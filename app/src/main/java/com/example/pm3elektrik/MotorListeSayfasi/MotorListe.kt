@@ -1,8 +1,9 @@
 package com.example.pm3elektrik.MotorListeSayfasi
 
-import android.app.Activity
+
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -12,18 +13,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle
-import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.CekmeceEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorveSalterEtiketleri.MotorVeSalterEtiket
 import com.example.pm3elektrik.MotorListeSayfasi.RVAdapter.MotorRVAdapter
-import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import com.github.clans.fab.FloatingActionButton
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
+import com.example.pm3elektrik.R
+import kotlinx.android.synthetic.main.fragment_motor_liste.*
 
 
 class MotorListe : Fragment() {
@@ -33,15 +35,28 @@ class MotorListe : Fragment() {
     lateinit var mFAB_drive: FloatingActionButton
     lateinit var myAdapter : MotorRVAdapter
     var motorListesi= ArrayList<MotorModel>()
+    lateinit var swipeRefresh: SwipeRefreshLayout
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
-        fireBaseDBOkunanVeriler(view.context)
+
 
         pendingIntentAnaSayfadanGelen()
+
+        swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
+
+//        swipeRefresh.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_dark,android.R.color.holo_orange_dark)
+        swipeRefresh.setOnRefreshListener {
+
+            fireBaseDBOkunanVeriler(view.context)
+            Toast.makeText(view!!.context, "Yenilendi", Toast.LENGTH_LONG).show()
+        }
+
+        fireBaseDBOkunanVeriler(view.context)
+
 
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
         sync.keepSynced(true)
@@ -94,11 +109,14 @@ class MotorListe : Fragment() {
     }
     private fun fireBaseDBOkunanVeriler(mContext : Context) {
 
+
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("pm3Elektrik")
             .child("Motor")
             .addListenerForSingleValueEvent( object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {}
+                override fun onCancelled(p0: DatabaseError) {
+                    swipeRefresh.isRefreshing = false
+                }
                 override fun onDataChange(p0: DataSnapshot) {
 
                     for(dataGetir in p0.children){
@@ -121,6 +139,8 @@ class MotorListe : Fragment() {
 
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
         view?.rvMotorListe?.layoutManager = mLayoutManager
+
+        swipeRefresh.isRefreshing = true
 
         //myAdapter.notifyDataSetChanged()
     }
