@@ -65,12 +65,11 @@ class TelefonEkle : DialogFragment() {
 
         buttonEkle.setOnClickListener {
 
-            if (telefonYetki == true){
-                telefonIsim.text.toString().toUpperCase()
+
+            telefonIsim.text.toString().toUpperCase()
             telefonNo.text.toString()
 
             if (telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty()) {
-
 
                 telefonModel.telefonIsim = telefonIsim.text.toString().toUpperCase()
                 telefonModel.telefonNo = telefonNo.text.toString()
@@ -112,9 +111,6 @@ class TelefonEkle : DialogFragment() {
 
             Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
 
-        }else{
-                Toast.makeText(view.context,"Ekleme İzniniz Yok!", Toast.LENGTH_LONG).show()
-            }
     }
 
 

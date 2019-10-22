@@ -50,6 +50,8 @@ class DriveUniteEkle : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drive_unite_ekle, container, false)
 
+        Toast.makeText(view.context,"Lütfen Eklemeden Önce Listeyi Kontrol Ediniz",Toast.LENGTH_LONG).show()
+
         val ekle = view.findViewById<Button>(R.id.buttonDriveEkle)
         val close = view.findViewById<ImageView>(R.id.imgDriveUniteEkleClose)
         val spinnerSecim = view.findViewById<Spinner>(R.id.spinnerDriveUniteSecim)
@@ -155,9 +157,10 @@ class DriveUniteEkle : Fragment() {
             val vModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteVDegTarihi).text.toString()
             val wModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteWDegTarihi).text.toString()
 
-
             firebaseDBEkle(isim, tag, guc, devir, tripAkim, insaTipi, flans, adres, motorDegTarihi, seriNoU, seriNoV, seriNoW, uModulDegTarih,
                 vModulDegTarih, wModulDegTarih)
+
+
         }
         return view
     }

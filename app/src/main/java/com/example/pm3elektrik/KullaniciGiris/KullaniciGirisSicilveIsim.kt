@@ -100,7 +100,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                             val gelen = okunan.getValue(KullaniciModel::class.java)
 
                             if (gelen?.sicilNo != null) {
-                            if (gelen.sicilNo.equals(sicilNo)) {
+                            if (gelen.sicilNo == sicilNo) {
 
                                 tokenIDGuncelle(sicilNo)
 

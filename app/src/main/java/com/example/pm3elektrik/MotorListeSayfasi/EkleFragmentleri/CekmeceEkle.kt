@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
+import com.example.pm3elektrik.MotorListeSayfasi.CekmecesiSalterOlanSayfa.CekmesiSalterOlanModel.CekmeceSalterModel
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListeModel.MotorModel
 
@@ -38,8 +39,12 @@ class CekmeceEkle : Fragment() {
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_cekmece_ekle, container, false)
+
+        Toast.makeText(view.context,"Lütfen Eklemeden Önce Listeyi Kontrol Ediniz", Toast.LENGTH_LONG).show()
 
         val close = view.findViewById<ImageView>(R.id.imgCekmeceEkleClose)
         val buttonEkle = view.findViewById<Button>(R.id.btnCekmeceSalterEkle)
@@ -67,7 +72,9 @@ class CekmeceEkle : Fragment() {
             val mccYeri = view.findViewById<EditText>(R.id.etCekmeceMccYeri).text.toString().toUpperCase()
 
             if (!isim.isNullOrEmpty() && !mccYeri.isNullOrEmpty()){
+
                 firebaseDBEkle(isim,marka,model,kapasite,cat,degTarihi,demeraj,mccYeri)
+
             }else{
                 Toast.makeText(view.context,"Çekmece İsim ve MCC Yerini Giriniz",Toast.LENGTH_SHORT).show()
             }

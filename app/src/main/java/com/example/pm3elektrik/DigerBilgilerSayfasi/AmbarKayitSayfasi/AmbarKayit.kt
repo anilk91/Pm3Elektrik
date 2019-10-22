@@ -29,21 +29,21 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_ambar_kayit.view.*
 
 
-class AmbarKayit : Fragment() , SwipeRefreshLayout.OnRefreshListener {
+class AmbarKayit : Fragment() {
 
     var ambarListe = ArrayList<AmbarKayitModeli>()
     lateinit var mFAB_ambar: FloatingActionButton
     lateinit var myAdapter : AmbarRV
-    lateinit var swipeRefresh: SwipeRefreshLayout
+//    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ambar_kayit, container, false)
 
-        swipeRefresh = view.findViewById(R.id.swipeRefresh)
+//        swipeRefresh = view.findViewById(R.id.swipeRefresh)
 
         fireBaseDBOkunanVeriler(view.context)
 
-        swipeRefresh.setOnRefreshListener(this)
+//        swipeRefresh.setOnRefreshListener(this)
 
         val kayitAra = view.findViewById<EditText>(R.id.etAmbarKayitAra)
 
@@ -119,15 +119,15 @@ class AmbarKayit : Fragment() , SwipeRefreshLayout.OnRefreshListener {
         myAdapter.notifyDataSetChanged()
     }
 
-    override fun onRefresh() {
-
-        fireBaseDBOkunanVeriler(view!!.context)
-
-        Handler().postDelayed(object : Runnable{
-            override fun run() {
-                swipeRefresh.isRefreshing = false
-            }
-        },1200)
-
-    }
+//    override fun onRefresh() {
+//
+//        fireBaseDBOkunanVeriler(view!!.context)
+//
+//        Handler().postDelayed(object : Runnable{
+//            override fun run() {
+//                swipeRefresh.isRefreshing = false
+//            }
+//        },1200)
+//
+//    }
 }

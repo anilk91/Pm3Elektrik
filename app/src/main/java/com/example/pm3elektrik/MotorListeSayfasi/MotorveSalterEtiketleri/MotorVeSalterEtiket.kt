@@ -220,8 +220,12 @@ class MotorVeSalterEtiket : Fragment() {
 
         if (motorBilgiGetir != null) {
 
-            tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
-            tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
+            if (!motorBilgiGetir.motorTag.isNullOrBlank()){
+                tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
+            }
+            if (!motorBilgiGetir.motorMCCYeri.isNullOrBlank()){
+                tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
+            }
 
             //------------------------------------------------------------
             if (motorBilgiGetir.motorIsim.isNullOrBlank()){

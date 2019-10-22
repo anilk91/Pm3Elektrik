@@ -27,23 +27,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_telefon_listesi.view.*
 
-class TelefonListesi : Fragment() , SwipeRefreshLayout.OnRefreshListener{
+class TelefonListesi : Fragment() {
 
 
     lateinit var mFAB_telefon: FloatingActionButton
     var telefonModel = ArrayList<TelefonListeModel>()
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     lateinit var myAdapter : TelefonRV
-    lateinit var swipeRefresh: SwipeRefreshLayout
+//    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_telefon_listesi, container, false)
 
-        swipeRefresh = view.findViewById(R.id.swipeRefresh)
+//        swipeRefresh = view.findViewById(R.id.swipeRefresh)
 
         fireBaseDBOkunanVeriler(view.context , view)
 
-        swipeRefresh.setOnRefreshListener(this)
+//        swipeRefresh.setOnRefreshListener(this)
 
         mFAB_telefon = view.findViewById(R.id.menu_telefon)
         mFAB_telefon.setOnClickListener {
@@ -92,7 +92,7 @@ class TelefonListesi : Fragment() , SwipeRefreshLayout.OnRefreshListener{
 
         ref.child("Telefon")
             .orderByKey()
-            .addListenerForSingleValueEvent(object  : ValueEventListener{
+            .addValueEventListener(object  : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -124,14 +124,14 @@ class TelefonListesi : Fragment() , SwipeRefreshLayout.OnRefreshListener{
     }
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor-----------------------<
 
-    override fun onRefresh() {
-
-        fireBaseDBOkunanVeriler(view!!.context , view!!)
-        Handler().postDelayed(object : Runnable{
-            override fun run() {
-                swipeRefresh.isRefreshing = false
-            }
-        },1200)
-
-    }
+//    override fun onRefresh() {
+//
+//        fireBaseDBOkunanVeriler(view!!.context , view!!)
+//        Handler().postDelayed(object : Runnable{
+//            override fun run() {
+//                swipeRefresh.isRefreshing = false
+//            }
+//        },1200)
+//
+//    }
 }

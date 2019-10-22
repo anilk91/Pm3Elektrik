@@ -117,7 +117,24 @@ class MotorEkle : Fragment() {
             if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
 
 
-                    FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi,motor_not)
+                    FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
+                        .child(motor_tag)
+                        .addListenerForSingleValueEvent(object : ValueEventListener{
+                            override fun onCancelled(p0: DatabaseError) {}
+                            override fun onDataChange(p0: DataSnapshot) {
+
+                                val bilgiGetir = p0.getValue(MotorModel::class.java)
+                                if (bilgiGetir?.motorTag != null){
+                                    Toast.makeText(view.context,"Motor Listede Mevcut Kontrol Ediniz", Toast.LENGTH_LONG).show()
+                                }else{
+                                    FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi,motor_not)
+                                }
+
+                            }
+
+
+                        })
+
 
             }else{
                 Toast.makeText(activity,"Lütfen Motor Tag ve Mcc Yerini Giriniz",Toast.LENGTH_LONG).show()
