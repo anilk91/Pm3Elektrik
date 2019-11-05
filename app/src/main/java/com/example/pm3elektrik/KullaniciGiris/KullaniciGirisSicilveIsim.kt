@@ -121,7 +121,9 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                                     } else{
 
                                     val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     startActivity(intent)
+                                        overridePendingTransition(R.anim.fab_slide_in_from_left,R.anim.fab_slide_out_to_left)
                                     }
                                 }
                             }else{

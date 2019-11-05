@@ -17,7 +17,7 @@ import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
-class AnaSayfa : AppCompatActivity() {
+class AnaSayfa : AppCompatActivity(){
 
 
 
@@ -177,5 +177,10 @@ class AnaSayfa : AppCompatActivity() {
         val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.containerFragment,fragment,"fragment_container")
         fragmentTransaction.commit()
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        finish()
     }
 }
