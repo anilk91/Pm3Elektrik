@@ -13,6 +13,8 @@ import androidx.fragment.app.DialogFragment
 
 import com.example.pm3elektrik.R
 import kotlinx.android.synthetic.main.fragment_akim_konvertor_hesap.*
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class AkimKonvertorHesap : DialogFragment() {
 
@@ -40,8 +42,9 @@ class AkimKonvertorHesap : DialogFragment() {
                 val mA = (anlikmA.toDouble() * 20)/nominalAkim.toDouble()
                 val yuzde = (anlikmA.toDouble() * 100)/nominalAkim.toDouble()
 
-                sonucMA.setText("$mA mA")
-                sonucYuzde.setText("% $yuzde")
+
+                sonucMA.setText("${BigDecimal(mA).setScale(1, RoundingMode.HALF_EVEN)} mA")
+                sonucYuzde.setText("% ${BigDecimal(yuzde).setScale(1,RoundingMode.HALF_EVEN)}")
 
 
             }else{

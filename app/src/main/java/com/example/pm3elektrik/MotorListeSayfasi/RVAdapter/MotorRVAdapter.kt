@@ -120,7 +120,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     motorGuc.setText("Bilgi Yok")
                 }else{
                     gucYazisi.setText("Şalter :")
-                    motorGuc.setText("${motorListesi.cekmeceMarka}\nModel - ${motorListesi.cekmeceModel}")
+                    motorGuc.setText("${motorListesi.cekmeceMarka}")
                 }
             }
 
