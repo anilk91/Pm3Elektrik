@@ -15,7 +15,7 @@ class ValmetHidrolikKumanda : Fragment() {
 
         val photoView = view.findViewById<PhotoView>(R.id.photoView)
 
-        photoView.setImageResource(R.drawable.valmet_hidrolik_yaglama_kumanda_projesi)
+        photoView.setImageResource(R.mipmap.valmet_hidrolik_yaglama_kumanda_projesi)
 
         return view
     }

@@ -15,7 +15,7 @@ class KuyuPanoKumanda : Fragment() {
 
         val photoView = view.findViewById<PhotoView>(R.id.photoView)
 
-        photoView.setImageResource(R.drawable.kuyu_pano_kumanda_projesi)
+        photoView.setImageResource(R.mipmap.kuyu_pano_kumanda_projesi)
 
         return view
     }

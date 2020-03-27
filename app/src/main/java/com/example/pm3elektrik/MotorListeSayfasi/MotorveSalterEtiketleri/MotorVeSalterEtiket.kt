@@ -167,10 +167,10 @@ class MotorVeSalterEtiket : Fragment() {
         val cekmeceBilgileri = p0.getValue(SalterModel::class.java)
 
         //-----------------------------
-        if (cekmeceBilgileri?.salterMarka.isNullOrBlank()) {
-            tvSalterMarka.text = (bilgiYok)
-        } else  {
+        if (!cekmeceBilgileri?.salterMarka.isNullOrEmpty()) {
             tvSalterMarka.text = (cekmeceBilgileri?.salterMarka)
+        } else  {
+            tvSalterMarka.text = (bilgiYok)
         }
 
         //--------------------------------
