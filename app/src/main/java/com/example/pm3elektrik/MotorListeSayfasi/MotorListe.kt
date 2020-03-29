@@ -70,6 +70,8 @@ class MotorListe : Fragment() {
 
                     if(myAdapter != null){
                         myAdapter.gelenMotorTagiFiltrele(arananlar)
+                    }else{
+                        Toast.makeText(context?.applicationContext,"Liste Yüklenemedi",Toast.LENGTH_LONG).show()
                     }
 
                 }
