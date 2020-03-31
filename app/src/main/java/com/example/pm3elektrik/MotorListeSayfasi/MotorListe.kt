@@ -3,17 +3,14 @@ package com.example.pm3elektrik.MotorListeSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.CekmeceEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
@@ -25,7 +22,6 @@ import com.github.clans.fab.FloatingActionButton
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 import com.example.pm3elektrik.R
-import kotlinx.android.synthetic.main.fragment_motor_liste.*
 
 
 class MotorListe : Fragment() {

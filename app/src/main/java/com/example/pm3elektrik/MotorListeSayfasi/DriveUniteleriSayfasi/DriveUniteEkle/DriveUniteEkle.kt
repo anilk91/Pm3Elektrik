@@ -21,7 +21,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import kotlinx.android.synthetic.main.fragment_drive_unite_ekle.*
 import retrofit2.Call
 import retrofit2.Callback

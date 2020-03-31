@@ -1,9 +1,6 @@
 package com.example.pm3elektrik.KullaniciGiris
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -18,7 +15,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
-import kotlin.math.log
 
 
 class KullaniciGirisSicilveIsim : AppCompatActivity() {
@@ -34,15 +30,11 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
         val isim = findViewById<EditText>(R.id.etKullaniciKayitIsim)
         val sicilNo = findViewById<EditText>(R.id.etKullaniciKayitIsYeriSicil)
-        val ekle = findViewById<Button>(R.id.btnKullaniciyiKaydet)
+        val kaydet = findViewById<Button>(R.id.btnKullaniciyiKaydet)
 
-
-
-        kullaniciTokenIDKaydetGuncelle()
-
-        kullaniciKaydiniKontrolEt()
-
-        ekle.setOnClickListener {
+        kaydet.setOnClickListener {
+            var deneme = isim.text.toString()
+            var dene = sicilNo.text.toString()
 
             if (isim.text.toString().isNotEmpty() && sicilNo.text.toString().isNotEmpty()) {
 
@@ -82,15 +74,24 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                 Toast.makeText(this, "Boş Alanları Doldurunuz", Toast.LENGTH_LONG).show()
             }
         }
+
+        kullaniciKaydiniKontrolEt()
+
+        kullaniciTokenIDKaydetGuncelle()
+
     }
 
     private fun kullaniciTokenIDKaydetGuncelle(): String? {
+        kullaniciToken = "varsayilantokenid"
         FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener {
             if (it.isSuccessful) {
                 kullaniciToken = it.result?.token
+                var deneme2 = it.result?.token
                 Log.e("token kaydi","bulundu")
-            }else {
-                Toast.makeText(applicationContext,"İnternet Bağlantısı Zayıf veya Yok",Toast.LENGTH_LONG).show()
+            }
+            else {
+
+                Log.e("token kaydi","yapılamadı")
             }
 
         }
@@ -131,37 +132,22 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                                     if (gelenTur != null) {
 
-                                        val pendingIntent = Intent(
-                                            this@KullaniciGirisSicilveIsim,
-                                            AnaSayfa::class.java
-                                        )
-                                        pendingIntent.flags =
-                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        val pendingIntent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
+                                        pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         pendingIntent.putExtra("gelenTur", gelenTur)
                                         pendingIntent.putExtra("gelenTag", gelenTag)
                                         startActivity(pendingIntent)
 
                                     } else {
 
-                                        val intent = Intent(
-                                            this@KullaniciGirisSicilveIsim,
-                                            AnaSayfa::class.java
-                                        )
-                                        intent.flags =
-                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                        val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         startActivity(intent)
-                                        overridePendingTransition(
-                                            R.anim.fab_slide_in_from_left,
-                                            R.anim.fab_slide_out_to_left
-                                        )
+                                        overridePendingTransition(R.anim.fab_slide_in_from_left, R.anim.fab_slide_out_to_left)
                                     }
                                 }
                             } else {
-                                Toast.makeText(
-                                    this@KullaniciGirisSicilveIsim,
-                                    "Lütfen Kayıt Olunuz",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                Toast.makeText(this@KullaniciGirisSicilveIsim, "Lütfen Kayıt Olunuz", Toast.LENGTH_LONG).show()
                             }
                         }
                     }

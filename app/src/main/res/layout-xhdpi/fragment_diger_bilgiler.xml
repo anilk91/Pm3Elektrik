@@ -33,9 +33,9 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewKumandaProjeleri"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginStart="32dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="10dp"
@@ -80,8 +80,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewKuyuVeMcc"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="20dp"
                 app:cardCornerRadius="10dp"
@@ -125,9 +125,9 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewAmbarKayit"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginStart="32dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,8 +170,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewAkimKonHesapla"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="20dp"
                 app:cardCornerRadius="10dp"
@@ -215,9 +215,9 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewKontaktorTrip"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginStart="32dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
