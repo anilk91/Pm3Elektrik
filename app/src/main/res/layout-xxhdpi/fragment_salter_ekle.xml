@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F9FD">
+
+
+    <ImageView
+            android:id="@+id/imgSalterEkleLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/modern_karton_logo" />
+
+    <ScrollView
+            android:id="@+id/salterScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgSalterClose">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/SurucuCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/SalterCardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <Spinner
+                            android:id="@+id/spinnerSurucuSecim"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/SurucuTextView" />
+
+                    <EditText
+                        android:id="@+id/etSalterKontaktorDIPSivic"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Dip Siviç(87654321)"
+                        android:inputType="numberDecimal"
+                        android:maxLength="8"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorBoyut"
+                        tools:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/etSalterSurucuModel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Model Seri No"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterKontaktorDIPSivic"
+                        tools:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/etSalterSurucuDegTarihi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="24dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Sürücü Değişim Tarihi"
+                        android:inputType="date"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterSurucuModel"
+                        tools:visibility="visible" />
+
+                    <TextView
+                            android:id="@+id/SurucuTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="-SÜRÜCÜ-"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/etSalterKontaktorBoyut"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Boyut"
+                        android:inputType="number"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="@+id/spinnerSurucuSecim"
+                        app:layout_constraintStart_toStartOf="@+id/spinnerSurucuSecim"
+                        app:layout_constraintTop_toBottomOf="@+id/spinnerSurucuSecim" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/SalterCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    <EditText
+                        android:id="@+id/etSalterMCCYeri"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="MCC Yeri"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="@+id/etSalterSTYLE"
+                        app:layout_constraintStart_toStartOf="@+id/etSalterSTYLE"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterSTYLE" />
+
+                    <EditText
+                        android:id="@+id/etSalterDegTarihi"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Şalter Değ. Tarihi"
+                        android:inputType="date"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/etSalterDemeraj"
+                        app:layout_constraintStart_toStartOf="@+id/etSalterDemeraj"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterDemeraj" />
+
+                    <EditText
+                        android:id="@+id/etSalterDemeraj"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Demeraj"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintStart_toStartOf="@+id/etSalterCAT"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterCAT" />
+
+                    <EditText
+                        android:id="@+id/etSalterSTYLE"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="STYLE"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="@+id/etSalterKapasite"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterKapasite" />
+
+                    <EditText
+                        android:id="@+id/etSalterCAT"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="CAT"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintStart_toStartOf="@+id/etSalterMarka"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterMarka" />
+
+                    <EditText
+                        android:id="@+id/etSalterKapasite"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Kapasite"
+                        android:inputType="numberDecimal"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="@+id/etMotorTag"
+                        app:layout_constraintTop_toBottomOf="@+id/etMotorTag" />
+
+                    <EditText
+                        android:id="@+id/etSalterMarka"
+                        android:layout_width="120dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="16dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Marka"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintStart_toStartOf="@+id/etMotorTag"
+                        app:layout_constraintTop_toBottomOf="@+id/etMotorTag" />
+
+                    <EditText
+                        android:id="@+id/etMotorTag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Motor TAG"
+                        android:inputType="textPersonName"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/SalterTextView" />
+
+                    <TextView
+                            android:id="@+id/SalterTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/nunito_extrabold"
+                            android:text="-ŞALTER-"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/etCekmeceDegTarihi"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:ems="10"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:hint="Çekmece Değ. Tarihi"
+                        android:inputType="date"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/etSalterMCCYeri"
+                        app:layout_constraintStart_toStartOf="@+id/etSalterMCCYeri"
+                        app:layout_constraintTop_toBottomOf="@+id/etSalterMCCYeri" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                    android:id="@+id/buttonSalterEkle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="EKLE"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/SurucuCardView" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ImageView
+            android:id="@+id/imgSalterClose"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

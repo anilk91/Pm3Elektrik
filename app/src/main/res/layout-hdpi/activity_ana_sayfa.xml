@@ -59,9 +59,9 @@
 
         <ImageView
             android:id="@+id/imgMotor"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="4dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
@@ -69,8 +69,8 @@
 
         <ImageView
             android:id="@+id/imgPhone"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgMotor"
@@ -79,8 +79,8 @@
 
         <ImageView
             android:id="@+id/imgFault"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPhone"
@@ -89,8 +89,8 @@
 
         <ImageView
             android:id="@+id/imgOther"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginStart="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgFault"
@@ -99,8 +99,8 @@
 
         <ImageView
             android:id="@+id/imgMotorPassive"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgMotor"
             app:layout_constraintEnd_toEndOf="@+id/imgMotor"
             app:layout_constraintStart_toStartOf="@+id/imgMotor"
@@ -109,8 +109,8 @@
 
         <ImageView
             android:id="@+id/imgPhonePassive"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgPhone"
             app:layout_constraintEnd_toEndOf="@+id/imgPhone"
             app:layout_constraintStart_toStartOf="@+id/imgPhone"
@@ -119,8 +119,8 @@
 
         <ImageView
             android:id="@+id/imgFaultPassive"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgFault"
             app:layout_constraintEnd_toEndOf="@+id/imgFault"
             app:layout_constraintStart_toStartOf="@+id/imgFault"
@@ -129,8 +129,8 @@
 
         <ImageView
             android:id="@+id/imgOtherPassive"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgOther"
             app:layout_constraintEnd_toEndOf="@+id/imgOther"
             app:layout_constraintStart_toStartOf="@+id/imgOther"
