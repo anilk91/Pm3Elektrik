@@ -69,30 +69,30 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                            android:id="@+id/textView70"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:text="Motor Tag :"
-                            android:textColor="@android:color/holo_red_dark"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView74" />
+                        android:id="@+id/textView70"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Motor Tag :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketPompaIsim" />
 
                     <TextView
-                            android:id="@+id/textView71"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:text="Güç :"
-                            android:textColor="@android:color/holo_red_dark"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView70" />
+                        android:id="@+id/textView71"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Güç :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketTag" />
 
                     <TextView
                             android:id="@+id/textView72"
@@ -173,54 +173,58 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
                     <TextView
-                            android:id="@+id/textView78"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:text="MCC Yeri :"
-                            android:textColor="@android:color/holo_red_dark"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView77" />
+                        android:id="@+id/textView78"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="MCC Yeri :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketAdres" />
 
                     <TextView
-                            android:id="@+id/textView79"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/nunito_extrabold"
-                            android:text="Motor Değ. Tarihi :"
-                            android:textColor="@android:color/holo_red_dark"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView78" />
+                        android:id="@+id/textView79"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Motor Değ. Tarihi :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMotorEtiketMccYeri" />
 
                     <TextView
-                            android:id="@+id/tvMotorEtiketPompaIsim"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/nunito_semibold"
-                            android:text="İsim"
-                            android:textColor="@android:color/black"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView74"
-                            app:layout_constraintTop_toTopOf="@+id/textView74" />
+                        android:id="@+id/tvMotorEtiketPompaIsim"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="İsim"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView74"
+                        app:layout_constraintTop_toTopOf="@+id/textView74" />
 
                     <TextView
-                            android:id="@+id/tvMotorEtiketTag"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/nunito_semibold"
-                            android:text="Tag"
-                            android:textColor="@android:color/black"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView70"
-                            app:layout_constraintTop_toTopOf="@+id/textView70" />
+                        android:id="@+id/tvMotorEtiketTag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Tag"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView70"
+                        app:layout_constraintTop_toTopOf="@+id/textView70" />
 
                     <TextView
                             android:id="@+id/tvMotorEtiketGucKw"
@@ -295,28 +299,32 @@
                             app:layout_constraintTop_toTopOf="@+id/textView76" />
 
                     <TextView
-                            android:id="@+id/tvMotorEtiketAdres"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/nunito_semibold"
-                            android:text="Adres"
-                            android:textColor="@android:color/black"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView77"
-                            app:layout_constraintTop_toTopOf="@+id/textView77" />
+                        android:id="@+id/tvMotorEtiketAdres"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Adres"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView77"
+                        app:layout_constraintTop_toTopOf="@+id/textView77" />
 
                     <TextView
-                            android:id="@+id/tvMotorEtiketMccYeri"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/nunito_semibold"
-                            android:text="MCC"
-                            android:textColor="@android:color/black"
-                            android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView78"
-                            app:layout_constraintTop_toTopOf="@+id/textView78" />
+                        android:id="@+id/tvMotorEtiketMccYeri"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="MCC"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView78"
+                        app:layout_constraintTop_toTopOf="@+id/textView78" />
 
                     <TextView
                             android:id="@+id/tvMotorEtiketDegTarih"
