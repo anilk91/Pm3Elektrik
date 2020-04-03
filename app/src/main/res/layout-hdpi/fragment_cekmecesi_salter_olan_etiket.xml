@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/imgSalterOlanEtiketClose"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/close"

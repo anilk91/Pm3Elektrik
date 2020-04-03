@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F9FD"
+        tools:context=".MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite">
+
+    <ImageView
+        android:id="@+id/imgDriveUniteEtiketLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.1"
+        android:src="@drawable/modern_karton_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/containerDriveUnite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/containerDriveUnite"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+            android:id="@+id/imgDriveEtiketClose"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDriveEtiketClose">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewUniteBilgi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorIsim"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Motor İsim"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toStartOf="@+id/imgDriveEtiketDuzenle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView124"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Motor Tag :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDriveMotorIsim" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="6BG01"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView124"
+                        app:layout_constraintTop_toTopOf="@+id/textView124" />
+
+                    <TextView
+                        android:id="@+id/textView160"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Güç :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvDriveMotorTag"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveMotorTag" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorGuc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="490 KVA"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView160"
+                        app:layout_constraintTop_toTopOf="@+id/textView160" />
+
+                    <TextView
+                        android:id="@+id/textView162"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Devir :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView124" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorDevir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="1000 D/d"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView162"
+                        app:layout_constraintTop_toTopOf="@+id/textView162" />
+
+                    <TextView
+                        android:id="@+id/textView164"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="T. Akım :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="@+id/textView160"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveMotorDevir" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorTripAkim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="410 A"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView164"
+                        app:layout_constraintTop_toTopOf="@+id/textView164" />
+
+                    <TextView
+                        android:id="@+id/textView167"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="İnşa Tipi :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView162" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorInsaTipi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="ABB"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toStartOf="@+id/textView169"
+                        app:layout_constraintStart_toEndOf="@+id/textView167"
+                        app:layout_constraintTop_toTopOf="@+id/textView167" />
+
+                    <TextView
+                        android:id="@+id/textView169"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Flanş :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="@+id/textView164"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveMotorInsaTipi" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorFlans"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="B3"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView169"
+                        app:layout_constraintTop_toTopOf="@+id/textView169" />
+
+                    <TextView
+                        android:id="@+id/textview04549512"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Motor Değ. Tarihi :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView167" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorDegTarihi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="01.01.2000"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textview04549512"
+                        app:layout_constraintTop_toTopOf="@+id/textview04549512" />
+
+                    <View
+                        android:id="@+id/view16"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@android:color/darker_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDriveMotorAdres" />
+
+                    <TextView
+                        android:id="@+id/tvSNoYazisiU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="S. No (U) :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView110" />
+
+                    <TextView
+                        android:id="@+id/tvSNoYazisiV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="S. No (V) :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSNoYazisiU" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteSeriNoU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="U Modülü"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvSNoYazisiU"
+                        app:layout_constraintTop_toTopOf="@+id/tvSNoYazisiU" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteSeriNoV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="V Modülü"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvSNoYazisiV"
+                        app:layout_constraintTop_toTopOf="@+id/tvSNoYazisiV" />
+
+                    <TextView
+                        android:id="@+id/tvSNoYazisiW"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="S. No (W) :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSNoYazisiV" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteSeriNoW"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="W Modülü"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvSNoYazisiW"
+                        app:layout_constraintTop_toTopOf="@+id/tvSNoYazisiW" />
+
+                    <TextView
+                        android:id="@+id/textView101"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Adres :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textview04549512" />
+
+                    <TextView
+                        android:id="@+id/tvDriveMotorAdres"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Adres"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView101"
+                        app:layout_constraintTop_toTopOf="@+id/textView101" />
+
+                    <TextView
+                        android:id="@+id/tvDegTarihiU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Değ. Tarih :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvDriveUniteDegTarihiU"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveUniteSeriNoU" />
+
+                    <TextView
+                        android:id="@+id/tvDegTarihiV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Değ. Tarih :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvDriveUniteDegTarihiV"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveUniteSeriNoV" />
+
+                    <TextView
+                        android:id="@+id/tvDegTarihiW"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Değ. Tarih :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvDriveUniteDegTarihiW"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveUniteSeriNoW" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteDegTarihiU"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Tarih"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDegTarihiU" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteDegTarihiV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Tarih"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDegTarihiV" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteDegTarihiW"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Tarih"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDegTarihiW" />
+
+                    <ImageView
+                        android:id="@+id/imgDriveEtiketDuzenle"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/edit"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvDriveMotorIsim"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveMotorIsim" />
+
+                    <TextView
+                        android:id="@+id/textView110"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="Ünite Güç :"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+                    <TextView
+                        android:id="@+id/tvDriveUniteGuc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Ünite Güç KVA"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView110"
+                        app:layout_constraintTop_toTopOf="@+id/textView110" />
+
+                    <ImageView
+                        android:id="@+id/imgDriveUniteMotorLogo"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:alpha="0.08"
+                        android:src="@drawable/modern_karton_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDriveMotorIsim" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewUniteNotlari"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewUniteBilgi">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view15"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@android:color/darker_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView173" />
+
+                    <TextView
+                        android:id="@+id/textView173"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_extrabold"
+                        android:text="ÜNİTE NOTLARI"
+                        android:textColor="@android:color/holo_red_dark"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUniteNotlariListesi"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+                    <ImageView
+                        android:id="@+id/imgDriveUniteNotEkle"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/add_note_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView173"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView173" />
+
+                    <ImageView
+                        android:id="@+id/imgDriveUniteNotlariLogo"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:alpha="0.08"
+                        android:src="@drawable/modern_karton_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+            android:id="@+id/containerDriveUnite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
