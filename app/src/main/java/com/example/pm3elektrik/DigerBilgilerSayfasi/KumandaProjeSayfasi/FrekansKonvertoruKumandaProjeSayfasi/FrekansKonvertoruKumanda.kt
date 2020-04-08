@@ -16,7 +16,7 @@ class FrekansKonvertoruKumanda : Fragment() {
 
         val photoView = view.findViewById<PhotoView>(R.id.photoView)
 
-        photoView.setImageResource(R.drawable.frekans_konvertoru_kumanda_projesi)
+        photoView.setImageResource(R.mipmap.frekans_konvertoru_kumanda_projesi)
 
 
         return view

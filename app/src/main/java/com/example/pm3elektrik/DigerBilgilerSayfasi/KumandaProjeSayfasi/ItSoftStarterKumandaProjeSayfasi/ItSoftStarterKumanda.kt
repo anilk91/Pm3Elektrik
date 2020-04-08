@@ -15,7 +15,7 @@ class ItSoftStarterKumanda : Fragment() {
 
         val photoView = view.findViewById<PhotoView>(R.id.photoView)
 
-        photoView.setImageResource(R.drawable.it_soft_starter_kumanda_projesi)
+        photoView.setImageResource(R.mipmap.it_soft_starter_kumanda_projesi)
 
         return view
     }

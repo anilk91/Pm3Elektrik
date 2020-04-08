@@ -21,7 +21,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 import kotlinx.android.synthetic.main.fragment_drive_unite_ekle.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,6 +48,8 @@ class DriveUniteEkle : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drive_unite_ekle, container, false)
+
+        Toast.makeText(view.context,"Lütfen Eklemeden Önce Listeyi Kontrol Ediniz",Toast.LENGTH_LONG).show()
 
         val ekle = view.findViewById<Button>(R.id.buttonDriveEkle)
         val close = view.findViewById<ImageView>(R.id.imgDriveUniteEkleClose)
@@ -155,9 +156,10 @@ class DriveUniteEkle : Fragment() {
             val vModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteVDegTarihi).text.toString()
             val wModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteWDegTarihi).text.toString()
 
-
             firebaseDBEkle(isim, tag, guc, devir, tripAkim, insaTipi, flans, adres, motorDegTarihi, seriNoU, seriNoV, seriNoW, uModulDegTarih,
                 vModulDegTarih, wModulDegTarih)
+
+
         }
         return view
     }

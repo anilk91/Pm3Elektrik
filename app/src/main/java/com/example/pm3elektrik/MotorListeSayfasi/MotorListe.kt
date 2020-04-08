@@ -3,17 +3,14 @@ package com.example.pm3elektrik.MotorListeSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUniteEkle.DriveUniteEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.CekmeceEkle
 import com.example.pm3elektrik.MotorListeSayfasi.EkleFragmentleri.MotorEkle
@@ -25,29 +22,28 @@ import com.github.clans.fab.FloatingActionButton
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_motor_liste.view.*
 import com.example.pm3elektrik.R
-import kotlinx.android.synthetic.main.fragment_motor_liste.*
 
 
-class MotorListe : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+class MotorListe : Fragment() {
 
     lateinit var mFAB_cekmece: FloatingActionButton
     lateinit var mFAB_motor: FloatingActionButton
     lateinit var mFAB_drive: FloatingActionButton
     lateinit var myAdapter : MotorRVAdapter
     var motorListesi= ArrayList<MotorModel>()
-    lateinit var swipeRefresh: SwipeRefreshLayout
+//    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_motor_liste, containerFragment, false)
 
-        swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
+//        swipeRefresh = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefresh)
 
         pendingIntentAnaSayfadanGelen()
 
         fireBaseDBOkunanVeriler(view.context)
 
-        swipeRefresh.setOnRefreshListener (this)
+//        swipeRefresh.setOnRefreshListener (this)
 
         val sync = FirebaseDatabase.getInstance().getReference("kayıtlı_verileri_koru")
         sync.keepSynced(true)
@@ -70,6 +66,8 @@ class MotorListe : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
                     if(myAdapter != null){
                         myAdapter.gelenMotorTagiFiltrele(arananlar)
+                    }else{
+                        Toast.makeText(context?.applicationContext,"Liste Yüklenemedi",Toast.LENGTH_LONG).show()
                     }
 
                 }
@@ -103,7 +101,7 @@ class MotorListe : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         val ref = FirebaseDatabase.getInstance().reference
         ref.child("pm3Elektrik")
             .child("Motor")
-            .addListenerForSingleValueEvent( object :ValueEventListener{
+            .addValueEventListener( object :ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -153,15 +151,15 @@ class MotorListe : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     }
 
-    override fun onRefresh() {
-
-        fireBaseDBOkunanVeriler(view!!.context)
-
-        Handler().postDelayed(object : Runnable {
-            override fun run() {
-
-                swipeRefresh.isRefreshing = false
-            }
-        },1200)
-    }
+//    override fun onRefresh() {
+//
+//        //fireBaseDBOkunanVeriler(view!!.context)
+//
+//        Handler().postDelayed(object : Runnable {
+//            override fun run() {
+//
+//                swipeRefresh.isRefreshing = false
+//            }
+//        },1200)
+//    }
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.CekmeceEtiketDuzenle
 import com.example.pm3elektrik.MotorListeSayfasi.DuzenleFragmentleri.MotorEtiketDuzenle
@@ -135,7 +136,7 @@ class MotorVeSalterEtiket : Fragment() {
                 tvSurucuEtiketTipi.text = (surucuBilgileriGetir.surucuIsim)
                 tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
 
-                if (surucuBilgileriGetir.surucuDegTarihi.isNullOrBlank()){
+                if (surucuBilgileriGetir.surucuDegTarihi.isEmpty()){
                     tvSurucuEtiketDegTarihi.text = bilgiYok
                 }else{
                     tvSurucuEtiketDegTarihi.text = surucuBilgileriGetir.surucuDegTarihi
@@ -150,7 +151,7 @@ class MotorVeSalterEtiket : Fragment() {
                 tvSurucuEtiketTipi.text = surucuBilgileriGetir.surucuIsim
                 tvSurucuEtiketModel.text = (surucuBilgileriGetir.surucuModel)
 
-                if (surucuBilgileriGetir.surucuDegTarihi.isNullOrBlank()){
+                if (surucuBilgileriGetir.surucuDegTarihi.isEmpty()){
 
                     tvSurucuEtiketDegTarihi.text = bilgiYok
                 }else{
@@ -159,6 +160,8 @@ class MotorVeSalterEtiket : Fragment() {
 
 
             }
+        }else{
+            Toast.makeText(context?.applicationContext, "Bilgiler Getirilemedi", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -166,49 +169,53 @@ class MotorVeSalterEtiket : Fragment() {
 
         val cekmeceBilgileri = p0.getValue(SalterModel::class.java)
 
-        //-----------------------------
-        if (cekmeceBilgileri?.salterMarka.isNullOrBlank()) {
-            tvSalterMarka.text = (bilgiYok)
-        } else  {
-            tvSalterMarka.text = (cekmeceBilgileri?.salterMarka)
-        }
+        if (cekmeceBilgileri != null) {
+            //-----------------------------
+            if (cekmeceBilgileri.salterMarka.isNotEmpty()) {
+                tvSalterMarka.text = (cekmeceBilgileri.salterMarka)
+            } else {
+                tvSalterMarka.text = (bilgiYok)
+            }
 
-        //--------------------------------
-        if (cekmeceBilgileri?.salterKapasite.isNullOrBlank()) {
-            tvSalterKapasite.text = (bilgiYok)
-        } else  {
-            tvSalterKapasite.text = (cekmeceBilgileri?.salterKapasite)
-        }
+            //--------------------------------
+            if (cekmeceBilgileri.salterKapasite.isEmpty()) {
+                tvSalterKapasite.text = (bilgiYok)
+            } else {
+                tvSalterKapasite.text = (cekmeceBilgileri.salterKapasite + " A")
+            }
 
-        //--------------------------------
-        if (cekmeceBilgileri?.salterCAT.isNullOrBlank()) {
-            tvSalterEtiketCat.text = (bilgiYok)
-        } else {
-            tvSalterEtiketCat.text = (cekmeceBilgileri?.salterCAT)
-        }
-        //------------------------------
-         if (cekmeceBilgileri?.salterSTYLE.isNullOrBlank()) {
-            tvSalterEtiketStyle.text = (bilgiYok)
-        } else  {
-            tvSalterEtiketStyle.text = (cekmeceBilgileri?.salterSTYLE)
-        }
-        //-------------------------------------
-        if (cekmeceBilgileri?.salterDemeraj.isNullOrBlank()) {
-            tvSalterEtiketDemeraj.text = (bilgiYok)
-        } else  {
-            tvSalterEtiketDemeraj.text = (cekmeceBilgileri?.salterDemeraj)
-        }
-        //-----------------------------------
-        if (cekmeceBilgileri?.salterDegTarihi.isNullOrBlank()) {
-            tvSalterEtiketDegTarihi.text = (bilgiYok)
-        } else  {
-            tvSalterEtiketDegTarihi.text = (cekmeceBilgileri?.salterDegTarihi)
-        }
-        //-----------------------------------
-        if (cekmeceBilgileri?.cekmeceDegTarihi.isNullOrBlank()) {
-            tvCekmeceDegTarihi.text = (bilgiYok)
-        } else  {
-            tvCekmeceDegTarihi.text = (cekmeceBilgileri?.cekmeceDegTarihi)
+            //--------------------------------
+            if (cekmeceBilgileri.salterCAT.isEmpty()) {
+                tvSalterEtiketCat.text = (bilgiYok)
+            } else {
+                tvSalterEtiketCat.text = (cekmeceBilgileri.salterCAT)
+            }
+            //------------------------------
+            if (cekmeceBilgileri.salterSTYLE.isEmpty()) {
+                tvSalterEtiketStyle.text = (bilgiYok)
+            } else {
+                tvSalterEtiketStyle.text = (cekmeceBilgileri.salterSTYLE)
+            }
+            //-------------------------------------
+            if (cekmeceBilgileri.salterDemeraj.isEmpty()) {
+                tvSalterEtiketDemeraj.text = (bilgiYok)
+            } else {
+                tvSalterEtiketDemeraj.text = (cekmeceBilgileri.salterDemeraj)
+            }
+            //-----------------------------------
+            if (cekmeceBilgileri.salterDegTarihi.isEmpty()) {
+                tvSalterEtiketDegTarihi.text = (bilgiYok)
+            } else {
+                tvSalterEtiketDegTarihi.text = (cekmeceBilgileri.salterDegTarihi)
+            }
+            //-----------------------------------
+            if (cekmeceBilgileri.cekmeceDegTarihi.isEmpty()) {
+                tvCekmeceDegTarihi.text = (bilgiYok)
+            } else {
+                tvCekmeceDegTarihi.text = (cekmeceBilgileri.cekmeceDegTarihi)
+            }
+        }else{
+            Toast.makeText(context?.applicationContext, "Bilgiler Getirilemedi", Toast.LENGTH_LONG).show()
         }
 
     }
@@ -220,32 +227,36 @@ class MotorVeSalterEtiket : Fragment() {
 
         if (motorBilgiGetir != null) {
 
-            tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
-            tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
+            if (motorBilgiGetir.motorTag.isEmpty()){
+                tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
+            }
+            if (motorBilgiGetir.motorMCCYeri.isEmpty()){
+                tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
+            }
 
             //------------------------------------------------------------
-            if (motorBilgiGetir.motorIsim.isNullOrBlank()){
+            if (motorBilgiGetir.motorIsim.isEmpty()){
                 tvMotorEtiketPompaIsim.text = bilgiYok
             }else{
                 tvMotorEtiketPompaIsim.text = (motorBilgiGetir.motorIsim)
             }
 
             //------------------------------------------------------------
-            if (motorBilgiGetir.motorDevir.isNullOrBlank()){
+            if (motorBilgiGetir.motorDevir.isEmpty()){
                 tvMotorEtiketDevir.text = bilgiYok
             }else{
                 tvMotorEtiketDevir.text = (motorBilgiGetir.motorDevir + " D/d")
             }
 
             //------------------------------------------------------------
-            if(motorBilgiGetir.motorNomTripAkimi.isNullOrBlank()){
+            if(motorBilgiGetir.motorNomTripAkimi.isEmpty()){
                 tvMotorEtiketNomTripAkim.text = bilgiYok
             }else{
                 tvMotorEtiketNomTripAkim.text = (motorBilgiGetir.motorNomTripAkimi + " A")
             }
 
             //--------------------------------------------------------------
-            if (motorBilgiGetir.motorInsaTipi.isNullOrBlank()){
+            if (motorBilgiGetir.motorInsaTipi.isEmpty()){
                 tvMotorEtiketInsaTipi.text = bilgiYok
             }else{
                 tvMotorEtiketInsaTipi.text = (motorBilgiGetir.motorInsaTipi)
@@ -253,21 +264,21 @@ class MotorVeSalterEtiket : Fragment() {
 
             //----------------------------------------------------------------
 
-            if (motorBilgiGetir.motorFlans.isNullOrBlank()){
+            if (motorBilgiGetir.motorFlans.isEmpty()){
                 tvMotorEtiketFlans.text = bilgiYok
             }else{
                 tvMotorEtiketFlans.text = (motorBilgiGetir.motorFlans)
             }
 
             //-----------------------------------------------------------------
-            if (motorBilgiGetir.motorAdres.isNullOrBlank()){
+            if (motorBilgiGetir.motorAdres.isEmpty()){
                 tvMotorEtiketAdres.text = bilgiYok
             }else{
                 tvMotorEtiketAdres.text = (motorBilgiGetir.motorAdres)
             }
 
             //---------------------------------------------------------------
-            if (motorBilgiGetir.motorDegTarihi.isNullOrBlank()){
+            if (motorBilgiGetir.motorDegTarihi.isEmpty()){
                 tvMotorEtiketDegTarih.text = bilgiYok
             }else{
                 tvMotorEtiketDegTarih.text = (motorBilgiGetir.motorDegTarihi)
@@ -288,11 +299,13 @@ class MotorVeSalterEtiket : Fragment() {
             }
 
             //------------------------------------------------
-            if(motorBilgiGetir.motorNot.isNullOrBlank()){
+            if(motorBilgiGetir.motorNot.isEmpty()){
                 tvMotorNot.text = bilgiYok
             }else{
-                tvMotorNot.text = ("${motorBilgiGetir.motorNot}")
+                tvMotorNot.text = (motorBilgiGetir.motorNot)
             }
+        }else{
+            Toast.makeText(context?.applicationContext, "Bilgiler Getirilemedi", Toast.LENGTH_LONG).show()
         }
     }
     private fun changeFragment(fragment : Fragment){

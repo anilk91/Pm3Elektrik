@@ -72,10 +72,10 @@ class DriveUniteNotlariRV(var uniteNotListesi: ArrayList<UniteNotuModel>, var mC
                             .child(gelenUniteNotListesi.sistemSaat)
                             .removeValue()
 
-
                         uniteNotListesi.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position,uniteNotListesi.size)
+                        notifyDataSetChanged()
+//                        notifyItemRemoved(position)
+//                        notifyItemRangeChanged(position,uniteNotListesi.size)
 
                         Toast.makeText(mContext,"${gelenUniteNotListesi.uniteNotuTarih} Silindi!",Toast.LENGTH_SHORT).show()
                     }

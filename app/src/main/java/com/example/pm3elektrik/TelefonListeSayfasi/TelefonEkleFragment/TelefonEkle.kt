@@ -41,7 +41,7 @@ class TelefonEkle : DialogFragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
-    var telefonYetki = false
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,7 +52,7 @@ class TelefonEkle : DialogFragment() {
 
         kullaniciKayittanGelenIsimveSicilNo()
         serverKeyOku()
-        firebaseDBTelefonYetkiOku()
+
 
         val bundle :Bundle? = arguments
         val isim = bundle?.getString("rvGidenTelIsim")
@@ -65,12 +65,11 @@ class TelefonEkle : DialogFragment() {
 
         buttonEkle.setOnClickListener {
 
-            if (telefonYetki == true){
-                telefonIsim.text.toString().toUpperCase()
+
+            telefonIsim.text.toString().toUpperCase()
             telefonNo.text.toString()
 
             if (telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty()) {
-
 
                 telefonModel.telefonIsim = telefonIsim.text.toString().toUpperCase()
                 telefonModel.telefonNo = telefonNo.text.toString()
@@ -112,9 +111,6 @@ class TelefonEkle : DialogFragment() {
 
             Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
 
-        }else{
-                Toast.makeText(view.context,"Ekleme İzniniz Yok!", Toast.LENGTH_LONG).show()
-            }
     }
 
 
@@ -125,19 +121,6 @@ class TelefonEkle : DialogFragment() {
         }
 
         return view
-    }
-
-    private fun firebaseDBTelefonYetkiOku() {
-
-        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child("$sicilNo")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {}
-                override fun onDataChange(p0: DataSnapshot) {
-
-                    val telefonYetkiOku = p0.getValue(KullaniciModel::class.java)
-                    telefonYetki = telefonYetkiOku!!.telefonYetki
-                }
-            })
     }
 
     private fun changeFragment(fragment : Fragment){

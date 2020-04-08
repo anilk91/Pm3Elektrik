@@ -2,14 +2,11 @@ package com.example.pm3elektrik.AnaSayfa
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.ArizaListeSayfasi.ArizaListe
-import com.example.pm3elektrik.AyarlarSayfasi.Ayarlar
 import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
-import com.example.pm3elektrik.KullanicilarSayfasi.Kullanicilar
 import com.example.pm3elektrik.MotorListeSayfasi.CekmecesiSalterOlanSayfa.CekmecesiSalterOlanEtiket
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
@@ -17,7 +14,7 @@ import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
-class AnaSayfa : AppCompatActivity() {
+class AnaSayfa : AppCompatActivity(){
 
 
 
@@ -177,5 +174,10 @@ class AnaSayfa : AppCompatActivity() {
         val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.containerFragment,fragment,"fragment_container")
         fragmentTransaction.commit()
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        finish()
     }
 }

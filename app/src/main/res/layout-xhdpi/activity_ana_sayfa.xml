@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F9FD"
+        tools:context=".AnaSayfa.AnaSayfa">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/AnaConstraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#F4F9FD"
+            app:layout_constraintBottom_toTopOf="@+id/altBarConstraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/containerFragment"
+                app:layout_constraintStart_toStartOf="@+id/containerFragment"
+                app:layout_constraintTop_toTopOf="@+id/containerFragment"
+                app:srcCompat="@drawable/modern_karton_logo" />
+
+        <FrameLayout
+                android:id="@+id/containerFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/altBarConstraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <View
+                android:id="@+id/view"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgMotor"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="23dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:srcCompat="@drawable/motor" />
+
+        <ImageView
+            android:id="@+id/imgPhone"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgMotor"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:srcCompat="@drawable/phone" />
+
+        <ImageView
+            android:id="@+id/imgFault"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPhone"
+            app:layout_constraintTop_toTopOf="@id/view"
+            app:srcCompat="@drawable/fault" />
+
+        <ImageView
+            android:id="@+id/imgOther"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgFault"
+            app:layout_constraintTop_toTopOf="@id/view"
+            app:srcCompat="@drawable/other" />
+
+        <ImageView
+            android:id="@+id/imgMotorPassive"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgMotor"
+            app:layout_constraintEnd_toEndOf="@+id/imgMotor"
+            app:layout_constraintStart_toStartOf="@+id/imgMotor"
+            app:layout_constraintTop_toTopOf="@+id/imgMotor"
+            app:srcCompat="@drawable/motor_passive" />
+
+        <ImageView
+            android:id="@+id/imgPhonePassive"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgPhone"
+            app:layout_constraintEnd_toEndOf="@+id/imgPhone"
+            app:layout_constraintStart_toStartOf="@+id/imgPhone"
+            app:layout_constraintTop_toTopOf="@+id/imgPhone"
+            app:srcCompat="@drawable/phone_passive" />
+
+        <ImageView
+            android:id="@+id/imgFaultPassive"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgFault"
+            app:layout_constraintEnd_toEndOf="@+id/imgFault"
+            app:layout_constraintStart_toStartOf="@+id/imgFault"
+            app:layout_constraintTop_toTopOf="@+id/imgFault"
+            app:srcCompat="@drawable/fault_passive" />
+
+        <ImageView
+            android:id="@+id/imgOtherPassive"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgOther"
+            app:layout_constraintEnd_toEndOf="@+id/imgOther"
+            app:layout_constraintStart_toStartOf="@+id/imgOther"
+            app:layout_constraintTop_toTopOf="@+id/imgOther"
+            app:srcCompat="@drawable/other_passive" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

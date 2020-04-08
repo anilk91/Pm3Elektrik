@@ -15,7 +15,7 @@ class Tip216Kumanda : Fragment() {
 
         val photoView = view.findViewById<PhotoView>(R.id.photoView)
 
-        photoView.setImageResource(R.drawable.tip_216_kumanda_projesi)
+        photoView.setImageResource(R.mipmap.tip_216_kumanda_projesi)
 
         return view
     }

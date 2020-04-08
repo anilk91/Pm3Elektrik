@@ -64,7 +64,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
             //-----DİĞER MOTORDAN GELEN BİLGİLER-----------------------------------
             if (motorListesi.motorGelenVeri == "motorEkle"){
-                if (motorListesi.motorDevir.isNullOrBlank()){
+                if (motorListesi.motorDevir.isEmpty()){
                     devirYazisi.setText("Devir :")
                     motorDevir.setText("Bilgi Yok")
                 }else{
@@ -84,7 +84,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 
             //-----DRİVE MOTORDAN GELEN BİLGİLER-----------------------------------
             if (motorListesi.motorGelenVeri == "driveMotorEkle"){
-                if (motorListesi.motorDevir.isNullOrBlank()){
+                if (motorListesi.motorDevir.isEmpty()){
                     devirYazisi.setText("Devir :")
                     motorDevir.setText("Bilgi Yok")
                 }else{
@@ -107,7 +107,7 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
             if (motorListesi.motorGelenVeri == "cekmeceEkle"){
                 motorTag.setText(motorListesi.motorTag)
                 mCCYeri.setText(motorListesi.motorMCCYeri)
-                if(motorListesi.cekmeceKapasite.isNullOrBlank()){
+                if(motorListesi.cekmeceKapasite.isEmpty()){
                     devirYazisi.setText("Kapasite :")
                     motorDevir.setText("Bilgi Yok")
                 }else{
@@ -115,12 +115,12 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     motorDevir.setText("${motorListesi.cekmeceKapasite} A")
                 }
 
-                if(motorListesi.cekmeceMarka.isNullOrBlank()){
+                if(motorListesi.cekmeceMarka.isEmpty()){
                     gucYazisi.setText("Şalter :")
                     motorGuc.setText("Bilgi Yok")
                 }else{
                     gucYazisi.setText("Şalter :")
-                    motorGuc.setText("${motorListesi.cekmeceMarka}\nModel - ${motorListesi.cekmeceModel}")
+                    motorGuc.setText("${motorListesi.cekmeceMarka}")
                 }
             }
 
