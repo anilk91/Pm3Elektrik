@@ -100,7 +100,7 @@ class DriveUnite : Fragment() {
     private fun firebaseDatabaseOkunanNotlar(mContext: Context, view: View) {
 
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("DriveUniteNot").child(motorTag!!)
-            .addValueEventListener(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {}
             override fun onDataChange(p0: DataSnapshot) {
 
@@ -127,7 +127,7 @@ class DriveUnite : Fragment() {
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
         view.rvUniteNotlariListesi?.layoutManager = mLayoutManager
 
-        myAdapter.notifyDataSetChanged()
+        //myAdapter.notifyDataSetChanged()
     }
 
     private fun gelenBilgileriTexteIsle(gelen: DriveModel?) {
@@ -135,72 +135,90 @@ class DriveUnite : Fragment() {
         tvDriveMotorTag.setText(gelen?.tag)
         tvDriveMotorGuc.setText("${gelen?.guc} KW")
 
-        //--------isim-----------------------------
-        if (gelen?.isim!!.isNullOrBlank()){
-            tvDriveMotorIsim.setText("Motor İsim Yok")
-        }else { tvDriveMotorIsim.setText(gelen?.isim) }
+        if(gelen != null) {
+            //--------isim-----------------------------
+            if (gelen.isim.isEmpty()) {
+                tvDriveMotorIsim.setText("Motor İsim Yok")
+            } else {
+                tvDriveMotorIsim.setText(gelen.isim)
+            }
 
-        //-------devir-----------------------------
-        if (gelen?.devir!!.isNullOrBlank()){
-            tvDriveMotorDevir.setText(bilgiYok)
-        }else { tvDriveMotorDevir.setText(gelen?.devir + " D/d") }
+            //-------devir-----------------------------
+            if (gelen.devir.isEmpty()) {
+                tvDriveMotorDevir.setText(bilgiYok)
+            } else {
+                tvDriveMotorDevir.setText(gelen.devir + " D/d")
+            }
 
-        //-------trip akım-------------------------
-        if (gelen?.tripAkim!!.isNullOrBlank()){
-            tvDriveMotorTripAkim.setText(bilgiYok)
-        }else { tvDriveMotorTripAkim.setText(gelen?.tripAkim + " A") }
+            //-------trip akım-------------------------
+            if (gelen.tripAkim.isEmpty()) {
+                tvDriveMotorTripAkim.setText(bilgiYok)
+            } else {
+                tvDriveMotorTripAkim.setText(gelen.tripAkim + " A")
+            }
 
-        //--------inşa tipi-----------------------------
-        if (gelen?.insaTipi!!.isNullOrBlank()){
-            tvDriveMotorInsaTipi.setText(bilgiYok)
-        }else { tvDriveMotorInsaTipi.setText(gelen?.insaTipi) }
+            //--------inşa tipi-----------------------------
+            if (gelen.insaTipi.isEmpty()) {
+                tvDriveMotorInsaTipi.setText(bilgiYok)
+            } else {
+                tvDriveMotorInsaTipi.setText(gelen.insaTipi)
+            }
 
-        //--------flanş-----------------------------
-        if (gelen?.flans!!.isNullOrBlank()){
-            tvDriveMotorFlans.setText(bilgiYok)
-        }else { tvDriveMotorFlans.setText(gelen?.flans) }
+            //--------flanş-----------------------------
+            if (gelen.flans.isEmpty()) {
+                tvDriveMotorFlans.setText(bilgiYok)
+            } else {
+                tvDriveMotorFlans.setText(gelen.flans)
+            }
 
-        //--------motor değişim tarihi-----------------------------
-        if (gelen?.motorDegTarihi!!.isNullOrBlank()){
-            tvDriveMotorDegTarihi.setText(bilgiYok)
-        }else { tvDriveMotorDegTarihi.setText(gelen?.motorDegTarihi) }
+            //--------motor değişim tarihi-----------------------------
+            if (gelen.motorDegTarihi.isEmpty()) {
+                tvDriveMotorDegTarihi.setText(bilgiYok)
+            } else {
+                tvDriveMotorDegTarihi.setText(gelen.motorDegTarihi)
+            }
 
-        //--------motor adres-----------------------------
-        if (gelen?.adres!!.isNullOrBlank()){
-            tvDriveMotorAdres.setText(bilgiYok)
-        }else { tvDriveMotorAdres.setText(gelen?.adres) }
+            //--------motor adres-----------------------------
+            if (gelen.adres.isEmpty()) {
+                tvDriveMotorAdres.setText(bilgiYok)
+            } else {
+                tvDriveMotorAdres.setText(gelen.adres)
+            }
 
-        //--------ünite güç KVA-----------------------------
-        if (gelen?.uniteGucKVA!!.isNullOrBlank()){
-            tvDriveUniteGuc.setText(bilgiYok)
-        }else { tvDriveUniteGuc.setText(gelen?.uniteGucKVA + " KVA") }
+            //--------ünite güç KVA-----------------------------
+            if (gelen.uniteGucKVA.isEmpty()) {
+                tvDriveUniteGuc.setText(bilgiYok)
+            } else {
+                tvDriveUniteGuc.setText(gelen.uniteGucKVA + " KVA")
+            }
 
 
-        if (gelen?.uniteGucKVA == "20" || gelen?.uniteGucKVA == "60" || gelen?.uniteGucKVA == "180" || gelen?.uniteGucKVA == "250" || gelen?.uniteGucKVA == "490"){
+            if (gelen.uniteGucKVA == "20" || gelen.uniteGucKVA == "60" || gelen.uniteGucKVA == "180" || gelen.uniteGucKVA == "250" || gelen.uniteGucKVA == "490") {
 
-            tvSNoYazisiW.visibility = View.GONE
-            tvDegTarihiW.visibility = View.GONE
-            tvSNoYazisiV.visibility = View.GONE
-            tvDegTarihiV.visibility = View.GONE
-            tvDriveUniteSeriNoV.visibility = View.GONE
-            tvDriveUniteSeriNoW.visibility = View.GONE
-            tvDriveUniteDegTarihiV.visibility = View.GONE
-            tvDriveUniteDegTarihiW.visibility = View.GONE
+                tvSNoYazisiW.visibility = View.GONE
+                tvDegTarihiW.visibility = View.GONE
+                tvSNoYazisiV.visibility = View.GONE
+                tvDegTarihiV.visibility = View.GONE
+                tvDriveUniteSeriNoV.visibility = View.GONE
+                tvDriveUniteSeriNoW.visibility = View.GONE
+                tvDriveUniteDegTarihiV.visibility = View.GONE
+                tvDriveUniteDegTarihiW.visibility = View.GONE
 
-            tvSNoYazisiU.setText("S. No :")
-            tvDriveUniteSeriNoU.setText(gelen.seriNoU)
-            tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
+                tvSNoYazisiU.setText("S. No :")
+                tvDriveUniteSeriNoU.setText(gelen.seriNoU)
+                tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
 
-        }else if (gelen?.uniteGucKVA == "600" || gelen?.uniteGucKVA == "900" || gelen?.uniteGucKVA == "1040" || gelen?.uniteGucKVA == "1380"){
+            } else if (gelen.uniteGucKVA == "600" || gelen.uniteGucKVA == "900" || gelen.uniteGucKVA == "1040" || gelen.uniteGucKVA == "1380") {
 
-            tvDriveUniteSeriNoU.setText(gelen.seriNoU)
-            tvDriveUniteSeriNoV.setText(gelen.seriNoV)
-            tvDriveUniteSeriNoW.setText(gelen.seriNoW)
+                tvDriveUniteSeriNoU.setText(gelen.seriNoU)
+                tvDriveUniteSeriNoV.setText(gelen.seriNoV)
+                tvDriveUniteSeriNoW.setText(gelen.seriNoW)
 
-            tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
-            tvDriveUniteDegTarihiV.setText(gelen.vModulDegTarihi)
-            tvDriveUniteDegTarihiW.setText(gelen.wModulDegTarihi)
+                tvDriveUniteDegTarihiU.setText(gelen.uModulDegTarihi)
+                tvDriveUniteDegTarihiV.setText(gelen.vModulDegTarihi)
+                tvDriveUniteDegTarihiW.setText(gelen.wModulDegTarihi)
 
+            }
         }
 
     }

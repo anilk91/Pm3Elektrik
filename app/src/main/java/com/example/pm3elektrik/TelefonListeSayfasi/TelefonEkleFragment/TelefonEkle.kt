@@ -41,7 +41,7 @@ class TelefonEkle : DialogFragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
-    var telefonYetki = false
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,7 +52,7 @@ class TelefonEkle : DialogFragment() {
 
         kullaniciKayittanGelenIsimveSicilNo()
         serverKeyOku()
-        firebaseDBTelefonYetkiOku()
+
 
         val bundle :Bundle? = arguments
         val isim = bundle?.getString("rvGidenTelIsim")
@@ -121,19 +121,6 @@ class TelefonEkle : DialogFragment() {
         }
 
         return view
-    }
-
-    private fun firebaseDBTelefonYetkiOku() {
-
-        FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar").child("$sicilNo")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onCancelled(p0: DatabaseError) {}
-                override fun onDataChange(p0: DataSnapshot) {
-
-                    val telefonYetkiOku = p0.getValue(KullaniciModel::class.java)
-                    telefonYetki = telefonYetkiOku!!.telefonYetki
-                }
-            })
     }
 
     private fun changeFragment(fragment : Fragment){

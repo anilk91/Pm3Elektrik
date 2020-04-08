@@ -46,7 +46,6 @@ class MotorEkle : Fragment() {
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
 
-
     companion object{
         var gucKW_static = 0.0
     }
@@ -148,7 +147,6 @@ class MotorEkle : Fragment() {
         }
         return view
     }
-
     fun FirebaseDBMotorEkle(motorIsim : String , motorTag: String, motorDevir: String, motorNomTripAkimi: String,
                   motorInsaTipi: String, motorFlans: String, motorAdres: String, motorMCCYeri: String, motorDegTarihi: String , motorNot : String){
 

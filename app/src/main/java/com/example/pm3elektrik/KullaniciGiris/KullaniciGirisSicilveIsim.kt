@@ -1,11 +1,13 @@
 package com.example.pm3elektrik.KullaniciGiris
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
@@ -21,9 +23,8 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     var kullaniciModel = KullaniciModel()
     var kullaniciToken: String? = null
-    var connected = false
 
-
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kullanici_giris_sicil_ve_isim)
@@ -31,45 +32,74 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
         val isim = findViewById<EditText>(R.id.etKullaniciKayitIsim)
         val sicilNo = findViewById<EditText>(R.id.etKullaniciKayitIsYeriSicil)
         val kaydet = findViewById<Button>(R.id.btnKullaniciyiKaydet)
+        val sifre = findViewById<EditText>(R.id.etKullaniciKayitSifre)
+        val sifreTekrar = findViewById<EditText>(R.id.etKullaniciKayitSifreTekrar)
+        val girisBilgisi = findViewById<Button>(R.id.btnKullaniciGirisSayfasi)
+        val sifremiUnuttum = findViewById<TextView>(R.id.tvKullaniciSifremiUnuttum)
+
+        girisBilgisi.setOnClickListener {
+            girisBilgisiSayfasi()
+        }
+
+        sifremiUnuttum.setOnClickListener {
+            sifremiUnuttumSayfasi()
+        }
 
         kaydet.setOnClickListener {
-            var deneme = isim.text.toString()
-            var dene = sicilNo.text.toString()
 
-            if (isim.text.toString().isNotEmpty() && sicilNo.text.toString().isNotEmpty()) {
+            if (isim.text.toString().isNotEmpty() && sicilNo.text.toString().isNotEmpty() && sifre.text.toString().isNotEmpty() &&
+                    sifreTekrar.text.toString().isNotEmpty()) {
 
+                if (sifre.text.toString().equals(sifreTekrar.text.toString())) {
                 val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
                 val editor = sharedPreferences.edit()
                 editor.putString("KEY_ISIM", isim.text.toString().toUpperCase())
                 editor.putInt("KEY_SICIL_NO", sicilNo.text.toString().toInt())
+                editor.putString("KEY_SIFRE", sifre.text.toString())
+                editor.putString("KEY_SIFRE_TEKRAR", sifreTekrar.text.toString())
                 editor.apply()
 
                 kullaniciModel.isim = isim.text.toString().toUpperCase()
                 kullaniciModel.sicilNo = sicilNo.text.toString().toInt()
-                kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
+                kullaniciModel.sifre = sifre.text.toString()
+                kullaniciModel.sifreTekrar = sifreTekrar.text.toString()
 
+                try {
+                    kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
+                } catch (Hata: Exception) {
+                }
 
-                FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar")
-                    .child(sicilNo.text.toString())
-                    .setValue(kullaniciModel).addOnCompleteListener {
+                val internetConnection =
+                    applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val activeNetwork = internetConnection.activeNetwork
 
-                        if (it.isComplete) {
-                            Toast.makeText(this, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
-                            kullaniciKaydiniKontrolEt()
-                        } else {
-                            Toast.makeText(
-                                this,
-                                "Kayıt Başarısız: ${it.exception?.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            Toast.makeText(
-                                this,
-                                "İnternet Bağlantınızı Kontrol Ediniz",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                if (activeNetwork != null) {
+                    FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                        .child("Kullanicilar")
+                        .child(sicilNo.text.toString())
+                        .setValue(kullaniciModel).addOnCompleteListener {
+
+                            if (it.isSuccessful) {
+                                Toast.makeText(this, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                                kullaniciKaydiniKontrolEt()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Kayıt Başarısız: ${it.exception?.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                Toast.makeText(
+                                    this, "İnternet Bağlantınızı Kontrol Ediniz", Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
-                    }
-
+                } else {
+                    Toast.makeText(this, "İlk Kayıt İçin İnternet Gerekli", Toast.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                    Toast.makeText(this, "Şifre ve Şifre Tekrarı Uyuşmuyor!", Toast.LENGTH_LONG).show()
+                }
             } else {
                 Toast.makeText(this, "Boş Alanları Doldurunuz", Toast.LENGTH_LONG).show()
             }
@@ -81,17 +111,30 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     }
 
+
+
     private fun kullaniciTokenIDKaydetGuncelle(): String? {
-        kullaniciToken = "varsayilantokenid"
+
         FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener {
             if (it.isSuccessful) {
                 kullaniciToken = it.result?.token
-                var deneme2 = it.result?.token
-                Log.e("token kaydi","bulundu")
+
+                val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
+                val editor = sharedPreferences.edit()
+                editor.putString("KEY_TOKEN", it.result?.token.toString())
+                editor.apply()
+
+
+                Log.e("token kaydi","oluşturuldu $kullaniciToken")
             }
             else {
 
-                Log.e("token kaydi","yapılamadı")
+                val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
+                val tokenKaydi = sharedPreferences.getString("KEY_TOKEN", "") as String
+                if(tokenKaydi.isNotEmpty()){
+                    Log.e("token kaydi","bulundu $tokenKaydi")
+                }
+                Log.e("token kaydi","bulunamadı")
             }
 
         }
@@ -117,51 +160,107 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                         for (okunan in p0.children) {
 
-                            val gelen = okunan.getValue(KullaniciModel::class.java)
+                            try {
+                                val gelen = okunan.getValue(KullaniciModel::class.java)
 
-                            if (gelen?.sicilNo != null) {
-                                if (gelen.sicilNo == sicilNo) {
+                                if (gelen?.sicilNo != null) {
+                                    if (gelen.sicilNo == sicilNo) {
 
-                                    tokenIDGuncelle(sicilNo)
+                                        tokenIDGuncelle(sicilNo)
 
-                                    val gelenIntent = intent
+                                        val gelenIntent = intent
 
-                                    val gelenTur = gelenIntent.getStringExtra("gelenTur")
-                                    val gelenTag = gelenIntent.getStringExtra("gelenTag")
+                                        val gelenTur = gelenIntent.getStringExtra("gelenTur")
+                                        val gelenTag = gelenIntent.getStringExtra("gelenTag")
 
 
-                                    if (gelenTur != null) {
+                                        if (gelenTur != null) {
 
-                                        val pendingIntent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
-                                        pendingIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                        pendingIntent.putExtra("gelenTur", gelenTur)
-                                        pendingIntent.putExtra("gelenTag", gelenTag)
-                                        startActivity(pendingIntent)
+                                            val pendingIntent = Intent(
+                                                this@KullaniciGirisSicilveIsim,
+                                                AnaSayfa::class.java
+                                            )
+                                            pendingIntent.flags =
+                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                            pendingIntent.putExtra("gelenTur", gelenTur)
+                                            pendingIntent.putExtra("gelenTag", gelenTag)
+                                            startActivity(pendingIntent)
 
-                                    } else {
+                                        } else {
 
-                                        val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
-                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                        startActivity(intent)
-                                        overridePendingTransition(R.anim.fab_slide_in_from_left, R.anim.fab_slide_out_to_left)
+                                            val intent = Intent(
+                                                this@KullaniciGirisSicilveIsim,
+                                                AnaSayfa::class.java
+                                            )
+                                            intent.flags =
+                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                            startActivity(intent)
+                                            overridePendingTransition(
+                                                R.anim.fab_slide_in_from_left,
+                                                R.anim.fab_slide_out_to_left
+                                            )
+                                        }
                                     }
+                                } else {
+                                    Toast.makeText(
+                                        this@KullaniciGirisSicilveIsim,
+                                        "Lütfen Kayıt Olunuz",
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                 }
-                            } else {
-                                Toast.makeText(this@KullaniciGirisSicilveIsim, "Lütfen Kayıt Olunuz", Toast.LENGTH_LONG).show()
-                            }
+                            }catch (hata : Exception){}
                         }
                     }
                 })
         } else {
-            Toast.makeText(this, "Kayıtlı Kullanıcı Yok", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Lütfen Kayıt Olunuz!", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun tokenIDGuncelle(sicilNo: Int) {
+
+        Log.e("sicil No","$sicilNo")
+        Log.e("gelen Token","${kullaniciTokenIDKaydetGuncelle()}")
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar")
-            .child(sicilNo.toString())
-            .child("kullaniciToken")
-            .setValue(kullaniciTokenIDKaydetGuncelle())
+            .orderByValue()
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    for (okunan in p0.children) {
+
+                        try {
+                            val gelen = okunan.getValue(KullaniciModel::class.java)
+                            if (gelen?.sicilNo == sicilNo) {
+
+
+                                Log.e("gelen Sicil", "${gelen.sicilNo}")
+                                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                    .child("Kullanicilar")
+                                    .child(gelen.sicilNo.toString())
+                                    .child("kullaniciToken")
+                                    .setValue(kullaniciTokenIDKaydetGuncelle())
+
+                            }
+
+                        }catch (hata : Exception){
+                        }
+                    }
+                }
+            })
+    }
+
+    private fun girisBilgisiSayfasi() {
+
+        val kullaniciGirisSayfasi = KullaniciGirisDialogFragment()
+        kullaniciGirisSayfasi.show(this.supportFragmentManager,"kullanici_giris_sayfasi_dialog_fr")
+
+    }
+
+    private fun sifremiUnuttumSayfasi() {
+
+        val sifremiUnuttumSayfasi = SifremiUnuttumDialogFragment()
+        sifremiUnuttumSayfasi.show(this.supportFragmentManager,"sifremi_unuttum_dialog")
     }
 }
 
