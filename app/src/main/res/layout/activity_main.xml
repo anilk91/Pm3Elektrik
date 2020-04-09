@@ -9,23 +9,26 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="340dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="128dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/modern_karton_ana_sayfa" />
+        app:srcCompat="@drawable/ana_sayfa_arka_plan" />
 
     <TextView
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_extrabold"
         android:text="PM3 Elektrik"
         android:textColor="#3F51B5"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
 </androidx.constraintlayout.widget.ConstraintLayout>
