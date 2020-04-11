@@ -1,5 +1,6 @@
 package com.example.pm3elektrik.KullaniciGiris
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 
 import com.example.pm3elektrik.R
@@ -43,7 +45,11 @@ class KullaniciGirisDialogFragment : DialogFragment() {
 
                             if (gelenBilgiler?.sicilNo.toString() == sicilNo.text.toString()){
                                 if (gelenBilgiler?.sifre.toString() == sifre.text.toString()){
+                                    val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+                                    val editor = sharedPreferences?.edit()
+                                    editor?.putString("KEY_GELEN_SICIL_NO", gelenBilgiler?.sicilNo.toString())
                                     Toast.makeText(context?.applicationContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
+                                    anaSayfayaGec()
                                 }else{
                                     Toast.makeText(context?.applicationContext,"Girilen Şifre Yanlış",Toast.LENGTH_SHORT).show()
                                 }
@@ -68,6 +74,14 @@ class KullaniciGirisDialogFragment : DialogFragment() {
             dismiss()
         }
         return view
+    }
+
+    private fun anaSayfayaGec(){
+
+        val intent = Intent(context?.applicationContext,AnaSayfa::class.java)
+        activity?.startActivity(intent)
+        dismiss()
+
     }
 
 }

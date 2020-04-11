@@ -9,23 +9,36 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="340dp"
-        android:layout_height="220dp"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_marginTop="128dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/modern_karton_ana_sayfa" />
+        app:srcCompat="@drawable/modern_karton_logo" />
 
     <TextView
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito_extrabold"
-        android:text="PM3 Elektrik"
-        android:textColor="#3F51B5"
-        android:textSize="24sp"
+        android:fontFamily="@font/bridone_heavy_italic_4"
+        android:text="modern karton"
+        android:textColor="#03519d"
+        android:textSize="36sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/textView86"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bridone_heavy_italic_4"
+        android:text="pm3 elektrik"
+        android:textColor="#03519d"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView35"
+        app:layout_constraintTop_toBottomOf="@+id/textView35" />
 </androidx.constraintlayout.widget.ConstraintLayout>
