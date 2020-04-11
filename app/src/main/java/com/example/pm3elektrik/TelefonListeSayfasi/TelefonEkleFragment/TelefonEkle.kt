@@ -41,6 +41,7 @@ class TelefonEkle : DialogFragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var telefonEkleYetki = "yok"
 
 
 
@@ -50,6 +51,7 @@ class TelefonEkle : DialogFragment() {
         val buttonEkle = view.findViewById<Button>(R.id.buttonTelefonEkle)
         val buttonClose = view.findViewById<ImageView>(R.id.imgTelefonEkleClose)
 
+        kullaniciBilgileriniOku()
         kullaniciKayittanGelenIsimveSicilNo()
         serverKeyOku()
 
@@ -66,52 +68,60 @@ class TelefonEkle : DialogFragment() {
         buttonEkle.setOnClickListener {
 
 
-            telefonIsim.text.toString().toUpperCase()
-            telefonNo.text.toString()
+            if (telefonEkleYetki == "var") {
+                telefonIsim.text.toString().toUpperCase()
+                telefonNo.text.toString()
 
-            if (telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty()) {
+                if (telefonIsim.text.isNotEmpty() && telefonNo.text.isNotEmpty()) {
 
-                telefonModel.telefonIsim = telefonIsim.text.toString().toUpperCase()
-                telefonModel.telefonNo = telefonNo.text.toString()
+                    telefonModel.telefonIsim = telefonIsim.text.toString().toUpperCase()
+                    telefonModel.telefonNo = telefonNo.text.toString()
 
-                fbDatabaseTokenlariAlveBildirimGonder(
-                    telefonNo.text.toString(),
-                    telefonIsim.text.toString(),
-                    kullaniciIsmi
-                )
+                    fbDatabaseTokenlariAlveBildirimGonder(
+                        telefonNo.text.toString(),
+                        telefonIsim.text.toString(),
+                        kullaniciIsmi
+                    )
 
-                changeFragment(TelefonListesi())
+                    changeFragment(TelefonListesi())
 
-                ref.child("Telefon")
-                    .child(telefonNo.text.toString())
-                    .setValue(telefonModel)
-                    .addOnCompleteListener {
-                        if (it.isComplete) {
+                    ref.child("Telefon")
+                        .child(telefonNo.text.toString())
+                        .setValue(telefonModel)
+                        .addOnCompleteListener {
+                            if (it.isComplete) {
 
-                        } else {
-                            try {
-                                Toast.makeText(
-                                    activity,
-                                    "Kayıt Yapılamadı Hata: ${it.exception?.message}",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            } catch (hata: Exception) {
-                                Toast.makeText(activity, "Hata: ${hata.message}", Toast.LENGTH_LONG)
-                                    .show()
+                            } else {
+                                try {
+                                    Toast.makeText(
+                                        activity,
+                                        "Kayıt Yapılamadı Hata: ${it.exception?.message}",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                } catch (hata: Exception) {
+                                    Toast.makeText(
+                                        activity,
+                                        "Hata: ${hata.message}",
+                                        Toast.LENGTH_LONG
+                                    )
+                                        .show()
+                                }
+
+
                             }
-
-
                         }
-                    }
 
 
-            } else {
-                Toast.makeText(activity, "Boş Alanları Doldurunuz", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(activity, "Boş Alanları Doldurunuz", Toast.LENGTH_LONG).show()
+                }
+
+                Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
+
+            }else{
+                Toast.makeText(context?.applicationContext,"Telefon ekleme yetkiniz yok!",Toast.LENGTH_SHORT).show()
             }
-
-            Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
-
-    }
+        }
 
 
 
@@ -122,6 +132,8 @@ class TelefonEkle : DialogFragment() {
 
         return view
     }
+
+
 
     private fun changeFragment(fragment : Fragment){
 
@@ -209,6 +221,13 @@ class TelefonEkle : DialogFragment() {
                     SERVER_KEY = p0.getValue().toString()
                 }
             })
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        telefonEkleYetki = sharedPreferences?.getString("KEY_TELEFON_YETKI","").toString()
+
     }
 
 }

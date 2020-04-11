@@ -33,8 +33,7 @@ class KullaniciGirisDialogFragment : DialogFragment() {
 
         girisYap.setOnClickListener {
             if (sicilNo.text.toString().isNotEmpty() && sifre.text.toString().isNotEmpty()){
-                Log.e("sicil","${sicilNo.text.toString()}")
-                Log.e("sifre","${sifre.text.toString()}")
+
                 ref.orderByKey().addValueEventListener(object : ValueEventListener{
                     override fun onCancelled(p0: DatabaseError) {}
                     override fun onDataChange(p0: DataSnapshot) {
@@ -45,9 +44,10 @@ class KullaniciGirisDialogFragment : DialogFragment() {
 
                             if (gelenBilgiler?.sicilNo.toString() == sicilNo.text.toString()){
                                 if (gelenBilgiler?.sifre.toString() == sifre.text.toString()){
-                                    val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+                                    val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciIsmi", 0)
                                     val editor = sharedPreferences?.edit()
-                                    editor?.putString("KEY_GELEN_SICIL_NO", gelenBilgiler?.sicilNo.toString())
+                                    editor?.putInt("KEY_SICIL_NO", gelenBilgiler!!.sicilNo)
+                                    editor?.commit()
                                     Toast.makeText(context?.applicationContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
                                     anaSayfayaGec()
                                 }else{

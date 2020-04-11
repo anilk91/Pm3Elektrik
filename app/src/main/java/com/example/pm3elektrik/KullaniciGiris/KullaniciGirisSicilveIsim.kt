@@ -212,8 +212,6 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                         }
                     }
                 })
-        } else {
-            Toast.makeText(this, "Lütfen Kayıt Olunuz!", Toast.LENGTH_LONG).show()
         }
     }
 

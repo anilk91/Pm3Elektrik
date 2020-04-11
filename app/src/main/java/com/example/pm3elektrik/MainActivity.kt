@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     var gelenIsim = ""
     val gelenYetkiler = ArrayList<KullaniciModel>()
 
+
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     private fun gelenBilgileriKaydet(gelenYetkiler: ArrayList<KullaniciModel>) {
         if (gelenYetkiler.isEmpty()) {
 
-            Toast.makeText(this,"Kayıt Bulunamadı Kayıt Sayfasına Yönlendiriliyorsunuz...",Toast.LENGTH_SHORT).show()
+            makeText(this,"Kayıt Bulunamadı Kayıt Sayfasına Yönlendiriliyorsunuz...",Toast.LENGTH_SHORT).show()
             object : CountDownTimer(3000,100){
                 override fun onTick(p0: Long) {}
                 override fun onFinish() {
@@ -118,6 +119,8 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
         gelenIsim = sharedPreferences.getString("KEY_ISIM", "").toString()
         gelenSicilNo = sharedPreferences.getInt("KEY_SICIL_NO", 0)
+
+
     }
 
     private fun anaSayfayaGec(){
