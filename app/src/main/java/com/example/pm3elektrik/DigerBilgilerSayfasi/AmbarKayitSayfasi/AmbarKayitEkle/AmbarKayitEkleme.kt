@@ -40,6 +40,7 @@ class AmbarKayitEkleme : DialogFragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var ambarKayitYetki = "yok"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ambar_kayit_ekleme, container, false)
@@ -52,6 +53,7 @@ class AmbarKayitEkleme : DialogFragment() {
         val rafNoBundle= bundle?.getString("rvGidenRafNo")
         val tanimBundle = bundle?.getString("rvGidenTanim")
 
+        kullaniciBilgileriniOku()
         serverKeyOku()
 
         kullaniciKayittanGelenIsimveSicilNo()
@@ -69,41 +71,55 @@ class AmbarKayitEkleme : DialogFragment() {
         }
         ekle.setOnClickListener {
 
-            val stokNo = view.findViewById<EditText>(R.id.etAmbarStokNo).text.toString()
-            val rafNo = view.findViewById<EditText>(R.id.etAmbarRafNo).text.toString().toUpperCase()
-            val tanim = view.findViewById<EditText>(R.id.etAmbarTanim).text.toString().toUpperCase()
+            if (ambarKayitYetki == "var") {
+                val stokNo = view.findViewById<EditText>(R.id.etAmbarStokNo).text.toString()
+                val rafNo =
+                    view.findViewById<EditText>(R.id.etAmbarRafNo).text.toString().toUpperCase()
+                val tanim =
+                    view.findViewById<EditText>(R.id.etAmbarTanim).text.toString().toUpperCase()
 
-            if (stokNo.isNotEmpty() && rafNo.isNotEmpty() && tanim.isNotEmpty()) {
+                if (stokNo.isNotEmpty() && rafNo.isNotEmpty() && tanim.isNotEmpty()) {
 
-                changeFragment(AmbarKayit())
+                    changeFragment(AmbarKayit())
 
-                ambarListeEkle.ambarStokNo = stokNo
-                ambarListeEkle.ambarRafNo = rafNo
-                ambarListeEkle.ambarTanim = tanim
+                    ambarListeEkle.ambarStokNo = stokNo
+                    ambarListeEkle.ambarRafNo = rafNo
+                    ambarListeEkle.ambarTanim = tanim
 
-                val s1 = stokNo.substring(0..0)
-                val s2 = stokNo.substring(2..stokNo.lastIndex)
-                val stokNoSonHal = s1+s2
+                    val s1 = stokNo.substring(0..0)
+                    val s2 = stokNo.substring(2..stokNo.lastIndex)
+                    val stokNoSonHal = s1 + s2
 
-                ref.child("Ambar")
-                    .child(stokNoSonHal)
-                    .setValue(ambarListeEkle)
-                    .addOnCompleteListener {
+                    ref.child("Ambar")
+                        .child(stokNoSonHal)
+                        .setValue(ambarListeEkle)
+                        .addOnCompleteListener {
 
-                        if(it.isComplete){
+                            if (it.isComplete) {
 
-                        }else {
-                            try {
-                                Toast.makeText(activity,"Kayıt Yapılamadı Hata: ${it.exception?.message}",Toast.LENGTH_LONG).show()
-                            }catch (hata : Exception){
-                                Toast.makeText(activity,"Hata: ${hata.message}",Toast.LENGTH_LONG).show()
+                            } else {
+                                try {
+                                    Toast.makeText(
+                                        activity,
+                                        "Kayıt Yapılamadı Hata: ${it.exception?.message}",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                } catch (hata: Exception) {
+                                    Toast.makeText(
+                                        activity,
+                                        "Hata: ${hata.message}",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             }
                         }
-                    }
-            }
+                }
 
-            fbDatabaseTokenlariAlveBildirimGonder(stokNo, tanim)
-            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
+                fbDatabaseTokenlariAlveBildirimGonder(stokNo, tanim)
+                Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(activity, "Ambar kaydi oluşturma yetkiniz yok!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
@@ -192,6 +208,13 @@ class AmbarKayitEkleme : DialogFragment() {
                     SERVER_KEY = p0.getValue().toString()
                 }
             })
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        ambarKayitYetki = sharedPreferences?.getString("KEY_AMBAR_YETKI","").toString()
+
     }
 
 }

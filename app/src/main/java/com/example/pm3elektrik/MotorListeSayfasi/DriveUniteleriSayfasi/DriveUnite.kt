@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,8 @@ class DriveUnite : Fragment() {
     lateinit var myAdapter : DriveUniteNotlariRV
     var motorTag: String? = null
     val bilgiYok = "Bilgi Yok"
+    var driveUniteNotEklemeYetkisi = "yok"
+    var driveMotorEklemeYetkisi = "yok"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drive_unite, container, false)
@@ -43,17 +46,24 @@ class DriveUnite : Fragment() {
         val bundle: Bundle? = arguments
         motorTag = bundle?.getString("rvGelenMotorTag")
 
+        kullaniciBilgileriniOku()
+
         motorVeUniteEtiketDuzenle.setOnClickListener {
 
-            val duzenleBundle : Bundle? =Bundle()
-            duzenleBundle?.putString("driveUniteGelenTag",motorTag)
-            val fragment = DriveUniteEkle()
-            fragment.arguments = duzenleBundle
-            val transaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.containerMotorListe,fragment,"drive_unite_fr")?.commit()
+            if (driveMotorEklemeYetkisi == "var") {
+                val duzenleBundle: Bundle? = Bundle()
+                duzenleBundle?.putString("driveUniteGelenTag", motorTag)
+                val fragment = DriveUniteEkle()
+                fragment.arguments = duzenleBundle
+                val transaction: FragmentTransaction? =
+                    activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.containerMotorListe, fragment, "drive_unite_fr")?.commit()
+            }else{
+                Toast.makeText(context,"Drive Motor Düzenleme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
+            }
+
 
         }
-
 
         close.setOnClickListener {
 
@@ -62,11 +72,15 @@ class DriveUnite : Fragment() {
 
         notEkle.setOnClickListener {
 
-            val bundleNotEkle : Bundle? =Bundle()
-            bundleNotEkle?.putString("driveUniteGelenTag",motorTag)
-            val fragment = DriveUniteNotEkle()
-            fragment.arguments = bundleNotEkle
-            fragment.show(fragmentManager!!,"drive_unite_dialog_fr")
+            if (driveUniteNotEklemeYetkisi == "var") {
+                val bundleNotEkle: Bundle? = Bundle()
+                bundleNotEkle?.putString("driveUniteGelenTag", motorTag)
+                val fragment = DriveUniteNotEkle()
+                fragment.arguments = bundleNotEkle
+                fragment.show(fragmentManager!!, "drive_unite_dialog_fr")
+            }else{
+                Toast.makeText(context,"Ünite Notu Ekleme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
+            }
 
         }
 
@@ -228,6 +242,14 @@ class DriveUnite : Fragment() {
         val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.containerFragment,fragment,"fragment_drive_unite_etiket")
         fragmentTransaction?.commit()
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        driveUniteNotEklemeYetkisi = sharedPreferences?.getString("KEY_DRİVE_UNİTE_YETKI","").toString()
+        driveMotorEklemeYetkisi = sharedPreferences?.getString("KEY_MOTOR_YETKI","").toString()
+
     }
 
 

@@ -40,6 +40,7 @@ class CekmeceEtiketDuzenle : Fragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var salterSurucuDuzenlemeYetki = "yok"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_salter_ekle,container,false)
@@ -47,6 +48,7 @@ class CekmeceEtiketDuzenle : Fragment() {
         val bundle :Bundle? = arguments
         val motorTag = bundle?.getString("cekmeceEtiketDuzenle")
 
+        kullaniciBilgileriniOku()
         serverKeyOku()
 
         kullaniciKayittanGelenIsimveSicilNo()
@@ -63,83 +65,104 @@ class CekmeceEtiketDuzenle : Fragment() {
 
         buttonEkle.setOnClickListener {
 
-            val motor_tag = etMotorTag.text.toString().toUpperCase()
-            val marka = etSalterMarka.text.toString().toUpperCase()
-            val kapasite = etSalterKapasite.text.toString()
-            val cat = etSalterCAT.text.toString().toUpperCase()
-            val style = etSalterSTYLE.text.toString().toUpperCase()
-            val demeraj = etSalterDemeraj.text.toString().toUpperCase()
-            val degisimTarihi = etSalterDegTarihi.text.toString()
-            val mccYeri = etSalterMCCYeri.text.toString().toUpperCase()
-            val cekmeceDegTarihi = etCekmeceDegTarihi.text.toString()
-
-            val dipSivic = etSalterKontaktorDIPSivic.text.toString().toUpperCase()
-            val kontaktorBoyut = etSalterKontaktorBoyut.text.toString().toUpperCase()
-            val surucuModel = etSalterSurucuModel.text.toString().toUpperCase()
-            val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString().toUpperCase()
+            if (salterSurucuDuzenlemeYetki == "var") {
 
 
+                val motor_tag = etMotorTag.text.toString().toUpperCase()
+                val marka = etSalterMarka.text.toString().toUpperCase()
+                val kapasite = etSalterKapasite.text.toString()
+                val cat = etSalterCAT.text.toString().toUpperCase()
+                val style = etSalterSTYLE.text.toString().toUpperCase()
+                val demeraj = etSalterDemeraj.text.toString().toUpperCase()
+                val degisimTarihi = etSalterDegTarihi.text.toString()
+                val mccYeri = etSalterMCCYeri.text.toString().toUpperCase()
+                val cekmeceDegTarihi = etCekmeceDegTarihi.text.toString()
+
+                val dipSivic = etSalterKontaktorDIPSivic.text.toString().toUpperCase()
+                val kontaktorBoyut = etSalterKontaktorBoyut.text.toString().toUpperCase()
+                val surucuModel = etSalterSurucuModel.text.toString().toUpperCase()
+                val surucuDegisimTarihi = etSalterSurucuDegTarihi.text.toString().toUpperCase()
 
 
-            if (motor_tag.isNotEmpty()) {
 
-                if(!dipSivic.isNullOrEmpty() && !dipSivic.isNullOrBlank()){
-                    if(dipSivic.length <= 7){
-                        Toast.makeText(view.context,"Dip Siviç değeri 8 rakamdan az",Toast.LENGTH_SHORT).show()
-                    }else{
-                        surucu_liste.surucuDIPSivic = dipSivic
+
+                if (motor_tag.isNotEmpty()) {
+
+                    if (!dipSivic.isNullOrEmpty() && !dipSivic.isNullOrBlank()) {
+                        if (dipSivic.length <= 7) {
+                            Toast.makeText(
+                                view.context,
+                                "Dip Siviç değeri 8 rakamdan az",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            surucu_liste.surucuDIPSivic = dipSivic
+                        }
                     }
+
+                    salter_liste.salterMotorTag = motor_tag
+                    salter_liste.salterMarka = marka
+                    salter_liste.salterKapasite = kapasite
+                    salter_liste.salterCAT = cat
+                    salter_liste.salterSTYLE = style
+                    salter_liste.salterDemeraj = demeraj
+                    salter_liste.salterDegTarihi = degisimTarihi
+                    salter_liste.salterMccYeri = mccYeri
+                    salter_liste.cekmeceDegTarihi = cekmeceDegTarihi
+
+                    surucu_liste.surucuBoyut = kontaktorBoyut
+
+                    surucu_liste.surucuDegTarihi = surucuDegisimTarihi
+                    surucu_liste.surucuModel = surucuModel
+
+                    ref.child("Salter")
+                        .child(motor_tag)
+                        .setValue(salter_liste)
+                        .addOnCompleteListener {
+
+                            if (it.isSuccessful) {
+
+                            } else {
+                                try {
+                                    Toast.makeText(
+                                        activity,
+                                        "Kayıt Yapılamadı ${it.exception?.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } catch (hata: Exception) {
+                                }
+                            }
+                        }
+                    ref.child("Surucu")
+                        .child(motor_tag)
+                        .setValue(surucu_liste)
+                        .addOnCompleteListener {
+
+                            if (it.isSuccessful) {
+
+                            } else {
+                                try {
+                                    Toast.makeText(
+                                        activity,
+                                        "Kayıt Yapılamadı ${it.exception?.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } catch (hata: Exception) {
+                                }
+                            }
+
+                        }
+
+                } else {
+                    Toast.makeText(activity, "Motor Tag Alanını Doldurunuz... ", Toast.LENGTH_LONG)
+                        .show()
                 }
 
-                salter_liste.salterMotorTag = motor_tag
-                salter_liste.salterMarka = marka
-                salter_liste.salterKapasite = kapasite
-                salter_liste.salterCAT = cat
-                salter_liste.salterSTYLE = style
-                salter_liste.salterDemeraj = demeraj
-                salter_liste.salterDegTarihi = degisimTarihi
-                salter_liste.salterMccYeri = mccYeri
-                salter_liste.cekmeceDegTarihi = cekmeceDegTarihi
-
-                surucu_liste.surucuBoyut = kontaktorBoyut
-
-                surucu_liste.surucuDegTarihi = surucuDegisimTarihi
-                surucu_liste.surucuModel = surucuModel
-
-                ref.child("Salter")
-                    .child(motor_tag)
-                    .setValue(salter_liste)
-                    .addOnCompleteListener {
-
-                        if (it.isSuccessful) {
-
-                        } else {
-                            try {
-                                Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                            }catch (hata : Exception){ }
-                        }
-                    }
-                ref.child("Surucu")
-                    .child(motor_tag)
-                    .setValue(surucu_liste)
-                    .addOnCompleteListener {
-
-                        if (it.isSuccessful) {
-
-                        } else {
-                            try {
-                                Toast.makeText(activity, "Kayıt Yapılamadı ${it.exception?.message}", Toast.LENGTH_SHORT).show()
-                            }catch (hata : Exception){ }
-                        }
-
-                    }
-
-            } else {
-                Toast.makeText(activity, "Motor Tag Alanını Doldurunuz... ", Toast.LENGTH_LONG).show()
+                fbDatabaseTokenlariAlveBildirimGonder(motorTag!!)
+                Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(activity, "Şalter ve sürücü düzenleme yetkiniz yok!", Toast.LENGTH_SHORT).show()
             }
-
-            fbDatabaseTokenlariAlveBildirimGonder(motorTag!!)
-            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         return view
@@ -337,5 +360,12 @@ class CekmeceEtiketDuzenle : Fragment() {
                     SERVER_KEY = p0.getValue().toString()
                 }
             })
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        salterSurucuDuzenlemeYetki = sharedPreferences?.getString("KEY_MOTOR_YETKI","").toString()
+
     }
 }

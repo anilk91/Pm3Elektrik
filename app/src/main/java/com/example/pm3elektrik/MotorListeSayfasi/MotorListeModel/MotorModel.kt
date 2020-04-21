@@ -83,7 +83,7 @@ class MotorModel {
     }
 
 
-    constructor()
+
     constructor(motorTag: String, motorMCCYeri: String, motorGucKW: Double, motorDevir: String, cekmeceModel: String, cekmeceMarka: String, cekmeceKapasite: String , motorGelenVeri : String , motorGucKVA : String , cekmeceUid : String) {
 
         this.motorTag = motorTag
@@ -98,5 +98,6 @@ class MotorModel {
         this.cekmeceUid = cekmeceUid
     }
 
+    constructor()
 
 }

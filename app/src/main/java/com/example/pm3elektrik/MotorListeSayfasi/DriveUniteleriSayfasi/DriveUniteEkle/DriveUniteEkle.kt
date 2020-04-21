@@ -44,6 +44,7 @@ class DriveUniteEkle : Fragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var driveMotorEklemeYetkisi = "yok"
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,6 +62,8 @@ class DriveUniteEkle : Fragment() {
         serverKeyOku()
 
         kullaniciKayittanGelenIsimveSicilNo()
+
+        kullaniciBilgileriniOku()
 
         if (!motorTag.isNullOrEmpty()){
 
@@ -156,9 +159,12 @@ class DriveUniteEkle : Fragment() {
             val vModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteVDegTarihi).text.toString()
             val wModulDegTarih = view.findViewById<EditText>(R.id.etDriveUniteWDegTarihi).text.toString()
 
-            firebaseDBEkle(isim, tag, guc, devir, tripAkim, insaTipi, flans, adres, motorDegTarihi, seriNoU, seriNoV, seriNoW, uModulDegTarih,
-                vModulDegTarih, wModulDegTarih)
-
+            if (driveMotorEklemeYetkisi == "var"){
+                firebaseDBEkle(isim, tag, guc, devir, tripAkim, insaTipi, flans, adres, motorDegTarihi, seriNoU, seriNoV, seriNoW, uModulDegTarih,
+                    vModulDegTarih, wModulDegTarih)
+            }else{
+                Toast.makeText(context,"Drive Motor Ekleme Yetkiniz Yok", Toast.LENGTH_SHORT).show()
+            }
 
         }
         return view
@@ -367,6 +373,13 @@ class DriveUniteEkle : Fragment() {
                     SERVER_KEY = p0.getValue().toString()
                 }
             })
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        driveMotorEklemeYetkisi = sharedPreferences?.getString("KEY_MOTOR_YETKI","").toString()
+
     }
 
 }

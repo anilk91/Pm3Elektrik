@@ -56,21 +56,18 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                 editor.putString("KEY_ISIM", isim.text.toString().toUpperCase())
                 editor.putInt("KEY_SICIL_NO", sicilNo.text.toString().toInt())
                 editor.putString("KEY_SIFRE", sifre.text.toString())
-                editor.putString("KEY_SIFRE_TEKRAR", sifreTekrar.text.toString())
                 editor.apply()
 
                 kullaniciModel.isim = isim.text.toString().toUpperCase()
                 kullaniciModel.sicilNo = sicilNo.text.toString().toInt()
                 kullaniciModel.sifre = sifre.text.toString()
-                kullaniciModel.sifreTekrar = sifreTekrar.text.toString()
 
                 try {
                     kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
                 } catch (Hata: Exception) {
                 }
 
-                val internetConnection =
-                    applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val internetConnection = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                 val activeNetwork = internetConnection.activeNetwork
 
                 if (activeNetwork != null) {
@@ -105,7 +102,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
             }
         }
 
-        kullaniciKaydiniKontrolEt()
+        //kullaniciKaydiniKontrolEt()
 
         kullaniciTokenIDKaydetGuncelle()
 

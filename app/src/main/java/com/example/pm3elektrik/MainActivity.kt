@@ -12,6 +12,7 @@ import android.widget.Toast.makeText
 import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciGirisSicilveIsim
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
+import com.example.pm3elektrik.YoneticiSayfasi.YoneticiAnaSayfa
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                                 KullaniciModel(
                                     gelen.isim,
                                     gelen.sicilNo,
+                                    gelen.sifre,
                                     gelen.kullaniciToken,
                                     gelen.motorYetki,
                                     gelen.cekmeceYetki,
@@ -70,6 +72,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun gelenBilgileriKaydet(gelenYetkiler: ArrayList<KullaniciModel>) {
+        if (gelenSicilNo == 1111){
+            yoneticiSayfasinaGec()
+        }else{
         if (gelenYetkiler.isEmpty()) {
 
             makeText(this,"Kayıt Bulunamadı Kayıt Sayfasına Yönlendiriliyorsunuz...",Toast.LENGTH_SHORT).show()
@@ -89,6 +94,7 @@ class MainActivity : AppCompatActivity() {
             val motorEkleSilDuzenleYetki = gelenYetkiler.get(0).motorYetki
             val driveUniteYetki = gelenYetkiler.get(0).driveUniteYetki
             val cekmeceEkleSilDuzenleYetki = gelenYetkiler.get(0).cekmeceYetki
+            val gelenSifre = gelenYetkiler.get(0).sifre
 
             val sharedPreferences = getSharedPreferences("gelenKullaniciBilgileri", 0)
             val editor = sharedPreferences.edit()
@@ -100,18 +106,18 @@ class MainActivity : AppCompatActivity() {
             editor.putString("KEY_MOTOR_YETKI", motorEkleSilDuzenleYetki)
             editor.putString("KEY_DRİVE_UNİTE_YETKI", driveUniteYetki)
             editor.putString("KEY_CEKMECE_YETKI", cekmeceEkleSilDuzenleYetki)
+            editor.putString("KEY_GELEN_SIFRE", gelenSifre)
             editor.apply()
 
             makeText(this, "Hoş Geldin $isim ", Toast.LENGTH_SHORT).show()
 
-            object : CountDownTimer(3000,100){
+            object : CountDownTimer(3000, 100) {
                 override fun onTick(p0: Long) {}
                 override fun onFinish() {
                     anaSayfayaGec()
                 }
             }.start()
-
-
+        }
         }
 }
 
@@ -119,7 +125,6 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
         gelenIsim = sharedPreferences.getString("KEY_ISIM", "").toString()
         gelenSicilNo = sharedPreferences.getInt("KEY_SICIL_NO", 0)
-
 
     }
 
@@ -131,5 +136,11 @@ class MainActivity : AppCompatActivity() {
     private fun kayitSayfasinaGec(){
         val intent = Intent(this,KullaniciGirisSicilveIsim::class.java)
         startActivity(intent)
+    }
+
+    private fun yoneticiSayfasinaGec(){
+        val intent = Intent(this,YoneticiAnaSayfa::class.java)
+        startActivity(intent)
+
     }
 }

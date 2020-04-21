@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +28,10 @@ import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorEtiketTag
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorGuc
 import kotlinx.android.synthetic.main.motor_rv_adapter.view.tvMotorMCCYeri
 
-class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Context, var activity: FragmentActivity?):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
+class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Context, var activity: FragmentActivity?, motorSilmeYetkisi: String):RecyclerView.Adapter<MotorRVAdapter.MyData>() {
 
+
+    var motorSilmeYetki = motorSilmeYetkisi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
 
@@ -157,60 +158,66 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                     transaction?.replace(R.id.containerMotorListe,fragment,"rv_fragment")?.commit()
                 }
             }
-            motorDelete.setOnClickListener {
 
-                //AlertDialog Penceresi------------------------------
-                val builder = AlertDialog.Builder(mContext)
-                builder.setTitle("Seçimi Sil?")
-                builder.setMessage("${motorListesi.motorTag} Etiketine Ait Tüm Bilgileri Silmek İstiyor Musunuz?")
+            if (motorSilmeYetki == "var"){
+                motorDelete.setOnClickListener {
 
-                builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                    //AlertDialog Penceresi------------------------------
+                    val builder = AlertDialog.Builder(mContext)
+                    builder.setTitle("Seçimi Sil?")
+                    builder.setMessage("${motorListesi.motorTag} Etiketine Ait Tüm Bilgileri Silmek İstiyor Musunuz?")
 
-                        //Çekmece ve Motor Bilgilerini Sil----------------------------
-                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                            .child("Motor")
-                            .orderByChild("motorTag")
-                            .equalTo(motorListesi.motorTag)
-                            .addValueEventListener(object : ValueEventListener{
-                                override fun onCancelled(p0: DatabaseError) {}
-                                override fun onDataChange(p0: DataSnapshot) {
+                    builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
+                        override fun onClick(p0: DialogInterface?, p1: Int) {
 
-                                    for (gelen in p0.children){
-                                        gelen.ref.removeValue()
+                            //Çekmece ve Motor Bilgilerini Sil----------------------------
+                            FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                .child("Motor")
+                                .orderByChild("motorTag")
+                                .equalTo(motorListesi.motorTag)
+                                .addValueEventListener(object : ValueEventListener{
+                                    override fun onCancelled(p0: DatabaseError) {}
+                                    override fun onDataChange(p0: DataSnapshot) {
 
+                                        for (gelen in p0.children){
+                                            gelen.ref.removeValue()
+
+                                        }
                                     }
-                                }
-                            })
-                        //Şalter Bilgilerini Sil--------------------------------
-                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                            .child("Salter")
-                            .child(motorListe[position].motorTag)
-                            .removeValue()
+                                })
+                            //Şalter Bilgilerini Sil--------------------------------
+                            FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                .child("Salter")
+                                .child(motorListe[position].motorTag)
+                                .removeValue()
 
-                        //Sürücü Bilgilerini Sil---------------------------------
-                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                            .child("Surucu")
-                            .child(motorListe[position].motorTag)
-                            .removeValue()
+                            //Sürücü Bilgilerini Sil---------------------------------
+                            FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                .child("Surucu")
+                                .child(motorListe[position].motorTag)
+                                .removeValue()
 
-                        motorListe.removeAt(position)
-                        notifyDataSetChanged()
+                            motorListe.removeAt(position)
+                            notifyDataSetChanged()
 //                        notifyItemRemoved(position)
 //                        notifyItemRangeChanged(position,motorListe.size)
 
-                        Toast.makeText(mContext,"${motorListesi.motorTag} Silindi!",Toast.LENGTH_SHORT).show()
-                    }
-            })
-                builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        Toast.makeText(mContext,"Seçim Silinmedi!",Toast.LENGTH_SHORT).show()
-                    }
-                })
+                            Toast.makeText(mContext,"${motorListesi.motorTag} Silindi!",Toast.LENGTH_SHORT).show()
+                        }
+                    })
+                    builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener{
+                        override fun onClick(p0: DialogInterface?, p1: Int) {
+                            Toast.makeText(mContext,"Seçim Silinmedi!",Toast.LENGTH_SHORT).show()
+                        }
+                    })
 
-                val dialog : AlertDialog =builder.create()
-                dialog.show()
+                    val dialog : AlertDialog =builder.create()
+                    dialog.show()
+                }
+            }else{
+                Toast.makeText(mContext, "Motor ve Sürücü Bilgilerini Silme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 

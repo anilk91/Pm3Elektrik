@@ -5,7 +5,6 @@ class KullaniciModel {
     var isim :String = ""
     var sicilNo : Int = 0
     var sifre :String = ""
-    var sifreTekrar : String = ""
     var kullaniciToken :String = ""
     var motorYetki :String = "yok"
     var cekmeceYetki :String = "yok"
@@ -57,7 +56,6 @@ class KullaniciModel {
         isim: String,
         sicilNo: Int,
         sifre : String,
-        sifreTekrar : String,
         kullaniciToken: String,
         motorYetki: String,
         cekmeceYetki: String,
@@ -70,7 +68,6 @@ class KullaniciModel {
         this.isim = isim
         this.sicilNo = sicilNo
         this.sifre = sifre
-        this.sifreTekrar = sifreTekrar
         this.kullaniciToken = kullaniciToken
         this.motorYetki = motorYetki
         this.cekmeceYetki = cekmeceYetki
@@ -80,6 +77,9 @@ class KullaniciModel {
 
     }
 
+    constructor(sifre : String){
+        this.sifre = sifre
+    }
 
 
     constructor()

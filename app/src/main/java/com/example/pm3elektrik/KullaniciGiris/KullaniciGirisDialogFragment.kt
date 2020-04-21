@@ -12,6 +12,7 @@ import com.example.pm3elektrik.AnaSayfa.AnaSayfa
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 
 import com.example.pm3elektrik.R
+import com.example.pm3elektrik.YoneticiSayfasi.YoneticiAnaSayfa
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -44,12 +45,16 @@ class KullaniciGirisDialogFragment : DialogFragment() {
 
                             if (gelenBilgiler?.sicilNo.toString() == sicilNo.text.toString()){
                                 if (gelenBilgiler?.sifre.toString() == sifre.text.toString()){
-                                    val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciIsmi", 0)
-                                    val editor = sharedPreferences?.edit()
-                                    editor?.putInt("KEY_SICIL_NO", gelenBilgiler!!.sicilNo)
-                                    editor?.commit()
-                                    Toast.makeText(context?.applicationContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
-                                    anaSayfayaGec()
+                                    if (gelenBilgiler?.sicilNo == 1111){
+                                        yoneticiSayfasinaGec()
+                                    }else{
+                                        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciIsmi", 0)
+                                        val editor = sharedPreferences?.edit()
+                                        editor?.putInt("KEY_SICIL_NO", gelenBilgiler!!.sicilNo)
+                                        editor?.commit()
+                                        Toast.makeText(context?.applicationContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
+                                        anaSayfayaGec()
+                                    }
                                 }else{
                                     Toast.makeText(context?.applicationContext,"Girilen Şifre Yanlış",Toast.LENGTH_SHORT).show()
                                 }
@@ -82,6 +87,13 @@ class KullaniciGirisDialogFragment : DialogFragment() {
         activity?.startActivity(intent)
         dismiss()
 
+    }
+
+    private fun yoneticiSayfasinaGec(){
+
+        val intent = Intent(context?.applicationContext,YoneticiAnaSayfa::class.java)
+        activity?.startActivity(intent)
+        dismiss()
     }
 
 }

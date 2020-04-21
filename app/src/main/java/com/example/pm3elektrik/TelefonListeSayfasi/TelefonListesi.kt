@@ -3,19 +3,15 @@ package com.example.pm3elektrik.TelefonListeSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonEkleFragment.TelefonEkle
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonModel.TelefonListeModel
@@ -34,6 +30,7 @@ class TelefonListesi : Fragment() {
     var telefonModel = ArrayList<TelefonListeModel>()
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
     lateinit var myAdapter : TelefonRV
+    var telefonDuzenlemeYetkisi = "yok"
 //    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +39,8 @@ class TelefonListesi : Fragment() {
 //        swipeRefresh = view.findViewById(R.id.swipeRefresh)
 
         fireBaseDBOkunanVeriler(view.context , view)
+
+        kullaniciBilgileriniOku()
 
 //        swipeRefresh.setOnRefreshListener(this)
 
@@ -102,7 +101,7 @@ class TelefonListesi : Fragment() {
                         telefonModel.add(TelefonListeModel(ekle!!.telefonIsim,ekle.telefonNo))
                     }
 
-                    recyclerAdapter(telefonModel ,view,mContext)
+                    recyclerAdapter(telefonModel ,view,mContext, telefonDuzenlemeYetkisi)
                 }
 
 
@@ -112,9 +111,9 @@ class TelefonListesi : Fragment() {
 
 
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor----------------------->
-    fun recyclerAdapter(telefonGelenListe: ArrayList<TelefonListeModel>, view: View, mContext: Context){
+    fun recyclerAdapter(telefonGelenListe: ArrayList<TelefonListeModel>, view: View, mContext: Context, telefonDuzenlemeYetkisi: String){
 
-        myAdapter = TelefonRV(telefonGelenListe,fragmentManager,mContext)
+        myAdapter = TelefonRV(telefonGelenListe,fragmentManager,mContext, telefonDuzenlemeYetkisi)
         view.rvTelefonListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
@@ -122,6 +121,14 @@ class TelefonListesi : Fragment() {
 
         myAdapter.notifyDataSetChanged()
     }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        telefonDuzenlemeYetkisi = sharedPreferences?.getString("KEY_TELEFON_YETKI","").toString()
+
+    }
+
     //FirebaseDatabase Okunan Veriler Recycler Adapter'a Yollanıyor-----------------------<
 
 //    override fun onRefresh() {

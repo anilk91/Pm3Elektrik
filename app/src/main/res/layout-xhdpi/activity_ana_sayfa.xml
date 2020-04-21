@@ -61,7 +61,7 @@
             android:id="@+id/imgMotor"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_marginStart="23dp"
+            android:layout_marginStart="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
@@ -71,7 +71,7 @@
             android:id="@+id/imgPhone"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgMotor"
             app:layout_constraintTop_toBottomOf="@+id/view"
@@ -81,7 +81,7 @@
             android:id="@+id/imgFault"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgPhone"
             app:layout_constraintTop_toTopOf="@id/view"
@@ -91,11 +91,21 @@
             android:id="@+id/imgOther"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgFault"
             app:layout_constraintTop_toTopOf="@id/view"
             app:srcCompat="@drawable/other" />
+
+        <ImageView
+            android:id="@+id/imgAyarlar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgOther"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ayarlar" />
 
         <ImageView
             android:id="@+id/imgMotorPassive"
@@ -136,6 +146,16 @@
             app:layout_constraintStart_toStartOf="@+id/imgOther"
             app:layout_constraintTop_toTopOf="@+id/imgOther"
             app:srcCompat="@drawable/other_passive" />
+
+        <ImageView
+            android:id="@+id/imgAyarlarPassive"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgAyarlar"
+            app:layout_constraintEnd_toEndOf="@+id/imgAyarlar"
+            app:layout_constraintStart_toStartOf="@+id/imgAyarlar"
+            app:layout_constraintTop_toTopOf="@+id/imgAyarlar"
+            app:srcCompat="@drawable/ayarlar_pasif" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

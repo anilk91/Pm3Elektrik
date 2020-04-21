@@ -18,8 +18,9 @@ import com.example.pm3elektrik.TelefonListeSayfasi.TelefonModel.TelefonListeMode
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.telefon_rv_adapter.view.*
 
-class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentManager: FragmentManager?, var mContext: Context) : RecyclerView.Adapter<TelefonRV.MyData>() {
+class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentManager: FragmentManager?, var mContext: Context, telefonDuzenlemeYetkisi: String) : RecyclerView.Adapter<TelefonRV.MyData>() {
 
+    var telefonYetkisi = telefonDuzenlemeYetkisi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyData {
 
@@ -54,47 +55,59 @@ class TelefonRV(var telefonListe: ArrayList<TelefonListeModel>, var fragmentMana
             telefonIsim.setText(telefon.telefonIsim)
             telefonNo.setText(telefon.telefonNo)
 
-            telefonBilgi.setOnClickListener{
+            if(telefonYetkisi == "var") {
+                telefonBilgi.setOnClickListener {
 
-                val bundle : Bundle? = Bundle()
-                bundle?.putString("rvGidenTelIsim",telefonListe[position].telefonIsim)
-                bundle?.putString("rvGidenTelNo",telefonListe[position].telefonNo)
-                val fragment = TelefonEkle()
-                fragment.arguments = bundle
-                fragment.show(fragmentManager!!,"telefon_ekle_dialog_fr")
+                    val bundle: Bundle? = Bundle()
+                    bundle?.putString("rvGidenTelIsim", telefonListe[position].telefonIsim)
+                    bundle?.putString("rvGidenTelNo", telefonListe[position].telefonNo)
+                    val fragment = TelefonEkle()
+                    fragment.arguments = bundle
+                    fragment.show(fragmentManager!!, "telefon_ekle_dialog_fr")
+                }
+            }else{
+                Toast.makeText(mContext,"Telefon Bilgisi Düzenleme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
             }
 
-            telefonListeSil.setOnClickListener {
+            if(telefonYetkisi == "var") {
+                telefonListeSil.setOnClickListener {
 
-                val builder = AlertDialog.Builder(mContext)
-                builder.setTitle("Seçimi Sil?")
-                builder.setMessage("${telefon.telefonNo} Nolu Telefon Kaydını Silmek İstiyor Musunuz?")
+                    val builder = AlertDialog.Builder(mContext)
+                    builder.setTitle("Seçimi Sil?")
+                    builder.setMessage("${telefon.telefonNo} Nolu Telefon Kaydını Silmek İstiyor Musunuz?")
 
-                builder.setPositiveButton("EVET",object : DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                            .child("Telefon")
-                            .child(telefonListe[position].telefonNo)
-                            .removeValue()
+                    builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener {
+                        override fun onClick(p0: DialogInterface?, p1: Int) {
+                            FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                .child("Telefon")
+                                .child(telefonListe[position].telefonNo)
+                                .removeValue()
 
-                        telefonListe.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position,telefonListe.size)
+                            telefonListe.removeAt(position)
+                            notifyItemRemoved(position)
+                            notifyItemRangeChanged(position, telefonListe.size)
 
-                        Toast.makeText(mContext,"${telefon.telefonNo} Silindi!",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                mContext,
+                                "${telefon.telefonNo} Silindi!",
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-                    }
-                })
+                        }
+                    })
 
-                builder.setNegativeButton("HAYIR",object: DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        Toast.makeText(mContext,"Seçim Silinmedi",Toast.LENGTH_SHORT).show()
-                    }
-                })
+                    builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener {
+                        override fun onClick(p0: DialogInterface?, p1: Int) {
+                            Toast.makeText(mContext, "Seçim Silinmedi", Toast.LENGTH_SHORT).show()
+                        }
+                    })
 
-                val dialog : AlertDialog =builder.create()
-                dialog.show()
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
 
+                }
+            }else{
+                Toast.makeText(mContext,"Telefon Bilgisi Silme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
             }
         }
 

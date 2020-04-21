@@ -38,6 +38,7 @@ class CekmeceEkle : Fragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var cekmeceEkleYetki = "yok"
 
 
 
@@ -49,6 +50,7 @@ class CekmeceEkle : Fragment() {
         val close = view.findViewById<ImageView>(R.id.imgCekmeceEkleClose)
         val buttonEkle = view.findViewById<Button>(R.id.btnCekmeceSalterEkle)
 
+        kullaniciBilgileriniOku()
         kullaniciKayittanGelenIsimveSicilNo()
 
         serverKeyOku()
@@ -62,27 +64,44 @@ class CekmeceEkle : Fragment() {
 
         buttonEkle.setOnClickListener {
 
-            val isim = view.findViewById<EditText>(R.id.etCekmeceIsim).text.toString().toUpperCase()
-            val marka = view.findViewById<EditText>(R.id.etCekmeceSalterIsmi).text.toString().toUpperCase()
-            val model = view.findViewById<EditText>(R.id.etCekmeceSalterModel).text.toString().toUpperCase()
-            val kapasite = view.findViewById<EditText>(R.id.etCekmeceSalterKapasite).text.toString()
-            val cat = view.findViewById<EditText>(R.id.etCekmeceSalterCat).text.toString().toUpperCase()
-            val degTarihi = view.findViewById<EditText>(R.id.etCekmeceSalterDegTarihi).text.toString()
-            val demeraj = view.findViewById<EditText>(R.id.etCekmeceSalterDemeraj).text.toString().toUpperCase()
-            val mccYeri = view.findViewById<EditText>(R.id.etCekmeceMccYeri).text.toString().toUpperCase()
+            if (cekmeceEkleYetki == "var") {
+                val isim =
+                    view.findViewById<EditText>(R.id.etCekmeceIsim).text.toString().toUpperCase()
+                val marka = view.findViewById<EditText>(R.id.etCekmeceSalterIsmi).text.toString()
+                    .toUpperCase()
+                val model = view.findViewById<EditText>(R.id.etCekmeceSalterModel).text.toString()
+                    .toUpperCase()
+                val kapasite =
+                    view.findViewById<EditText>(R.id.etCekmeceSalterKapasite).text.toString()
+                val cat = view.findViewById<EditText>(R.id.etCekmeceSalterCat).text.toString()
+                    .toUpperCase()
+                val degTarihi =
+                    view.findViewById<EditText>(R.id.etCekmeceSalterDegTarihi).text.toString()
+                val demeraj =
+                    view.findViewById<EditText>(R.id.etCekmeceSalterDemeraj).text.toString()
+                        .toUpperCase()
+                val mccYeri =
+                    view.findViewById<EditText>(R.id.etCekmeceMccYeri).text.toString().toUpperCase()
 
-            if (!isim.isNullOrEmpty() && !mccYeri.isNullOrEmpty()){
+                if (!isim.isNullOrEmpty() && !mccYeri.isNullOrEmpty()) {
 
-                firebaseDBEkle(isim,marka,model,kapasite,cat,degTarihi,demeraj,mccYeri)
+                    firebaseDBEkle(isim, marka, model, kapasite, cat, degTarihi, demeraj, mccYeri)
 
-            }else{
-                Toast.makeText(view.context,"Çekmece İsim ve MCC Yerini Giriniz",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        view.context,
+                        "Çekmece İsim ve MCC Yerini Giriniz",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
 
-        if (uniqIDGelen != null){
+            if (uniqIDGelen != null) {
 
-            firebaseOkunanBilgileriEdittexteIsle(uniqIDGelen!!, view)
+                firebaseOkunanBilgileriEdittexteIsle(uniqIDGelen!!, view)
+            }else {
+                Toast.makeText(activity, "Çekmece ekleme yetkiniz yok!", Toast.LENGTH_SHORT).show()
+            }
         }
         return view
     }
@@ -264,5 +283,12 @@ class CekmeceEkle : Fragment() {
                     SERVER_KEY = p0.getValue().toString()
                 }
             })
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        cekmeceEkleYetki = sharedPreferences?.getString("KEY_CEKMECE_YETKI","").toString()
+
     }
 }

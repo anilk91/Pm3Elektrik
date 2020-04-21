@@ -41,6 +41,7 @@ class MotorEtiketDuzenle : Fragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var motorDuzenlemeYetki = "yok"
 
     companion object{
         var gucKW_static = 0.0
@@ -52,6 +53,7 @@ class MotorEtiketDuzenle : Fragment() {
         val bundle :Bundle? = arguments
         val motorTag = bundle?.getString("motorEtiketDuzenle")
 
+        kullaniciBilgileriniOku()
         serverKeyOku()
 
         kullaniciKayittanGelenIsimveSicilNo()
@@ -100,26 +102,56 @@ class MotorEtiketDuzenle : Fragment() {
 
         button_ekle.setOnClickListener {
 
-            if (etMotorTag.text.toString().isNotEmpty() && etMotorMCCYeri.text.toString().isNotEmpty()) {
+            if (motorDuzenlemeYetki == "var") {
+                if (etMotorTag.text.toString().isNotEmpty() && etMotorMCCYeri.text.toString()
+                        .isNotEmpty()
+                ) {
 
-                val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
-                val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
-                val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
-                val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
-                val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
-                val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
-                val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
-                val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
-                val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
-                val motor_not = view.findViewById<EditText>(R.id.etMotorNot).text.toString().toUpperCase()
+                    val motor_isim =
+                        view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
+                    val motor_tag =
+                        view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
+                    val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
+                    val nom_trip_akimi =
+                        view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
+                    val insa_tipi =
+                        view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
+                    val flans =
+                        view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
+                    val adres =
+                        view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
+                    val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString()
+                        .toUpperCase()
+                    val degisim_tarihi =
+                        view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
+                    val motor_not =
+                        view.findViewById<EditText>(R.id.etMotorNot).text.toString().toUpperCase()
 
 
-                FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi,motor_not)
+                    FirebaseDBMotorEkle(
+                        motor_isim,
+                        motor_tag,
+                        devir,
+                        nom_trip_akimi,
+                        insa_tipi,
+                        flans,
+                        adres,
+                        mcc_yeri,
+                        degisim_tarihi,
+                        motor_not
+                    )
 
-            } else {
-                Toast.makeText(activity, "Lütfen Motor Tag ve Mcc Yerini Giriniz", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(
+                        activity,
+                        "Lütfen Motor Tag ve Mcc Yerini Giriniz",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(activity, "Motor düzenleme yetkiniz yok!", Toast.LENGTH_SHORT).show()
             }
-            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
         }
 
         return view
@@ -262,6 +294,13 @@ class MotorEtiketDuzenle : Fragment() {
                     SERVER_KEY = p0.getValue().toString()
                 }
             })
+    }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        motorDuzenlemeYetki = sharedPreferences?.getString("KEY_MOTOR_YETKI","").toString()
+
     }
 }
 

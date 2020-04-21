@@ -31,6 +31,7 @@ class MotorListe : Fragment() {
     lateinit var mFAB_drive: FloatingActionButton
     lateinit var myAdapter : MotorRVAdapter
     var motorListesi= ArrayList<MotorModel>()
+    var motorSilmeYetkisi = "yok"
 //    lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +43,8 @@ class MotorListe : Fragment() {
         pendingIntentAnaSayfadanGelen()
 
         fireBaseDBOkunanVeriler(view.context)
+
+        kullaniciBilgileriniOku()
 
 //        swipeRefresh.setOnRefreshListener (this)
 
@@ -112,15 +115,15 @@ class MotorListe : Fragment() {
                         motorListesi.add(MotorModel(okunanBilgiler!!.motorTag,okunanBilgiler.motorMCCYeri, okunanBilgiler.motorGucKW, okunanBilgiler.motorDevir , okunanBilgiler.cekmeceModel,okunanBilgiler.cekmeceMarka,okunanBilgiler.cekmeceKapasite,okunanBilgiler.motorGelenVeri , okunanBilgiler.motorGucKVA,okunanBilgiler.cekmeceUid))
 
                     }
-                    recyclerAdapter(motorListesi,mContext)
+                    recyclerAdapter(motorListesi,mContext, motorSilmeYetkisi)
                 }
             })
     }
 
     //FirebaseDatabase Okunan Değerlerden Gelen Veriler
-    fun recyclerAdapter(motorGelenListe: ArrayList<MotorModel>, mContext: Context) {
+    fun recyclerAdapter(motorGelenListe: ArrayList<MotorModel>, mContext: Context, motorSilmeYetkisi: String) {
 
-        myAdapter = MotorRVAdapter(motorGelenListe,mContext,activity)
+        myAdapter = MotorRVAdapter(motorGelenListe,mContext,activity, motorSilmeYetkisi)
         view?.rvMotorListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext,RecyclerView.VERTICAL,false)
@@ -150,6 +153,14 @@ class MotorListe : Fragment() {
         }
 
     }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        motorSilmeYetkisi = sharedPreferences?.getString("KEY_MOTOR_YETKI","").toString()
+
+    }
+
 
 //    override fun onRefresh() {
 //

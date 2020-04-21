@@ -45,6 +45,7 @@ class MotorEkle : Fragment() {
     lateinit var bildirim : FCMModel
     var kullaniciIsmi : String? = null
     var sicilNo : Int? = 0
+    var motorEkleYetki = "yok"
 
     companion object{
         var gucKW_static = 0.0
@@ -59,6 +60,7 @@ class MotorEkle : Fragment() {
         val gucKw = view.findViewById<EditText>(R.id.etGucKw)
         val gucHp = view.findViewById<EditText>(R.id.etGucHP)
 
+        kullaniciBilgileriniOku()
         serverKeyOku()
 
         kullaniciKayittanGelenIsimveSicilNo()
@@ -101,32 +103,57 @@ class MotorEkle : Fragment() {
 
         button_ekle.setOnClickListener {
 
-            val motor_isim = view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
-            val motor_tag = view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
-            val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
-            val nom_trip_akimi = view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
-            val insa_tipi = view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
-            val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
-            val adres = view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
-            val mcc_yeri = view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
-            val degisim_tarihi = view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
-            val motor_not = view.findViewById<EditText>(R.id.etMotorNot).text.toString().toUpperCase()
+            if (motorEkleYetki == "var") {
+
+                val motor_isim =
+                    view.findViewById<EditText>(R.id.etMotorIsim).text.toString().toUpperCase()
+                val motor_tag =
+                    view.findViewById<EditText>(R.id.etMotorTag).text.toString().toUpperCase()
+                val devir = view.findViewById<EditText>(R.id.etDevir).text.toString()
+                val nom_trip_akimi =
+                    view.findViewById<EditText>(R.id.etNomTripAkimi).text.toString()
+                val insa_tipi =
+                    view.findViewById<EditText>(R.id.etInsaTipi).text.toString().toUpperCase()
+                val flans = view.findViewById<EditText>(R.id.etFlans).text.toString().toUpperCase()
+                val adres =
+                    view.findViewById<EditText>(R.id.etMotorAdres).text.toString().toUpperCase()
+                val mcc_yeri =
+                    view.findViewById<EditText>(R.id.etMotorMCCYeri).text.toString().toUpperCase()
+                val degisim_tarihi =
+                    view.findViewById<EditText>(R.id.etMotorDegTarihi).text.toString()
+                val motor_not =
+                    view.findViewById<EditText>(R.id.etMotorNot).text.toString().toUpperCase()
 
 
-            if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()){
+                if (motor_tag.isNotEmpty() && mcc_yeri.isNotEmpty()) {
 
 
                     FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Motor")
                         .child(motor_tag)
-                        .addListenerForSingleValueEvent(object : ValueEventListener{
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onCancelled(p0: DatabaseError) {}
                             override fun onDataChange(p0: DataSnapshot) {
 
                                 val bilgiGetir = p0.getValue(MotorModel::class.java)
-                                if (bilgiGetir?.motorTag != null){
-                                    Toast.makeText(view.context,"Motor Listede Mevcut Kontrol Ediniz", Toast.LENGTH_LONG).show()
-                                }else{
-                                    FirebaseDBMotorEkle(motor_isim ,motor_tag,devir,nom_trip_akimi,insa_tipi,flans,adres,mcc_yeri,degisim_tarihi,motor_not)
+                                if (bilgiGetir?.motorTag != null) {
+                                    Toast.makeText(
+                                        view.context,
+                                        "Motor Listede Mevcut Kontrol Ediniz",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                } else {
+                                    FirebaseDBMotorEkle(
+                                        motor_isim,
+                                        motor_tag,
+                                        devir,
+                                        nom_trip_akimi,
+                                        insa_tipi,
+                                        flans,
+                                        adres,
+                                        mcc_yeri,
+                                        degisim_tarihi,
+                                        motor_not
+                                    )
                                 }
 
                             }
@@ -135,11 +162,19 @@ class MotorEkle : Fragment() {
                         })
 
 
-            }else{
-                Toast.makeText(activity,"Lütfen Motor Tag ve Mcc Yerini Giriniz",Toast.LENGTH_LONG).show()
-            }
+                } else {
+                    Toast.makeText(
+                        activity,
+                        "Lütfen Motor Tag ve Mcc Yerini Giriniz",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
-            Toast.makeText(activity,"Kayıt Başarılı",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Kayıt Başarılı", Toast.LENGTH_SHORT).show()
+
+            }else {
+                Toast.makeText(activity, "Motor ekleme yetkiniz yok!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         button_close.setOnClickListener {
@@ -307,4 +342,12 @@ class MotorEkle : Fragment() {
         fragmentTransaction.commit()
 
     }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        motorEkleYetki = sharedPreferences?.getString("KEY_MOTOR_YETKI","").toString()
+
+    }
+
 }

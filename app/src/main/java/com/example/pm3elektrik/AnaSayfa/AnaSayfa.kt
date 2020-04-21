@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.pm3elektrik.ArizaListeSayfasi.ArizaListe
+import com.example.pm3elektrik.AyarlarSayfasi.Ayarlar
 import com.example.pm3elektrik.DigerBilgilerSayfasi.DigerBilgiler
 import com.example.pm3elektrik.MotorListeSayfasi.CekmecesiSalterOlanSayfa.CekmecesiSalterOlanEtiket
 import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnite
@@ -32,7 +33,7 @@ class AnaSayfa : AppCompatActivity(){
             imgFaultPassive.visibility = View.VISIBLE
             imgOtherPassive.visibility = View.VISIBLE
 //            imgUserPassive.visibility = View.VISIBLE
-//            imgSettingPassive.visibility = View.VISIBLE
+            imgAyarlarPassive.visibility = View.VISIBLE
             changeFragment(MotorListe())
 
         }
@@ -44,7 +45,7 @@ class AnaSayfa : AppCompatActivity(){
             imgFaultPassive.visibility = View.VISIBLE
             imgOtherPassive.visibility = View.VISIBLE
 //            imgUserPassive.visibility = View.VISIBLE
-//            imgSettingPassive.visibility = View.VISIBLE
+            imgAyarlarPassive.visibility = View.VISIBLE
             changeFragment(TelefonListesi())
         }
 
@@ -54,7 +55,7 @@ class AnaSayfa : AppCompatActivity(){
             imgMotorPassive.visibility = View.VISIBLE
             imgOtherPassive.visibility = View.VISIBLE
 //            imgUserPassive.visibility = View.VISIBLE
-//            imgSettingPassive.visibility = View.VISIBLE
+            imgAyarlarPassive.visibility = View.VISIBLE
             imgPhonePassive.visibility = View.VISIBLE
             changeFragment(ArizaListe())
         }
@@ -65,7 +66,7 @@ class AnaSayfa : AppCompatActivity(){
             imgFaultPassive.visibility = View.VISIBLE
             imgMotorPassive.visibility = View.VISIBLE
 //            imgUserPassive.visibility = View.VISIBLE
-//            imgSettingPassive.visibility = View.VISIBLE
+            imgAyarlarPassive.visibility = View.VISIBLE
             imgPhonePassive.visibility = View.VISIBLE
             changeFragment(DigerBilgiler())
 
@@ -84,17 +85,17 @@ class AnaSayfa : AppCompatActivity(){
 //
 //        }
 
-//        imgSetting.setOnClickListener {
-//
-//            imgSettingPassive.visibility=View.INVISIBLE
+        imgAyarlar.setOnClickListener {
+
+            imgAyarlarPassive.visibility=View.INVISIBLE
 //            imgUserPassive.visibility = View.VISIBLE
-//            imgOtherPassive.visibility = View.VISIBLE
-//            imgFaultPassive.visibility = View.VISIBLE
-//            imgMotorPassive.visibility = View.VISIBLE
-//            imgPhonePassive.visibility = View.VISIBLE
-//            changeFragment(Ayarlar())
-//
-//        }
+            imgOtherPassive.visibility = View.VISIBLE
+            imgFaultPassive.visibility = View.VISIBLE
+            imgMotorPassive.visibility = View.VISIBLE
+            imgPhonePassive.visibility = View.VISIBLE
+            changeFragment(Ayarlar())
+
+        }
 
     }
 
@@ -125,7 +126,7 @@ class AnaSayfa : AppCompatActivity(){
                 imgFaultPassive.visibility = View.VISIBLE
                 imgOtherPassive.visibility = View.VISIBLE
 //                imgUserPassive.visibility = View.VISIBLE
-//                imgSettingPassive.visibility = View.VISIBLE
+                imgAyarlarPassive.visibility = View.VISIBLE
             }else if (gelenTur == "cekmece"){
 
                 val bundle : Bundle? =Bundle()
@@ -150,7 +151,7 @@ class AnaSayfa : AppCompatActivity(){
                 imgFaultPassive.visibility = View.VISIBLE
                 imgMotorPassive.visibility = View.VISIBLE
 //                imgUserPassive.visibility = View.VISIBLE
-//                imgSettingPassive.visibility = View.VISIBLE
+                imgAyarlarPassive.visibility = View.VISIBLE
                 imgPhonePassive.visibility = View.VISIBLE
 
                 val bundle : Bundle? =Bundle()

@@ -3,7 +3,6 @@ package com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
@@ -12,10 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitEkle.AmbarKayitEkleme
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarKayitModel.AmbarKayitModeli
 import com.example.pm3elektrik.DigerBilgilerSayfasi.AmbarKayitSayfasi.AmbarRVAdapter.AmbarRV
@@ -35,6 +32,8 @@ class AmbarKayit : Fragment() {
     lateinit var mFAB_ambar: FloatingActionButton
     lateinit var myAdapter : AmbarRV
 //    lateinit var swipeRefresh: SwipeRefreshLayout
+    var ambarKaydiDuzenlemeYetkisi = "yok"
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_ambar_kayit, container, false)
@@ -42,6 +41,8 @@ class AmbarKayit : Fragment() {
 //        swipeRefresh = view.findViewById(R.id.swipeRefresh)
 
         fireBaseDBOkunanVeriler(view.context)
+
+        kullaniciBilgileriniOku()
 
 //        swipeRefresh.setOnRefreshListener(this)
 
@@ -100,7 +101,7 @@ class AmbarKayit : Fragment() {
                         val okunanBilgiler = dataGetir.getValue(AmbarKayitModeli::class.java)
                         ambarListe.add(AmbarKayitModeli(okunanBilgiler!!.ambarStokNo,okunanBilgiler.ambarRafNo,okunanBilgiler.ambarTanim))
                     }
-                    recyclerAdapter(ambarListe , context,fragmentManager)
+                    recyclerAdapter(ambarListe , context,fragmentManager, ambarKaydiDuzenlemeYetkisi)
 
                 }
 
@@ -108,9 +109,9 @@ class AmbarKayit : Fragment() {
     }
 
 
-    private fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context,fragmentManager: FragmentManager?) {
+    private fun recyclerAdapter(ambarGelenListe: ArrayList<AmbarKayitModeli>, mContext: Context, fragmentManager: FragmentManager?, ambarKaydiDuzenlemeYetkisi: String) {
 
-        myAdapter = AmbarRV(ambarGelenListe,mContext ,fragmentManager)
+        myAdapter = AmbarRV(ambarGelenListe,mContext ,fragmentManager, ambarKaydiDuzenlemeYetkisi)
         view?.rvAmbarListe?.adapter = myAdapter
 
         val mLayoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL,false)
@@ -118,6 +119,14 @@ class AmbarKayit : Fragment() {
 
         myAdapter.notifyDataSetChanged()
     }
+
+    private fun kullaniciBilgileriniOku() {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        ambarKaydiDuzenlemeYetkisi = sharedPreferences?.getString("KEY_AMBAR_YETKI","").toString()
+
+    }
+
 
 //    override fun onRefresh() {
 //

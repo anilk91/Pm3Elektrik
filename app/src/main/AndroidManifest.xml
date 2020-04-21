@@ -6,28 +6,24 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-<!--    <compatible-screens>-->
-<!--        &lt;!&ndash; all small size screens &ndash;&gt;-->
-<!--        <screen android:screenSize="small" android:screenDensity="ldpi" />-->
-<!--        <screen android:screenSize="small" android:screenDensity="mdpi" />-->
-<!--        <screen android:screenSize="small" android:screenDensity="hdpi" />-->
-<!--        <screen android:screenSize="small" android:screenDensity="xhdpi" />-->
-<!--        &lt;!&ndash; all normal size screens &ndash;&gt;-->
-<!--        <screen android:screenSize="normal" android:screenDensity="ldpi" />-->
-<!--        <screen android:screenSize="normal" android:screenDensity="mdpi" />-->
-<!--        <screen android:screenSize="normal" android:screenDensity="hdpi" />-->
-<!--        <screen android:screenSize="normal" android:screenDensity="xhdpi" />-->
-<!--    </compatible-screens>-->
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- <compatible-screens> -->
+    <!-- &lt;!&ndash; all small size screens &ndash;&gt; -->
+    <!-- <screen android:screenSize="small" android:screenDensity="ldpi" /> -->
+    <!-- <screen android:screenSize="small" android:screenDensity="mdpi" /> -->
+    <!-- <screen android:screenSize="small" android:screenDensity="hdpi" /> -->
+    <!-- <screen android:screenSize="small" android:screenDensity="xhdpi" /> -->
+    <!-- &lt;!&ndash; all normal size screens &ndash;&gt; -->
+    <!-- <screen android:screenSize="normal" android:screenDensity="ldpi" /> -->
+    <!-- <screen android:screenSize="normal" android:screenDensity="mdpi" /> -->
+    <!-- <screen android:screenSize="normal" android:screenDensity="hdpi" /> -->
+    <!-- <screen android:screenSize="normal" android:screenDensity="xhdpi" /> -->
+    <!-- </compatible-screens> -->
     <supports-screens
-        android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens="true"
         android:anyDensity="true"
-    />
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
     <dist:module dist:instant="true" />
 
@@ -39,35 +35,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-<!--        <activity android:name=".KullaniciGiris.KullaniciGirisSicilveIsim">-->
-<!--        <intent-filter>-->
-<!--            <action android:name="android.intent.action.MAIN"-->
-<!--                android:screenOrientation="portrait"/>-->
-
-<!--            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--        </intent-filter>-->
-<!--    </activity>-->
-
+        <activity android:name=".YoneticiSayfasi.RVKullaniciListe"></activity>
+        <activity android:name=".YoneticiSayfasi.YoneticiAnaSayfa" /> <!-- <activity android:name=".KullaniciGiris.KullaniciGirisSicilveIsim"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" -->
+        <!-- android:screenOrientation="portrait"/> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"
-                    android:screenOrientation="portrait"/>
+                <action
+                    android:name="android.intent.action.MAIN"
+                    android:screenOrientation="portrait" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".AnaSayfa.AnaSayfa"
-            android:screenOrientation="nosensor"/>
-
+        <activity
+            android:name=".AnaSayfa.AnaSayfa"
+            android:screenOrientation="nosensor" />
         <activity android:name=".KullaniciGiris.KullaniciGirisSicilveIsim" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <service android:name=".FirebaseCloudMessage.Servisler.MyFirebaseMessagingService" >
+
+        <service android:name=".FirebaseCloudMessage.Servisler.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
