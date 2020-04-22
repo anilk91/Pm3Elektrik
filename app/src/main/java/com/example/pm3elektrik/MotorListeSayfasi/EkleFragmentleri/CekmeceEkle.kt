@@ -100,6 +100,10 @@ class CekmeceEkle : Fragment() {
                     ).show()
                 }
 
+                if (uniqIDGelen != null) {
+                    firebaseOkunanBilgileriEdittexteIsle(uniqIDGelen!!, view)
+                }
+
             } else {
                 Toast.makeText(activity, "Çekmece ekleme yetkiniz yok!", Toast.LENGTH_SHORT).show()
             }

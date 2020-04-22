@@ -61,12 +61,14 @@
 
     <Button
         android:id="@+id/btnKullaniciyiKaydet"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/buton_arka_plan"
         android:fontFamily="@font/nunito_extrabold"
         android:text="KAYIT OL"
-        android:textColor="#03519d"
+        android:textColor="@color/beyazRenk"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etKullaniciKayitSifreTekrar"
@@ -105,12 +107,14 @@
 
     <Button
         android:id="@+id/btnKullaniciGirisSayfasi"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/buton_arka_plan"
         android:fontFamily="@font/nunito_extrabold"
         android:text="GİRİŞ"
-        android:textColor="#03519d"
+        android:textColor="@color/beyazRenk"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etKullaniciKayitSifre"

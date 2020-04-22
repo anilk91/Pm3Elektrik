@@ -66,12 +66,14 @@
 
     <Button
         android:id="@+id/btnKullaniciGirisYap"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/buton_arka_plan"
         android:fontFamily="@font/nunito_extrabold"
         android:text="GİRİŞ YAP"
-        android:textColor="#03519d"
+        android:textColor="@color/beyazRenk"
         app:layout_constraintEnd_toEndOf="@+id/etKullaniciGirisSifre"
         app:layout_constraintStart_toStartOf="@+id/etKullaniciGirisSifre"
         app:layout_constraintTop_toBottomOf="@+id/etKullaniciGirisSifre" />

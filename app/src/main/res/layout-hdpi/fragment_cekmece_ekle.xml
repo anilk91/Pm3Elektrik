@@ -44,13 +44,15 @@
 
             <Button
                 android:id="@+id/btnCekmeceSalterEkle"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/buton_arka_plan"
                 android:fontFamily="@font/nunito_extrabold"
                 android:text="EKLE"
-                android:textColor="@android:color/black"
+                android:textColor="@color/beyazRenk"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -131,16 +131,19 @@ class MainActivity : AppCompatActivity() {
     private fun anaSayfayaGec(){
         val intent = Intent(this,AnaSayfa::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun kayitSayfasinaGec(){
         val intent = Intent(this,KullaniciGirisSicilveIsim::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun yoneticiSayfasinaGec(){
         val intent = Intent(this,YoneticiAnaSayfa::class.java)
         startActivity(intent)
+        finish()
 
     }
 }

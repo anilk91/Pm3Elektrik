@@ -64,9 +64,7 @@ class Ayarlar : Fragment() {
 
         sifreGuncelle.setOnClickListener {
 
-            if (mevcutSifre.text.toString().isNotEmpty() && yeniSifre.text.toString()
-                    .isNotEmpty() && yeniSifreTekrar.text.toString().isNotEmpty()
-            ) {
+            if (mevcutSifre.text.toString().isNotEmpty() && yeniSifre.text.toString().isNotEmpty() && yeniSifreTekrar.text.toString().isNotEmpty()) {
                 Log.e("gelenSİcil", "$gelenSicilNo")
                 ref.child(gelenSicilNo!!)
                     .orderByKey().addValueEventListener(object : ValueEventListener {
