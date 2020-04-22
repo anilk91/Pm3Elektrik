@@ -37,8 +37,6 @@ class MotorVeSalterEtiket : Fragment() {
         val bundle: Bundle? = arguments
         motorTag = bundle?.getString("rvGelenMotorTag")
 
-        Log.e("motorEtiketGor","$motorTag")
-
         firebaseDBOku(motorTag)
 
         val motorSalterEtiketClose = view.findViewById<ImageView>(R.id.imgMotorSalterClose)
@@ -55,8 +53,7 @@ class MotorVeSalterEtiket : Fragment() {
             bundleMotorEtiketDuzenle?.putString("motorEtiketDuzenle", motorTag)
             val fragment = MotorEtiketDuzenle()
             fragment.arguments = bundleMotorEtiketDuzenle
-            val transaction: FragmentTransaction? =
-                activity?.supportFragmentManager?.beginTransaction()
+            val transaction: FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(
                 R.id.containerMotorSalterEtiket,
                 fragment,
@@ -227,10 +224,10 @@ class MotorVeSalterEtiket : Fragment() {
 
         if (motorBilgiGetir != null) {
 
-            if (motorBilgiGetir.motorTag.isEmpty()){
+            if (motorBilgiGetir.motorTag.isNotEmpty()){
                 tvMotorEtiketTag.text = (motorBilgiGetir.motorTag)
             }
-            if (motorBilgiGetir.motorMCCYeri.isEmpty()){
+            if (motorBilgiGetir.motorMCCYeri.isNotEmpty()){
                 tvMotorEtiketMccYeri.text = (motorBilgiGetir.motorMCCYeri)
             }
 
@@ -308,6 +305,7 @@ class MotorVeSalterEtiket : Fragment() {
             Toast.makeText(context?.applicationContext, "Bilgiler Getirilemedi", Toast.LENGTH_LONG).show()
         }
     }
+
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()

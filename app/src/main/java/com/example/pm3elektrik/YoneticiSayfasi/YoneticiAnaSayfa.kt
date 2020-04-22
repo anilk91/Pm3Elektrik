@@ -1,10 +1,12 @@
 package com.example.pm3elektrik.YoneticiSayfasi
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pm3elektrik.KullaniciGiris.KullaniciGirisSicilveIsim
 import com.example.pm3elektrik.KullaniciGiris.KullaniciKayitModel.KullaniciModel
 import com.example.pm3elektrik.R
 import com.google.firebase.database.DataSnapshot
@@ -25,6 +27,12 @@ class YoneticiAnaSayfa : AppCompatActivity() {
         setContentView(R.layout.activity_yonetici_ana_sayfa)
 
         gelenKullaniciBilgileriniOku(this)
+
+        btnYoneticiKayitSayfasinaGec.setOnClickListener {
+            val intent = Intent(this,KullaniciGirisSicilveIsim::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun gelenKullaniciBilgileriniOku(mContext: Context) {

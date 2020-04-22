@@ -2,7 +2,6 @@ package com.example.pm3elektrik.KullaniciGiris
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +18,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class KullaniciGirisDialogFragment : DialogFragment() {
+class KullaniciGirisDialogFragment(gelenContext: KullaniciGirisSicilveIsim) : DialogFragment() {
 
     val ref = FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar")
+    var mContext = gelenContext
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_dialog_kullanici_giris, container, false)
@@ -52,11 +52,11 @@ class KullaniciGirisDialogFragment : DialogFragment() {
                                         val editor = sharedPreferences?.edit()
                                         editor?.putInt("KEY_SICIL_NO", gelenBilgiler!!.sicilNo)
                                         editor?.commit()
-                                        Toast.makeText(context?.applicationContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(mContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
                                         anaSayfayaGec()
                                     }
                                 }else{
-                                    Toast.makeText(context?.applicationContext,"Girilen Şifre Yanlış",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(mContext,"Girilen Şifre Yanlış",Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
@@ -66,7 +66,7 @@ class KullaniciGirisDialogFragment : DialogFragment() {
                 })
 
             }else{
-                Toast.makeText(context?.applicationContext,"Boş Alanları Doldurunuz",Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext,"Boş Alanları Doldurunuz",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -83,17 +83,21 @@ class KullaniciGirisDialogFragment : DialogFragment() {
 
     private fun anaSayfayaGec(){
 
-        val intent = Intent(context?.applicationContext,AnaSayfa::class.java)
-        activity?.startActivity(intent)
+        val intent = Intent(mContext,AnaSayfa::class.java)
+        mContext.startActivity(intent)
+        mContext.finish()
         dismiss()
 
     }
 
     private fun yoneticiSayfasinaGec(){
 
-        val intent = Intent(context?.applicationContext,YoneticiAnaSayfa::class.java)
-        activity?.startActivity(intent)
+
+        val intent = Intent(mContext,YoneticiAnaSayfa::class.java)
+        mContext.startActivity(intent)
+        mContext.finish()
         dismiss()
+
     }
 
 }

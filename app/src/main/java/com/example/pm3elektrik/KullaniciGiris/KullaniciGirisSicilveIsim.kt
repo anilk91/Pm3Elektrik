@@ -247,7 +247,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     private fun girisBilgisiSayfasi() {
 
-        val kullaniciGirisSayfasi = KullaniciGirisDialogFragment()
+        val kullaniciGirisSayfasi = KullaniciGirisDialogFragment(this)
         kullaniciGirisSayfasi.show(this.supportFragmentManager,"kullanici_giris_sayfasi_dialog_fr")
 
     }

@@ -45,8 +45,6 @@ class CekmeceEkle : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_cekmece_ekle, container, false)
 
-        Toast.makeText(view.context,"Lütfen Eklemeden Önce Listeyi Kontrol Ediniz", Toast.LENGTH_LONG).show()
-
         val close = view.findViewById<ImageView>(R.id.imgCekmeceEkleClose)
         val buttonEkle = view.findViewById<Button>(R.id.btnCekmeceSalterEkle)
 
@@ -57,6 +55,13 @@ class CekmeceEkle : Fragment() {
 
         val bundle :Bundle? = arguments
         uniqIDGelen = bundle?.getString("salterOlanCekmecedenGelen")
+        Log.e("çekmeceEKle","$uniqIDGelen")
+
+        if (uniqIDGelen != null) {
+            firebaseOkunanBilgileriEdittexteIsle(uniqIDGelen!!, view)
+        }else{
+            Toast.makeText(context,"Eklemeden Önce Listeyi Kontrol Ediniz!",Toast.LENGTH_SHORT).show()
+        }
 
         close.setOnClickListener {
             changeFragment(MotorListe())
@@ -94,12 +99,8 @@ class CekmeceEkle : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
 
-            if (uniqIDGelen != null) {
-
-                firebaseOkunanBilgileriEdittexteIsle(uniqIDGelen!!, view)
-            }else {
+            } else {
                 Toast.makeText(activity, "Çekmece ekleme yetkiniz yok!", Toast.LENGTH_SHORT).show()
             }
         }

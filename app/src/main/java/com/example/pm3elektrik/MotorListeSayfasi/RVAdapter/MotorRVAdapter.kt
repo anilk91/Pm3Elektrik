@@ -159,15 +159,15 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                 }
             }
 
-            if (motorSilmeYetki == "var"){
-                motorDelete.setOnClickListener {
+            motorDelete.setOnClickListener {
 
+                if (motorSilmeYetki == "var") {
                     //AlertDialog Penceresi------------------------------
                     val builder = AlertDialog.Builder(mContext)
                     builder.setTitle("Seçimi Sil?")
                     builder.setMessage("${motorListesi.motorTag} Etiketine Ait Tüm Bilgileri Silmek İstiyor Musunuz?")
 
-                    builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener{
+                    builder.setPositiveButton("EVET", object : DialogInterface.OnClickListener {
                         override fun onClick(p0: DialogInterface?, p1: Int) {
 
                             //Çekmece ve Motor Bilgilerini Sil----------------------------
@@ -175,11 +175,11 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
                                 .child("Motor")
                                 .orderByChild("motorTag")
                                 .equalTo(motorListesi.motorTag)
-                                .addValueEventListener(object : ValueEventListener{
+                                .addValueEventListener(object : ValueEventListener {
                                     override fun onCancelled(p0: DatabaseError) {}
                                     override fun onDataChange(p0: DataSnapshot) {
 
-                                        for (gelen in p0.children){
+                                        for (gelen in p0.children) {
                                             gelen.ref.removeValue()
 
                                         }
@@ -202,20 +202,20 @@ class MotorRVAdapter(var motorListe: ArrayList<MotorModel>, var mContext: Contex
 //                        notifyItemRemoved(position)
 //                        notifyItemRangeChanged(position,motorListe.size)
 
-                            Toast.makeText(mContext,"${motorListesi.motorTag} Silindi!",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "${motorListesi.motorTag} Silindi!", Toast.LENGTH_SHORT).show()
                         }
                     })
-                    builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener{
+                    builder.setNegativeButton("HAYIR", object : DialogInterface.OnClickListener {
                         override fun onClick(p0: DialogInterface?, p1: Int) {
-                            Toast.makeText(mContext,"Seçim Silinmedi!",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "Seçim Silinmedi!", Toast.LENGTH_SHORT).show()
                         }
                     })
 
-                    val dialog : AlertDialog =builder.create()
+                    val dialog: AlertDialog = builder.create()
                     dialog.show()
+                }else{
+                    Toast.makeText(mContext, "Motor ve Sürücü Bilgilerini Silme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
                 }
-            }else{
-                Toast.makeText(mContext, "Motor ve Sürücü Bilgilerini Silme Yetkiniz Yok!", Toast.LENGTH_SHORT).show()
             }
 
         }
