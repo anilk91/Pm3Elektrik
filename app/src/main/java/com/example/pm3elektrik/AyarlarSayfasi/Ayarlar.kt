@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener
 class Ayarlar : Fragment() {
 
     var gelenIsim : String? = ""
-    var gelenSicilNo : String? = ""
+    var gelenSicilNo  = 0
     var gelenKullaniciToken : String? = ""
     var gelenSifre : String? = ""
     var motorEkleYetki : String? = "yok"
@@ -66,7 +66,7 @@ class Ayarlar : Fragment() {
 
             if (mevcutSifre.text.toString().isNotEmpty() && yeniSifre.text.toString().isNotEmpty() && yeniSifreTekrar.text.toString().isNotEmpty()) {
                 Log.e("gelenSİcil", "$gelenSicilNo")
-                ref.child(gelenSicilNo!!)
+                ref.child(gelenSicilNo.toString())
                     .orderByKey().addValueEventListener(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {}
                         override fun onDataChange(p0: DataSnapshot) {
@@ -104,18 +104,21 @@ class Ayarlar : Fragment() {
 
     private fun firebaseBilgileriniOku(p0: DataSnapshot, mevcutSifre: EditText, yeniSifre: EditText, yeniSifreTekrar: EditText) {
 
-
             val gelen = p0.getValue(KullaniciModel::class.java)
             if (gelen != null){
-                if (gelen.sicilNo.toString() == gelenSicilNo) {
+                if (gelen.sicilNo.toString() == gelenSicilNo.toString()) {
                         if (gelen.sifre == mevcutSifre.text.toString()) {
                             if (yeniSifre.text.toString() == yeniSifreTekrar.text.toString()) {
-                                FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                                    .child("Kullanicilar").child(this.gelenSicilNo.toString())
-                                    .child("sifre")
-                                    .setValue(yeniSifre.text.toString())
-                                Toast.makeText(context, "Şifre Değiştirildi", Toast.LENGTH_SHORT).show()
-
+                                if (yeniSifre.text.length >= 6 && yeniSifreTekrar.text.length >= 6) {
+                                    FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                        .child("Kullanicilar").child(this.gelenSicilNo.toString())
+                                        .child("sifre")
+                                        .setValue(yeniSifre.text.toString())
+                                    sifreDegistiktenSonraKaydet(yeniSifre.text.toString())
+                                    Toast.makeText(context, "Şifre Değiştirildi", Toast.LENGTH_SHORT).show()
+                                }else{
+                                    Toast.makeText(context, "Şifre En Az 6 Karakter Olmalı!", Toast.LENGTH_SHORT).show()
+                                }
                             } else {
                                 Toast.makeText(context, "Şifreler Uyuşmuyor!", Toast.LENGTH_SHORT).show()
                             }
@@ -129,24 +132,35 @@ class Ayarlar : Fragment() {
 
     }
 
+    private fun sifreDegistiktenSonraKaydet(yeniSifre: String) {
+
+        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+        val editor = sharedPreferences?.edit()
+        editor?.putString("KEY_GELEN_SIFRE", yeniSifre)
+        editor?.apply()
+        Log.e("yeniSifre","$yeniSifre")
+    }
+
     private fun kullaniciBilgileriniOku(){
 
         val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
         gelenIsim = sharedPreferences?.getString("KEY_GELEN_ISIM","")
-        gelenSicilNo = sharedPreferences?.getString("KEY_GELEN_SICIL_NO","")
-        gelenKullaniciToken = sharedPreferences?.getString("KEY_KULLANICI_TOKEN","")
-        gelenSifre = sharedPreferences?.getString("KEY_GELEN_SIFRE","")
-        motorEkleYetki = sharedPreferences?.getString("KEY_MOTOR_YETKI","")
-        cekmeceEkleYetki = sharedPreferences?.getString("KEY_CEKMECE_YETKI","")
-        driveEkleYetki = sharedPreferences?.getString("KEY_DRİVE_UNİTE_YETKI","")
-        ambarEkleYetki = sharedPreferences?.getString("KEY_AMBAR_YETKI","")
-        telefonEkleYetki = sharedPreferences?.getString("KEY_TELEFON_YETKI","")
+        gelenSicilNo = sharedPreferences!!.getInt("KEY_GELEN_SICIL_NO",0)
+        gelenKullaniciToken = sharedPreferences.getString("KEY_KULLANICI_TOKEN","")
+        gelenSifre = sharedPreferences.getString("KEY_GELEN_SIFRE","")
+        motorEkleYetki = sharedPreferences.getString("KEY_MOTOR_YETKI","")
+        cekmeceEkleYetki = sharedPreferences.getString("KEY_CEKMECE_YETKI","")
+        driveEkleYetki = sharedPreferences.getString("KEY_DRİVE_UNİTE_YETKI","")
+        ambarEkleYetki = sharedPreferences.getString("KEY_AMBAR_YETKI","")
+        telefonEkleYetki = sharedPreferences.getString("KEY_TELEFON_YETKI","")
+
+        Log.e("digerSİfre","$gelenSifre")
     }
 
     private fun bilgileriAlveIsle(isim : TextView, sicilNo : TextView, motorEklemeSilme: CheckBox, cekmeceEklemeSilme: CheckBox, driveEklemeSilme: CheckBox, ambarEklemeSilme: CheckBox, telefonEklemeSilme: CheckBox) {
 
         isim.setText(gelenIsim)
-        sicilNo.setText(gelenSicilNo)
+        sicilNo.setText(gelenSicilNo.toString())
 
         if (motorEkleYetki == "var"){
             motorEklemeSilme.isChecked = true
@@ -169,19 +183,6 @@ class Ayarlar : Fragment() {
 
         val sifremiUnuttumSayfasi = SifremiUnuttumDialogFragment()
         sifremiUnuttumSayfasi.show(fragmentManager!!,"sifremi_unuttum_dialog")
-    }
-
-    private fun anaSayfayaDon(){
-
-        val intent = Intent(context!!.applicationContext,MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun changeFragment1(){
-
-        val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.containerAyarlarSayfasi,Ayarlar(),"fragment_ayarlar")
-        fragmentTransaction?.commit()
     }
 
 }

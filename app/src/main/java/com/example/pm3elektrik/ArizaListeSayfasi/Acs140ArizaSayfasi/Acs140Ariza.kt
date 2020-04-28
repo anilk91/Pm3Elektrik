@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -94,6 +95,4 @@ class Acs140Ariza : Fragment() {
         arizaListe.add(ACS140ArizaModel("HATA","Full Display Blinking(Ekranın Tümü Yanıp Sönüyor), Serial Link Failure(Seri Link Hatası)","-ACS140 ve Kontrol Paneli Arasında Kötü Haberleşme","-Seri Haberleşme Parametreleri(GROUP 52) Değiştirilmiş","-Kontrol Panelini Kontrollü Bir Şekilde Çıkartıp Enerjiyi Kesin ve Daha Sonra Paneli Takıp Tekrar Enerjiyi Açınız."))
         arizaListe.add(ACS140ArizaModel("NOT","FL4, FL16, FL18-22 hataları ile karşılaşıldığında konvertör enerjisini tamamen kesip tekrar veriniz. Diğer tüm hatalarda panel üzerinden RESET butonuna(START/STOP Butonu) basmanız yeterlidir. Ayrıca 1604 parametresine bakınız."))
     }
-
-
 }

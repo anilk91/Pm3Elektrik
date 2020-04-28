@@ -42,8 +42,8 @@ class KumandaProjeleri : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTransaction?.add(R.id.containerKumandaProje,fragment,"fragment_motor_liste")
-        fragmentTransaction?.addToBackStack("kumanda_proje_fr")
+        fragmentTransaction?.replace(R.id.containerKumandaProje,fragment,"fragment_motor_liste")
+        fragmentTransaction?.addToBackStack("kumanda_proje_ana_sayfa")
         fragmentTransaction?.commit()
     }
 

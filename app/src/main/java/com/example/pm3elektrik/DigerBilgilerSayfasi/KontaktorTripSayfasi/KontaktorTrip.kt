@@ -49,8 +49,8 @@ class KontaktorTrip : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.add(R.id.containerKontaktorTripSayfasi,fragment,"kontaktor_trip_sayfasi")
-        fragmentTransaction.addToBackStack("kontaktor_trip_sayfasi")
+        fragmentTransaction.replace(R.id.containerKontaktorTripSayfasi,fragment,"kontaktor_trip_sayfasi")
+        fragmentTransaction.addToBackStack("kontaktor_trip_ana_sayfa")
         fragmentTransaction.commit()
 
     }

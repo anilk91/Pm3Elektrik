@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4F9FD"
     android:interpolator="@android:anim/accelerate_interpolator"
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/anaSayfaLogo"
         android:layout_width="250dp"
         android:layout_height="150dp"
         android:layout_marginTop="128dp"
@@ -27,9 +28,9 @@
         android:textColor="#03519d"
         android:textSize="36sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-        app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintEnd_toEndOf="@+id/anaSayfaLogo"
+        app:layout_constraintStart_toStartOf="@+id/anaSayfaLogo"
+        app:layout_constraintTop_toBottomOf="@+id/anaSayfaLogo" />
 
     <TextView
         android:id="@+id/textView86"
@@ -38,7 +39,59 @@
         android:fontFamily="@font/bridone_heavy_italic_4"
         android:text="pm3 elektrik"
         android:textColor="#03519d"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/textView35"
         app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+    <TextView
+        android:id="@+id/tvHosgeldin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Hoş Geldin"
+        android:textColor="@color/modernKartonYaziRengi"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView86" />
+
+    <TextView
+        android:id="@+id/tvHosGeldinGelenKisi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="İsim"
+        android:textColor="@color/modernKartonYaziRengi"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHosgeldin" />
+
+    <TextView
+        android:id="@+id/textView171"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="Hüseyin ÖZSOY"
+        android:textColor="#838383"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvMailAdres"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMailAdres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/nunito_extrabold"
+        android:text="h.ozsoy.tr88@gmail.com"
+        android:textColor="#838383"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

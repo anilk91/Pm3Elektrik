@@ -44,10 +44,14 @@ class ArizaListe : Fragment() {
     private fun changeFragment(fragment : Fragment){
 
         val fragmentTransaction : FragmentTransaction = activity?.supportFragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.containerArizaListe,fragment,"ariza_liste_fr")
+        fragmentTransaction.replace(R.id.containerArizaListe,fragment,"ariza_liste_fr").addToBackStack("ariza_liste_sayfasi")
         fragmentTransaction.commit()
 
+
+
     }
+
+
 
 
 }

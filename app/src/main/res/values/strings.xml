@@ -9,6 +9,8 @@
     <string name="otuz_numara">Yavaş Trip (Uzun süreli motor kalkış zamanı vs.)</string>
     <string name="numara_yok">YOK (Aşırı yük, faz kaybı ve topraklama hatası alınması istenmeyen durumlarda)</string>
     <string name="sifremi_unuttum">Şifrenizi hatırlamıyorsanız <i><u><b>HÜSEYİN ÖZSOY</b></u></i> ile irtibata geçiniz veya <i><u><b>h.ozsoy.tr88@gmail.com</b></u></i> mail adresine sicil numaranızı yollayınız.</string>
+    <string name="tasarım_ve_programlama">Tasarım ve Programlama</string>
+
     <string-array name="secim">
         <item>Sürücü Seçiniz</item>
         <item>Kontaktör</item>

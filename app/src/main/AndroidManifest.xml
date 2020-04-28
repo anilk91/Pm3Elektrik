@@ -35,7 +35,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".YoneticiSayfasi.RVKullaniciListe"></activity>
+        <activity android:name=".VersiyonBilgiDialogSayfasi.RVversiyonBilgi"></activity>
+        <activity android:name=".YoneticiSayfasi.RVKullaniciListe" />
         <activity android:name=".YoneticiSayfasi.YoneticiAnaSayfa" /> <!-- <activity android:name=".KullaniciGiris.KullaniciGirisSicilveIsim"> -->
         <!-- <intent-filter> -->
         <!-- <action android:name="android.intent.action.MAIN" -->

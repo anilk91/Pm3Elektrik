@@ -59,6 +59,18 @@
                         android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/imgMotorLogo3"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="4dp"
+                        android:alpha="0.08"
+                        android:src="@drawable/modern_karton_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
                             android:id="@+id/imgEditMotorBilgi"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -400,6 +412,17 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgMotorSurucuLogo3"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:alpha="0.08"
+                        android:src="@drawable/modern_karton_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                             android:id="@+id/imgEditSalterSurucu"

@@ -1,7 +1,9 @@
 package com.example.pm3elektrik.AnaSayfa
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -13,15 +15,21 @@ import com.example.pm3elektrik.MotorListeSayfasi.DriveUniteleriSayfasi.DriveUnit
 import com.example.pm3elektrik.MotorListeSayfasi.MotorListe
 import com.example.pm3elektrik.R
 import com.example.pm3elektrik.TelefonListeSayfasi.TelefonListesi
+import com.example.pm3elektrik.VersiyonBilgiDialogSayfasi.VersiyonBilgiDialog
 import kotlinx.android.synthetic.main.activity_ana_sayfa.*
 
 class AnaSayfa : AppCompatActivity(){
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ana_sayfa)
+
+        val sharedPref = getSharedPreferences("versiyon_bilgi_pref",0)
+        val ilkAcilis = sharedPref.getBoolean("versiyon_bilgi",true)
+
+        if (ilkAcilis == true){
+            versiyonBilgiFragment()
+        }
 
         imgMotorPassive.visibility = View.INVISIBLE
         gelenPendingIntent()
@@ -177,8 +185,16 @@ class AnaSayfa : AppCompatActivity(){
         fragmentTransaction.commit()
     }
 
-    override fun onBackPressed() {
-        //super.onBackPressed()
-        finish()
+    private fun versiyonBilgiFragment(){
+
+        val versiyonBilgisi = VersiyonBilgiDialog()
+        versiyonBilgisi.show(supportFragmentManager,"versiyon_bilgisi_dialog_fr")
+
+        val sharedPref = getSharedPreferences("versiyon_bilgi_pref",0)
+        val editor = sharedPref.edit()
+        editor.putBoolean("versiyon_bilgi",false)
+        editor.apply()
+
+
     }
 }

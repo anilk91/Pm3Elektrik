@@ -47,55 +47,72 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
         kaydet.setOnClickListener {
 
-            if (isim.text.toString().isNotEmpty() && sicilNo.text.toString().isNotEmpty() && sifre.text.toString().isNotEmpty() &&
-                    sifreTekrar.text.toString().isNotEmpty()) {
+            if (isim.text.toString().isNotEmpty() && sicilNo.text.toString()
+                    .isNotEmpty() && sifre.text.toString().isNotEmpty() &&
+                sifreTekrar.text.toString().isNotEmpty()
+            ) {
 
                 if (sifre.text.toString().equals(sifreTekrar.text.toString())) {
-                val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
-                val editor = sharedPreferences.edit()
-                editor.putString("KEY_ISIM", isim.text.toString().toUpperCase())
-                editor.putInt("KEY_SICIL_NO", sicilNo.text.toString().toInt())
-                editor.putString("KEY_SIFRE", sifre.text.toString())
-                editor.apply()
+                    if (sifre.text.length >= 6 && sifreTekrar.text.length >= 6) {
+                        val sharedPreferences = getSharedPreferences("gelenKullaniciBilgileri", 0)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("KEY_GELEN_ISIM", isim.text.toString().toUpperCase())
+                        editor.putInt("KEY_GELEN_SICIL_NO", sicilNo.text.toString().toInt())
+                        editor.putString("KEY_GELEN_SIFRE", sifre.text.toString())
+                        editor.apply()
 
-                kullaniciModel.isim = isim.text.toString().toUpperCase()
-                kullaniciModel.sicilNo = sicilNo.text.toString().toInt()
-                kullaniciModel.sifre = sifre.text.toString()
+                        kullaniciModel.isim = isim.text.toString().toUpperCase()
+                        kullaniciModel.sicilNo = sicilNo.text.toString().toInt()
+                        kullaniciModel.sifre = sifre.text.toString()
 
-                try {
-                    kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
-                } catch (Hata: Exception) {
-                }
-
-                val internetConnection = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                val activeNetwork = internetConnection.activeNetwork
-
-                if (activeNetwork != null) {
-                    FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
-                        .child("Kullanicilar")
-                        .child(sicilNo.text.toString())
-                        .setValue(kullaniciModel).addOnCompleteListener {
-
-                            if (it.isSuccessful) {
-                                Toast.makeText(this, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
-                                kullaniciKaydiniKontrolEt()
-                            } else {
-                                Toast.makeText(
-                                    this,
-                                    "Kayıt Başarısız: ${it.exception?.message}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                Toast.makeText(
-                                    this, "İnternet Bağlantınızı Kontrol Ediniz", Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                        try {
+                            kullaniciModel.kullaniciToken = kullaniciTokenIDKaydetGuncelle()!!
+                        } catch (Hata: Exception) {
                         }
+
+                        val internetConnection =
+                            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                        val activeNetwork = internetConnection.activeNetwork
+
+                        if (activeNetwork != null) {
+
+                            FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+                                .child("Kullanicilar")
+                                .orderByKey()
+                                .addValueEventListener(object : ValueEventListener {
+                                    override fun onCancelled(p0: DatabaseError) {}
+                                    override fun onDataChange(p0: DataSnapshot) {
+
+                                        for (gelen in p0.children) {
+                                            val bilgileriOku =
+                                                gelen.getValue(KullaniciModel::class.java)
+                                            if (bilgileriOku?.sicilNo != sicilNo.text.toString().toInt()) {
+                                                gelenKullaniciBilgileriFirebaseKaydet(sicilNo.text.toString())
+                                            } else {
+                                                Toast.makeText(this@KullaniciGirisSicilveIsim, "Bu Sicil Numarası İle Kayıt Yapılmış!", Toast.LENGTH_SHORT).show()
+                                            }
+
+                                        }
+
+                                    }
+
+                                })
+
+
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "İlk Kayıt İçin İnternet Gerekli",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Şifre En Az 6 Karakter Olmalı!", Toast.LENGTH_LONG)
+                            .show()
+                    }
                 } else {
-                    Toast.makeText(this, "İlk Kayıt İçin İnternet Gerekli", Toast.LENGTH_LONG)
+                    Toast.makeText(this, "Şifre ve Şifre Tekrarı Uyuşmuyor!", Toast.LENGTH_LONG)
                         .show()
-                }
-            } else {
-                    Toast.makeText(this, "Şifre ve Şifre Tekrarı Uyuşmuyor!", Toast.LENGTH_LONG).show()
                 }
             } else {
                 Toast.makeText(this, "Boş Alanları Doldurunuz", Toast.LENGTH_LONG).show()
@@ -108,6 +125,19 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     }
 
+    private fun gelenKullaniciBilgileriFirebaseKaydet(sicilNo : String) {
+
+        FirebaseDatabase.getInstance().reference.child("pm3Elektrik")
+            .child("Kullanicilar")
+            .child(sicilNo)
+            .setValue(kullaniciModel).addOnCompleteListener {
+                if (it.isSuccessful) { Toast.makeText(this, "Kayıt Yapıldı", Toast.LENGTH_SHORT).show()
+                    //kullaniciKaydiniKontrolEt()
+                } else { Toast.makeText(this, "Kayıt Başarısız: ${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "İnternet Bağlantınızı Kontrol Ediniz", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
 
 
     private fun kullaniciTokenIDKaydetGuncelle(): String? {
@@ -116,22 +146,21 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
             if (it.isSuccessful) {
                 kullaniciToken = it.result?.token
 
-                val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
+                val sharedPreferences = getSharedPreferences("gelenKullaniciBilgileri", 0)
                 val editor = sharedPreferences.edit()
-                editor.putString("KEY_TOKEN", it.result?.token.toString())
+                editor.putString("KEY_KULLANICI_TOKEN", it.result?.token.toString())
                 editor.apply()
 
 
-                Log.e("token kaydi","oluşturuldu $kullaniciToken")
-            }
-            else {
+                Log.e("token kaydi", "oluşturuldu $kullaniciToken")
+            } else {
 
-                val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
-                val tokenKaydi = sharedPreferences.getString("KEY_TOKEN", "") as String
-                if(tokenKaydi.isNotEmpty()){
-                    Log.e("token kaydi","bulundu $tokenKaydi")
+                val sharedPreferences = getSharedPreferences("gelenKullaniciBilgileri", 0)
+                val tokenKaydi = sharedPreferences.getString("KEY_KULLANICI_TOKEN", "") as String
+                if (tokenKaydi.isNotEmpty()) {
+                    Log.e("token kaydi", "bulundu $tokenKaydi")
                 }
-                Log.e("token kaydi","bulunamadı")
+                Log.e("token kaydi", "bulunamadı")
             }
 
         }
@@ -141,9 +170,9 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     private fun kullaniciKaydiniKontrolEt() {
 
-        val sharedPreferences = getSharedPreferences("gelenKullaniciIsmi", 0)
-        val isim = sharedPreferences.getString("KEY_ISIM", "")
-        val sicilNo = sharedPreferences.getInt("KEY_SICIL_NO", 0)
+        val sharedPreferences = getSharedPreferences("gelenKullaniciBilgileri", 0)
+        val isim = sharedPreferences.getString("KEY_GELEN_ISIM", "")
+        val sicilNo = sharedPreferences.getInt("KEY_GELEN_SICIL_NO", 0)
 
         if (isim!!.isNotEmpty() && sicilNo != 0) {
 
@@ -184,18 +213,10 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                                             startActivity(pendingIntent)
 
                                         } else {
-
-                                            val intent = Intent(
-                                                this@KullaniciGirisSicilveIsim,
-                                                AnaSayfa::class.java
-                                            )
-                                            intent.flags =
-                                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                            startActivity(intent)
-                                            overridePendingTransition(
-                                                R.anim.fab_slide_in_from_left,
-                                                R.anim.fab_slide_out_to_left
-                                            )
+//                                            val intent = Intent(this@KullaniciGirisSicilveIsim, AnaSayfa::class.java)
+//                                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                                            startActivity(intent)
+//                                            overridePendingTransition(R.anim.fab_slide_in_from_left, R.anim.fab_slide_out_to_left)
                                         }
                                     }
                                 } else {
@@ -205,7 +226,8 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }
-                            }catch (hata : Exception){}
+                            } catch (hata: Exception) {
+                            }
                         }
                     }
                 })
@@ -214,11 +236,11 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
     private fun tokenIDGuncelle(sicilNo: Int) {
 
-        Log.e("sicil No","$sicilNo")
-        Log.e("gelen Token","${kullaniciTokenIDKaydetGuncelle()}")
+        Log.e("sicil No", "$sicilNo")
+        Log.e("gelen Token", "${kullaniciTokenIDKaydetGuncelle()}")
         FirebaseDatabase.getInstance().reference.child("pm3Elektrik").child("Kullanicilar")
             .orderByValue()
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {}
                 override fun onDataChange(p0: DataSnapshot) {
 
@@ -238,7 +260,7 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
 
                             }
 
-                        }catch (hata : Exception){
+                        } catch (hata: Exception) {
                         }
                     }
                 }
@@ -248,14 +270,14 @@ class KullaniciGirisSicilveIsim : AppCompatActivity() {
     private fun girisBilgisiSayfasi() {
 
         val kullaniciGirisSayfasi = KullaniciGirisDialogFragment(this)
-        kullaniciGirisSayfasi.show(this.supportFragmentManager,"kullanici_giris_sayfasi_dialog_fr")
+        kullaniciGirisSayfasi.show(this.supportFragmentManager, "kullanici_giris_sayfasi_dialog_fr")
 
     }
 
     private fun sifremiUnuttumSayfasi() {
 
         val sifremiUnuttumSayfasi = SifremiUnuttumDialogFragment()
-        sifremiUnuttumSayfasi.show(this.supportFragmentManager,"sifremi_unuttum_dialog")
+        sifremiUnuttumSayfasi.show(this.supportFragmentManager, "sifremi_unuttum_dialog")
     }
 }
 

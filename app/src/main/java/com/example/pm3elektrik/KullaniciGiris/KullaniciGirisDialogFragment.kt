@@ -45,13 +45,17 @@ class KullaniciGirisDialogFragment(gelenContext: KullaniciGirisSicilveIsim) : Di
 
                             if (gelenBilgiler?.sicilNo.toString() == sicilNo.text.toString()){
                                 if (gelenBilgiler?.sifre.toString() == sifre.text.toString()){
-                                    if (gelenBilgiler?.sicilNo == 1111){
+                                    if (gelenBilgiler?.sicilNo == 1111){val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
+                                        val editor = sharedPreferences?.edit()
+                                        editor?.putInt("KEY_GELEN_SICIL_NO", gelenBilgiler.sicilNo)
+                                        editor?.apply()
+                                        Toast.makeText(mContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
                                         yoneticiSayfasinaGec()
                                     }else{
-                                        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciIsmi", 0)
+                                        val sharedPreferences = activity?.getSharedPreferences("gelenKullaniciBilgileri", 0)
                                         val editor = sharedPreferences?.edit()
-                                        editor?.putInt("KEY_SICIL_NO", gelenBilgiler!!.sicilNo)
-                                        editor?.commit()
+                                        editor?.putInt("KEY_GELEN_SICIL_NO", gelenBilgiler!!.sicilNo)
+                                        editor?.apply()
                                         Toast.makeText(mContext,"Giriş Başarılı",Toast.LENGTH_SHORT).show()
                                         anaSayfayaGec()
                                     }
