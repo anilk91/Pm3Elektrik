@@ -1,4 +1,4 @@
-package com.example.pm3elektrik.AyarlarSayfasi
+uspackage com.example.pm3elektrik.AyarlarSayfasi
 
 
 import android.app.Activity
